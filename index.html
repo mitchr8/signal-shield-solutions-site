@@ -1,210 +1,850 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- SSS-REDESIGN v2 -->
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Signal & Shield Solutions</title>
-  <meta name="description" content="Facilities, IT, and operational support with contract-ready delivery, compliance-first execution, and responsive service." />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#023668" />
+  <title>OpenClaw | Reliable Freight & Logistics Services</title>
+
+  <!-- TODO: Replace description + OG tags with OpenClaw final copy -->
+  <meta name="description" content="OpenClaw delivers reliable freight and logistics with clear communication, fast quoting, and end-to-end tracking." />
+  <meta property="og:title" content="OpenClaw | Reliable Freight & Logistics Services" />
+  <meta property="og:description" content="Fast quoting, clear communication, and end-to-end visibility." />
+  <meta property="og:type" content="website" />
+
+  <!-- Mansa-like type (Wix uses Assistant; we use Google Fonts Assistant) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#07111f; --bg2:#0b1830; --panel:#0f203c; --line:#243f6c;
-      --text:#ecf3ff; --muted:#b6c7e5; --brand:#66a6ff; --brand2:#3f7cff;
-      --ok:#97d0a2; --gold:#d5bb7a;
+      /* Mansa-inspired palette */
+      --navy:#023668;
+      --blue:#41688E;   /* bubble blue vibe */
+      --bg:#F5F5F5;
+      --card:#ffffff;
+      --text:#0b1320;
+      --muted:rgba(11,19,32,.68);
+      --shadow:0 12px 30px rgba(0,0,0,.14);
+      --shadow2:0 10px 22px rgba(0,0,0,.10);
+      --radius:18px;
+      --max:1120px;
+      --font:"Assistant", system-ui, -apple-system, "Segoe UI", Inter, Arial, sans-serif;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);background:radial-gradient(1200px 700px at 80% -10%,#193765 0%,transparent 60%),linear-gradient(180deg,var(--bg),var(--bg2));line-height:1.55}
-    a{color:inherit}
-    .container{max-width:1120px;margin:0 auto;padding:0 20px}
-    .nav{position:sticky;top:0;z-index:20;background:rgba(7,17,31,.85);backdrop-filter:blur(8px);border-bottom:1px solid rgba(36,63,108,.7)}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand{font-weight:800;letter-spacing:.2px}
-    .menu{display:flex;gap:18px}
-    .menu a{text-decoration:none;color:var(--muted);font-weight:600}
-    .menu a:hover{color:#fff}
-    .hamb{display:none;background:none;border:1px solid var(--line);color:#fff;border-radius:10px;padding:8px 10px}
 
-    .hero{padding:56px 0 24px}
-    .hero-wrap{display:grid;grid-template-columns:1.3fr .9fr;gap:18px;align-items:stretch}
-    .card{background:linear-gradient(180deg,rgba(15,32,60,.95),rgba(11,24,48,.9));border:1px solid var(--line);border-radius:18px;padding:24px}
-    .pill{display:inline-block;font-size:.78rem;border:1px solid #355d96;background:#1b3155;border-radius:999px;padding:5px 10px;color:#d4e3ff;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
-    h1{margin:0 0 12px;font-size:clamp(1.8rem,4vw,3rem);line-height:1.1}
-    .sub{font-size:1.06rem;color:var(--muted)}
-    .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-    .btn{display:inline-block;padding:11px 15px;border-radius:11px;text-decoration:none;font-weight:800;border:1px solid transparent}
-    .btn-primary{background:linear-gradient(90deg,var(--brand2),var(--brand));color:white}
-    .btn-ghost{border-color:#436aa4;color:#e7efff}
-    .trust{display:grid;gap:10px}
-    .trust-badge{border:1px solid #5e4f2f;background:#1a2333;border-radius:12px;padding:10px 12px;color:#f6e9c9;font-weight:700}
-    .trust ul{margin:8px 0 0 18px;color:var(--muted)}
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      font-family:var(--font);
+      color:var(--text);
+      background:linear-gradient(180deg, #ffffff 0%, var(--bg) 62%, #ffffff 100%);
+    }
+    a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:0 18px; }
 
-    section{padding:18px 0}
-    h2{margin:0 0 8px;font-size:clamp(1.25rem,2.2vw,1.9rem)}
-    .muted{color:var(--muted)}
-    .grid{display:grid;gap:14px}
-    .grid-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-    .grid-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-    .tile{background:rgba(14,28,52,.9);border:1px solid var(--line);border-radius:14px;padding:16px;transition:transform .25s ease,border-color .25s ease}
-    .tile:hover{transform:translateY(-3px);border-color:#4f7fc4}
-    .tile h3{margin:0 0 8px}
-    .tile p,.tile li{color:var(--muted)}
-    ul.clean{margin:8px 0 0 18px;padding:0}
-    .service-link{display:block;text-decoration:none}
+    /* Top bar */
+    .topbar{ background:rgba(2,54,104,.96); color:#fff; font-size:14px; }
+    .topbar .wrap{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 18px; gap:12px;
+    }
+    .topbar a{ opacity:.95; }
+    .topbar a:hover{ opacity:1; text-decoration:underline; }
+    .topbar .right{ display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end; }
 
-    .process{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
-    .step{border:1px dashed #456ca6;border-radius:12px;padding:12px;background:#0d1c35}
-    .step b{display:block;margin-bottom:4px}
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background:rgba(255,255,255,.82);
+      border-bottom:1px solid rgba(0,0,0,.06);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0; gap:16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.2px;
+      color:var(--navy);
+    }
+    .brand-badge{
+      width:36px; height:36px; border-radius:12px;
+      background:linear-gradient(135deg, var(--navy), var(--blue));
+      box-shadow:var(--shadow2);
+    }
+    nav ul{
+      list-style:none; margin:0; padding:0;
+      display:flex; gap:18px; align-items:center;
+    }
+    nav a{
+      font-weight:600;
+      color:rgba(11,19,32,.78);
+      padding:8px 10px;
+      border-radius:12px;
+      transition:background .15s ease, color .15s ease;
+    }
+    nav a:hover{ background:rgba(65,104,142,.10); color:var(--navy); }
 
-    details{margin-top:10px;background:#0d1930;border:1px solid #2b4670;border-radius:12px;padding:10px 12px}
-    summary{cursor:pointer;font-weight:700}
+    .cta{ display:flex; gap:10px; align-items:center; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      height:44px; padding:0 16px;
+      border-radius:999px;
+      font-weight:700;
+      border:1px solid transparent;
+      cursor:pointer;
+      transition:transform .15s ease, filter .15s ease, background .15s ease;
+      user-select:none; white-space:nowrap;
+    }
+    .btn:hover{ transform:translateY(-1px); }
+    .btn.primary{ background:var(--blue); color:#fff; box-shadow:var(--shadow2); }
+    .btn.primary:hover{ filter:brightness(1.03); }
+    .btn.ghost{ background:transparent; border-color:rgba(2,54,104,.22); color:var(--navy); }
+    .btn.ghost:hover{ background:rgba(2,54,104,.06); }
 
-    .cta-band{margin-top:6px;background:linear-gradient(90deg,#11264a,#173767);border:1px solid #335a94;border-radius:14px;padding:18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+    .hamburger{
+      display:none;
+      width:44px; height:44px;
+      border-radius:14px;
+      border:1px solid rgba(0,0,0,.10);
+      background:#fff;
+      cursor:pointer;
+    }
+    .mobileMenu{
+      display:none;
+      padding:10px 0 16px;
+      border-top:1px solid rgba(0,0,0,.06);
+    }
+    .mobileMenu a{
+      display:block;
+      padding:12px 12px;
+      border-radius:14px;
+      font-weight:700;
+      color:rgba(11,19,32,.82);
+    }
+    .mobileMenu a:hover{ background:rgba(65,104,142,.10); color:var(--navy); }
 
-    form{display:grid;gap:10px;margin-top:8px}
-    input,select,textarea{width:100%;background:#091426;color:#eaf2ff;border:1px solid #355784;border-radius:10px;padding:11px 12px;font:inherit}
-    textarea{min-height:120px;resize:vertical}
+    /* Hero */
+    .hero{ padding:56px 0 22px; overflow:hidden; }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:24px; align-items:center;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px; border-radius:999px;
+      background:rgba(65,104,142,.10);
+      color:var(--navy);
+      font-weight:800;
+      border:1px solid rgba(65,104,142,.12);
+      width:max-content;
+    }
+    .hero h1{
+      font-size:44px; line-height:1.05;
+      margin:14px 0 10px;
+      color:var(--navy);
+      letter-spacing:-.6px;
+    }
+    .hero p{
+      margin:0 0 16px;
+      font-size:18px;
+      color:rgba(11,19,32,.68);
+      line-height:1.5;
+      max-width:54ch;
+    }
+    .heroActions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
 
-    footer{padding:28px 0 46px;color:#9fb3d6}
-    .footer-grid{display:grid;gap:12px;grid-template-columns:2fr 1fr 1fr}
+    .heroCard{
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow2);
+    }
+    .heroCard h3{ margin:0 0 8px; color:var(--navy); }
+    .heroList{
+      list-style:none; margin:0; padding:0;
+      display:grid; gap:10px;
+      color:rgba(11,19,32,.78);
+    }
+    .heroList li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px 12px;
+      border-radius:14px;
+      background:rgba(2,54,104,.04);
+      border:1px solid rgba(2,54,104,.07);
+    }
+    .dot{
+      width:10px; height:10px; border-radius:99px;
+      background:var(--blue);
+      margin-top:5px;
+      flex:0 0 auto;
+    }
 
-    .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
-    .reveal.in{opacity:1;transform:none}
+    /* Stats strip */
+    .stats{
+      margin:18px 0 0;
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:12px;
+    }
+    .stat{
+      background:rgba(255,255,255,.86);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:16px;
+      padding:14px;
+      box-shadow:0 6px 14px rgba(0,0,0,.06);
+    }
+    .stat strong{ color:var(--navy); font-size:18px; display:block; }
+    .stat span{ color:rgba(11,19,32,.68); font-size:14px; }
 
-    @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}.tile{transition:none}}
-    @media (max-width:900px){.hero-wrap{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.menu{display:none}.menu.open{display:flex;position:absolute;right:20px;top:58px;background:#0d1d36;border:1px solid var(--line);padding:12px;border-radius:10px;flex-direction:column}.hamb{display:block}}
-    @media (max-width:560px){.container{padding:0 14px}.footer-grid{grid-template-columns:1fr}}
+    /* Sections */
+    section{ padding:48px 0; }
+    .sectionHead{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:16px; margin-bottom:16px;
+    }
+    .sectionHead h2{
+      margin:0; font-size:30px;
+      color:var(--navy);
+      letter-spacing:-.3px;
+    }
+    .sectionHead p{ margin:0; color:rgba(11,19,32,.68); max-width:62ch; }
+
+    .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .grid2{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
+
+    .card{
+      background:var(--card);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:0 6px 16px rgba(0,0,0,.06);
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
+    .card:hover{ transform:translateY(-2px); box-shadow:var(--shadow2); }
+    .card h3{ margin:10px 0 8px; color:var(--navy); }
+    .card p{ margin:0; color:rgba(11,19,32,.68); line-height:1.5; }
+    .icon{
+      width:42px; height:42px;
+      border-radius:14px;
+      display:grid; place-items:center;
+      background:rgba(65,104,142,.12);
+      border:1px solid rgba(65,104,142,.14);
+    }
+    .icon svg{ width:22px; height:22px; fill:var(--navy); }
+
+    /* Process */
+    .step{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:16px;
+      border-radius:18px;
+      border:1px solid rgba(0,0,0,.08);
+      background:rgba(255,255,255,.86);
+      box-shadow:0 6px 14px rgba(0,0,0,.06);
+    }
+    .num{
+      width:34px; height:34px; border-radius:12px;
+      background:linear-gradient(135deg, var(--navy), var(--blue));
+      color:#fff; font-weight:800;
+      display:grid; place-items:center;
+      flex:0 0 auto;
+      box-shadow:0 6px 14px rgba(2,54,104,.22);
+    }
+
+    /* FAQ */
+    .faq{ display:grid; gap:10px; }
+    details{
+      background:rgba(255,255,255,.9);
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:16px;
+      padding:12px 14px;
+      box-shadow:0 6px 14px rgba(0,0,0,.05);
+    }
+    summary{
+      cursor:pointer;
+      font-weight:800;
+      color:var(--navy);
+      list-style:none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    details p{ margin:10px 0 0; color:rgba(11,19,32,.68); line-height:1.5; }
+
+    /* Contact */
+    .contactCard{
+      background:linear-gradient(180deg, rgba(2,54,104,.08), rgba(65,104,142,.06));
+      border:1px solid rgba(0,0,0,.08);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow2);
+    }
+    form{ display:grid; gap:10px; }
+    label{ font-size:12px; color:rgba(11,19,32,.70); font-weight:800; }
+    input, textarea{
+      width:100%;
+      border:1px solid rgba(0,0,0,.14);
+      border-radius:14px;
+      padding:12px 12px;
+      font-family:var(--font);
+      font-size:16px;
+      background:#fff;
+    }
+    textarea{ resize:vertical; min-height:120px; }
+    .formRow{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+
+    footer{
+      padding:28px 0 40px;
+      border-top:1px solid rgba(0,0,0,.06);
+      background:rgba(255,255,255,.75);
+    }
+    .footerGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+      align-items:start;
+    }
+    .fine{ color:rgba(11,19,32,.65); font-size:14px; line-height:1.5; }
+    .links{ display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end; }
+    .links a{ color:rgba(11,19,32,.72); font-weight:800; }
+    .links a:hover{ color:var(--navy); text-decoration:underline; }
+
+    /* Reveal animation */
+    .reveal{ opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; }
+    .reveal.in{ opacity:1; transform:none; }
+
+    /* Sticky chat bubble */
+    .oc-chat-btn{
+      position:fixed; right:18px; bottom:18px; z-index:9999;
+      display:inline-flex; align-items:center; gap:10px;
+      height:56px; min-width:200px; max-width:340px;
+      font-family:var(--font); font-size:18px;
+      color:#fff; background:var(--blue);
+      border:0; border-radius:999px;
+      padding:0 18px 0 16px;
+      box-shadow:0 0 3px 0 rgba(180,180,180,.5), var(--shadow);
+      cursor:pointer;
+      transform:translateY(0);
+      transition:transform .15s ease, filter .15s ease;
+    }
+    .oc-chat-btn:hover{ transform:translateY(-2px); filter:brightness(1.03); }
+    .oc-chat-icon{ font-size:20px; }
+    .oc-chat-text{
+      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+      font-weight:800;
+    }
+    .oc-chat-btn::before{
+      content:"";
+      position:absolute; inset:-8px;
+      border-radius:999px;
+      background:rgba(65,104,142,.22);
+      opacity:0;
+      animation:ocPulse 2.2s ease-out infinite;
+      z-index:-1;
+    }
+    @keyframes ocPulse{
+      0%{ transform:scale(.92); opacity:.0; }
+      15%{ opacity:.9; }
+      100%{ transform:scale(1.15); opacity:0; }
+    }
+
+    .oc-chat-panel{
+      position:fixed; right:18px; bottom:86px;
+      width:min(390px, calc(100vw - 36px));
+      height:540px;
+      z-index:10000;
+      background:#fff;
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      transform:translateY(10px);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .18s ease, transform .18s ease;
+      font-family:var(--font);
+    }
+    .oc-chat-panel.is-open{
+      transform:translateY(0);
+      opacity:1;
+      pointer-events:auto;
+    }
+    .oc-chat-panel-header{
+      display:flex; justify-content:space-between; align-items:flex-start;
+      gap:12px;
+      padding:14px 14px 12px;
+      background:linear-gradient(0deg, rgba(2,54,104,.08), rgba(2,54,104,.08)), #fff;
+      border-bottom:1px solid rgba(0,0,0,.08);
+    }
+    .oc-chat-title{ font-weight:900; color:var(--navy); }
+    .oc-chat-subtitle{ font-size:12px; color:rgba(0,0,0,.55); margin-top:2px; }
+    .oc-chat-close{
+      border:0; background:transparent; font-size:18px;
+      cursor:pointer; padding:6px 8px; border-radius:10px;
+    }
+    .oc-chat-close:hover{ background:rgba(0,0,0,.06); }
+    .oc-chat-panel-body{ height:calc(540px - 60px); padding:14px; overflow:auto; }
+    .oc-chat-form label{ display:block; font-size:12px; color:rgba(0,0,0,.65); margin-bottom:10px; font-weight:900; }
+    .oc-chat-form input, .oc-chat-form textarea{
+      width:100%; margin-top:6px;
+      border:1px solid rgba(0,0,0,.14);
+      border-radius:12px;
+      padding:10px 12px;
+      font-family:var(--font);
+    }
+    .oc-chat-send{
+      width:100%; margin-top:10px; height:44px;
+      border:0; border-radius:12px;
+      background:var(--blue);
+      color:#fff; font-weight:900; cursor:pointer;
+    }
+    .oc-chat-send:hover{ filter:brightness(1.04); }
+    .oc-chat-backdrop{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.28);
+      z-index:9998;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .heroGrid{ grid-template-columns:1fr; }
+      .stats{ grid-template-columns:repeat(2,1fr); }
+      .grid3{ grid-template-columns:1fr; }
+      .grid2{ grid-template-columns:1fr; }
+      nav ul{ display:none; }
+      .hamburger{ display:inline-grid; place-items:center; }
+      .mobileMenu.show{ display:block; }
+      .footerGrid{ grid-template-columns:1fr; }
+      .links{ justify-content:flex-start; }
+      .formRow{ grid-template-columns:1fr; }
+    }
   </style>
 </head>
+
 <body>
-  <header class="nav">
-    <div class="container nav-inner">
-      <div class="brand">Signal &amp; Shield Solutions</div>
-      <nav id="menu" class="menu" aria-label="Primary">
-        <a href="#about">About</a><a href="#services">Services</a><a href="#capabilities">How We Work</a><a href="#contact">Contact</a>
-      </nav>
-      <button class="hamb" id="hamb" aria-label="Menu">☰</button>
+  <div class="topbar">
+    <div class="wrap">
+      <div>
+        <strong>OpenClaw</strong> •
+        <!-- TODO: replace phone/email -->
+        <a href="tel:+10000000000">+1 (000) 000-0000</a> •
+        <a href="mailto:quotes@openclaw.com">quotes@openclaw.com</a>
+      </div>
+      <div class="right">
+        <span>Nationwide Coverage</span>
+        <span>Fast Quotes</span>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top">
+          <span class="brand-badge" aria-hidden="true"></span>
+          <span>OpenClaw</span>
+        </a>
+
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#industries">Industries</a></li>
+            <li><a href="#process">How it works</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="cta">
+          <a class="btn ghost" href="#contact">Get a Quote</a>
+          <button class="hamburger" id="menuBtn" aria-label="Open menu">☰</button>
+        </div>
+      </div>
+
+      <div class="mobileMenu" id="mobileMenu" aria-label="Mobile menu">
+        <a href="#services">Services</a>
+        <a href="#industries">Industries</a>
+        <a href="#process">How it works</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="btn primary" style="width:100%; margin-top:10px;" href="#contact">Get a Quote</a>
+      </div>
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero" id="about">
-      <div class="hero-wrap">
-        <article class="card reveal">
-          <span class="pill">Contract-ready partner</span>
-          <h1>Facilities, IT &amp; Operational Support — Contract-Ready Delivery</h1>
-          <p class="sub">Reliable execution, clean documentation, and compliance-first performance for public-sector and commercial buyers.</p>
-          <div class="btns">
-            <a class="btn btn-primary" href="#services">Our Services</a>
-            <a class="btn btn-ghost" href="#contact">Contact / Request Info</a>
+  <main id="top">
+    <section class="hero">
+      <div class="wrap heroGrid">
+        <div class="reveal">
+          <div class="kicker">Reliable Freight • Clear Communication • Real Tracking</div>
+
+          <!-- TODO: replace hero headline/subhead -->
+          <h1>Freight & logistics that move on time — and keep you in the loop.</h1>
+          <p>
+            OpenClaw helps shippers and partners book fast, route smart, and track confidently.
+            Transparent updates, dependable carriers, and a team that actually answers.
+          </p>
+
+          <div class="heroActions">
+            <a class="btn primary" href="#contact">Request a Quote</a>
+            <a class="btn ghost" href="#services">See Services</a>
           </div>
-          <p style="margin-top:10px;color:var(--ok)">Fast response. Scope-accurate delivery. Prime-friendly records.</p>
-        </article>
-        <aside class="card trust reveal">
-          <div class="trust-badge">Veteran-owned &amp; operated</div>
-          <p class="muted">Execution-forward support with practical field discipline and clean closeout documentation.</p>
-          <ul>
-            <li>QC logs + invoice-ready records</li>
-            <li>Compliance-first (WD / access / reporting)</li>
-            <li>Fast response &amp; schedule control</li>
-            <li>Prime-friendly documentation</li>
+
+          <div class="stats reveal">
+            <div class="stat"><strong>Fast Quotes</strong><span>Same-day responses when possible</span></div>
+            <div class="stat"><strong>End-to-End</strong><span>Dispatch + tracking visibility</span></div>
+            <div class="stat"><strong>Flexible</strong><span>FTL • LTL • Expedited</span></div>
+            <div class="stat"><strong>Responsive</strong><span>Real updates, not silence</span></div>
+          </div>
+        </div>
+
+        <div class="heroCard reveal">
+          <h3>What you get with OpenClaw</h3>
+          <ul class="heroList">
+            <!-- TODO: replace bullets with Full/Full2 value props -->
+            <li><span class="dot"></span><span><strong>Clean quoting:</strong> clear pricing, clear timing.</span></li>
+            <li><span class="dot"></span><span><strong>Pro dispatch:</strong> organized pickup/delivery coordination.</span></li>
+            <li><span class="dot"></span><span><strong>Tracking:</strong> visibility you can share with customers.</span></li>
+            <li><span class="dot"></span><span><strong>Problem solving:</strong> quick escalation when things change.</span></li>
           </ul>
-        </aside>
-      </div>
-    </section>
 
-    <section id="services" class="reveal">
-      <h2>Services</h2>
-      <p class="muted">Two delivery tracks so buyers can quickly see what we execute.</p>
-      <div class="grid grid-2">
-        <a class="tile service-link" href="#contact"><h3>Facilities &amp; Operational Services</h3><ul class="clean"><li>Janitorial / custodial (scope-based)</li><li>Facility support (recurring service delivery, checklists, logs)</li><li>Grounds / exterior support (scope-based)</li><li>Move-in / move-out and turnover support</li></ul></a>
-        <a class="tile service-link" href="#contact"><h3>IT &amp; Technical Services</h3><ul class="clean"><li>Desktop support and field services</li><li>Device setup / deployment support</li><li>Basic network / comms support (scope-based)</li><li>Low-voltage / cabling support (where required and scoped)</li></ul></a>
-      </div>
-    </section>
-
-    <section id="capabilities" class="reveal">
-      <h2>Core Capabilities</h2>
-      <p class="muted">Organized around outcomes, execution quality, and responsiveness.</p>
-      <div class="grid grid-2">
-        <article class="tile"><h3>Facilities Support</h3><p>Janitorial, light facilities tasks, and recurring service delivery with trackable QC.</p></article>
-        <article class="tile"><h3>IT / Field Tech Support</h3><p>Endpoint support, installs, and basic network/comms support with clean closeout records.</p></article>
-        <article class="tile"><h3>Staffing / Surge Support</h3><p>Temporary staffing, backfills, and peak demand support for projects and operations.</p></article>
-        <article class="tile"><h3>Grounds / Exterior</h3><p>Scoped exterior support and recurring site upkeep where required.</p></article>
-      </div>
-
-      <h3 style="margin:16px 0 8px">How we execute</h3>
-      <div class="process">
-        <div class="step"><b>1. Scope</b><span class="muted">Define deliverables, schedule, and compliance requirements.</span></div>
-        <div class="step"><b>2. Mobilize</b><span class="muted">Assign team, access plan, and kickoff documentation.</span></div>
-        <div class="step"><b>3. Deliver</b><span class="muted">Track quality, report status, and control schedule.</span></div>
-        <div class="step"><b>4. Closeout</b><span class="muted">Provide invoice-ready records and final confirmation.</span></div>
-      </div>
-
-      <details>
-        <summary>Codes we commonly support (procurement alignment)</summary>
-        <div class="grid grid-2" style="margin-top:10px">
-          <div class="tile"><h3>Operations</h3><ul class="clean"><li>561720 — Janitorial Services</li><li>561210 — Facilities Support Services</li><li>561730 — Landscaping Services</li><li>561320 — Temporary Help Services</li></ul></div>
-          <div class="tile"><h3>IT</h3><ul class="clean"><li>541513 — Computer Facilities Management Services</li><li>541519 — Other Computer Related Services</li></ul></div>
-        </div>
-      </details>
-    </section>
-
-    <section class="reveal">
-      <h2>Who We Serve</h2>
-      <div class="grid grid-3">
-        <article class="tile"><h3>Federal / State / Local Buyers</h3><p>Scope-based support with contract-ready execution and reporting.</p></article>
-        <article class="tile"><h3>Prime Contractors</h3><p>Teaming and subcontract support with documentation that aligns to prime needs.</p></article>
-        <article class="tile"><h3>Commercial Properties / Small Sites</h3><p>Reliable recurring support for selected facilities and operational scopes.</p></article>
-      </div>
-    </section>
-
-    <section class="reveal">
-      <div class="cta-band">
-        <div>
-          <h3 style="margin:0 0 4px">Need responsive support on a scoped requirement?</h3>
-          <p class="muted" style="margin:0">Tell us your location, timeline, and compliance requirements.</p>
-        </div>
-        <div class="btns" style="margin:0">
-          <a class="btn btn-primary" href="#contact">Start an Inquiry</a>
-          <a class="btn btn-ghost" href="#services">Review Services</a>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+            <a class="btn primary" href="#contact" style="flex:1;">Get a Quote</a>
+            <a class="btn ghost" href="#process" style="flex:1;">How it Works</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="reveal">
-      <h2>Get in Touch</h2>
-      <p class="muted">Request info, pricing, teaming, or a capability statement.</p>
-      <p class="muted"><strong>NIPR / restricted network users:</strong> if fields appear read-only, use the <a href="/contact-lite.html">NIPR-safe page</a>.</p>
-      <form id="contactForm" action="https://formsubmit.co/contracts@signalshieldsolutions.com" method="POST">
-        <input type="hidden" name="_subject" value="Signal & Shield website inquiry" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_captcha" value="true" />
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
-        <label>Name<input type="text" name="name" autocomplete="name" required /></label>
-        <label>Email<input type="email" name="email" autocomplete="email" required /></label>
-        <label>Inquiry type<select name="inquiry_type" required><option value="">Select one...</option><option>General info / questions</option><option>Request capability statement</option><option>Request a quote / pricing</option><option>Teaming / subcontracting</option><option>Subcontractor partnership (for subs reaching out)</option></select></label>
-        <label>Message<textarea name="message" placeholder="Share your scope, timeline, and any compliance requirements." required></textarea></label>
-        <button class="btn btn-primary" type="submit">Send Inquiry</button>
-      </form>
-      <p class="muted" style="margin-top:8px">Alternate contact: contracts@signalshieldsolutions.com</p>
+    <section id="services">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div>
+            <h2>Services</h2>
+            <p><!-- TODO: replace with services intro --></p>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="card reveal">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 7h11v10H3V7zm12 3h3l3 3v4h-6V10zm2 7a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM7 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
+            </div>
+            <h3>FTL / Truckload</h3>
+            <p><!-- TODO --></p>
+          </div>
+
+          <div class="card reveal">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 6h16v4H4V6zm0 6h10v6H4v-6zm12 0h4v6h-4v-6z"/></svg>
+            </div>
+            <h3>LTL / Partial</h3>
+            <p><!-- TODO --></p>
+          </div>
+
+          <div class="card reveal">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2l4 8h-3v8h-2v-8H8l4-8zm-7 18h14v2H5v-2z"/></svg>
+            </div>
+            <h3>Expedited</h3>
+            <p><!-- TODO --></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="industries">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div>
+            <h2>Industries we support</h2>
+            <p><!-- TODO --></p>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card reveal"><h3>Manufacturing</h3><p><!-- TODO --></p></div>
+          <div class="card reveal"><h3>Retail / Distribution</h3><p><!-- TODO --></p></div>
+          <div class="card reveal"><h3>Construction Materials</h3><p><!-- TODO --></p></div>
+          <div class="card reveal"><h3>Food & Beverage</h3><p><!-- TODO --></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div>
+            <h2>How it works</h2>
+            <p><!-- TODO --></p>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="step reveal">
+            <div class="num">1</div>
+            <div>
+              <strong style="color:var(--navy)">Request</strong>
+              <div class="fine">Send your lane, timing, and freight details.</div>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="num">2</div>
+            <div>
+              <strong style="color:var(--navy)">Plan & Dispatch</strong>
+              <div class="fine">We coordinate pickup/delivery windows and paperwork.</div>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="num">3</div>
+            <div>
+              <strong style="color:var(--navy)">Track & Deliver</strong>
+              <div class="fine">Visibility throughout the move, proactive updates.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div>
+            <h2>About OpenClaw</h2>
+            <p><!-- TODO: paste mission/positioning from Full/Full2 --></p>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card reveal">
+            <h3>What we stand for</h3>
+            <p><!-- TODO --></p>
+          </div>
+          <div class="card reveal">
+            <h3>Why customers stay</h3>
+            <p><!-- TODO --></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div>
+            <h2>FAQ</h2>
+            <p><!-- TODO --></p>
+          </div>
+        </div>
+
+        <div class="faq">
+          <details class="reveal">
+            <summary>How fast can I get a quote?</summary>
+            <p><!-- TODO --></p>
+          </details>
+          <details class="reveal">
+            <summary>Do you handle expedited shipments?</summary>
+            <p><!-- TODO --></p>
+          </details>
+          <details class="reveal">
+            <summary>How do you handle tracking and updates?</summary>
+            <p><!-- TODO --></p>
+          </details>
+          <details class="reveal">
+            <summary>What information do you need to book?</summary>
+            <p><!-- TODO --></p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div>
+            <h2>Contact</h2>
+            <p><!-- TODO --></p>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="contactCard reveal">
+            <h3 style="margin:0 0 10px; color:var(--navy);">Request a quote</h3>
+
+            <form id="quoteForm">
+              <div class="formRow">
+                <div>
+                  <label>Name</label>
+                  <input name="name" required placeholder="Your name" />
+                </div>
+                <div>
+                  <label>Email</label>
+                  <input name="email" type="email" required placeholder="you@company.com" />
+                </div>
+              </div>
+
+              <div class="formRow">
+                <div>
+                  <label>Phone (optional)</label>
+                  <input name="phone" placeholder="(555) 555-5555" />
+                </div>
+                <div>
+                  <label>Lane (optional)</label>
+                  <input name="lane" placeholder="City, ST → City, ST" />
+                </div>
+              </div>
+
+              <div>
+                <label>Message</label>
+                <textarea name="message" required placeholder="Pickup date, freight type, weight, pallets, special needs..."></textarea>
+              </div>
+
+              <button class="btn primary" type="submit" style="width:100%;">Send Request</button>
+              <div class="fine" style="margin-top:8px;">
+                Prefer email? <a href="mailto:quotes@openclaw.com" style="text-decoration:underline;">quotes@openclaw.com</a>
+              </div>
+            </form>
+          </div>
+
+          <div class="card reveal">
+            <h3>Direct contact</h3>
+            <p class="fine" style="margin-top:6px;">
+              Phone: <a href="tel:+10000000000" style="text-decoration:underline;">+1 (000) 000-0000</a><br>
+              Email: <a href="mailto:quotes@openclaw.com" style="text-decoration:underline;">quotes@openclaw.com</a><br>
+              Hours: Mon–Fri, 8am–5pm (local)
+            </p>
+
+            <div class="card" style="margin-top:14px; border-radius:16px;">
+              <h3 style="margin:0 0 6px;">Fastest quoting checklist</h3>
+              <p class="fine" style="margin:0;">
+                Lane, pickup date/time window, commodity, weight/dimensions, pallets, and appointment requirements.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    <div class="container footer-grid">
-      <div><strong>Signal &amp; Shield Solutions</strong><div>Facilities, IT &amp; Operational Support</div></div>
-      <div><a href="#services">Services</a><br><a href="#capabilities">How We Work</a></div>
-      <div><a href="#contact">Contact</a><br><a href="/contact-lite.html">NIPR-safe contact</a></div>
+    <div class="wrap footerGrid">
+      <div>
+        <div class="brand" style="gap:10px;">
+          <span class="brand-badge" aria-hidden="true"></span>
+          <span>OpenClaw</span>
+        </div>
+        <p class="fine" style="margin:10px 0 0;">
+          <!-- TODO -->
+          Reliable freight with clear updates, clean dispatch, and tracking you can trust.
+        </p>
+        <p class="fine" style="margin:10px 0 0;">
+          © <span id="year"></span> OpenClaw. All rights reserved.
+        </p>
+      </div>
+
+      <div class="links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
-    <div class="container" style="margin-top:10px">© <span id="year"></span> Signal &amp; Shield Solutions</div>
   </footer>
 
+  <!-- Sticky chat bubble -->
+  <button id="ocChatBtn" class="oc-chat-btn" aria-label="Message us">
+    <span class="oc-chat-icon" aria-hidden="true">💬</span>
+    <span class="oc-chat-text">Message us</span>
+  </button>
+
+  <div id="ocChatPanel" class="oc-chat-panel" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="oc-chat-panel-header">
+      <div>
+        <div class="oc-chat-title">OpenClaw Support</div>
+        <div class="oc-chat-subtitle">Quick questions? Send a message.</div>
+      </div>
+      <button id="ocChatClose" class="oc-chat-close" aria-label="Close chat">✕</button>
+    </div>
+
+    <div class="oc-chat-panel-body">
+      <form class="oc-chat-form" id="chatMiniForm">
+        <label>
+          Your email
+          <input name="email" type="email" required placeholder="you@company.com" />
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="4" required placeholder="How can we help?"></textarea>
+        </label>
+        <button type="submit" class="oc-chat-send">Send</button>
+        <div class="fine" style="margin-top:8px;">
+          Or email <a href="mailto:quotes@openclaw.com" style="text-decoration:underline;">quotes@openclaw.com</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="ocChatBackdrop" class="oc-chat-backdrop" hidden></div>
+
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const hamb=document.getElementById('hamb'), menu=document.getElementById('menu');
-    hamb?.addEventListener('click',()=>menu.classList.toggle('open'));
-    const io = new IntersectionObserver((entries)=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // reveal-on-scroll
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) e.target.classList.add("in");
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+    // mobile menu
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    menuBtn?.addEventListener("click", () => mobileMenu.classList.toggle("show"));
+    mobileMenu?.querySelectorAll("a").forEach(a => a.addEventListener("click", () => mobileMenu.classList.remove("show")));
+
+    // sticky chat toggle
+    const btn = document.getElementById("ocChatBtn");
+    const panel = document.getElementById("ocChatPanel");
+    const closeBtn = document.getElementById("ocChatClose");
+    const backdrop = document.getElementById("ocChatBackdrop");
+
+    function openChat(){
+      panel.classList.add("is-open");
+      panel.setAttribute("aria-hidden","false");
+      backdrop.hidden = false;
+    }
+    function closeChat(){
+      panel.classList.remove("is-open");
+      panel.setAttribute("aria-hidden","true");
+      backdrop.hidden = true;
+    }
+
+    btn.addEventListener("click", () => panel.classList.contains("is-open") ? closeChat() : openChat());
+    closeBtn.addEventListener("click", closeChat);
+    backdrop.addEventListener("click", closeChat);
+    window.addEventListener("keydown", (e) => { if (e.key === "Escape") closeChat(); });
+
+    // forms fallback -> mailto
+    function mailtoFromForm(form, subject){
+      const fd = new FormData(form);
+      const lines = [];
+      for (const [k,v] of fd.entries()) lines.push(`${k}: ${v}`);
+      const body = encodeURIComponent(lines.join("\n"));
+      const sub = encodeURIComponent(subject);
+      window.location.href = `mailto:quotes@openclaw.com?subject=${sub}&body=${body}`;
+    }
+
+    document.getElementById("quoteForm")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      mailtoFromForm(e.target, "Quote Request - OpenClaw");
+    });
+
+    document.getElementById("chatMiniForm")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      mailtoFromForm(e.target, "Website Chat Message - OpenClaw");
+      closeChat();
+    });
   </script>
 </body>
 </html>
