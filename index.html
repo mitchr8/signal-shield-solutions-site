@@ -261,7 +261,7 @@
         - Form submits to FormSubmit and emails Mitch directly.
         - No Formspree or Turnstile setup required.
       -->
-      <form action="https://formsubmit.co/mitchr8@gmail.com" method="POST">
+      <form id="contactForm" method="POST" novalidate>
         <input type="hidden" name="_subject" value="Signal & Shield website inquiry" />
         <input type="hidden" name="_template" value="table" />
         <input type="hidden" name="_captcha" value="true" />
@@ -297,7 +297,8 @@
         <button class="btn btn-primary" type="submit">Send Inquiry</button>
       </form>
 
-      <p class="fine">If you need immediate help, include due dates, location, and statement-of-work details in your message.</p>
+      <p id="formStatus" class="fine" role="status" aria-live="polite">If you need immediate help, include due dates, location, and statement-of-work details in your message.</p>
+      <p class="fine">Fallback: email <a href="mailto:mitchr8@gmail.com">mitchr8@gmail.com</a></p>
     </section>
 
     <footer>
@@ -307,6 +308,37 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+
+    contactForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(contactForm);
+      const payload = new URLSearchParams();
+      for (const [k, v] of fd.entries()) payload.append(k, v);
+
+      const btn = contactForm.querySelector('button[type="submit"]');
+      const old = btn?.textContent || 'Send Inquiry';
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+      if (formStatus) formStatus.textContent = 'Submitting inquiry...';
+
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/mitchr8@gmail.com', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body: payload.toString()
+        });
+
+        if (!res.ok) throw new Error('Submit failed');
+        contactForm.reset();
+        if (formStatus) formStatus.textContent = 'Thanks — your inquiry was sent.';
+      } catch {
+        if (formStatus) formStatus.innerHTML = 'Submission was blocked on this network. Please email <a href="mailto:mitchr8@gmail.com">mitchr8@gmail.com</a>.';
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = old; }
+      }
+    });
   </script>
 </body>
 </html>
