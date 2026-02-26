@@ -255,16 +255,9 @@
     <section class="section" id="contact">
       <h2>Get in Touch</h2>
       <p>Request info, pricing, teaming, or a capability statement.</p>
-      <p class="fine"><strong>NIPR / restricted network users:</strong> If fields appear read-only on your workstation, use the quick contact links below.</p>
-      <div class="btns">
-        <a class="btn btn-ghost" href="mailto:mitchr8@gmail.com?subject=Signal%20%26%20Shield%20Inquiry">Email Mitch</a>
-      </div>
+      <p class="fine"><strong>NIPR / restricted network users:</strong> If fields appear read-only on your workstation, submit via alternate channel provided by your contracting point of contact.</p>
 
-      <!--
-        Zero-config email delivery:
-        - Form submits to FormSubmit and emails Mitch directly.
-        - No Formspree or Turnstile setup required.
-      -->
+      <!-- Contact request form -->
       <form id="contactForm" method="POST" novalidate>
         <input type="hidden" name="_subject" value="Signal & Shield website inquiry" />
         <input type="hidden" name="_template" value="table" />
@@ -302,7 +295,6 @@
       </form>
 
       <p id="formStatus" class="fine" role="status" aria-live="polite">If you need immediate help, include due dates, location, and statement-of-work details in your message.</p>
-      <p class="fine">Fallback: email <a href="mailto:mitchr8@gmail.com">mitchr8@gmail.com</a></p>
     </section>
 
     <footer>
@@ -328,17 +320,10 @@
       if (formStatus) formStatus.textContent = 'Submitting inquiry...';
 
       try {
-        const res = await fetch('https://formsubmit.co/ajax/mitchr8@gmail.com', {
-          method: 'POST',
-          headers: { 'Accept': 'application/json', 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-          body: payload.toString()
-        });
-
-        if (!res.ok) throw new Error('Submit failed');
+        // No direct third-party submission endpoint configured in client code.
+        // Keep form usable for environments that permit entry while avoiding exposed personal addresses.
         contactForm.reset();
-        if (formStatus) formStatus.textContent = 'Thanks — your inquiry was sent.';
-      } catch {
-        if (formStatus) formStatus.innerHTML = 'Submission was blocked on this network. Please email <a href="mailto:mitchr8@gmail.com">mitchr8@gmail.com</a>.';
+        if (formStatus) formStatus.textContent = 'Request drafted. Use your approved contracting channel to transmit details.';
       } finally {
         if (btn) { btn.disabled = false; btn.textContent = old; }
       }
