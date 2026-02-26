@@ -1,313 +1,210 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- SSS-REDESIGN v2 -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Signal & Shield Solutions</title>
   <meta name="description" content="Facilities, IT, and operational support with contract-ready delivery, compliance-first execution, and responsive service." />
   <style>
     :root{
-      --bg:#0b1220;
-      --bg-2:#0f1a2d;
-      --card:#111a2b;
-      --card-2:#0d1526;
-      --text:#e9eef8;
-      --muted:#b8c3d9;
-      --accent:#4f8cff;
-      --accent-2:#7db0ff;
-      --line:#23324f;
-      --ok:#9fd0a8;
+      --bg:#07111f; --bg2:#0b1830; --panel:#0f203c; --line:#243f6c;
+      --text:#ecf3ff; --muted:#b6c7e5; --brand:#66a6ff; --brand2:#3f7cff;
+      --ok:#97d0a2; --gold:#d5bb7a;
     }
-
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Inter,Segoe UI,Arial,sans-serif;
-      background:linear-gradient(180deg,var(--bg),var(--bg-2));
-      color:var(--text);
-      line-height:1.55;
-    }
+    body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);background:radial-gradient(1200px 700px at 80% -10%,#193765 0%,transparent 60%),linear-gradient(180deg,var(--bg),var(--bg2));line-height:1.55}
+    a{color:inherit}
+    .container{max-width:1120px;margin:0 auto;padding:0 20px}
+    .nav{position:sticky;top:0;z-index:20;background:rgba(7,17,31,.85);backdrop-filter:blur(8px);border-bottom:1px solid rgba(36,63,108,.7)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{font-weight:800;letter-spacing:.2px}
+    .menu{display:flex;gap:18px}
+    .menu a{text-decoration:none;color:var(--muted);font-weight:600}
+    .menu a:hover{color:#fff}
+    .hamb{display:none;background:none;border:1px solid var(--line);color:#fff;border-radius:10px;padding:8px 10px}
 
-    .wrap{max-width:1080px;margin:0 auto;padding:24px 20px 64px}
-
-    .topnav{
-      position:sticky;
-      top:0;
-      z-index:10;
-      backdrop-filter:blur(6px);
-      background:rgba(11,18,32,.82);
-      border-bottom:1px solid rgba(35,50,79,.7);
-    }
-
-    .topnav-inner{
-      max-width:1080px;
-      margin:0 auto;
-      padding:12px 20px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-
-    .brand{font-weight:700;letter-spacing:.2px}
-    .menu{display:flex;flex-wrap:wrap;gap:12px}
-    .menu a{color:var(--muted);text-decoration:none;font-weight:600;font-size:.95rem}
-    .menu a:hover{color:var(--text)}
-
-    .hero{
-      margin-top:24px;
-      background:rgba(17,26,43,.92);
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:30px;
-    }
-
-    h1{margin:0 0 12px;font-size:clamp(1.6rem,2.8vw,2.4rem);line-height:1.2}
-    h2{margin:0 0 10px;font-size:clamp(1.2rem,2.2vw,1.75rem)}
-    h3{margin:0 0 8px;font-size:1.05rem}
-    p{margin:0 0 12px;color:var(--muted)}
-
+    .hero{padding:56px 0 24px}
+    .hero-wrap{display:grid;grid-template-columns:1.3fr .9fr;gap:18px;align-items:stretch}
+    .card{background:linear-gradient(180deg,rgba(15,32,60,.95),rgba(11,24,48,.9));border:1px solid var(--line);border-radius:18px;padding:24px}
+    .pill{display:inline-block;font-size:.78rem;border:1px solid #355d96;background:#1b3155;border-radius:999px;padding:5px 10px;color:#d4e3ff;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
+    h1{margin:0 0 12px;font-size:clamp(1.8rem,4vw,3rem);line-height:1.1}
+    .sub{font-size:1.06rem;color:var(--muted)}
     .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-    .btn{
-      display:inline-block;
-      padding:11px 15px;
-      border-radius:10px;
-      text-decoration:none;
-      font-weight:700;
-      border:1px solid transparent;
-    }
-    .btn-primary{background:var(--accent);color:white}
-    .btn-primary:hover{background:var(--accent-2)}
-    .btn-ghost{border-color:#3a517f;color:var(--text);background:transparent}
-    .btn-ghost:hover{background:rgba(79,140,255,.12)}
+    .btn{display:inline-block;padding:11px 15px;border-radius:11px;text-decoration:none;font-weight:800;border:1px solid transparent}
+    .btn-primary{background:linear-gradient(90deg,var(--brand2),var(--brand));color:white}
+    .btn-ghost{border-color:#436aa4;color:#e7efff}
+    .trust{display:grid;gap:10px}
+    .trust-badge{border:1px solid #5e4f2f;background:#1a2333;border-radius:12px;padding:10px 12px;color:#f6e9c9;font-weight:700}
+    .trust ul{margin:8px 0 0 18px;color:var(--muted)}
 
-    .section{margin-top:18px;background:rgba(17,26,43,.9);border:1px solid var(--line);border-radius:16px;padding:24px}
-
-    .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-    .grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
-
-    .tile{background:var(--card-2);border:1px solid #22314d;border-radius:12px;padding:14px}
-    .tile p{margin:6px 0 0}
-
-    .label{display:inline-block;font-size:.78rem;text-transform:uppercase;letter-spacing:.7px;color:#b9c9e8;background:#1a2843;border:1px solid #2b3f67;border-radius:999px;padding:4px 9px;margin-bottom:10px}
-
+    section{padding:18px 0}
+    h2{margin:0 0 8px;font-size:clamp(1.25rem,2.2vw,1.9rem)}
+    .muted{color:var(--muted)}
+    .grid{display:grid;gap:14px}
+    .grid-2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+    .grid-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .tile{background:rgba(14,28,52,.9);border:1px solid var(--line);border-radius:14px;padding:16px;transition:transform .25s ease,border-color .25s ease}
+    .tile:hover{transform:translateY(-3px);border-color:#4f7fc4}
+    .tile h3{margin:0 0 8px}
+    .tile p,.tile li{color:var(--muted)}
     ul.clean{margin:8px 0 0 18px;padding:0}
-    ul.clean li{margin:4px 0;color:var(--muted)}
+    .service-link{display:block;text-decoration:none}
 
-    details{
-      margin-top:14px;
-      background:#0e1728;
-      border:1px solid #2b3f67;
-      border-radius:12px;
-      padding:10px 12px;
-    }
-    summary{cursor:pointer;font-weight:700;color:var(--text)}
+    .process{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+    .step{border:1px dashed #456ca6;border-radius:12px;padding:12px;background:#0d1c35}
+    .step b{display:block;margin-bottom:4px}
 
-    .strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px}
-    .chip{background:#10203a;border:1px solid #29456f;padding:10px 12px;border-radius:10px;color:#d9e6ff;font-weight:600;font-size:.93rem}
+    details{margin-top:10px;background:#0d1930;border:1px solid #2b4670;border-radius:12px;padding:10px 12px}
+    summary{cursor:pointer;font-weight:700}
 
-    form{display:grid;gap:10px;margin-top:10px}
-    input,select,textarea{
-      width:100%;
-      background:#0c1424;
-      color:var(--text);
-      border:1px solid #2a3f67;
-      border-radius:10px;
-      padding:11px 12px;
-      font:inherit;
-    }
+    .cta-band{margin-top:6px;background:linear-gradient(90deg,#11264a,#173767);border:1px solid #335a94;border-radius:14px;padding:18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+
+    form{display:grid;gap:10px;margin-top:8px}
+    input,select,textarea{width:100%;background:#091426;color:#eaf2ff;border:1px solid #355784;border-radius:10px;padding:11px 12px;font:inherit}
     textarea{min-height:120px;resize:vertical}
 
-    .fine{font-size:.88rem;color:#a8b9d6}
-    .ok{margin-top:10px;font-size:.9rem;color:var(--ok)}
+    footer{padding:28px 0 46px;color:#9fb3d6}
+    .footer-grid{display:grid;gap:12px;grid-template-columns:2fr 1fr 1fr}
 
-    footer{margin-top:18px;text-align:center;color:#95a9c9;font-size:.88rem}
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+    .reveal.in{opacity:1;transform:none}
 
-    @media (max-width:640px){
-      .wrap{padding:16px 14px 42px}
-      .topnav-inner{padding:10px 14px}
-      .hero,.section{padding:18px}
-      .menu{gap:10px}
-      .menu a{font-size:.9rem}
-    }
+    @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}.tile{transition:none}}
+    @media (max-width:900px){.hero-wrap{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.menu{display:none}.menu.open{display:flex;position:absolute;right:20px;top:58px;background:#0d1d36;border:1px solid var(--line);padding:12px;border-radius:10px;flex-direction:column}.hamb{display:block}}
+    @media (max-width:560px){.container{padding:0 14px}.footer-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <header class="topnav">
-    <div class="topnav-inner">
+  <header class="nav">
+    <div class="container nav-inner">
       <div class="brand">Signal &amp; Shield Solutions</div>
-      <nav class="menu" aria-label="Primary">
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#capabilities">How We Work</a>
-        <a href="#contact">Contact</a>
+      <nav id="menu" class="menu" aria-label="Primary">
+        <a href="#about">About</a><a href="#services">Services</a><a href="#capabilities">How We Work</a><a href="#contact">Contact</a>
       </nav>
+      <button class="hamb" id="hamb" aria-label="Menu">☰</button>
     </div>
   </header>
 
-  <main class="wrap">
+  <main class="container">
     <section class="hero" id="about">
-      <span class="label">Contract-ready partner</span>
-      <h1>Facilities, IT &amp; Operational Support — Contract-Ready Delivery</h1>
-      <p>Reliable execution, clean documentation, and compliance-first performance for public-sector and commercial buyers.</p>
-      <div class="btns">
-        <a class="btn btn-primary" href="#services">Our Services</a>
-        <a class="btn btn-ghost" href="#contact">Contact / Request Info</a>
+      <div class="hero-wrap">
+        <article class="card reveal">
+          <span class="pill">Contract-ready partner</span>
+          <h1>Facilities, IT &amp; Operational Support — Contract-Ready Delivery</h1>
+          <p class="sub">Reliable execution, clean documentation, and compliance-first performance for public-sector and commercial buyers.</p>
+          <div class="btns">
+            <a class="btn btn-primary" href="#services">Our Services</a>
+            <a class="btn btn-ghost" href="#contact">Contact / Request Info</a>
+          </div>
+          <p style="margin-top:10px;color:var(--ok)">Fast response. Scope-accurate delivery. Prime-friendly records.</p>
+        </article>
+        <aside class="card trust reveal">
+          <div class="trust-badge">Veteran-owned &amp; operated</div>
+          <p class="muted">Execution-forward support with practical field discipline and clean closeout documentation.</p>
+          <ul>
+            <li>QC logs + invoice-ready records</li>
+            <li>Compliance-first (WD / access / reporting)</li>
+            <li>Fast response &amp; schedule control</li>
+            <li>Prime-friendly documentation</li>
+          </ul>
+        </aside>
       </div>
-      <p class="ok">Fast response. Scope-accurate delivery. Prime-friendly records.</p>
     </section>
 
-    <section class="section" id="services">
+    <section id="services" class="reveal">
       <h2>Services</h2>
-      <p>Two service tracks so buyers can quickly see what we execute: facilities + IT support.</p>
-
-      <div class="grid-2">
-        <div class="tile">
-          <h3>Facilities &amp; Operational Services</h3>
-          <ul class="clean">
-            <li>Janitorial / custodial (scope-based)</li>
-            <li>Facility support (recurring service delivery, checklists, logs)</li>
-            <li>Grounds / exterior support (scope-based)</li>
-            <li>Move-in / move-out and turnover support</li>
-          </ul>
-        </div>
-
-        <div class="tile">
-          <h3>IT &amp; Technical Services</h3>
-          <ul class="clean">
-            <li>Desktop support and field services</li>
-            <li>Device setup / deployment support</li>
-            <li>Basic network / comms support (scope-based)</li>
-            <li>Low-voltage / cabling support (where required and scoped)</li>
-          </ul>
-        </div>
+      <p class="muted">Two delivery tracks so buyers can quickly see what we execute.</p>
+      <div class="grid grid-2">
+        <a class="tile service-link" href="#contact"><h3>Facilities &amp; Operational Services</h3><ul class="clean"><li>Janitorial / custodial (scope-based)</li><li>Facility support (recurring service delivery, checklists, logs)</li><li>Grounds / exterior support (scope-based)</li><li>Move-in / move-out and turnover support</li></ul></a>
+        <a class="tile service-link" href="#contact"><h3>IT &amp; Technical Services</h3><ul class="clean"><li>Desktop support and field services</li><li>Device setup / deployment support</li><li>Basic network / comms support (scope-based)</li><li>Low-voltage / cabling support (where required and scoped)</li></ul></a>
       </div>
     </section>
 
-    <section class="section" id="capabilities">
+    <section id="capabilities" class="reveal">
       <h2>Core Capabilities</h2>
-      <p>We organize around outcomes, execution quality, and responsiveness — not just classification codes.</p>
+      <p class="muted">Organized around outcomes, execution quality, and responsiveness.</p>
+      <div class="grid grid-2">
+        <article class="tile"><h3>Facilities Support</h3><p>Janitorial, light facilities tasks, and recurring service delivery with trackable QC.</p></article>
+        <article class="tile"><h3>IT / Field Tech Support</h3><p>Endpoint support, installs, and basic network/comms support with clean closeout records.</p></article>
+        <article class="tile"><h3>Staffing / Surge Support</h3><p>Temporary staffing, backfills, and peak demand support for projects and operations.</p></article>
+        <article class="tile"><h3>Grounds / Exterior</h3><p>Scoped exterior support and recurring site upkeep where required.</p></article>
+      </div>
 
-      <div class="grid-2">
-        <article class="tile">
-          <h3>Facilities Support</h3>
-          <p>Janitorial, light facilities tasks, and recurring service delivery with trackable QC.</p>
-        </article>
-        <article class="tile">
-          <h3>IT / Field Tech Support</h3>
-          <p>Endpoint support, installs, and basic network/comms support with clean closeout records.</p>
-        </article>
-        <article class="tile">
-          <h3>Staffing / Surge Support</h3>
-          <p>Temporary staffing, backfills, and peak demand support for projects and operations.</p>
-        </article>
-        <article class="tile">
-          <h3>Grounds / Exterior</h3>
-          <p>Scoped exterior support and recurring site upkeep where required.</p>
-        </article>
+      <h3 style="margin:16px 0 8px">How we execute</h3>
+      <div class="process">
+        <div class="step"><b>1. Scope</b><span class="muted">Define deliverables, schedule, and compliance requirements.</span></div>
+        <div class="step"><b>2. Mobilize</b><span class="muted">Assign team, access plan, and kickoff documentation.</span></div>
+        <div class="step"><b>3. Deliver</b><span class="muted">Track quality, report status, and control schedule.</span></div>
+        <div class="step"><b>4. Closeout</b><span class="muted">Provide invoice-ready records and final confirmation.</span></div>
       </div>
 
       <details>
-        <summary>View NAICS list</summary>
-        <p class="fine" style="margin-top:10px">Codes are for procurement alignment (not our full scope).</p>
-        <div class="grid-3">
-          <div class="tile">
-            <h3>Common Operations Codes</h3>
-            <ul class="clean">
-              <li>561720 — Janitorial Services</li>
-              <li>561210 — Facilities Support Services</li>
-              <li>561730 — Landscaping Services</li>
-              <li>561320 — Temporary Help Services</li>
-            </ul>
-          </div>
-          <div class="tile">
-            <h3>IT NAICS (optional)</h3>
-            <ul class="clean">
-              <li>541513 — Computer Facilities Management Services</li>
-              <li>541519 — Other Computer Related Services</li>
-            </ul>
-            <p class="fine">Only retain codes you are actively ready to pursue.</p>
-          </div>
+        <summary>Codes we commonly support (procurement alignment)</summary>
+        <div class="grid grid-2" style="margin-top:10px">
+          <div class="tile"><h3>Operations</h3><ul class="clean"><li>561720 — Janitorial Services</li><li>561210 — Facilities Support Services</li><li>561730 — Landscaping Services</li><li>561320 — Temporary Help Services</li></ul></div>
+          <div class="tile"><h3>IT</h3><ul class="clean"><li>541513 — Computer Facilities Management Services</li><li>541519 — Other Computer Related Services</li></ul></div>
         </div>
       </details>
     </section>
 
-    <section class="section" aria-label="Differentiators">
-      <h2>Differentiators</h2>
-      <div class="strip">
-        <div class="chip">QC logs + invoice-ready records</div>
-        <div class="chip">Compliance-first (WD / access / reporting)</div>
-        <div class="chip">Fast response &amp; schedule control</div>
-        <div class="chip">Prime-friendly documentation</div>
-      </div>
-    </section>
-
-    <section class="section" aria-label="Who we serve">
+    <section class="reveal">
       <h2>Who We Serve</h2>
-      <div class="grid-3">
-        <div class="tile"><h3>Federal / State / Local Buyers</h3><p>Scope-based support with contract-ready execution and reporting.</p></div>
-        <div class="tile"><h3>Prime Contractors</h3><p>Teaming and subcontract support with documentation that aligns to prime needs.</p></div>
-        <div class="tile"><h3>Commercial Properties / Small Sites</h3><p>Reliable recurring support for selected facilities and operational scopes.</p></div>
+      <div class="grid grid-3">
+        <article class="tile"><h3>Federal / State / Local Buyers</h3><p>Scope-based support with contract-ready execution and reporting.</p></article>
+        <article class="tile"><h3>Prime Contractors</h3><p>Teaming and subcontract support with documentation that aligns to prime needs.</p></article>
+        <article class="tile"><h3>Commercial Properties / Small Sites</h3><p>Reliable recurring support for selected facilities and operational scopes.</p></article>
       </div>
     </section>
 
-    <section class="section" id="contact">
-      <h2>Get in Touch</h2>
-      <p>Request info, pricing, teaming, or a capability statement.</p>
-      <p class="fine"><strong>NIPR / restricted network users:</strong> If fields appear read-only on your workstation, use the NIPR-safe page below.</p>
-      <div class="btns">
-        <a class="btn btn-ghost" href="/contact-lite.html">NIPR-Safe Contact Page</a>
+    <section class="reveal">
+      <div class="cta-band">
+        <div>
+          <h3 style="margin:0 0 4px">Need responsive support on a scoped requirement?</h3>
+          <p class="muted" style="margin:0">Tell us your location, timeline, and compliance requirements.</p>
+        </div>
+        <div class="btns" style="margin:0">
+          <a class="btn btn-primary" href="#contact">Start an Inquiry</a>
+          <a class="btn btn-ghost" href="#services">Review Services</a>
+        </div>
       </div>
+    </section>
 
-      <!-- Contact request form -->
+    <section id="contact" class="reveal">
+      <h2>Get in Touch</h2>
+      <p class="muted">Request info, pricing, teaming, or a capability statement.</p>
+      <p class="muted"><strong>NIPR / restricted network users:</strong> if fields appear read-only, use the <a href="/contact-lite.html">NIPR-safe page</a>.</p>
       <form id="contactForm" action="https://formsubmit.co/contracts@signalshieldsolutions.com" method="POST">
         <input type="hidden" name="_subject" value="Signal & Shield website inquiry" />
         <input type="hidden" name="_template" value="table" />
         <input type="hidden" name="_captcha" value="true" />
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
-
-        <label>
-          Name
-          <input type="text" name="name" autocomplete="name" required />
-        </label>
-
-        <label>
-          Email
-          <input type="email" name="email" autocomplete="email" required />
-        </label>
-
-        <label>
-          Inquiry type
-          <select name="inquiry_type" required>
-            <option value="">Select one...</option>
-            <option>General info / questions</option>
-            <option>Request capability statement</option>
-            <option>Request a quote / pricing</option>
-            <option>Teaming / subcontracting</option>
-            <option>Subcontractor partnership (for subs reaching out)</option>
-          </select>
-        </label>
-
-        <label>
-          Message
-          <textarea name="message" placeholder="Share your scope, timeline, and any compliance requirements." required></textarea>
-        </label>
-
+        <label>Name<input type="text" name="name" autocomplete="name" required /></label>
+        <label>Email<input type="email" name="email" autocomplete="email" required /></label>
+        <label>Inquiry type<select name="inquiry_type" required><option value="">Select one...</option><option>General info / questions</option><option>Request capability statement</option><option>Request a quote / pricing</option><option>Teaming / subcontracting</option><option>Subcontractor partnership (for subs reaching out)</option></select></label>
+        <label>Message<textarea name="message" placeholder="Share your scope, timeline, and any compliance requirements." required></textarea></label>
         <button class="btn btn-primary" type="submit">Send Inquiry</button>
       </form>
-
-      <p id="formStatus" class="fine" role="status" aria-live="polite">If you need immediate help, include due dates, location, and statement-of-work details in your message.</p>
-      <p class="fine">Alternate contact: contracts@signalshieldsolutions.com</p>
+      <p class="muted" style="margin-top:8px">Alternate contact: contracts@signalshieldsolutions.com</p>
     </section>
-
-    <footer>
-      © <span id="year"></span> Signal &amp; Shield Solutions
-    </footer>
   </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div><strong>Signal &amp; Shield Solutions</strong><div>Facilities, IT &amp; Operational Support</div></div>
+      <div><a href="#services">Services</a><br><a href="#capabilities">How We Work</a></div>
+      <div><a href="#contact">Contact</a><br><a href="/contact-lite.html">NIPR-safe contact</a></div>
+    </div>
+    <div class="container" style="margin-top:10px">© <span id="year"></span> Signal &amp; Shield Solutions</div>
+  </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+    const hamb=document.getElementById('hamb'), menu=document.getElementById('menu');
+    hamb?.addEventListener('click',()=>menu.classList.toggle('open'));
+    const io = new IntersectionObserver((entries)=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   </script>
 </body>
 </html>
