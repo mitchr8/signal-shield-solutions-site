@@ -261,7 +261,7 @@
       </div>
 
       <!-- Contact request form -->
-      <form id="contactForm" method="POST" novalidate>
+      <form id="contactForm" action="https://formsubmit.co/contracts@signalshieldsolutions.com" method="POST">
         <input type="hidden" name="_subject" value="Signal & Shield website inquiry" />
         <input type="hidden" name="_template" value="table" />
         <input type="hidden" name="_captcha" value="true" />
@@ -298,6 +298,7 @@
       </form>
 
       <p id="formStatus" class="fine" role="status" aria-live="polite">If you need immediate help, include due dates, location, and statement-of-work details in your message.</p>
+      <p class="fine">Alternate contact: contracts@signalshieldsolutions.com</p>
     </section>
 
     <footer>
@@ -307,30 +308,6 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    const contactForm = document.getElementById('contactForm');
-    const formStatus = document.getElementById('formStatus');
-
-    contactForm?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const fd = new FormData(contactForm);
-      const payload = new URLSearchParams();
-      for (const [k, v] of fd.entries()) payload.append(k, v);
-
-      const btn = contactForm.querySelector('button[type="submit"]');
-      const old = btn?.textContent || 'Send Inquiry';
-      if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
-      if (formStatus) formStatus.textContent = 'Submitting inquiry...';
-
-      try {
-        // No direct third-party submission endpoint configured in client code.
-        // Keep form usable for environments that permit entry while avoiding exposed personal addresses.
-        contactForm.reset();
-        if (formStatus) formStatus.textContent = 'Request drafted. Use your approved contracting channel to transmit details.';
-      } finally {
-        if (btn) { btn.disabled = false; btn.textContent = old; }
-      }
-    });
   </script>
 </body>
 </html>
