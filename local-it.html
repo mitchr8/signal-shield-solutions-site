@@ -1,108 +1,340 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Local IT (California) | Signal & Shield Solutions</title>
-<meta name="description" content="On-site local IT support in California for homes and small businesses, including troubleshooting, networking, devices, and practical security basics."/>
-<link rel="canonical" href="https://signalshieldsolutions.com/local-it.html"/>
-<meta property="og:type" content="website"/>
-<meta property="og:title" content="Local IT (California) | Signal &amp; Shield Solutions"/>
-<meta property="og:description" content="On-site local IT support in California for homes and small businesses, including troubleshooting, networking, devices, and practical security basics."/>
-<meta property="og:url" content="https://signalshieldsolutions.com/local-it.html"/>
-<meta property="og:image" content="https://signalshieldsolutions.com/logo.png"/>
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Local IT (California) | Signal &amp; Shield Solutions"/>
-<meta name="twitter:description" content="On-site local IT support in California for homes and small businesses, including troubleshooting, networking, devices, and practical security basics."/>
-<meta name="twitter:image" content="https://signalshieldsolutions.com/logo.png"/>
-<style>
-:root{--n:#0b1d3a;--b:#1f4f8b;--bg:#070b14;--gold:#d9b24c;--card:#0f1729;--border:#2a3550;--btn:#1f4f8b}
-*{box-sizing:border-box;margin:0;padding:0}
-ul,ol{padding-left:22px}
-body{font-family:'Segoe UI',Inter,Arial,sans-serif;background:linear-gradient(180deg,#070b14,#0b1322);color:#ffffff;font-weight:500;overflow-x:hidden}
-.wrap{max-width:1100px;margin:auto;padding:0 18px}
-.top{position:sticky;top:0;background:rgba(11,19,34,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:30;transition:box-shadow .3s}
-.top.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.45)}
-.bar{display:flex;justify-content:space-between;align-items:center;padding:6px 0}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;color:#fff;text-decoration:none}
-.brand-text{font-size:1.15rem;letter-spacing:2px;text-transform:uppercase;line-height:1.1;color:#dbe7ff}.brand-text .brand-amp{color:var(--gold);margin:0 2px}
-.logo-img{height:58px;width:120px;flex-shrink:0;object-fit:cover;object-position:center 20%;border-radius:6px;filter:drop-shadow(0 0 6px rgba(31,79,139,.4));animation:logoShine 4s ease-in-out infinite;position:relative}
-@keyframes logoShine{0%,100%{filter:drop-shadow(0 0 6px rgba(31,79,139,.35))}50%{filter:drop-shadow(0 0 12px rgba(31,79,139,.55)) drop-shadow(0 0 4px rgba(217,178,76,.25))}}
-.brand:hover .logo-img{filter:drop-shadow(0 0 14px rgba(31,79,139,.6)) drop-shadow(0 0 6px rgba(217,178,76,.35));transition:filter .4s ease}
-.nav a{margin-left:14px;text-decoration:none;color:#dbe7ff;font-weight:700;position:relative;transition:color .25s}
-.nav a::after{content:'';position:absolute;left:0;bottom:-3px;width:0;height:2px;background:var(--gold);transition:width .3s}
-.nav a:hover{color:var(--gold)}
-.nav a:hover::after{width:100%}
-.hero{background:linear-gradient(135deg,var(--n),var(--b));color:#fff;border:1px solid #2d416a;border-radius:16px;padding:42px 32px;margin:24px 0;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-50%;right:-30%;width:500px;height:500px;background:radial-gradient(circle,rgba(217,178,76,.12) 0%,transparent 70%);animation:heroGlow 6s ease-in-out infinite alternate;pointer-events:none}
-@keyframes heroGlow{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-40px,30px) scale(1.15)}}
-h1{line-height:1.25;margin-bottom:12px}
-p{line-height:1.7}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin:14px 0;transition:transform .35s cubic-bezier(.25,.46,.45,.94),box-shadow .35s,border-color .35s}
-.card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.3);border-color:#3a5070}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-details{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px;margin:10px 0;transition:border-color .3s}
-details[open]{border-color:#3a5070}
-summary{cursor:pointer;font-weight:700;padding:4px 0;transition:color .2s}
-summary:hover{color:var(--gold)}
-.btn{display:inline-block;background:var(--btn);color:#fff;padding:11px 18px;border-radius:10px;text-decoration:none;font-weight:700;transition:transform .2s,box-shadow .2s,background .2s;border:none;cursor:pointer}
-.btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(31,79,139,.45);background:#265d9e}
-.chat-btn{position:fixed;right:18px;bottom:18px;background:linear-gradient(135deg,#1f4f8b,#12345d);color:#fff;border:none;border-radius:999px;padding:12px 20px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(31,79,139,.4);transition:transform .2s,box-shadow .2s;z-index:20}
-.chat-btn:hover{transform:scale(1.06);box-shadow:0 6px 24px rgba(31,79,139,.55)}
-.chat-panel{position:fixed;right:18px;bottom:74px;width:340px;max-width:calc(100vw - 24px);max-height:min(76vh,540px);background:#f8fbff;border:1px solid #cdd8ea;border-radius:18px;display:none;box-shadow:0 18px 48px rgba(0,0,0,.28);animation:panelIn .25s ease-out;z-index:20;overflow:hidden}
-.chat-panel.open{display:flex;flex-direction:column}
-.chat-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 16px 12px;background:linear-gradient(135deg,#0f2747,#173f70);color:#fff}
-.chat-head p{font-size:.9rem;line-height:1.45;color:#dbe7ff}
-.chat-close{border:none;background:rgba(255,255,255,.12);color:#fff;width:32px;height:32px;border-radius:999px;cursor:pointer;font-size:1rem}
-.chat-close:hover{background:rgba(255,255,255,.2)}
-.chat-messages{padding:14px;height:180px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,#f8fbff,#eef4fb)}
-.chat-bubble{max-width:85%;padding:10px 12px;border-radius:14px;line-height:1.45;font-size:.95rem;white-space:pre-wrap}
-.chat-bubble.bot{align-self:flex-start;background:#fff;color:#17324d;border:1px solid #d7e2ee;border-bottom-left-radius:6px}
-.chat-bubble.user{align-self:flex-end;background:#1f4f8b;color:#fff;border-bottom-right-radius:6px}
-.chat-choices{padding:0 14px 12px;display:flex;flex-wrap:wrap;gap:8px;background:linear-gradient(180deg,#eef4fb,#eef4fb)}
-.chat-chip{border:1px solid #bfd0e4;background:#fff;color:#17324d;border-radius:999px;padding:8px 12px;font:inherit;font-size:.88rem;font-weight:600;cursor:pointer}
-.chat-chip:hover{border-color:#1f4f8b;color:#1f4f8b}
-.chat-compose{display:flex;gap:10px;padding:14px;background:#fff;border-top:1px solid #d9e3ef}
-.chat-compose input{flex:1;margin:0}
-.chat-send{border:none;border-radius:12px;background:#1f4f8b;color:#fff;padding:0 14px;font-weight:700;cursor:pointer}
-.chat-send:hover{background:#265d9e}
-.chat-note{padding:0 14px 14px;background:#fff;color:#5a6677;font-size:.82rem;line-height:1.45}
-.chat-note a{color:#1f4f8b}
-.chat-send[disabled],.chat-compose input[disabled]{opacity:.6;cursor:not-allowed}
-@keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-form,form label,.card form,.card form *{color:#0f172a}
-input,select,textarea{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;background:#ffffff;color:#0f172a;-webkit-text-fill-color:#0f172a;appearance:none;transition:border-color .2s,box-shadow .2s}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--btn);box-shadow:0 0 0 3px rgba(31,79,139,.18)}
-input::placeholder,textarea::placeholder{color:#94a3b8;opacity:1}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.stagger .card:nth-child(1){transition-delay:0s}
-.stagger .card:nth-child(2){transition-delay:.08s}
-.stagger .card:nth-child(3){transition-delay:.16s}
-.stagger .card:nth-child(4){transition-delay:.24s}
-.stagger .card:nth-child(5){transition-delay:.32s}
-.stagger .card:nth-child(6){transition-delay:.4s}
-.divider{height:2px;margin:28px auto;background:linear-gradient(90deg,transparent,var(--gold),var(--btn),var(--gold),transparent);background-size:200% 100%;animation:shimmer 6s linear infinite;border:none;max-width:600px}
-@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.bg-grid{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
-.bg-grid canvas{width:100%;height:100%}
-@media(max-width:760px){.nav a{margin-left:9px;font-size:.92rem}h1{font-size:1.5rem}.hero{padding:24px 18px}.chat-panel{right:12px;bottom:12px;width:calc(100vw - 24px);max-height:min(72vh,480px)}.chat-messages{height:130px}}
-</style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Local IT | Signal &amp; Shield Solutions</title>
+<meta name="description" content="On-site local IT support near Apple Valley for homes and small businesses, including troubleshooting, networking, devices, printers, and practical security basics." />
+<link rel="canonical" href="https://signalshieldsolutions.com/local-it.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Local IT | Signal &amp; Shield Solutions" />
+<meta property="og:description" content="On-site local IT support near Apple Valley for homes and small businesses, including troubleshooting, networking, devices, printers, and practical security basics." />
+<meta property="og:url" content="https://signalshieldsolutions.com/local-it.html" />
+<meta property="og:image" content="https://signalshieldsolutions.com/logo.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Local IT | Signal &amp; Shield Solutions" />
+<meta name="twitter:description" content="On-site local IT support near Apple Valley for homes and small businesses, including troubleshooting, networking, devices, printers, and practical security basics." />
+<meta name="twitter:image" content="https://signalshieldsolutions.com/logo.png" />
+<link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-<div class="bg-grid"><canvas id="gridCanvas"></canvas></div>
-<header class="top" id="topBar"><div class="wrap bar"><a href="index.html" class="brand"><img src="logo.png" alt="Signal &amp; Shield Solutions logo" class="logo-img"><span class="brand-text">SIGNAL <span class="brand-amp">&amp;</span> SHIELD</span></a><nav class="nav"><a href="index.html">Home</a> <a href="govcon.html">Government Contracting</a> <a href="local-it.html">Local IT (California)</a> <a href="#contact">Contact</a></nav></div></header>
-<main class="wrap" style="position:relative;z-index:1">
-<section class="hero reveal"><h1>Local IT support near Apple Valley &#8212; for homes and small businesses.</h1><p>We help with troubleshooting, Wi-Fi and network fixes, device setup, printers, smart-home gear, and practical security basics. Most calls are centered around Apple Valley and nearby High Desert communities, with travel available for larger jobs.</p><div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="#contact">Request service</a><a class="btn" href="#pricing">View rates</a></div></section>
-<section class="grid stagger reveal"><article class="card"><h3>Computer tune-ups / troubleshooting</h3></article><article class="card"><h3>Wi-Fi &amp; network fixes (mesh/router)</h3></article><article class="card"><h3>Printers &amp; home office setup</h3></article><article class="card"><h3>Smart home / cameras setup</h3></article><article class="card"><h3>Small business support</h3></article><article class="card"><h3>Backups / recovery basics</h3></article></section>
-<hr class="divider">
-<section class="card reveal"><h2>How It Works</h2><ol style="margin-top:10px;padding-left:20px"><li>You send the issue, city, and preferred timing.</li><li>We confirm fit, travel, and what the first visit or next step should cover.</li><li>You get the fix, setup, or handoff notes needed to move forward cleanly.</li></ol></section>
-<section class="card reveal"><h2>Service Catalog</h2><details open><summary><strong>Home &amp; Personal Devices</strong></summary><ul><li>New PC/Mac setup</li><li>Data transfer/migration</li><li>App installs/config</li><li>Email setup/cleanup</li><li>Updates/driver issues</li><li>Backup setup</li><li>Basic security guidance</li></ul></details><details><summary><strong>Wi-Fi &amp; Networking</strong></summary><ul><li>Router/mesh setup</li><li>Dead zone mitigation</li><li>Speed/drop troubleshooting</li><li>Device connectivity issues</li><li>Printer on network</li><li>Documentation of changes</li></ul></details><details><summary><strong>Smart Home &amp; Cameras</strong></summary><ul><li>Doorbell/camera setup</li><li>Notifications tuning</li><li>Storage basics</li><li>Integration basics</li><li>Placement guidance</li><li>Basic privacy settings</li></ul></details><details><summary><strong>Small Business IT</strong></summary><ul><li>Workstation setup</li><li>User troubleshooting</li><li>Shared printers</li><li>Wi-Fi improvements</li><li>Simple backups</li><li>Documentation/handoffs</li></ul></details></section>
-<section id="pricing" class="card reveal"><h2>Rates &amp; Travel</h2><div class="grid" style="margin-top:12px"><article class="card"><h3>Quick phone intake</h3><p>No-charge first call to confirm fit, service area, and what the first visit should cover.</p></article><article class="card"><h3>Standard on-site visit</h3><p>From $125 for the first hour in the Apple Valley / High Desert area, then from $95 per additional hour.</p></article><article class="card"><h3>Larger jobs</h3><p>Bigger home setups, multi-device installs, and small-business work are quoted by scope before scheduling.</p></article></div><p style="margin-top:12px">Hardware, software, replacement parts, and extended travel are billed separately when needed. If a job is larger than a simple service call, you will get the quote direction before work starts.</p></section>
-<hr class="divider">
-<section class="card reveal"><h2>FAQ</h2><details open><summary>What areas do you cover?</summary><p>Local IT calls are centered around Apple Valley and nearby High Desert communities. For larger projects or bundled work, travel can be quoted farther out.</p></details><details><summary>Do you do in-home service?</summary><p>Yes. Most troubleshooting and setup work is done on-site so the diagnosis is based on the actual environment.</p></details><details><summary>Can you fix Wi-Fi dead zones?</summary><p>Yes. We improve placement and settings first, then recommend hardware upgrades only when they are actually needed.</p></details><details><summary>Do you support small businesses?</summary><p>Yes. We support workstations, networking, printers, and practical day-to-day IT cleanup for small offices.</p></details><details><summary>How fast can I get help?</summary><p>Same-day or next-day may be available depending on schedule, location, and job size.</p></details></section>
-<section id="contact" class="card reveal"><h2>Request Local IT Service</h2><p style="margin-top:10px">Tell us the city, whether this is for home or business, and the best window to respond or schedule.</p><form action="https://formsubmit.co/contracts@signalshieldsolutions.com" method="POST" style="margin-top:12px"><input type="hidden" name="_subject" value="Local IT inquiry"><input type="hidden" name="_captcha" value="true"><p><input required name="name" placeholder="Name"></p><p><input required type="email" name="email" placeholder="Email"></p><p><input name="city" placeholder="City"></p><p><select name="customer_type"><option value="">Home or business?</option><option>Home</option><option>Small business</option><option>Home office</option></select></p><p><select name="service_type"><option value="">What do you need help with?</option><option>Computer troubleshooting</option><option>Wi-Fi / network issue</option><option>Printer / device setup</option><option>Smart home / cameras</option><option>Small business support</option><option>Other</option></select></p><p><input name="timing" placeholder="Preferred timing or urgency"></p><p><textarea required name="message" placeholder="Describe the issue, what changed, and anything already tried"></textarea></p><button class="btn" type="submit">Request service</button></form></section>
+<body class="page-local">
+<header class="top" id="topBar">
+  <div class="wrap bar">
+    <a href="index.html" class="brand" aria-label="Signal and Shield Solutions home">
+      <span class="logo-mark"><img src="logo.png" alt="Signal &amp; Shield Solutions logo" class="logo-img" /></span>
+      <span class="brand-text">Signal <span class="brand-amp">&amp;</span> Shield</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="govcon.html">Government Contracting</a>
+      <a class="current" href="local-it.html">Local IT</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero-band">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="hero-kicker">Local IT lane</div>
+        <h1 class="hero-title">On-site IT help near Apple Valley for homes and small businesses.</h1>
+        <p>We help with troubleshooting, Wi-Fi and network fixes, device setup, printers, smart-home gear, and practical security basics. Most calls start in Apple Valley and nearby High Desert communities, with travel available for larger jobs.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#contact">Request service</a>
+          <a class="btn secondary" href="#pricing">See rates</a>
+        </div>
+        <div class="hero-process" aria-label="How it works">
+          <span><strong>1</strong>Tell us what is happening</span>
+          <span><strong>2</strong>We confirm city, timing, and fit</span>
+          <span><strong>3</strong>We schedule or quote the next step</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-art" data-tilt>
+          <span class="hero-ribbon">Apple Valley centered</span>
+          <span class="hero-ring hero-ring-a"></span>
+          <span class="hero-ring hero-ring-b"></span>
+          <span class="hero-ring hero-ring-c"></span>
+          <div class="coverage-board">
+            <div class="coverage-grid">
+              <div class="coverage-chip">
+                <span>Homes</span>
+                <strong>Everyday troubleshooting, setup, Wi-Fi, printers, and devices</strong>
+              </div>
+              <div class="coverage-chip">
+                <span>Small business</span>
+                <strong>Workstations, networking, printers, and cleanup for daily operations</strong>
+              </div>
+              <div class="coverage-chip">
+                <span>Smart home</span>
+                <strong>Cameras, app setup, notifications, and basic privacy settings</strong>
+              </div>
+              <div class="coverage-chip">
+                <span>Travel</span>
+                <strong>Quoted farther out for larger installs, bundled work, or multi-stop jobs</strong>
+              </div>
+            </div>
+            <p class="coverage-note">The goal is practical service, not a complicated sales process. You tell us the issue, city, and timing; we tell you what the first visit should cover.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section-shell">
+    <div class="signal-rail reveal">
+      <div>
+        <span>Service area</span>
+        <strong>Apple Valley and nearby High Desert communities</strong>
+      </div>
+      <div>
+        <span>Customer fit</span>
+        <strong>Homes, home offices, and small businesses</strong>
+      </div>
+      <div>
+        <span>Travel</span>
+        <strong>Quoted farther out for larger jobs and bundled visits</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section-shell">
+    <div class="section-slab">
+      <div class="section-head reveal">
+        <div class="eyebrow">Service coverage</div>
+        <h2>Broad enough to be useful, but grouped so it scans like a real service menu.</h2>
+        <p>This keeps local IT from sounding like it only serves one audience. The page is now explicit that the work covers homes and small businesses without making either one feel like an afterthought.</p>
+      </div>
+      <aside class="surface reveal">
+        <div class="surface-row">
+          <span>Most common calls</span>
+          <strong>Wi-Fi issues, new-device setup, printers, slow systems, and small office cleanup.</strong>
+        </div>
+        <div class="surface-row">
+          <span>What helps first</span>
+          <strong>The city, what changed, what you have already tried, and how urgent it is.</strong>
+        </div>
+        <div class="surface-row">
+          <span>Working style</span>
+          <strong>Practical on-site service, clear expectations, and a straightforward handoff.</strong>
+        </div>
+      </aside>
+    </div>
+
+    <div class="support-grid">
+      <article class="surface service-cluster reveal">
+        <span class="cluster-tag">Home tech and setup</span>
+        <h3>Get devices, accounts, and day-to-day tech working the way they should.</h3>
+        <ul class="feature-list">
+          <li>New PC or Mac setup, migrations, updates, and cleanup</li>
+          <li>Email setup, app installs, backup basics, and practical security guidance</li>
+          <li>Help for the kinds of issues that make home tech feel harder than it should</li>
+        </ul>
+      </article>
+
+      <article class="surface service-cluster reveal">
+        <span class="cluster-tag">Wi-Fi and network fixes</span>
+        <h3>Improve signal, stability, and device connectivity without overcomplicating it.</h3>
+        <ul class="feature-list">
+          <li>Router and mesh setup, dead-zone mitigation, and drop troubleshooting</li>
+          <li>Printer network issues and device connectivity cleanup</li>
+          <li>Recommendations stay practical and hardware changes happen only when needed</li>
+        </ul>
+      </article>
+
+      <article class="surface service-cluster reveal">
+        <span class="cluster-tag">Printers and smart home</span>
+        <h3>Support for the frustrating hardware that usually gets pushed to the bottom of the list.</h3>
+        <ul class="feature-list">
+          <li>Printer setup, driver cleanup, and home-office support</li>
+          <li>Doorbells, cameras, notifications, app setup, and storage basics</li>
+          <li>Simple documentation and guidance so the system stays usable after the visit</li>
+        </ul>
+      </article>
+
+      <article class="surface service-cluster reveal">
+        <span class="cluster-tag">Small business support</span>
+        <h3>Day-to-day IT cleanup for smaller offices without pretending to be a giant MSP.</h3>
+        <ul class="feature-list">
+          <li>Workstations, Wi-Fi improvements, printers, and user troubleshooting</li>
+          <li>Simple backups, handoff notes, and practical cleanup for recurring issues</li>
+          <li>Support scaled to smaller environments that just need reliable help</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap section-shell section-anchor" id="pricing">
+    <div class="section-slab">
+      <div class="section-head reveal">
+        <div class="eyebrow">Rates and travel</div>
+        <h2>Reasonable pricing language without pretending every visit costs the same.</h2>
+        <p>Service calls vary, so the page now sets expectations clearly: what the standard first visit looks like, what changes the price, and when a larger quote makes more sense.</p>
+      </div>
+      <aside class="surface reveal">
+        <h3>What can change pricing</h3>
+        <div class="note-stack">
+          <div class="note-row">
+            <span>Location</span>
+            <strong>Apple Valley and nearby High Desert communities stay in the standard local range.</strong>
+          </div>
+          <div class="note-row">
+            <span>Job size</span>
+            <strong>Multi-device installs, larger setups, and business work may be quoted by scope.</strong>
+          </div>
+          <div class="note-row">
+            <span>Extras</span>
+            <strong>Hardware, software, replacement parts, and extended travel are separate when needed.</strong>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="pricing-grid">
+      <article class="surface reveal">
+        <span class="cluster-tag">Quick phone intake</span>
+        <h3>No-charge first call</h3>
+        <p>We confirm fit, city, and what the first visit should cover before anybody commits to the wrong kind of appointment.</p>
+      </article>
+      <article class="surface reveal">
+        <span class="cluster-tag">Standard on-site visit</span>
+        <h3>Apple Valley area service call</h3>
+        <span class="pricing-value">From $125 first hour</span>
+        <p>Then from $95 per additional hour for typical local on-site work in the Apple Valley and High Desert area.</p>
+      </article>
+      <article class="surface reveal">
+        <span class="cluster-tag">Larger jobs</span>
+        <h3>Quoted by scope</h3>
+        <p>Bigger home installs, multi-stop visits, and small-business jobs get quote direction before scheduling so there are no surprises.</p>
+      </article>
+      <article class="surface reveal">
+        <span class="cluster-tag">Travel beyond local range</span>
+        <h3>Quoted before the visit</h3>
+        <p>Travel farther out is possible for larger or bundled work, but the travel piece is surfaced early instead of buried later.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap section-shell">
+    <div class="section-head reveal" style="margin-bottom:24px">
+      <div class="eyebrow">How the visit works</div>
+      <h2>A simple service flow that matches the kind of work people actually need.</h2>
+    </div>
+    <div class="process-grid">
+      <article class="surface reveal">
+        <div class="process-step" data-step="1">
+          <strong>Tell us the issue</strong>
+          <p>Send the city, whether the call is for home or business, what changed, and how urgent the issue feels.</p>
+        </div>
+      </article>
+      <article class="surface reveal">
+        <div class="process-step" data-step="2">
+          <strong>We confirm the right first step</strong>
+          <p>That may be a standard visit, a larger quote, or a quick answer that saves you from booking the wrong thing.</p>
+        </div>
+      </article>
+      <article class="surface reveal">
+        <div class="process-step" data-step="3">
+          <strong>You get the fix and the handoff</strong>
+          <p>The work ends with a cleaner setup, practical explanation, and enough clarity that the visit does not feel like a black box.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap section-shell">
+    <div class="section-head reveal" style="margin-bottom:24px">
+      <div class="eyebrow">FAQ</div>
+      <h2>Questions local customers usually ask first.</h2>
+    </div>
+    <div class="faq-grid">
+      <details class="reveal" open>
+        <summary>What areas do you cover?</summary>
+        <p>Local IT calls are centered around Apple Valley and nearby High Desert communities. For larger projects or bundled work, travel can be quoted farther out.</p>
+      </details>
+      <details class="reveal">
+        <summary>Do you support homes and small businesses?</summary>
+        <p>Yes. The local IT lane is built for both, and the page now makes that explicit instead of leaning too hard toward only one side.</p>
+      </details>
+      <details class="reveal">
+        <summary>Can you help with Wi-Fi dead zones and printer headaches?</summary>
+        <p>Yes. Those are common calls. The goal is to improve placement, settings, and setup first before recommending hardware changes.</p>
+      </details>
+      <details class="reveal">
+        <summary>How fast can I usually get help?</summary>
+        <p>Same-day or next-day may be available depending on schedule, location, and the size of the job.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="wrap section-shell section-anchor" id="contact">
+    <div class="contact-panel reveal">
+      <div class="contact-layout">
+        <div>
+          <h2>Request local IT service.</h2>
+          <p>Tell us the city, whether this is for home or business, and the best window to respond or schedule.</p>
+          <ul class="helper-list compact">
+            <li>City and preferred timing</li>
+            <li>Home, home office, or small business</li>
+            <li>What changed and what you have already tried</li>
+          </ul>
+        </div>
+
+        <form class="form-shell" action="https://formsubmit.co/contracts@signalshieldsolutions.com" method="POST">
+          <input type="hidden" name="_subject" value="Local IT inquiry" />
+          <input type="hidden" name="_captcha" value="true" />
+          <div class="form-grid">
+            <div class="field">
+              <label for="it-name">Name</label>
+              <input id="it-name" name="name" required />
+            </div>
+            <div class="field">
+              <label for="it-email">Email</label>
+              <input id="it-email" type="email" name="email" required />
+            </div>
+            <div class="field">
+              <label for="it-city">City</label>
+              <input id="it-city" name="city" />
+            </div>
+            <div class="field">
+              <label for="it-customer">Home or business?</label>
+              <select id="it-customer" name="customer_type">
+                <option value="">Select...</option>
+                <option>Home</option>
+                <option>Home office</option>
+                <option>Small business</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="it-service">What do you need help with?</label>
+              <select id="it-service" name="service_type">
+                <option value="">Select...</option>
+                <option>Computer troubleshooting</option>
+                <option>Wi-Fi / network issue</option>
+                <option>Printer / device setup</option>
+                <option>Smart home / cameras</option>
+                <option>Small business support</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="it-timing">Preferred timing</label>
+              <input id="it-timing" name="timing" placeholder="Today, this week, or preferred visit window" />
+            </div>
+            <div class="field full">
+              <label for="it-message">Message</label>
+              <textarea id="it-message" name="message" required placeholder="Describe the issue, what changed, and anything already tried"></textarea>
+            </div>
+          </div>
+          <button class="btn primary" type="submit">Request service</button>
+        </form>
+      </div>
+    </div>
+  </section>
 </main>
+
 <button id="chatBtn" class="chat-btn" aria-expanded="false" aria-controls="chatPanel">Message us</button>
 <div id="chatPanel" class="chat-panel" aria-hidden="true">
   <div class="chat-head">
@@ -110,7 +342,7 @@ input::placeholder,textarea::placeholder{color:#94a3b8;opacity:1}
       <strong>Signal &amp; Shield Solutions</strong>
       <p>Start a quick support chat and tell us what is happening on-site.</p>
     </div>
-    <button id="chatClose" class="chat-close" type="button" aria-label="Close chat">×</button>
+    <button id="chatClose" class="chat-close" type="button" aria-label="Close chat">x</button>
   </div>
   <div id="chatMessages" class="chat-messages"></div>
   <div id="chatChoices" class="chat-choices"></div>
@@ -120,52 +352,18 @@ input::placeholder,textarea::placeholder{color:#94a3b8;opacity:1}
   </form>
   <div class="chat-note">This sends your request to <a href="mailto:contracts@signalshieldsolutions.com">contracts@signalshieldsolutions.com</a>.</div>
 </div>
+
 <script>
-const CHAT_CONFIG={subject:'Local IT chat inquiry',page:'Local IT (California)',welcome:'Welcome to local IT support.',prompt:'What do you need help with today?',choices:['Home tech issue','Wi-Fi / network issue','Printer / device setup','Small business support'],detailsPrompt:'Tell us the city, the issue, and your preferred timing so we can reply accurately.'};
-(function initChatWidget(config){
-const btn=document.getElementById('chatBtn'),panel=document.getElementById('chatPanel'),closeBtn=document.getElementById('chatClose'),messagesEl=document.getElementById('chatMessages'),choicesEl=document.getElementById('chatChoices'),formEl=document.getElementById('chatForm'),inputEl=document.getElementById('chatInput');
-const state={started:false,step:'service',sending:false,data:{page:config.page,url:window.location.href}};
-function addMessage(role,text){const el=document.createElement('div');el.className='chat-bubble '+role;el.textContent=text;messagesEl.appendChild(el);messagesEl.scrollTop=messagesEl.scrollHeight}
-function setChoices(items){choicesEl.innerHTML='';items.forEach((item)=>{const label=typeof item==='string'?item:item.label;const value=typeof item==='string'?item:item.value;const chip=document.createElement('button');chip.type='button';chip.className='chat-chip';chip.textContent=label;chip.addEventListener('click',()=>handleInput(value,label));choicesEl.appendChild(chip)})}
-function setOpen(open){panel.classList.toggle('open',open);panel.setAttribute('aria-hidden',String(!open));btn.setAttribute('aria-expanded',String(open));if(open){if(!state.started)startChat();setTimeout(()=>inputEl.focus(),50)}}
-function startChat(){state.started=true;addMessage('bot',config.welcome);addMessage('bot',config.prompt);setChoices(config.choices);inputEl.placeholder='Choose a service or type your answer'}
-function resetChat(){messagesEl.innerHTML='';choicesEl.innerHTML='';inputEl.disabled=false;formEl.querySelector('button').disabled=false;state.step='service';state.sending=false;state.data={page:config.page,url:window.location.href};state.started=false;startChat()}
-function isValidEmail(value){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)}
-async function submitLead(){
-state.sending=true;inputEl.disabled=true;formEl.querySelector('button').disabled=true;setChoices([]);
-addMessage('bot','Sending this to our team now.');
-const payload=new URLSearchParams({name:state.data.name,email:state.data.email,_replyto:state.data.email,_subject:config.subject,_captcha:'false',service:state.data.service,page:state.data.page,message:`Service: ${state.data.service}\nPage: ${state.data.page}\nURL: ${state.data.url}\nName: ${state.data.name}\nEmail: ${state.data.email}\nDetails: ${state.data.details}`});
-try{
-const res=await fetch('https://formsubmit.co/ajax/contracts@signalshieldsolutions.com',{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:payload.toString()});
-if(!res.ok) throw new Error('send failed');
-addMessage('bot',`Thanks, ${state.data.name}. Your message is on the way, and we will reply at ${state.data.email}.`);
-state.step='done';
-setChoices([{label:'Start a new chat',value:'__reset__'}]);
-}catch(error){
-addMessage('bot','The widget could not send just now. You can try again here or email contracts@signalshieldsolutions.com.');
-state.step='confirm';
-inputEl.disabled=false;formEl.querySelector('button').disabled=false;
-setChoices([{label:'Try again',value:'__send__'},{label:'Start over',value:'__reset__'}]);
-}finally{state.sending=false}}
-function handleInput(rawValue,label){
-const value=(rawValue||'').trim(); if(!value||state.sending)return;
-if(value==='__reset__'){resetChat();return}
-if(value==='__send__'){addMessage('user',label||'Send it');submitLead();return}
-addMessage('user',label||value);
-if(state.step==='service'){state.data.service=value;state.step='name';setChoices([]);addMessage('bot','Got it. What should we call you?');inputEl.value='';inputEl.placeholder='Your name';return}
-if(state.step==='name'){state.data.name=value;state.step='email';addMessage('bot',`Thanks, ${value.split(' ')[0]}. What email should we reply to?`);inputEl.value='';inputEl.placeholder='name@example.com';return}
-if(state.step==='email'){if(!isValidEmail(value)){addMessage('bot','Please enter a valid email address so we can reply.');inputEl.value='';return}state.data.email=value;state.step='details';addMessage('bot',config.detailsPrompt);inputEl.value='';inputEl.placeholder='City, issue, preferred timing';return}
-if(state.step==='details'){state.data.details=value;state.step='confirm';addMessage('bot','I have what I need. Send this to the team?');setChoices([{label:'Send it',value:'__send__'},{label:'Start over',value:'__reset__'}]);inputEl.value='';inputEl.placeholder='Add anything else or choose Send it';return}
-if(state.step==='confirm'){state.data.details+=`\nAdditional note: ${value}`;addMessage('bot','Added that. Send it when you are ready.');setChoices([{label:'Send it',value:'__send__'},{label:'Start over',value:'__reset__'}]);inputEl.value='';return}
-if(state.step==='done'){resetChat()}}
-btn.addEventListener('click',()=>setOpen(!panel.classList.contains('open')));
-closeBtn.addEventListener('click',()=>setOpen(false));
-formEl.addEventListener('submit',(event)=>{event.preventDefault();handleInput(inputEl.value)});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
-})(CHAT_CONFIG);
-const topBar=document.getElementById('topBar');window.addEventListener('scroll',()=>{topBar.classList.toggle('scrolled',window.scrollY>10)});
-const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-(function(){const c=document.getElementById('gridCanvas');if(!c)return;const ctx=c.getContext('2d');let w,h,nodes=[];const sp=60;function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight;const cols=Math.ceil(w/sp)+1;const rows=Math.ceil(h/sp)+1;nodes=[];for(let i=0;i<cols;i++)for(let j=0;j<rows;j++){nodes.push({x:i*sp,y:j*sp,ox:i*sp,oy:j*sp,col:i,row:j})}}resize();window.addEventListener('resize',resize);let t=0;const nodeMap=new Map();function rebuildMap(){nodeMap.clear();for(const n of nodes)nodeMap.set(n.col+','+n.row,n)}function draw(){ctx.clearRect(0,0,w,h);t+=0.003;for(let n of nodes){n.x=n.ox+Math.sin(t*2+n.ox*0.008)*3;n.y=n.oy+Math.cos(t*2.5+n.oy*0.006)*3}rebuildMap();ctx.strokeStyle='rgba(31,79,139,0.06)';ctx.lineWidth=1;ctx.beginPath();for(const n of nodes){const r=nodeMap.get((n.col+1)+','+n.row);const d=nodeMap.get(n.col+','+(n.row+1));if(r){ctx.moveTo(n.x,n.y);ctx.lineTo(r.x,r.y)}if(d){ctx.moveTo(n.x,n.y);ctx.lineTo(d.x,d.y)}}ctx.stroke();const px=w*(.3+.4*Math.sin(t*.7));const py=h*(.3+.4*Math.cos(t*.5));for(const n of nodes){const dx=n.x-px;const dy=n.y-py;const dist=Math.sqrt(dx*dx+dy*dy);if(dist<200){const a=(1-dist/200)*.35;ctx.fillStyle='rgba(31,79,139,'+a+')';ctx.beginPath();ctx.arc(n.x,n.y,1.5+(1-dist/200)*2,0,6.283);ctx.fill()}}const qx=w*(.6+.3*Math.cos(t*.4));const qy=h*(.5+.3*Math.sin(t*.6));for(const n of nodes){const dx=n.x-qx;const dy=n.y-qy;const dist=Math.sqrt(dx*dx+dy*dy);if(dist<150){const a=(1-dist/150)*.2;ctx.fillStyle='rgba(217,178,76,'+a+')';ctx.beginPath();ctx.arc(n.x,n.y,1+(1-dist/150)*1.5,0,6.283);ctx.fill()}}requestAnimationFrame(draw)}draw()})();
+window.CHAT_CONFIG = {
+  subject: "Local IT chat inquiry",
+  page: "Local IT",
+  welcome: "Welcome to local IT support.",
+  prompt: "What do you need help with today?",
+  choices: ["Home tech issue", "Wi-Fi / network issue", "Printer / device setup", "Small business support"],
+  detailsPrompt: "Tell us the city, what is happening, and your preferred timing so we can reply accurately.",
+  detailsPlaceholder: "City, issue, preferred timing"
+};
 </script>
+<script src="site.js"></script>
 </body>
 </html>

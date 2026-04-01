@@ -1,105 +1,300 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Government Contracting | Signal & Shield Solutions</title>
-<meta name="description" content="Compliance-first government contracting support aligned to solicitation scope, documentation, reporting, and execution."/>
-<link rel="canonical" href="https://signalshieldsolutions.com/govcon.html"/>
-<meta property="og:type" content="website"/>
-<meta property="og:title" content="Government Contracting | Signal &amp; Shield Solutions"/>
-<meta property="og:description" content="Compliance-first government contracting support aligned to solicitation scope, documentation, reporting, and execution."/>
-<meta property="og:url" content="https://signalshieldsolutions.com/govcon.html"/>
-<meta property="og:image" content="https://signalshieldsolutions.com/logo.png"/>
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="Government Contracting | Signal &amp; Shield Solutions"/>
-<meta name="twitter:description" content="Compliance-first government contracting support aligned to solicitation scope, documentation, reporting, and execution."/>
-<meta name="twitter:image" content="https://signalshieldsolutions.com/logo.png"/>
-<style>
-:root{--n:#0b1d3a;--b:#1f4f8b;--bg:#070b14;--gold:#d9b24c;--card:#0f1729;--border:#2a3550;--btn:#1f4f8b}
-*{box-sizing:border-box;margin:0;padding:0}
-ul,ol{padding-left:22px}
-body{font-family:'Segoe UI',Inter,Arial,sans-serif;background:linear-gradient(180deg,#070b14,#0b1322);color:#ffffff;font-weight:500;overflow-x:hidden}
-.wrap{max-width:1100px;margin:auto;padding:0 18px}
-.top{position:sticky;top:0;background:rgba(11,19,34,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:30;transition:box-shadow .3s}
-.top.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.45)}
-.bar{display:flex;justify-content:space-between;align-items:center;padding:6px 0}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;color:#fff;text-decoration:none}
-.brand-text{font-size:1.15rem;letter-spacing:2px;text-transform:uppercase;line-height:1.1;color:#dbe7ff}.brand-text .brand-amp{color:var(--gold);margin:0 2px}
-.logo-img{height:58px;width:120px;flex-shrink:0;object-fit:cover;object-position:center 20%;border-radius:6px;filter:drop-shadow(0 0 6px rgba(31,79,139,.4));animation:logoShine 4s ease-in-out infinite;position:relative}
-@keyframes logoShine{0%,100%{filter:drop-shadow(0 0 6px rgba(31,79,139,.35))}50%{filter:drop-shadow(0 0 12px rgba(31,79,139,.55)) drop-shadow(0 0 4px rgba(217,178,76,.25))}}
-.brand:hover .logo-img{filter:drop-shadow(0 0 14px rgba(31,79,139,.6)) drop-shadow(0 0 6px rgba(217,178,76,.35));transition:filter .4s ease}
-.nav a{margin-left:14px;text-decoration:none;color:#dbe7ff;font-weight:700;position:relative;transition:color .25s}
-.nav a::after{content:'';position:absolute;left:0;bottom:-3px;width:0;height:2px;background:var(--gold);transition:width .3s}
-.nav a:hover{color:var(--gold)}
-.nav a:hover::after{width:100%}
-.hero{background:linear-gradient(135deg,var(--n),var(--b));color:#fff;border:1px solid #2d416a;border-radius:16px;padding:42px 32px;margin:24px 0;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-50%;right:-30%;width:500px;height:500px;background:radial-gradient(circle,rgba(217,178,76,.12) 0%,transparent 70%);animation:heroGlow 6s ease-in-out infinite alternate;pointer-events:none}
-@keyframes heroGlow{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-40px,30px) scale(1.15)}}
-h1{line-height:1.25;margin-bottom:12px}
-p{line-height:1.7}
-.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin:14px 0;transition:transform .35s cubic-bezier(.25,.46,.45,.94),box-shadow .35s,border-color .35s}
-.card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.3);border-color:#3a5070}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-details{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:12px;margin:10px 0;transition:border-color .3s}
-details[open]{border-color:#3a5070}
-summary{cursor:pointer;font-weight:700;padding:4px 0;transition:color .2s}
-summary:hover{color:var(--gold)}
-.btn{display:inline-block;background:var(--btn);color:#fff;padding:11px 18px;border-radius:10px;text-decoration:none;font-weight:700;transition:transform .2s,box-shadow .2s,background .2s;border:none;cursor:pointer}
-.btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(31,79,139,.45);background:#265d9e}
-.chat-btn{position:fixed;right:18px;bottom:18px;background:linear-gradient(135deg,#1f4f8b,#12345d);color:#fff;border:none;border-radius:999px;padding:12px 20px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(31,79,139,.4);transition:transform .2s,box-shadow .2s;z-index:20}
-.chat-btn:hover{transform:scale(1.06);box-shadow:0 6px 24px rgba(31,79,139,.55)}
-.chat-panel{position:fixed;right:18px;bottom:74px;width:340px;max-width:calc(100vw - 24px);max-height:min(76vh,540px);background:#f8fbff;border:1px solid #cdd8ea;border-radius:18px;display:none;box-shadow:0 18px 48px rgba(0,0,0,.28);animation:panelIn .25s ease-out;z-index:20;overflow:hidden}
-.chat-panel.open{display:flex;flex-direction:column}
-.chat-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 16px 12px;background:linear-gradient(135deg,#0f2747,#173f70);color:#fff}
-.chat-head p{font-size:.9rem;line-height:1.45;color:#dbe7ff}
-.chat-close{border:none;background:rgba(255,255,255,.12);color:#fff;width:32px;height:32px;border-radius:999px;cursor:pointer;font-size:1rem}
-.chat-close:hover{background:rgba(255,255,255,.2)}
-.chat-messages{padding:14px;height:180px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,#f8fbff,#eef4fb)}
-.chat-bubble{max-width:85%;padding:10px 12px;border-radius:14px;line-height:1.45;font-size:.95rem;white-space:pre-wrap}
-.chat-bubble.bot{align-self:flex-start;background:#fff;color:#17324d;border:1px solid #d7e2ee;border-bottom-left-radius:6px}
-.chat-bubble.user{align-self:flex-end;background:#1f4f8b;color:#fff;border-bottom-right-radius:6px}
-.chat-choices{padding:0 14px 12px;display:flex;flex-wrap:wrap;gap:8px;background:linear-gradient(180deg,#eef4fb,#eef4fb)}
-.chat-chip{border:1px solid #bfd0e4;background:#fff;color:#17324d;border-radius:999px;padding:8px 12px;font:inherit;font-size:.88rem;font-weight:600;cursor:pointer}
-.chat-chip:hover{border-color:#1f4f8b;color:#1f4f8b}
-.chat-compose{display:flex;gap:10px;padding:14px;background:#fff;border-top:1px solid #d9e3ef}
-.chat-compose input{flex:1;margin:0}
-.chat-send{border:none;border-radius:12px;background:#1f4f8b;color:#fff;padding:0 14px;font-weight:700;cursor:pointer}
-.chat-send:hover{background:#265d9e}
-.chat-note{padding:0 14px 14px;background:#fff;color:#5a6677;font-size:.82rem;line-height:1.45}
-.chat-note a{color:#1f4f8b}
-.chat-send[disabled],.chat-compose input[disabled]{opacity:.6;cursor:not-allowed}
-@keyframes panelIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-form,form label,.card form,.card form *{color:#0f172a}
-input,select,textarea{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;background:#ffffff;color:#0f172a;-webkit-text-fill-color:#0f172a;appearance:none;transition:border-color .2s,box-shadow .2s}
-input:focus,select:focus,textarea:focus{outline:none;border-color:var(--btn);box-shadow:0 0 0 3px rgba(31,79,139,.18)}
-input::placeholder,textarea::placeholder{color:#94a3b8;opacity:1}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.stagger .card:nth-child(1){transition-delay:.05s}
-.stagger .card:nth-child(2){transition-delay:.15s}
-.stagger .card:nth-child(3){transition-delay:.25s}
-.divider{height:2px;margin:28px auto;background:linear-gradient(90deg,transparent,var(--gold),var(--btn),var(--gold),transparent);background-size:200% 100%;animation:shimmer 6s linear infinite;border:none;max-width:600px}
-@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.bg-grid{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
-.bg-grid canvas{width:100%;height:100%}
-@media(max-width:760px){.nav a{margin-left:9px;font-size:.92rem}h1{font-size:1.5rem}.hero{padding:24px 18px}.chat-panel{right:12px;bottom:12px;width:calc(100vw - 24px);max-height:min(72vh,480px)}.chat-messages{height:130px}}
-</style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Government Contracting | Signal &amp; Shield Solutions</title>
+<meta name="description" content="Compliance-first government contracting support aligned to solicitation scope, place of performance, reporting, and execution." />
+<link rel="canonical" href="https://signalshieldsolutions.com/govcon.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Government Contracting | Signal &amp; Shield Solutions" />
+<meta property="og:description" content="Compliance-first government contracting support aligned to solicitation scope, place of performance, reporting, and execution." />
+<meta property="og:url" content="https://signalshieldsolutions.com/govcon.html" />
+<meta property="og:image" content="https://signalshieldsolutions.com/logo.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Government Contracting | Signal &amp; Shield Solutions" />
+<meta name="twitter:description" content="Compliance-first government contracting support aligned to solicitation scope, place of performance, reporting, and execution." />
+<meta name="twitter:image" content="https://signalshieldsolutions.com/logo.png" />
+<link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-<div class="bg-grid"><canvas id="gridCanvas"></canvas></div>
-<header class="top" id="topBar"><div class="wrap bar"><a href="index.html" class="brand"><img src="logo.png" alt="Signal &amp; Shield Solutions logo" class="logo-img"><span class="brand-text">SIGNAL <span class="brand-amp">&amp;</span> SHIELD</span></a><nav class="nav"><a href="index.html">Home</a> <a href="govcon.html">Government Contracting</a> <a href="local-it.html">Local IT (California)</a> <a href="#contact">Contact</a></nav></div></header>
-<main class="wrap" style="position:relative;z-index:1">
-<section class="hero reveal"><h1>Compliance-first support for government work &#8212; anchored to the solicitation.</h1><p>We align staffing, schedule, QC, and reporting to the PWS/SOW and performance standards. Clear documentation. Clear communication. No guessing.</p><div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="#contact">Send requirements</a><a class="btn" href="#engagement">How pricing works</a></div></section>
-<section class="grid stagger reveal"><article class="card"><h3>Facilities / Janitorial &amp; related support</h3></article><article class="card"><h3>Admin / Program / Logistics support</h3></article><article class="card"><h3>IT Support (helpdesk-style, as scoped)</h3></article></section>
-<hr class="divider">
-<section class="card reveal"><h2>How It Works</h2><ol style="margin-top:10px;padding-left:20px"><li>You send the scope, place of performance, timeline, and contract requirements.</li><li>We review staffing, reporting, QC, travel, and execution assumptions before committing.</li><li>You get a clear response with the next step, quote direction, or follow-up questions.</li></ol></section>
-<section class="card reveal"><h2>Service Catalog</h2><details open><summary><strong>Facilities &amp; Janitorial</strong></summary><ul><li>Commercial cleaning (day/after-hours)</li><li>Restroom cleaning &amp; supply servicing</li><li>Trash/recycling/cardboard handling</li><li>Floor care routines</li><li>Breakroom/common area routines</li><li>QC checklists/logs + corrective actions</li><li>Photo documentation if required</li></ul></details><details><summary><strong>Grounds / Exterior (as scoped)</strong></summary><ul><li>Litter patrol / exterior trash removal</li><li>Walkway/entry upkeep support</li><li>Seasonal cleanup support</li><li>QC checks + reporting</li></ul></details><details><summary><strong>Administrative / Program Support</strong></summary><ul><li>Scheduling + task coordination</li><li>Documentation + data entry</li><li>Inventory tracking support</li><li>Status reporting (weekly/monthly)</li><li>Customer communications support</li></ul></details><details><summary><strong>IT Support (as scoped)</strong></summary><ul><li>Tier 1/Tier 2 helpdesk-style support</li><li>Device setup/imaging support (if allowed)</li><li>Printer/plotter troubleshooting</li><li>Basic network troubleshooting</li><li>Ticket updates + documentation</li><li>User guidance / tech tutoring</li></ul></details><p style="margin-top:12px"><em>Final scope is driven by the solicitation and confirmed in writing before start. Specialty licensed trade work is performed only when appropriately licensed/authorized and explicitly scoped.</em></p></section>
-<section id="engagement" class="card reveal"><h2>Engagement Model</h2><div class="grid" style="margin-top:12px"><article class="card"><h3>Intro call</h3><p>No-charge initial intake to determine fit, urgency, and what documentation is needed next.</p></article><article class="card"><h3>Opportunity pricing</h3><p>Pricing is quoted per opportunity based on labor mix, schedule, location, reporting, and access requirements.</p></article><article class="card"><h3>Travel and special requirements</h3><p>Travel, badging, site constraints, and special compliance needs are surfaced early and built into the quote path.</p></article></div></section>
-<hr class="divider">
-<section class="card reveal"><h2>FAQ</h2><details open><summary>Do you support primes and delivery teams?</summary><p>Yes. We can support quoting inputs, execution planning, staffing coordination, and documented delivery where the scope is clearly defined.</p></details><details><summary>How do you ensure compliance?</summary><p>We build the plan around the solicitation or contract: PWS/SOW, schedule, wage or labor constraints where applicable, performance standards, and required reporting.</p></details><details><summary>What helps you quote fastest?</summary><p>Scope/PWS, place of performance, schedule or hours, deliverables, reporting cadence, access requirements, and any compliance constraints.</p></details><details><summary>Can you support multiple service areas?</summary><p>Yes. GovCon work is not limited to one local area. Support is quoted based on the actual place of performance and contract demands.</p></details><details><summary>Do you provide documentation and reporting?</summary><p>Yes. Logs, QC checklists, and status reporting are built around what the contract actually requires.</p></details></section>
-<section id="contact" class="card reveal"><h2>Send Contract Requirements</h2><p style="margin-top:10px">The more structured the intake, the faster we can tell you whether it fits and what the next step looks like.</p><form action="https://formsubmit.co/contracts@signalshieldsolutions.com" method="POST" style="margin-top:12px"><input type="hidden" name="_subject" value="GovCon inquiry"><input type="hidden" name="_captcha" value="true"><p><input required name="name" placeholder="Name"></p><p><input required type="email" name="email" placeholder="Email"></p><p><input name="company" placeholder="Agency, prime, or company"></p><p><select name="opportunity_type"><option value="">Opportunity type</option><option>Bid / quote request</option><option>Teaming discussion</option><option>Execution support</option><option>General GovCon inquiry</option></select></p><p><input name="place_of_performance" placeholder="Place of performance"></p><p><input name="timing" placeholder="Proposal due date, POP, or timeline"></p><p><textarea required name="message" placeholder="Scope, deliverables, schedule, compliance requirements, reporting needs, and anything else we should know"></textarea></p><button class="btn" type="submit">Send requirements</button></form></section>
+<body class="page-govcon">
+<header class="top" id="topBar">
+  <div class="wrap bar">
+    <a href="index.html" class="brand" aria-label="Signal and Shield Solutions home">
+      <span class="logo-mark"><img src="logo.png" alt="Signal &amp; Shield Solutions logo" class="logo-img" /></span>
+      <span class="brand-text">Signal <span class="brand-amp">&amp;</span> Shield</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a class="current" href="govcon.html">Government Contracting</a>
+      <a href="local-it.html">Local IT</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero-band">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="hero-kicker">Government contracting lane</div>
+        <h1 class="hero-title">Compliance-first support that starts with the solicitation.</h1>
+        <p>We align staffing, schedule, QC, and reporting to the actual requirement so the next step is grounded in the PWS, SOW, place of performance, and delivery expectations from the start.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#contact">Send requirements</a>
+          <a class="btn secondary" href="#engagement">See how intake works</a>
+        </div>
+        <div class="hero-process" aria-label="How it works">
+          <span><strong>1</strong>Send the scope and location</span>
+          <span><strong>2</strong>We review fit, travel, and reporting</span>
+          <span><strong>3</strong>You get written next-step direction</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-art" data-tilt>
+          <span class="hero-ribbon">Scope-aligned intake</span>
+          <span class="hero-ring hero-ring-a"></span>
+          <span class="hero-ring hero-ring-b"></span>
+          <span class="hero-ring hero-ring-c"></span>
+          <div class="brief-board">
+            <div class="brief-row">
+              <span>PWS / SOW</span>
+              <strong>Reviewed before pricing or commitment</strong>
+            </div>
+            <div class="brief-row">
+              <span>Place of performance</span>
+              <strong>Nationwide support based on actual delivery location</strong>
+            </div>
+            <div class="brief-row">
+              <span>Schedule / access</span>
+              <strong>Hours, badging, and site constraints surfaced early</strong>
+            </div>
+            <div class="brief-row">
+              <span>Reporting / QC</span>
+              <strong>Documentation expectations built into the response path</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section-shell">
+    <div class="signal-rail reveal">
+      <div>
+        <span>Coverage</span>
+        <strong>Nationwide where the contract requires performance</strong>
+      </div>
+      <div>
+        <span>Working style</span>
+        <strong>Scope-driven intake instead of vague marketing promises</strong>
+      </div>
+      <div>
+        <span>Best first input</span>
+        <strong>PWS, location, timing, and reporting requirements</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section-shell">
+    <div class="section-slab">
+      <div class="section-head reveal">
+        <div class="eyebrow">Service coverage</div>
+        <h2>Broad support, but organized in a way procurement teams can scan quickly.</h2>
+        <p>The page stays honest about being broad while showing where that breadth actually lands: facilities, admin, logistics, scoped IT, and the documentation layer that keeps execution clean.</p>
+      </div>
+      <aside class="surface reveal">
+        <div class="surface-row">
+          <span>What matters most</span>
+          <strong>Clear requirements, realistic assumptions, and written follow-up.</strong>
+        </div>
+        <div class="surface-row">
+          <span>Useful first contact</span>
+          <strong>Scope, place of performance, timing, access requirements, and reporting needs.</strong>
+        </div>
+        <div class="surface-row">
+          <span>Positioning</span>
+          <strong>New business, disciplined intake, and execution shaped around the contract itself.</strong>
+        </div>
+      </aside>
+    </div>
+
+    <div class="support-grid">
+      <article class="surface service-cluster reveal">
+        <span class="cluster-tag">Facilities and janitorial</span>
+        <h3>Operational support for scoped site routines and recurring service.</h3>
+        <ul class="feature-list">
+          <li>Commercial cleaning, restrooms, common areas, and routine servicing</li>
+          <li>Trash, recycling, cardboard, and floor-care routines as scoped</li>
+          <li>QC checks, logs, and corrective-action visibility where required</li>
+        </ul>
+      </article>
+
+      <article class="surface service-cluster reveal">
+        <span class="cluster-tag">Admin and program support</span>
+        <h3>Documentation, coordination, and recurring status support.</h3>
+        <ul class="feature-list">
+          <li>Scheduling, task coordination, and structured communications</li>
+          <li>Data entry, inventory support, and recurring reporting help</li>
+          <li>Program-adjacent support when the requirement is clearly defined</li>
+        </ul>
+      </article>
+
+      <article class="surface service-cluster reveal">
+        <span class="cluster-tag">IT support as scoped</span>
+        <h3>Helpdesk-style and device support where the statement of work allows it.</h3>
+        <ul class="feature-list">
+          <li>Tier 1 and Tier 2 style support, device setup, and troubleshooting</li>
+          <li>Printer, plotter, and simple network issue support</li>
+          <li>User guidance, ticket updates, and documented handoff notes</li>
+        </ul>
+      </article>
+
+      <article class="surface service-cluster reveal">
+        <span class="cluster-tag">Reporting and control</span>
+        <h3>The part that keeps delivery from feeling improvised.</h3>
+        <ul class="feature-list">
+          <li>Written next steps before start when the scope is still forming</li>
+          <li>Logs, checklists, status reporting, and QC where required</li>
+          <li>Execution shaped around what the contract actually asks for</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap section-shell section-anchor" id="engagement">
+    <div class="section-slab">
+      <div class="section-head reveal">
+        <div class="eyebrow">How engagement works</div>
+        <h2>Quoted by opportunity, not by a fake one-size-fits-all rate card.</h2>
+        <p>That keeps the page reasonable for a new business without pretending every contract looks the same. Travel, labor mix, reporting, access, and performance conditions all change the quote path.</p>
+      </div>
+      <aside class="surface reveal">
+        <h3>What to send first</h3>
+        <div class="note-stack">
+          <div class="note-row">
+            <span>Scope</span>
+            <strong>PWS, SOW, deliverables, or a direct summary of the requirement.</strong>
+          </div>
+          <div class="note-row">
+            <span>Context</span>
+            <strong>Place of performance, hours, access, timeline, and buyer or prime details.</strong>
+          </div>
+          <div class="note-row">
+            <span>Control points</span>
+            <strong>Reporting cadence, QC expectations, and anything that affects execution assumptions.</strong>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="process-grid">
+      <article class="surface reveal">
+        <div class="process-step" data-step="1">
+          <strong>Initial intake</strong>
+          <p>No-charge first review to confirm fit, urgency, and whether the opportunity needs more detail before a quote direction makes sense.</p>
+        </div>
+      </article>
+      <article class="surface reveal">
+        <div class="process-step" data-step="2">
+          <strong>Opportunity pricing</strong>
+          <p>Pricing is shaped around labor mix, schedule, location, access, reporting, and any special performance or travel requirements.</p>
+        </div>
+      </article>
+      <article class="surface reveal">
+        <div class="process-step" data-step="3">
+          <strong>Written next steps</strong>
+          <p>You get a clear response path, whether that is quote direction, follow-up questions, or a fast answer on fit before more time is spent.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap section-shell">
+    <div class="section-head reveal" style="margin-bottom:24px">
+      <div class="eyebrow">FAQ</div>
+      <h2>Questions that usually come up first.</h2>
+    </div>
+    <div class="faq-grid">
+      <details class="reveal" open>
+        <summary>Do you support primes and delivery teams?</summary>
+        <p>Yes. We can support intake, execution planning, staffing coordination, and documented delivery where the requirement is clear enough to act on responsibly.</p>
+      </details>
+      <details class="reveal">
+        <summary>How do you make sure the work stays compliant?</summary>
+        <p>The response path is built around the contract itself: the PWS or SOW, the place of performance, schedule constraints, access requirements, performance standards, and required reporting.</p>
+      </details>
+      <details class="reveal">
+        <summary>What helps you respond fastest?</summary>
+        <p>The scope, location, hours, POP or due date, reporting cadence, and any constraints that affect staffing, travel, or site access.</p>
+      </details>
+      <details class="reveal">
+        <summary>Is GovCon support limited to one region?</summary>
+        <p>No. Government contracting work is not limited to Apple Valley or California. Support is quoted according to the actual place of performance and contract demands.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="wrap section-shell section-anchor" id="contact">
+    <div class="contact-panel reveal">
+      <div class="contact-layout">
+        <div>
+          <h2>Send contract requirements.</h2>
+          <p>The more structured the intake, the easier it is to tell you whether the opportunity fits and what the cleanest next step should be.</p>
+          <ul class="helper-list compact">
+            <li>Agency, prime, or company name</li>
+            <li>Place of performance and timeline</li>
+            <li>Scope, deliverables, and reporting expectations</li>
+          </ul>
+        </div>
+
+        <form class="form-shell" action="https://formsubmit.co/contracts@signalshieldsolutions.com" method="POST">
+          <input type="hidden" name="_subject" value="GovCon inquiry" />
+          <input type="hidden" name="_captcha" value="true" />
+          <div class="form-grid">
+            <div class="field">
+              <label for="gov-name">Name</label>
+              <input id="gov-name" name="name" required />
+            </div>
+            <div class="field">
+              <label for="gov-email">Email</label>
+              <input id="gov-email" type="email" name="email" required />
+            </div>
+            <div class="field">
+              <label for="gov-company">Agency, prime, or company</label>
+              <input id="gov-company" name="company" />
+            </div>
+            <div class="field">
+              <label for="gov-type">Opportunity type</label>
+              <select id="gov-type" name="opportunity_type">
+                <option value="">Select...</option>
+                <option>Bid / quote request</option>
+                <option>Teaming discussion</option>
+                <option>Execution support</option>
+                <option>General GovCon inquiry</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="gov-location">Place of performance</label>
+              <input id="gov-location" name="place_of_performance" />
+            </div>
+            <div class="field">
+              <label for="gov-timing">Timing</label>
+              <input id="gov-timing" name="timing" placeholder="Proposal due date, POP, or timeline" />
+            </div>
+            <div class="field full">
+              <label for="gov-message">Message</label>
+              <textarea id="gov-message" name="message" required placeholder="Scope, deliverables, schedule, reporting needs, and anything else we should know"></textarea>
+            </div>
+          </div>
+          <button class="btn primary" type="submit">Send requirements</button>
+        </form>
+      </div>
+    </div>
+  </section>
 </main>
+
 <button id="chatBtn" class="chat-btn" aria-expanded="false" aria-controls="chatPanel">Message us</button>
 <div id="chatPanel" class="chat-panel" aria-hidden="true">
   <div class="chat-head">
@@ -107,7 +302,7 @@ input::placeholder,textarea::placeholder{color:#94a3b8;opacity:1}
       <strong>Signal &amp; Shield Solutions</strong>
       <p>Tell us the contract need and we will package it for a fast follow-up.</p>
     </div>
-    <button id="chatClose" class="chat-close" type="button" aria-label="Close chat">×</button>
+    <button id="chatClose" class="chat-close" type="button" aria-label="Close chat">x</button>
   </div>
   <div id="chatMessages" class="chat-messages"></div>
   <div id="chatChoices" class="chat-choices"></div>
@@ -117,52 +312,18 @@ input::placeholder,textarea::placeholder{color:#94a3b8;opacity:1}
   </form>
   <div class="chat-note">This sends your request to <a href="mailto:contracts@signalshieldsolutions.com">contracts@signalshieldsolutions.com</a>.</div>
 </div>
+
 <script>
-const CHAT_CONFIG={subject:'GovCon chat inquiry',page:'Government Contracting',welcome:'Welcome to the government contracting desk.',prompt:'What type of opportunity or support do you need?',choices:['Facilities / Janitorial','Administrative Support','IT Support','Teaming / Prime Support'],detailsPrompt:'Share the scope, location, schedule, and any compliance or reporting requirements.'};
-(function initChatWidget(config){
-const btn=document.getElementById('chatBtn'),panel=document.getElementById('chatPanel'),closeBtn=document.getElementById('chatClose'),messagesEl=document.getElementById('chatMessages'),choicesEl=document.getElementById('chatChoices'),formEl=document.getElementById('chatForm'),inputEl=document.getElementById('chatInput');
-const state={started:false,step:'service',sending:false,data:{page:config.page,url:window.location.href}};
-function addMessage(role,text){const el=document.createElement('div');el.className='chat-bubble '+role;el.textContent=text;messagesEl.appendChild(el);messagesEl.scrollTop=messagesEl.scrollHeight}
-function setChoices(items){choicesEl.innerHTML='';items.forEach((item)=>{const label=typeof item==='string'?item:item.label;const value=typeof item==='string'?item:item.value;const chip=document.createElement('button');chip.type='button';chip.className='chat-chip';chip.textContent=label;chip.addEventListener('click',()=>handleInput(value,label));choicesEl.appendChild(chip)})}
-function setOpen(open){panel.classList.toggle('open',open);panel.setAttribute('aria-hidden',String(!open));btn.setAttribute('aria-expanded',String(open));if(open){if(!state.started)startChat();setTimeout(()=>inputEl.focus(),50)}}
-function startChat(){state.started=true;addMessage('bot',config.welcome);addMessage('bot',config.prompt);setChoices(config.choices);inputEl.placeholder='Choose a service or type your answer'}
-function resetChat(){messagesEl.innerHTML='';choicesEl.innerHTML='';inputEl.disabled=false;formEl.querySelector('button').disabled=false;state.step='service';state.sending=false;state.data={page:config.page,url:window.location.href};state.started=false;startChat()}
-function isValidEmail(value){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)}
-async function submitLead(){
-state.sending=true;inputEl.disabled=true;formEl.querySelector('button').disabled=true;setChoices([]);
-addMessage('bot','Sending this to our team now.');
-const payload=new URLSearchParams({name:state.data.name,email:state.data.email,_replyto:state.data.email,_subject:config.subject,_captcha:'false',service:state.data.service,page:state.data.page,message:`Service: ${state.data.service}\nPage: ${state.data.page}\nURL: ${state.data.url}\nName: ${state.data.name}\nEmail: ${state.data.email}\nDetails: ${state.data.details}`});
-try{
-const res=await fetch('https://formsubmit.co/ajax/contracts@signalshieldsolutions.com',{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:payload.toString()});
-if(!res.ok) throw new Error('send failed');
-addMessage('bot',`Thanks, ${state.data.name}. Your request is on the way, and we will reply at ${state.data.email}.`);
-state.step='done';
-setChoices([{label:'Start a new chat',value:'__reset__'}]);
-}catch(error){
-addMessage('bot','The widget could not send just now. You can try again here or email contracts@signalshieldsolutions.com.');
-state.step='confirm';
-inputEl.disabled=false;formEl.querySelector('button').disabled=false;
-setChoices([{label:'Try again',value:'__send__'},{label:'Start over',value:'__reset__'}]);
-}finally{state.sending=false}}
-function handleInput(rawValue,label){
-const value=(rawValue||'').trim(); if(!value||state.sending)return;
-if(value==='__reset__'){resetChat();return}
-if(value==='__send__'){addMessage('user',label||'Send it');submitLead();return}
-addMessage('user',label||value);
-if(state.step==='service'){state.data.service=value;state.step='name';setChoices([]);addMessage('bot','Got it. What should we call you?');inputEl.value='';inputEl.placeholder='Your name';return}
-if(state.step==='name'){state.data.name=value;state.step='email';addMessage('bot',`Thanks, ${value.split(' ')[0]}. What email should we reply to?`);inputEl.value='';inputEl.placeholder='name@example.com';return}
-if(state.step==='email'){if(!isValidEmail(value)){addMessage('bot','Please enter a valid email address so we can reply.');inputEl.value='';return}state.data.email=value;state.step='details';addMessage('bot',config.detailsPrompt);inputEl.value='';inputEl.placeholder='Scope, location, timing, compliance requirements';return}
-if(state.step==='details'){state.data.details=value;state.step='confirm';addMessage('bot','I have what I need. Send this to the team?');setChoices([{label:'Send it',value:'__send__'},{label:'Start over',value:'__reset__'}]);inputEl.value='';inputEl.placeholder='Add anything else or choose Send it';return}
-if(state.step==='confirm'){state.data.details+=`\nAdditional note: ${value}`;addMessage('bot','Added that. Send it when you are ready.');setChoices([{label:'Send it',value:'__send__'},{label:'Start over',value:'__reset__'}]);inputEl.value='';return}
-if(state.step==='done'){resetChat()}}
-btn.addEventListener('click',()=>setOpen(!panel.classList.contains('open')));
-closeBtn.addEventListener('click',()=>setOpen(false));
-formEl.addEventListener('submit',(event)=>{event.preventDefault();handleInput(inputEl.value)});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false)});
-})(CHAT_CONFIG);
-const topBar=document.getElementById('topBar');window.addEventListener('scroll',()=>{topBar.classList.toggle('scrolled',window.scrollY>10)});
-const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-(function(){const c=document.getElementById('gridCanvas');if(!c)return;const ctx=c.getContext('2d');let w,h,nodes=[];const sp=60;function resize(){w=c.width=window.innerWidth;h=c.height=window.innerHeight;const cols=Math.ceil(w/sp)+1;const rows=Math.ceil(h/sp)+1;nodes=[];for(let i=0;i<cols;i++)for(let j=0;j<rows;j++){nodes.push({x:i*sp,y:j*sp,ox:i*sp,oy:j*sp,col:i,row:j})}}resize();window.addEventListener('resize',resize);let t=0;const nodeMap=new Map();function rebuildMap(){nodeMap.clear();for(const n of nodes)nodeMap.set(n.col+','+n.row,n)}function draw(){ctx.clearRect(0,0,w,h);t+=0.003;for(let n of nodes){n.x=n.ox+Math.sin(t*2+n.ox*0.008)*3;n.y=n.oy+Math.cos(t*2.5+n.oy*0.006)*3}rebuildMap();ctx.strokeStyle='rgba(31,79,139,0.06)';ctx.lineWidth=1;ctx.beginPath();for(const n of nodes){const r=nodeMap.get((n.col+1)+','+n.row);const d=nodeMap.get(n.col+','+(n.row+1));if(r){ctx.moveTo(n.x,n.y);ctx.lineTo(r.x,r.y)}if(d){ctx.moveTo(n.x,n.y);ctx.lineTo(d.x,d.y)}}ctx.stroke();const px=w*(.3+.4*Math.sin(t*.7));const py=h*(.3+.4*Math.cos(t*.5));for(const n of nodes){const dx=n.x-px;const dy=n.y-py;const dist=Math.sqrt(dx*dx+dy*dy);if(dist<200){const a=(1-dist/200)*.35;ctx.fillStyle='rgba(31,79,139,'+a+')';ctx.beginPath();ctx.arc(n.x,n.y,1.5+(1-dist/200)*2,0,6.283);ctx.fill()}}const qx=w*(.6+.3*Math.cos(t*.4));const qy=h*(.5+.3*Math.sin(t*.6));for(const n of nodes){const dx=n.x-qx;const dy=n.y-qy;const dist=Math.sqrt(dx*dx+dy*dy);if(dist<150){const a=(1-dist/150)*.2;ctx.fillStyle='rgba(217,178,76,'+a+')';ctx.beginPath();ctx.arc(n.x,n.y,1+(1-dist/150)*1.5,0,6.283);ctx.fill()}}requestAnimationFrame(draw)}draw()})();
+window.CHAT_CONFIG = {
+  subject: "GovCon chat inquiry",
+  page: "Government Contracting",
+  welcome: "Welcome to the government contracting desk.",
+  prompt: "What type of opportunity or support do you need?",
+  choices: ["Facilities / Janitorial", "Administrative Support", "IT Support", "Teaming / Prime Support"],
+  detailsPrompt: "Share the scope, location, timeline, and any reporting or compliance requirements.",
+  detailsPlaceholder: "Scope, location, timing, reporting requirements"
+};
 </script>
+<script src="site.js"></script>
 </body>
 </html>
