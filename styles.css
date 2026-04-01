@@ -428,7 +428,7 @@ main{position:relative;z-index:1}
   position:absolute;
   top:22px;
   left:22px;
-  z-index:2;
+  z-index:4;
   display:inline-flex;
   align-items:center;
   gap:8px;
@@ -449,6 +449,7 @@ main{position:relative;z-index:1}
   position:relative;
   z-index:2;
   margin:0 auto;
+  margin-top:38px;
   width:min(100%, 360px);
   background:rgba(8,15,25,0.58);
   border:1px solid rgba(181,199,229,0.14);
@@ -1142,6 +1143,9 @@ textarea:focus{
   .contact-panel{padding:20px}
   .brief-board,
   .coverage-board{padding:52px 18px 18px}
+  .hero-logo-panel,
+  .brief-board,
+  .coverage-board{margin-top:34px}
   .coverage-grid{grid-template-columns:1fr}
   .form-grid{grid-template-columns:1fr}
   .chat-btn{
@@ -1172,6 +1176,9 @@ textarea:focus{
     top:16px;
     left:16px;
   }
+  .hero-logo-panel,
+  .brief-board,
+  .coverage-board{margin-top:30px}
   .hero-art{min-height:280px}
   .section-shell{padding:38px 0}
   .contact-panel{padding:22px}
