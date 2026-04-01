@@ -49,13 +49,13 @@ summary:hover{color:var(--gold)}
 .btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(31,79,139,.45);background:#265d9e}
 .chat-btn{position:fixed;right:18px;bottom:18px;background:linear-gradient(135deg,#1f4f8b,#12345d);color:#fff;border:none;border-radius:999px;padding:12px 20px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(31,79,139,.4);transition:transform .2s,box-shadow .2s;z-index:20}
 .chat-btn:hover{transform:scale(1.06);box-shadow:0 6px 24px rgba(31,79,139,.55)}
-.chat-panel{position:fixed;right:18px;bottom:74px;width:360px;max-width:calc(100vw - 24px);background:#f8fbff;border:1px solid #cdd8ea;border-radius:18px;display:none;box-shadow:0 18px 48px rgba(0,0,0,.28);animation:panelIn .25s ease-out;z-index:20;overflow:hidden}
-.chat-panel.open{display:block}
+.chat-panel{position:fixed;right:18px;bottom:74px;width:340px;max-width:calc(100vw - 24px);max-height:min(76vh,540px);background:#f8fbff;border:1px solid #cdd8ea;border-radius:18px;display:none;box-shadow:0 18px 48px rgba(0,0,0,.28);animation:panelIn .25s ease-out;z-index:20;overflow:hidden}
+.chat-panel.open{display:flex;flex-direction:column}
 .chat-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 16px 12px;background:linear-gradient(135deg,#0f2747,#173f70);color:#fff}
 .chat-head p{font-size:.9rem;line-height:1.45;color:#dbe7ff}
 .chat-close{border:none;background:rgba(255,255,255,.12);color:#fff;width:32px;height:32px;border-radius:999px;cursor:pointer;font-size:1rem}
 .chat-close:hover{background:rgba(255,255,255,.2)}
-.chat-messages{padding:14px;height:300px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,#f8fbff,#eef4fb)}
+.chat-messages{padding:14px;height:180px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;background:linear-gradient(180deg,#f8fbff,#eef4fb)}
 .chat-bubble{max-width:85%;padding:10px 12px;border-radius:14px;line-height:1.45;font-size:.95rem;white-space:pre-wrap}
 .chat-bubble.bot{align-self:flex-start;background:#fff;color:#17324d;border:1px solid #d7e2ee;border-bottom-left-radius:6px}
 .chat-bubble.user{align-self:flex-end;background:#1f4f8b;color:#fff;border-bottom-right-radius:6px}
@@ -83,7 +83,7 @@ input::placeholder,textarea::placeholder{color:#94a3b8;opacity:1}
 @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 .bg-grid{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
 .bg-grid canvas{width:100%;height:100%}
-@media(max-width:760px){.nav a{margin-left:9px;font-size:.92rem}h1{font-size:1.5rem}.hero{padding:24px 18px}.chat-panel{right:12px;bottom:70px;width:calc(100vw - 24px)}.chat-messages{height:260px}}
+@media(max-width:760px){.nav a{margin-left:9px;font-size:.92rem}h1{font-size:1.5rem}.hero{padding:24px 18px}.chat-panel{right:12px;bottom:12px;width:calc(100vw - 24px);max-height:min(72vh,480px)}.chat-messages{height:130px}}
 </style>
 </head>
 <body>
@@ -91,7 +91,6 @@ input::placeholder,textarea::placeholder{color:#94a3b8;opacity:1}
 <header class="top" id="topBar"><div class="wrap bar"><a href="index.html" class="brand"><img src="logo.png" alt="Signal &amp; Shield Solutions logo" class="logo-img"><span class="brand-text">SIGNAL <span class="brand-amp">&amp;</span> SHIELD</span></a><nav class="nav"><a href="index.html">Home</a> <a href="govcon.html">Government Contracting</a> <a href="local-it.html">Local IT (California)</a> <a href="#contact">Contact</a></nav></div></header>
 <main class="wrap" style="position:relative;z-index:1">
 <section class="hero reveal"><h1>Compliance-first support for government work &#8212; anchored to the solicitation.</h1><p>We align staffing, schedule, QC, and reporting to the PWS/SOW and performance standards. Clear documentation. Clear communication. No guessing.</p><div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn" href="#contact">Send requirements</a><a class="btn" href="#engagement">How pricing works</a></div></section>
-<section class="grid stagger reveal"><article class="card"><h3>Nationwide Scope</h3><p>Government-contract support can be quoted across the U.S., remote or on-site depending on access, staffing, and place of performance.</p></article><article class="card"><h3>How We Work</h3><p>We start with the solicitation, scope the labor and reporting needs, then build the cleanest execution path we can support.</p></article><article class="card"><h3>Best First Step</h3><p>Send the PWS/SOW, location, schedule, deliverables, and any compliance or reporting requirements.</p></article></section>
 <section class="grid stagger reveal"><article class="card"><h3>Facilities / Janitorial &amp; related support</h3></article><article class="card"><h3>Admin / Program / Logistics support</h3></article><article class="card"><h3>IT Support (helpdesk-style, as scoped)</h3></article></section>
 <hr class="divider">
 <section class="card reveal"><h2>How It Works</h2><ol style="margin-top:10px;padding-left:20px"><li>You send the scope, place of performance, timeline, and contract requirements.</li><li>We review staffing, reporting, QC, travel, and execution assumptions before committing.</li><li>You get a clear response with the next step, quote direction, or follow-up questions.</li></ol></section>
@@ -99,7 +98,7 @@ input::placeholder,textarea::placeholder{color:#94a3b8;opacity:1}
 <section id="engagement" class="card reveal"><h2>Engagement Model</h2><div class="grid" style="margin-top:12px"><article class="card"><h3>Intro call</h3><p>No-charge initial intake to determine fit, urgency, and what documentation is needed next.</p></article><article class="card"><h3>Opportunity pricing</h3><p>Pricing is quoted per opportunity based on labor mix, schedule, location, reporting, and access requirements.</p></article><article class="card"><h3>Travel and special requirements</h3><p>Travel, badging, site constraints, and special compliance needs are surfaced early and built into the quote path.</p></article></div></section>
 <hr class="divider">
 <section class="card reveal"><h2>FAQ</h2><details open><summary>Do you support primes and delivery teams?</summary><p>Yes. We can support quoting inputs, execution planning, staffing coordination, and documented delivery where the scope is clearly defined.</p></details><details><summary>How do you ensure compliance?</summary><p>We build the plan around the solicitation or contract: PWS/SOW, schedule, wage or labor constraints where applicable, performance standards, and required reporting.</p></details><details><summary>What helps you quote fastest?</summary><p>Scope/PWS, place of performance, schedule or hours, deliverables, reporting cadence, access requirements, and any compliance constraints.</p></details><details><summary>Can you support multiple service areas?</summary><p>Yes. GovCon work is not limited to one local area. Support is quoted based on the actual place of performance and contract demands.</p></details><details><summary>Do you provide documentation and reporting?</summary><p>Yes. Logs, QC checklists, and status reporting are built around what the contract actually requires.</p></details></section>
-<section id="contact" class="card reveal"><h2>Send Contract Requirements</h2><p style="margin-top:10px">The more structured the intake, the faster we can tell you whether it fits and what the next step looks like.</p><p style="margin-top:8px">Prefer direct messaging? Reach us on <a href="https://t.me/signalshield" target="_blank" rel="noopener noreferrer">Telegram</a>.</p><form action="https://formsubmit.co/contracts@signalshieldsolutions.com" method="POST" style="margin-top:12px"><input type="hidden" name="_subject" value="GovCon inquiry"><input type="hidden" name="_captcha" value="true"><p><input required name="name" placeholder="Name"></p><p><input required type="email" name="email" placeholder="Email"></p><p><input name="company" placeholder="Agency, prime, or company"></p><p><select name="opportunity_type"><option value="">Opportunity type</option><option>Bid / quote request</option><option>Teaming discussion</option><option>Execution support</option><option>General GovCon inquiry</option></select></p><p><input name="place_of_performance" placeholder="Place of performance"></p><p><input name="timing" placeholder="Proposal due date, POP, or timeline"></p><p><textarea required name="message" placeholder="Scope, deliverables, schedule, compliance requirements, reporting needs, and anything else we should know"></textarea></p><button class="btn" type="submit">Send requirements</button></form></section>
+<section id="contact" class="card reveal"><h2>Send Contract Requirements</h2><p style="margin-top:10px">The more structured the intake, the faster we can tell you whether it fits and what the next step looks like.</p><form action="https://formsubmit.co/contracts@signalshieldsolutions.com" method="POST" style="margin-top:12px"><input type="hidden" name="_subject" value="GovCon inquiry"><input type="hidden" name="_captcha" value="true"><p><input required name="name" placeholder="Name"></p><p><input required type="email" name="email" placeholder="Email"></p><p><input name="company" placeholder="Agency, prime, or company"></p><p><select name="opportunity_type"><option value="">Opportunity type</option><option>Bid / quote request</option><option>Teaming discussion</option><option>Execution support</option><option>General GovCon inquiry</option></select></p><p><input name="place_of_performance" placeholder="Place of performance"></p><p><input name="timing" placeholder="Proposal due date, POP, or timeline"></p><p><textarea required name="message" placeholder="Scope, deliverables, schedule, compliance requirements, reporting needs, and anything else we should know"></textarea></p><button class="btn" type="submit">Send requirements</button></form></section>
 </main>
 <button id="chatBtn" class="chat-btn" aria-expanded="false" aria-controls="chatPanel">Message us</button>
 <div id="chatPanel" class="chat-panel" aria-hidden="true">
@@ -116,7 +115,7 @@ input::placeholder,textarea::placeholder{color:#94a3b8;opacity:1}
     <input id="chatInput" type="text" placeholder="Type your message..." autocomplete="off" />
     <button class="chat-send" type="submit">Send</button>
   </form>
-  <div class="chat-note">This sends your request to <a href="mailto:contracts@signalshieldsolutions.com">contracts@signalshieldsolutions.com</a>. Prefer direct messaging? Use <a href="https://t.me/signalshield" target="_blank" rel="noopener noreferrer">Telegram</a>.</div>
+  <div class="chat-note">This sends your request to <a href="mailto:contracts@signalshieldsolutions.com">contracts@signalshieldsolutions.com</a>.</div>
 </div>
 <script>
 const CHAT_CONFIG={subject:'GovCon chat inquiry',page:'Government Contracting',welcome:'Welcome to the government contracting desk.',prompt:'What type of opportunity or support do you need?',choices:['Facilities / Janitorial','Administrative Support','IT Support','Teaming / Prime Support'],detailsPrompt:'Share the scope, location, schedule, and any compliance or reporting requirements.'};
@@ -140,7 +139,7 @@ addMessage('bot',`Thanks, ${state.data.name}. Your request is on the way, and we
 state.step='done';
 setChoices([{label:'Start a new chat',value:'__reset__'}]);
 }catch(error){
-addMessage('bot','The widget could not send just now. You can try again here, email contracts@signalshieldsolutions.com, or message us on Telegram at t.me/signalshield.');
+addMessage('bot','The widget could not send just now. You can try again here or email contracts@signalshieldsolutions.com.');
 state.step='confirm';
 inputEl.disabled=false;formEl.querySelector('button').disabled=false;
 setChoices([{label:'Try again',value:'__send__'},{label:'Start over',value:'__reset__'}]);
