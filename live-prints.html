@@ -114,6 +114,9 @@
     </div>
 
     <div class="surface reveal stream-card">
+      <div class="stream-toolbar">
+        <button id="streamFullscreen" class="stream-fullscreen" type="button">Full screen</button>
+      </div>
       <div class="stream-frame" id="streamMount">
         <div class="stream-placeholder">
           <strong id="streamOfflineTitle">Print stream appears here when live.</strong>
@@ -282,13 +285,35 @@ window.STREAM_CONFIG = {
   const statusLabel = document.getElementById("streamStatusLabel");
   const note = document.getElementById("streamNote");
   const mount = document.getElementById("streamMount");
+  const fullscreenBtn = document.getElementById("streamFullscreen");
 
-  if(!status || !statusLabel || !note || !mount){
+  if(!status || !statusLabel || !note || !mount || !fullscreenBtn){
     return;
   }
 
   const params = new URLSearchParams(window.location.search);
   const config = window.STREAM_CONFIG || {};
+
+  function syncFullscreenButton(){
+    const active = document.fullscreenElement === mount;
+    fullscreenBtn.textContent = active ? "Exit full screen" : "Full screen";
+  }
+
+  async function toggleFullscreen(){
+    try{
+      if(document.fullscreenElement === mount){
+        await document.exitFullscreen();
+      }else{
+        await mount.requestFullscreen();
+      }
+    }catch(error){
+      console.error("Fullscreen toggle failed", error);
+    }
+  }
+
+  fullscreenBtn.addEventListener("click", toggleFullscreen);
+  document.addEventListener("fullscreenchange", syncFullscreenButton);
+  syncFullscreenButton();
 
   function pickValue(paramName, configName){
     return (params.get(paramName) || config[configName] || "").trim();
@@ -352,6 +377,7 @@ window.STREAM_CONFIG = {
   status.classList.add("live");
   statusLabel.textContent = "Live now";
   note.textContent = source.note;
+  syncFullscreenButton();
 })();
 </script>
 <script src="site.js"></script>
