@@ -107,9 +107,9 @@
       <aside class="surface reveal stream-stack">
         <div id="streamStatus" class="stream-status" aria-live="polite">
           <span class="status-dot" aria-hidden="true"></span>
-          <span id="streamStatusLabel">Stream offline</span>
+          <span id="streamStatusLabel">Source not configured</span>
         </div>
-        <p id="streamNote" class="stream-note">No public live source is configured yet, so the page is showing the offline state instead of a broken player.</p>
+        <p id="streamNote" class="stream-note">No public stream source is configured on this page yet. Once a YouTube, Twitch, or embeddable live source is added, the player will appear here.</p>
       </aside>
     </div>
 
@@ -119,8 +119,8 @@
       </div>
       <div class="stream-frame" id="streamMount">
         <div class="stream-placeholder">
-          <strong id="streamOfflineTitle">Print stream appears here when live.</strong>
-          <p id="streamOfflineText">When a public broadcast is running from OBS, this panel switches to the live player automatically if a stream source is configured on the page.</p>
+          <strong id="streamOfflineTitle">Public stream source needed.</strong>
+          <p id="streamOfflineText">The page is ready to show the live print, but it still needs the public stream destination from OBS such as YouTube, Twitch, or another embeddable player.</p>
         </div>
       </div>
       <p class="microcopy">The page supports a public YouTube, Twitch, or custom iframe source. If you want this permanently wired to one channel, the page only needs that public stream destination.</p>
