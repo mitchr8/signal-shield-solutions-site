@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Live Prints | Signal &amp; Shield Solutions</title>
+<meta name="description" content="Watch live 3D print sessions from Signal &amp; Shield Solutions when a public broadcast is active." />
+<link rel="canonical" href="https://signalshieldsolutions.com/live-prints.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Live Prints | Signal &amp; Shield Solutions" />
+<meta property="og:description" content="Watch live 3D print sessions from Signal &amp; Shield Solutions when a public broadcast is active." />
+<meta property="og:url" content="https://signalshieldsolutions.com/live-prints.html" />
+<meta property="og:image" content="https://signalshieldsolutions.com/logo.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Live Prints | Signal &amp; Shield Solutions" />
+<meta name="twitter:description" content="Watch live 3D print sessions from Signal &amp; Shield Solutions when a public broadcast is active." />
+<meta name="twitter:image" content="https://signalshieldsolutions.com/logo.png" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-live">
+<header class="top" id="topBar">
+  <div class="wrap bar">
+    <a href="index.html" class="brand" aria-label="Signal and Shield Solutions home">
+      <span class="logo-mark"><img src="logo.png" alt="Signal &amp; Shield Solutions logo" class="logo-img" /></span>
+      <span class="brand-text">Signal <span class="brand-amp">&amp;</span> Shield</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="govcon.html"><span class="hide-mobile">Government Contracting</span><span class="show-mobile">GovCon</span></a>
+      <a href="local-it.html">Local IT</a>
+      <a class="current" href="live-prints.html"><span class="hide-mobile">Live Prints</span><span class="show-mobile">Live</span></a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero-band">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1 class="hero-title">Watch the printer live when a stream is active.</h1>
+        <p>Bambu Studio's virtual camera feeds OBS locally. This page is the public viewing page, so when the broadcast is live the print feed appears here without asking visitors to install anything.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#stream">Open the stream</a>
+          <a class="btn secondary" href="#workflow">See how it works</a>
+        </div>
+        <div class="hero-process" aria-label="How it works">
+          <span><strong>1</strong>Start Go Live in Bambu Studio</span>
+          <span><strong>2</strong>Route the feed through OBS</span>
+          <span><strong>3</strong>Visitors watch the public stream here</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-art" data-tilt>
+          <span class="hero-ribbon">Bambu virtual camera workflow</span>
+          <span class="hero-ring hero-ring-a"></span>
+          <span class="hero-ring hero-ring-b"></span>
+          <span class="hero-ring hero-ring-c"></span>
+          <div class="brief-board">
+            <div class="brief-row">
+              <span>Camera source</span>
+              <strong>Bambu Studio virtual camera</strong>
+            </div>
+            <div class="brief-row">
+              <span>Broadcast relay</span>
+              <strong>OBS takes the local feed and sends it public</strong>
+            </div>
+            <div class="brief-row">
+              <span>Website behavior</span>
+              <strong>This page embeds the public live broadcast when active</strong>
+            </div>
+            <div class="brief-row">
+              <span>Known limit</span>
+              <strong>One Bambu virtual camera stream at a time</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section-shell">
+    <div class="signal-rail reveal">
+      <div>
+        <span>Viewer experience</span>
+        <strong>Open the page and watch when live</strong>
+      </div>
+      <div>
+        <span>Source path</span>
+        <strong>Bambu Studio to OBS to site</strong>
+      </div>
+      <div>
+        <span>Current constraint</span>
+        <strong>One printer feed at a time</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section-shell section-anchor" id="stream">
+    <div class="section-slab">
+      <div class="section-head reveal">
+        <div class="eyebrow">Live feed</div>
+        <h2>The stream panel stays simple: live when a public broadcast exists, clean placeholder when it does not.</h2>
+        <p>The raw Bambu virtual camera is a local OBS source, not a browser-ready internet feed. This page is set up for the public broadcast output, which is the part site visitors can reliably watch.</p>
+      </div>
+      <aside class="surface reveal stream-stack">
+        <div id="streamStatus" class="stream-status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="streamStatusLabel">Stream offline</span>
+        </div>
+        <p id="streamNote" class="stream-note">No public live source is configured yet, so the page is showing the offline state instead of a broken player.</p>
+      </aside>
+    </div>
+
+    <div class="surface reveal stream-card">
+      <div class="stream-frame" id="streamMount">
+        <div class="stream-placeholder">
+          <strong id="streamOfflineTitle">Print stream appears here when live.</strong>
+          <p id="streamOfflineText">When a public broadcast is running from OBS, this panel switches to the live player automatically if a stream source is configured on the page.</p>
+        </div>
+      </div>
+      <p class="microcopy">The page supports a public YouTube, Twitch, or custom iframe source. If you want this permanently wired to one channel, the page only needs that public stream destination.</p>
+    </div>
+  </section>
+
+  <section class="wrap section-shell section-anchor" id="workflow">
+    <div class="section-head reveal" style="margin-bottom:24px">
+      <div class="eyebrow">Workflow</div>
+      <h2>The stream path is built around what Bambu Studio actually exposes.</h2>
+    </div>
+    <div class="process-grid">
+      <article class="surface reveal">
+        <div class="process-step" data-step="1">
+          <strong>Start the printer feed</strong>
+          <p>From the Bambu Studio video panel, open Camera Setting and toggle Go Live for the selected printer.</p>
+        </div>
+      </article>
+      <article class="surface reveal">
+        <div class="process-step" data-step="2">
+          <strong>OBS picks up the local camera source</strong>
+          <p>Bambu's virtual camera tool provides the feed locally through the <code>ffmpeg.sdp</code> file path that OBS can read.</p>
+        </div>
+      </article>
+      <article class="surface reveal">
+        <div class="process-step" data-step="3">
+          <strong>The website shows the public output</strong>
+          <p>OBS sends the stream to a public platform, and this page embeds that live output for visitors when the broadcast is active.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="spec-grid" style="margin-top:24px">
+      <article class="surface reveal">
+        <span class="cluster-tag">Single camera limit</span>
+        <h3>Only one virtual camera stream at a time.</h3>
+        <p>If you switch printers and start another stream, the first Bambu virtual camera stream stops. The page is intentionally designed around that one-live-feed behavior.</p>
+      </article>
+      <article class="surface reveal">
+        <span class="cluster-tag">Background behavior</span>
+        <h3>The Bambu stream tool can stay running.</h3>
+        <p>Closing Bambu Studio does not stop the virtual camera tool by itself, so the operator side and the website side do not need to be treated like the same thing.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap section-shell">
+    <div class="section-head reveal" style="margin-bottom:24px">
+      <div class="eyebrow">Operator notes</div>
+      <h2>The public page stays clean, but the setup details are here when you need them.</h2>
+    </div>
+    <div class="faq-grid">
+      <details class="reveal" open>
+        <summary>How do I start the Bambu Studio camera stream?</summary>
+        <p>Select the printer, open the Camera Setting icon in the video panel, and toggle <strong>Go Live</strong>. Bambu Studio only supports one virtual camera stream at a time.</p>
+      </details>
+      <details class="reveal">
+        <summary>How do I add the feed in OBS on Windows?</summary>
+        <p>Use a Media Source in OBS, uncheck <strong>Local File</strong>, and point the input to the Bambu Studio <code>ffmpeg.sdp</code> file URL. Then set the FFmpeg options exactly as shown below.</p>
+        <div class="code-block">Input:
+file:C:/Users/[username]/AppData/Roaming/BambuStudio/cameratools/ffmpeg.sdp
+
+FFmpeg options:
+protocol_whitelist=file,udp,rtp</div>
+      </details>
+      <details class="reveal">
+        <summary>What is the cleanest way to make this page go live publicly?</summary>
+        <p>Send the Bambu virtual camera feed into OBS, then stream OBS to a public platform such as YouTube or Twitch. This page is already structured to embed that public live output when a source is configured.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="wrap section-shell section-anchor" id="contact">
+    <div class="contact-panel reveal">
+      <div class="contact-layout">
+        <div>
+          <h2>Ask about a print, a live run, or a custom setup.</h2>
+          <p>Use this when you want to ask about a live print session, a print-related question, or the stream setup itself.</p>
+          <ul class="helper-list compact">
+            <li>What you want printed or shown live</li>
+            <li>Whether the question is about the print or the stream</li>
+            <li>Any timing details that matter</li>
+          </ul>
+        </div>
+
+        <form class="form-shell" action="https://formsubmit.co/contracts@signalshieldsolutions.com" method="POST">
+          <input type="hidden" name="_subject" value="Live print inquiry" />
+          <input type="hidden" name="_captcha" value="true" />
+          <div class="form-grid">
+            <div class="field">
+              <label for="live-name">Name</label>
+              <input id="live-name" name="name" required />
+            </div>
+            <div class="field">
+              <label for="live-email">Email</label>
+              <input id="live-email" type="email" name="email" required />
+            </div>
+            <div class="field">
+              <label for="live-type">Inquiry type</label>
+              <select id="live-type" name="inquiry_type">
+                <option value="">Select...</option>
+                <option>Live print question</option>
+                <option>Print request</option>
+                <option>Stream setup question</option>
+                <option>General</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="live-timing">Timing</label>
+              <input id="live-timing" name="timing" placeholder="Today, this week, or when the next run should happen" />
+            </div>
+            <div class="field full">
+              <label for="live-message">Message</label>
+              <textarea id="live-message" name="message" required placeholder="Tell us what you want to watch, print, or ask about"></textarea>
+            </div>
+          </div>
+          <button class="btn primary" type="submit">Send inquiry</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<button id="chatBtn" class="chat-btn" aria-expanded="false" aria-controls="chatPanel"><span class="hide-mobile">Message us</span><span class="show-mobile">Chat</span></button>
+<div id="chatPanel" class="chat-panel" aria-hidden="true">
+  <div class="chat-head">
+    <div>
+      <strong>Signal &amp; Shield Solutions</strong>
+      <p>Tell us whether the question is about a print, a stream, or a custom setup.</p>
+    </div>
+    <button id="chatClose" class="chat-close" type="button" aria-label="Close chat">x</button>
+  </div>
+  <div id="chatMessages" class="chat-messages"></div>
+  <div id="chatChoices" class="chat-choices"></div>
+  <form id="chatForm" class="chat-compose">
+    <input id="chatInput" type="text" placeholder="Type your message..." autocomplete="off" />
+    <button class="chat-send" type="submit">Send</button>
+  </form>
+  <div class="chat-note">This sends your request to <a href="mailto:contracts@signalshieldsolutions.com">contracts@signalshieldsolutions.com</a>.</div>
+</div>
+
+<script>
+window.CHAT_CONFIG = {
+  subject: "Live prints chat inquiry",
+  page: "Live Prints",
+  welcome: "Welcome to live prints.",
+  prompt: "What do you want help with?",
+  choices: ["Live print question", "Print request", "Stream setup question", "General"],
+  detailsPrompt: "Share the print, stream, or timing details so the next reply can be specific.",
+  detailsPlaceholder: "Print, stream, or timing details"
+};
+
+window.STREAM_CONFIG = {
+  youtubeVideoId: "",
+  youtubeChannelId: "",
+  twitchChannel: "",
+  iframeUrl: ""
+};
+
+(function(){
+  const status = document.getElementById("streamStatus");
+  const statusLabel = document.getElementById("streamStatusLabel");
+  const note = document.getElementById("streamNote");
+  const mount = document.getElementById("streamMount");
+
+  if(!status || !statusLabel || !note || !mount){
+    return;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const config = window.STREAM_CONFIG || {};
+
+  function pickValue(paramName, configName){
+    return (params.get(paramName) || config[configName] || "").trim();
+  }
+
+  function resolveSource(){
+    const iframeUrl = pickValue("iframe", "iframeUrl");
+    if(iframeUrl){
+      return {
+        url: iframeUrl,
+        label: "Custom live source",
+        note: "The configured public stream is active on this page."
+      };
+    }
+
+    const youtubeVideoId = pickValue("youtube", "youtubeVideoId");
+    if(youtubeVideoId){
+      return {
+        url: "https://www.youtube.com/embed/" + encodeURIComponent(youtubeVideoId) + "?autoplay=1&rel=0&modestbranding=1",
+        label: "YouTube live feed",
+        note: "The public YouTube broadcast is active now."
+      };
+    }
+
+    const youtubeChannelId = pickValue("youtube_channel", "youtubeChannelId");
+    if(youtubeChannelId){
+      return {
+        url: "https://www.youtube.com/embed/live_stream?channel=" + encodeURIComponent(youtubeChannelId) + "&autoplay=1",
+        label: "YouTube channel live feed",
+        note: "The player follows the channel's current live broadcast."
+      };
+    }
+
+    const twitchChannel = pickValue("twitch", "twitchChannel");
+    if(twitchChannel){
+      const parent = window.location.hostname || "signalshieldsolutions.com";
+      return {
+        url: "https://player.twitch.tv/?channel=" + encodeURIComponent(twitchChannel) + "&parent=" + encodeURIComponent(parent) + "&autoplay=true",
+        label: "Twitch live feed",
+        note: "The page is using the active Twitch channel broadcast."
+      };
+    }
+
+    return null;
+  }
+
+  const source = resolveSource();
+  if(!source){
+    return;
+  }
+
+  const frame = document.createElement("iframe");
+  frame.src = source.url;
+  frame.title = source.label;
+  frame.loading = "lazy";
+  frame.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
+  frame.allowFullscreen = true;
+
+  mount.innerHTML = "";
+  mount.appendChild(frame);
+  status.classList.add("live");
+  statusLabel.textContent = "Live now";
+  note.textContent = source.note;
+})();
+</script>
+<script src="site.js"></script>
+</body>
+</html>
