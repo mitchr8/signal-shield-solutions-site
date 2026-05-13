@@ -38,22 +38,22 @@
   <section class="hero-band">
     <div class="hero-inner">
       <div class="hero-copy">
-        <h1 class="hero-title">Watch the printer live when a stream is active.</h1>
-        <p>Bambu Studio's virtual camera feeds OBS locally. This page is the public viewing page, so when the broadcast is live the print feed appears here without asking visitors to install anything.</p>
+        <h1 class="hero-title">Watch the printer live when a print run is active.</h1>
+        <p>Bambu Studio's Go Live feed can be relayed straight into Cloudflare Stream. This page is the public viewing page, so when the relay is publishing the print feed appears here automatically without asking visitors to install anything.</p>
         <div class="hero-actions">
           <a class="btn primary" href="#stream">Open the stream</a>
           <a class="btn secondary" href="#workflow">See how it works</a>
         </div>
         <div class="hero-process" aria-label="How it works">
           <span><strong>1</strong>Start Go Live in Bambu Studio</span>
-          <span><strong>2</strong>Route the feed through OBS</span>
+          <span><strong>2</strong>The local relay publishes to Cloudflare Stream</span>
           <span><strong>3</strong>Visitors watch the public stream here</span>
         </div>
       </div>
 
       <div class="hero-visual">
         <div class="hero-art" data-tilt>
-          <span class="hero-ribbon">Bambu virtual camera workflow</span>
+          <span class="hero-ribbon">Bambu to Cloudflare live workflow</span>
           <span class="hero-ring hero-ring-a"></span>
           <span class="hero-ring hero-ring-b"></span>
           <span class="hero-ring hero-ring-c"></span>
@@ -64,15 +64,15 @@
             </div>
             <div class="brief-row">
               <span>Broadcast relay</span>
-              <strong>OBS takes the local feed and sends it public</strong>
+              <strong>A local watcher relays the feed into Cloudflare Stream</strong>
             </div>
             <div class="brief-row">
               <span>Website behavior</span>
-              <strong>This page embeds the public live broadcast when active</strong>
+              <strong>This page follows the fixed Cloudflare live input when active</strong>
             </div>
             <div class="brief-row">
-              <span>Known limit</span>
-              <strong>One Bambu virtual camera stream at a time</strong>
+              <span>Later expansion</span>
+              <strong>YouTube can be added later as a Cloudflare simulcast output</strong>
             </div>
           </div>
         </div>
@@ -88,7 +88,7 @@
       </div>
       <div>
         <span>Source path</span>
-        <strong>Bambu Studio to OBS to site</strong>
+        <strong>Bambu Studio to local relay to Cloudflare to site</strong>
       </div>
       <div>
         <span>Current constraint</span>
@@ -102,14 +102,14 @@
       <div class="section-head reveal">
         <div class="eyebrow">Live feed</div>
         <h2>The stream panel stays simple: live when a public broadcast exists, clean placeholder when it does not.</h2>
-        <p>The raw Bambu virtual camera is a local OBS source, not a browser-ready internet feed. This page is set up for the public broadcast output, which is the part site visitors can reliably watch.</p>
+        <p>The raw Bambu virtual camera is local only. This page is set up around one Cloudflare live input so the site can switch to the live print automatically when the local relay sees Bambu Go Live.</p>
       </div>
       <aside class="surface reveal stream-stack">
         <div id="streamStatus" class="stream-status" aria-live="polite">
           <span class="status-dot" aria-hidden="true"></span>
           <span id="streamStatusLabel">Source not configured</span>
         </div>
-        <p id="streamNote" class="stream-note">No public stream source is configured on this page yet. Once a YouTube, Twitch, or embeddable live source is added, the player will appear here.</p>
+        <p id="streamNote" class="stream-note">No Cloudflare live input is configured on this page yet. Once the site is linked to the fixed Cloudflare input, the player will appear here automatically whenever the Bambu relay is publishing.</p>
       </aside>
     </div>
 
@@ -119,11 +119,11 @@
       </div>
       <div class="stream-frame" id="streamMount">
         <div class="stream-placeholder">
-          <strong id="streamOfflineTitle">Public stream source needed.</strong>
-          <p id="streamOfflineText">The page is ready to show the live print, but it still needs the public stream destination from OBS such as YouTube, Twitch, or another embeddable player.</p>
+          <strong id="streamOfflineTitle">Cloudflare live input needed.</strong>
+          <p id="streamOfflineText">The page is ready to show the live print, but it still needs the fixed Cloudflare Stream customer code and live input ID for the built-in player.</p>
         </div>
       </div>
-      <p class="microcopy">The page supports a public YouTube, Twitch, or custom iframe source. If you want this permanently wired to one channel, the page only needs that public stream destination.</p>
+      <p class="microcopy">This page is designed to use Cloudflare Stream as the primary public player. If you want YouTube later, the clean path is to add it as a Cloudflare simulcast output instead of changing the viewer page.</p>
     </div>
   </section>
 
@@ -141,14 +141,14 @@
       </article>
       <article class="surface reveal">
         <div class="process-step" data-step="2">
-          <strong>OBS picks up the local camera source</strong>
-          <p>Bambu's virtual camera tool provides the feed locally through the <code>ffmpeg.sdp</code> file path that OBS can read.</p>
+          <strong>The local relay detects the Bambu source</strong>
+          <p>Bambu's virtual camera tool exposes the feed locally through <code>ffmpeg.sdp</code>. A local relay watches for that feed and publishes it to the fixed Cloudflare live input.</p>
         </div>
       </article>
       <article class="surface reveal">
         <div class="process-step" data-step="3">
           <strong>The website shows the public output</strong>
-          <p>OBS sends the stream to a public platform, and this page embeds that live output for visitors when the broadcast is active.</p>
+          <p>Cloudflare Stream handles playback on the site. If you want YouTube later, Cloudflare can simulcast the same live input there without changing the Bambu side.</p>
         </div>
       </article>
     </div>
@@ -161,8 +161,8 @@
       </article>
       <article class="surface reveal">
         <span class="cluster-tag">Background behavior</span>
-        <h3>The Bambu stream tool can stay running.</h3>
-        <p>Closing Bambu Studio does not stop the virtual camera tool by itself, so the operator side and the website side do not need to be treated like the same thing.</p>
+        <h3>The operator path stays separate from the viewer page.</h3>
+        <p>Closing Bambu Studio does not stop the virtual camera tool by itself, and the relay plus Cloudflare player are independent of the website layout. OBS is optional, not required, unless you want overlays or manual production control.</p>
       </article>
     </div>
   </section>
@@ -175,10 +175,14 @@
     <div class="faq-grid">
       <details class="reveal" open>
         <summary>How do I start the Bambu Studio camera stream?</summary>
-        <p>Select the printer, open the Camera Setting icon in the video panel, and toggle <strong>Go Live</strong>. Bambu Studio only supports one virtual camera stream at a time.</p>
+        <p>Select the printer, open the Camera Setting icon in the video panel, and toggle <strong>Go Live</strong>. Bambu Studio only supports one virtual camera stream at a time. With the local relay watcher running, that is enough to publish the feed to the site.</p>
       </details>
       <details class="reveal">
-        <summary>How do I add the feed in OBS on Windows?</summary>
+        <summary>Do I need OBS for the website stream?</summary>
+        <p>No. The default setup is Bambu Go Live into the local relay and then into Cloudflare Stream. Use OBS only if you want overlays, scene switching, or a manual production workflow.</p>
+      </details>
+      <details class="reveal">
+        <summary>If I do want OBS later, how do I add the Bambu feed?</summary>
         <p>Use a Media Source in OBS, uncheck <strong>Local File</strong>, and point the input to the Bambu Studio <code>ffmpeg.sdp</code> file URL. Then set the FFmpeg options exactly as shown below.</p>
         <div class="code-block">Input:
 file:C:/Users/[username]/AppData/Roaming/BambuStudio/cameratools/ffmpeg.sdp
@@ -188,7 +192,7 @@ protocol_whitelist=file,udp,rtp</div>
       </details>
       <details class="reveal">
         <summary>What is the cleanest way to make this page go live publicly?</summary>
-        <p>Send the Bambu virtual camera feed into OBS, then stream OBS to a public platform such as YouTube or Twitch. This page is already structured to embed that public live output when a source is configured.</p>
+        <p>Use one fixed Cloudflare Stream live input for the site. That keeps the viewer page stable, lets the page detect whether the input is live, and makes YouTube later a Cloudflare-side simulcast instead of a separate local workflow.</p>
       </details>
     </div>
   </section>
@@ -274,8 +278,10 @@ window.CHAT_CONFIG = {
 };
 
 window.STREAM_CONFIG = {
+  cloudflareCustomerCode: "",
+  cloudflareLiveInputId: "",
   youtubeVideoId: "",
-  youtubeChannelId: "UCUw8MCJ9NhNAqeQZGRCv-9w",
+  youtubeChannelId: "",
   twitchChannel: "",
   iframeUrl: ""
 };
@@ -293,6 +299,13 @@ window.STREAM_CONFIG = {
 
   const params = new URLSearchParams(window.location.search);
   const config = window.STREAM_CONFIG || {};
+  let cloudflareLiveState = null;
+
+  function setStatus(label, noteText, live){
+    status.classList.toggle("live", Boolean(live));
+    statusLabel.textContent = label;
+    note.textContent = noteText;
+  }
 
   function syncFullscreenButton(){
     const active = document.fullscreenElement === mount;
@@ -320,30 +333,46 @@ window.STREAM_CONFIG = {
   }
 
   function resolveSource(){
+    const cloudflareCustomerCode = pickValue("cloudflare_code", "cloudflareCustomerCode");
+    const cloudflareLiveInputId = pickValue("cloudflare_input", "cloudflareLiveInputId");
+    if(cloudflareCustomerCode && cloudflareLiveInputId){
+      return {
+        kind: "cloudflare",
+        code: cloudflareCustomerCode,
+        inputId: cloudflareLiveInputId,
+        url: "https://customer-" + encodeURIComponent(cloudflareCustomerCode) + ".cloudflarestream.com/" + encodeURIComponent(cloudflareLiveInputId) + "/iframe",
+        label: "Cloudflare Stream live input",
+        note: "Cloudflare live input linked. The player will show the stream when the Bambu relay is publishing."
+      };
+    }
+
     const iframeUrl = pickValue("iframe", "iframeUrl");
     if(iframeUrl){
       return {
+        kind: "iframe",
         url: iframeUrl,
         label: "Custom live source",
-        note: "The configured public stream is active on this page."
+        note: "Custom public stream source linked."
       };
     }
 
     const youtubeVideoId = pickValue("youtube", "youtubeVideoId");
     if(youtubeVideoId){
       return {
+        kind: "youtube-video",
         url: "https://www.youtube.com/embed/" + encodeURIComponent(youtubeVideoId) + "?autoplay=1&rel=0&modestbranding=1",
         label: "YouTube live feed",
-        note: "The public YouTube broadcast is active now."
+        note: "YouTube video source linked."
       };
     }
 
     const youtubeChannelId = pickValue("youtube_channel", "youtubeChannelId");
     if(youtubeChannelId){
       return {
+        kind: "youtube-channel",
         url: "https://www.youtube.com/embed/live_stream?channel=" + encodeURIComponent(youtubeChannelId) + "&autoplay=1",
         label: "YouTube channel live feed",
-        note: "The player follows the channel's current live broadcast."
+        note: "YouTube channel linked. The player follows the channel's current live broadcast when active."
       };
     }
 
@@ -351,13 +380,42 @@ window.STREAM_CONFIG = {
     if(twitchChannel){
       const parent = window.location.hostname || "signalshieldsolutions.com";
       return {
+        kind: "twitch",
         url: "https://player.twitch.tv/?channel=" + encodeURIComponent(twitchChannel) + "&parent=" + encodeURIComponent(parent) + "&autoplay=true",
         label: "Twitch live feed",
-        note: "The page is using the active Twitch channel broadcast."
+        note: "Twitch channel linked. The player follows the channel's live broadcast when active."
       };
     }
 
     return null;
+  }
+
+  async function syncCloudflareLifecycle(source, frame){
+    const lifecycleUrl = "https://customer-" + encodeURIComponent(source.code) + ".cloudflarestream.com/" + encodeURIComponent(source.inputId) + "/lifecycle";
+
+    try{
+      const response = await fetch(lifecycleUrl, { cache: "no-store" });
+      if(!response.ok){
+        throw new Error("Lifecycle request failed");
+      }
+
+      const data = await response.json();
+      if(data && data.live){
+        if(cloudflareLiveState === false && frame){
+          frame.src = source.url;
+        }
+        cloudflareLiveState = true;
+        setStatus("Live now", "Cloudflare input is receiving a live stream right now.", true);
+      }else{
+        if(cloudflareLiveState === true && frame){
+          frame.src = source.url;
+        }
+        cloudflareLiveState = false;
+        setStatus("Ready for stream", "Cloudflare input linked. The page will switch to live video automatically when the Bambu relay connects.", false);
+      }
+    }catch(error){
+      setStatus("Source linked", source.note, false);
+    }
   }
 
   const source = resolveSource();
@@ -374,9 +432,18 @@ window.STREAM_CONFIG = {
 
   mount.innerHTML = "";
   mount.appendChild(frame);
-  status.classList.add("live");
-  statusLabel.textContent = "Live now";
-  note.textContent = source.note;
+  setStatus("Source linked", source.note, false);
+  if(source.kind === "cloudflare"){
+    setStatus("Checking stream", "Cloudflare input linked. Checking whether the live relay is active.", false);
+    syncCloudflareLifecycle(source, frame);
+    window.setInterval(function(){
+      syncCloudflareLifecycle(source, frame);
+    }, 15000);
+  }else if(source.kind === "youtube-channel" || source.kind === "twitch"){
+    setStatus("Channel linked", source.note, false);
+  }else{
+    setStatus("Source linked", source.note, false);
+  }
   syncFullscreenButton();
 })();
 </script>
