@@ -293,10 +293,11 @@ window.STREAM_CONFIG = {
   const note = document.getElementById("streamNote");
   const mount = document.getElementById("streamMount");
   const fullscreenBtn = document.getElementById("streamFullscreen");
+  const streamCard = mount ? mount.closest(".stream-card") : null;
   const defaultOfflineTitle = document.getElementById("streamOfflineTitle");
   const defaultOfflineText = document.getElementById("streamOfflineText");
 
-  if(!status || !statusLabel || !note || !mount || !fullscreenBtn || !defaultOfflineTitle || !defaultOfflineText){
+  if(!status || !statusLabel || !note || !mount || !fullscreenBtn || !streamCard || !defaultOfflineTitle || !defaultOfflineText){
     return;
   }
 
@@ -313,16 +314,16 @@ window.STREAM_CONFIG = {
   }
 
   function syncFullscreenButton(){
-    const active = document.fullscreenElement === mount;
+    const active = Boolean(document.fullscreenElement);
     fullscreenBtn.textContent = active ? "Exit full screen" : "Full screen";
   }
 
   async function toggleFullscreen(){
     try{
-      if(document.fullscreenElement === mount){
+      if(document.fullscreenElement){
         await document.exitFullscreen();
       }else{
-        await mount.requestFullscreen();
+        await streamCard.requestFullscreen();
       }
     }catch(error){
       console.error("Fullscreen toggle failed", error);
@@ -374,7 +375,7 @@ window.STREAM_CONFIG = {
     const manifestUrl = buildCloudflareProxyUrl(source, "manifest/video.m3u8");
     const video = document.createElement("video");
     video.className = "stream-video";
-    video.controls = true;
+    video.controls = false;
     video.autoplay = true;
     video.muted = true;
     video.playsInline = true;
