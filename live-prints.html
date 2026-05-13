@@ -266,7 +266,6 @@ protocol_whitelist=file,udp,rtp</div>
   <div class="chat-note">This sends your request to <a href="mailto:contracts@signalshieldsolutions.com">contracts@signalshieldsolutions.com</a>.</div>
 </div>
 
-<script src="vendor/hls.min.js"></script>
 <script>
 window.CHAT_CONFIG = {
   subject: "Live prints chat inquiry",
@@ -304,8 +303,7 @@ window.STREAM_CONFIG = {
   const params = new URLSearchParams(window.location.search);
   const config = window.STREAM_CONFIG || {};
   let cloudflareLiveState = null;
-  let cloudflareVideo = null;
-  let cloudflareHls = null;
+  let cloudflarePlayerMounted = false;
 
   function setStatus(label, noteText, live){
     status.classList.toggle("live", Boolean(live));
@@ -344,99 +342,38 @@ window.STREAM_CONFIG = {
   }
 
   function renderPlaceholder(title, text){
+    cloudflarePlayerMounted = false;
     mount.innerHTML = '<div class="stream-placeholder"><strong>' + escapeHtml(title) + '</strong><p>' + escapeHtml(text) + '</p></div>';
   }
 
   function teardownCloudflarePlayer(){
-    if(cloudflareHls){
-      cloudflareHls.destroy();
-      cloudflareHls = null;
-    }
-
-    if(cloudflareVideo){
-      cloudflareVideo.pause();
-      cloudflareVideo.removeAttribute("src");
-      cloudflareVideo.load();
-      cloudflareVideo = null;
-    }
+    cloudflarePlayerMounted = false;
+    mount.innerHTML = "";
   }
 
   function buildCloudflareProxyUrl(source, suffix){
     return "/live-stream/" + encodeURIComponent(source.inputId) + "/" + suffix;
   }
 
-  function attachCloudflarePlayer(source){
-    if(cloudflareVideo){
-      return;
-    }
-
-    teardownCloudflarePlayer();
-
-    const manifestUrl = buildCloudflareProxyUrl(source, "manifest/video.m3u8");
-    const video = document.createElement("video");
-    video.className = "stream-video";
-    video.controls = false;
-    video.autoplay = true;
-    video.muted = true;
-    video.playsInline = true;
-    video.setAttribute("playsinline", "");
-
-    mount.innerHTML = "";
-    mount.appendChild(video);
-    cloudflareVideo = video;
-
-    if(video.canPlayType("application/vnd.apple.mpegurl")){
-      video.src = manifestUrl;
-      video.play().catch(function(){});
-      return;
-    }
-
-    if(window.Hls && window.Hls.isSupported()){
-      const hls = new window.Hls({
-        lowLatencyMode: true,
-        backBufferLength: 30,
-        enableWorker: false
-      });
-
-      hls.loadSource(manifestUrl);
-      hls.attachMedia(video);
-      hls.on(window.Hls.Events.MEDIA_ATTACHED, function(){
-        video.play().catch(function(){});
-      });
-      hls.on(window.Hls.Events.ERROR, function(_event, data){
-        if(!data || !data.fatal){
-          return;
-        }
-
-        if(data.type === window.Hls.ErrorTypes.NETWORK_ERROR){
-          hls.startLoad();
-          return;
-        }
-
-        teardownCloudflarePlayer();
-        renderPlaceholder(
-          "Playback issue on this network.",
-          "The live stream is up, but the browser could not play the HLS feed through the current network policy."
-        );
-        setStatus(
-          "Playback blocked",
-          "The stream is live, but this network is interfering with the media player path.",
-          false
-        );
-      });
-
-      cloudflareHls = hls;
-      return;
-    }
-
+  function buildFrame(source){
     const frame = document.createElement("iframe");
     frame.src = source.url;
     frame.title = source.label;
     frame.loading = "lazy";
     frame.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
     frame.allowFullscreen = true;
+    return frame;
+  }
 
-    mount.appendChild(frame);
+  function attachCloudflarePlayer(source){
+    if(cloudflarePlayerMounted){
+      return;
+    }
+
+    teardownCloudflarePlayer();
+    mount.innerHTML = "";
+    mount.appendChild(buildFrame(source));
+    cloudflarePlayerMounted = true;
   }
 
   function pickValue(paramName, configName){
@@ -516,7 +453,7 @@ window.STREAM_CONFIG = {
           attachCloudflarePlayer(source);
         }
         cloudflareLiveState = true;
-        setStatus("Live now", "Cloudflare input is receiving a live stream right now through the site's direct player path.", true);
+        setStatus("Live now", "Cloudflare input is receiving a live stream right now through the Cloudflare player.", true);
       }else{
         if(cloudflareLiveState !== false){
           teardownCloudflarePlayer();
@@ -543,31 +480,19 @@ window.STREAM_CONFIG = {
   renderPlaceholder(defaultOfflineTitle.textContent, defaultOfflineText.textContent);
   setStatus("Source linked", source.note, false);
   if(source.kind === "cloudflare"){
-    setStatus("Checking stream", "Cloudflare input linked. Checking whether the live relay is active through the site's direct player path.", false);
+    setStatus("Checking stream", "Cloudflare input linked. Checking whether the live relay is active.", false);
     syncCloudflareLifecycle(source);
     window.setInterval(function(){
       syncCloudflareLifecycle(source);
     }, 15000);
   }else if(source.kind === "youtube-channel" || source.kind === "twitch"){
     setStatus("Channel linked", source.note, false);
-    const frame = document.createElement("iframe");
-    frame.src = source.url;
-    frame.title = source.label;
-    frame.loading = "lazy";
-    frame.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
-    frame.allowFullscreen = true;
     mount.innerHTML = "";
-    mount.appendChild(frame);
+    mount.appendChild(buildFrame(source));
   }else{
     setStatus("Source linked", source.note, false);
-    const frame = document.createElement("iframe");
-    frame.src = source.url;
-    frame.title = source.label;
-    frame.loading = "lazy";
-    frame.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
-    frame.allowFullscreen = true;
     mount.innerHTML = "";
-    mount.appendChild(frame);
+    mount.appendChild(buildFrame(source));
   }
   syncFullscreenButton();
 })();
