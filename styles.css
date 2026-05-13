@@ -986,6 +986,11 @@ textarea:focus{
   height:100vh;
   aspect-ratio:auto;
 }
+.stream-frame:fullscreen video{
+  width:100vw;
+  height:100vh;
+  object-fit:contain;
+}
 .stream-frame:fullscreen .stream-placeholder{
   width:min(100vw, 960px);
   min-height:100vh;
@@ -1016,6 +1021,13 @@ textarea:focus{
   width:100%;
   aspect-ratio:16 / 9;
   border:0;
+}
+.stream-frame video{
+  display:block;
+  width:100%;
+  aspect-ratio:16 / 9;
+  border:0;
+  background:#000000;
 }
 .stream-placeholder{
   display:grid;

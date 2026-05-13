@@ -266,6 +266,7 @@ protocol_whitelist=file,udp,rtp</div>
   <div class="chat-note">This sends your request to <a href="mailto:contracts@signalshieldsolutions.com">contracts@signalshieldsolutions.com</a>.</div>
 </div>
 
+<script src="vendor/hls.min.js"></script>
 <script>
 window.CHAT_CONFIG = {
   subject: "Live prints chat inquiry",
@@ -292,14 +293,18 @@ window.STREAM_CONFIG = {
   const note = document.getElementById("streamNote");
   const mount = document.getElementById("streamMount");
   const fullscreenBtn = document.getElementById("streamFullscreen");
+  const defaultOfflineTitle = document.getElementById("streamOfflineTitle");
+  const defaultOfflineText = document.getElementById("streamOfflineText");
 
-  if(!status || !statusLabel || !note || !mount || !fullscreenBtn){
+  if(!status || !statusLabel || !note || !mount || !fullscreenBtn || !defaultOfflineTitle || !defaultOfflineText){
     return;
   }
 
   const params = new URLSearchParams(window.location.search);
   const config = window.STREAM_CONFIG || {};
   let cloudflareLiveState = null;
+  let cloudflareVideo = null;
+  let cloudflareHls = null;
 
   function setStatus(label, noteText, live){
     status.classList.toggle("live", Boolean(live));
@@ -327,6 +332,111 @@ window.STREAM_CONFIG = {
   fullscreenBtn.addEventListener("click", toggleFullscreen);
   document.addEventListener("fullscreenchange", syncFullscreenButton);
   syncFullscreenButton();
+
+  function escapeHtml(value){
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function renderPlaceholder(title, text){
+    mount.innerHTML = '<div class="stream-placeholder"><strong>' + escapeHtml(title) + '</strong><p>' + escapeHtml(text) + '</p></div>';
+  }
+
+  function teardownCloudflarePlayer(){
+    if(cloudflareHls){
+      cloudflareHls.destroy();
+      cloudflareHls = null;
+    }
+
+    if(cloudflareVideo){
+      cloudflareVideo.pause();
+      cloudflareVideo.removeAttribute("src");
+      cloudflareVideo.load();
+      cloudflareVideo = null;
+    }
+  }
+
+  function buildCloudflareProxyUrl(source, suffix){
+    return "/live-stream/" + encodeURIComponent(source.inputId) + "/" + suffix;
+  }
+
+  function attachCloudflarePlayer(source){
+    if(cloudflareVideo){
+      return;
+    }
+
+    teardownCloudflarePlayer();
+
+    const manifestUrl = buildCloudflareProxyUrl(source, "manifest/video.m3u8");
+    const video = document.createElement("video");
+    video.className = "stream-video";
+    video.controls = true;
+    video.autoplay = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute("playsinline", "");
+
+    mount.innerHTML = "";
+    mount.appendChild(video);
+    cloudflareVideo = video;
+
+    if(video.canPlayType("application/vnd.apple.mpegurl")){
+      video.src = manifestUrl;
+      video.play().catch(function(){});
+      return;
+    }
+
+    if(window.Hls && window.Hls.isSupported()){
+      const hls = new window.Hls({
+        lowLatencyMode: true,
+        backBufferLength: 30,
+        enableWorker: false
+      });
+
+      hls.loadSource(manifestUrl);
+      hls.attachMedia(video);
+      hls.on(window.Hls.Events.MEDIA_ATTACHED, function(){
+        video.play().catch(function(){});
+      });
+      hls.on(window.Hls.Events.ERROR, function(_event, data){
+        if(!data || !data.fatal){
+          return;
+        }
+
+        if(data.type === window.Hls.ErrorTypes.NETWORK_ERROR){
+          hls.startLoad();
+          return;
+        }
+
+        teardownCloudflarePlayer();
+        renderPlaceholder(
+          "Playback issue on this network.",
+          "The live stream is up, but the browser could not play the HLS feed through the current network policy."
+        );
+        setStatus(
+          "Playback blocked",
+          "The stream is live, but this network is interfering with the media player path.",
+          false
+        );
+      });
+
+      cloudflareHls = hls;
+      return;
+    }
+
+    const frame = document.createElement("iframe");
+    frame.src = source.url;
+    frame.title = source.label;
+    frame.loading = "lazy";
+    frame.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
+    frame.allowFullscreen = true;
+
+    mount.appendChild(frame);
+  }
 
   function pickValue(paramName, configName){
     return (params.get(paramName) || config[configName] || "").trim();
@@ -391,7 +501,7 @@ window.STREAM_CONFIG = {
   }
 
   async function syncCloudflareLifecycle(source, frame){
-    const lifecycleUrl = "https://customer-" + encodeURIComponent(source.code) + ".cloudflarestream.com/" + encodeURIComponent(source.inputId) + "/lifecycle";
+    const lifecycleUrl = buildCloudflareProxyUrl(source, "lifecycle");
 
     try{
       const response = await fetch(lifecycleUrl, { cache: "no-store" });
@@ -401,19 +511,25 @@ window.STREAM_CONFIG = {
 
       const data = await response.json();
       if(data && data.live){
-        if(cloudflareLiveState === false && frame){
-          frame.src = source.url;
+        if(cloudflareLiveState !== true){
+          attachCloudflarePlayer(source);
         }
         cloudflareLiveState = true;
-        setStatus("Live now", "Cloudflare input is receiving a live stream right now.", true);
+        setStatus("Live now", "Cloudflare input is receiving a live stream right now through the site's direct player path.", true);
       }else{
-        if(cloudflareLiveState === true && frame){
-          frame.src = source.url;
+        if(cloudflareLiveState !== false){
+          teardownCloudflarePlayer();
+          renderPlaceholder(
+            "Stream has not started yet.",
+            "Cloudflare input linked. The page will switch to the live print automatically when the Bambu relay connects."
+          );
         }
         cloudflareLiveState = false;
         setStatus("Ready for stream", "Cloudflare input linked. The page will switch to live video automatically when the Bambu relay connects.", false);
       }
     }catch(error){
+      teardownCloudflarePlayer();
+      renderPlaceholder(defaultOfflineTitle.textContent, defaultOfflineText.textContent);
       setStatus("Source linked", source.note, false);
     }
   }
@@ -423,26 +539,34 @@ window.STREAM_CONFIG = {
     return;
   }
 
-  const frame = document.createElement("iframe");
-  frame.src = source.url;
-  frame.title = source.label;
-  frame.loading = "lazy";
-  frame.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
-  frame.allowFullscreen = true;
-
-  mount.innerHTML = "";
-  mount.appendChild(frame);
+  renderPlaceholder(defaultOfflineTitle.textContent, defaultOfflineText.textContent);
   setStatus("Source linked", source.note, false);
   if(source.kind === "cloudflare"){
-    setStatus("Checking stream", "Cloudflare input linked. Checking whether the live relay is active.", false);
-    syncCloudflareLifecycle(source, frame);
+    setStatus("Checking stream", "Cloudflare input linked. Checking whether the live relay is active through the site's direct player path.", false);
+    syncCloudflareLifecycle(source);
     window.setInterval(function(){
-      syncCloudflareLifecycle(source, frame);
+      syncCloudflareLifecycle(source);
     }, 15000);
   }else if(source.kind === "youtube-channel" || source.kind === "twitch"){
     setStatus("Channel linked", source.note, false);
+    const frame = document.createElement("iframe");
+    frame.src = source.url;
+    frame.title = source.label;
+    frame.loading = "lazy";
+    frame.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
+    frame.allowFullscreen = true;
+    mount.innerHTML = "";
+    mount.appendChild(frame);
   }else{
     setStatus("Source linked", source.note, false);
+    const frame = document.createElement("iframe");
+    frame.src = source.url;
+    frame.title = source.label;
+    frame.loading = "lazy";
+    frame.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
+    frame.allowFullscreen = true;
+    mount.innerHTML = "";
+    mount.appendChild(frame);
   }
   syncFullscreenButton();
 })();
