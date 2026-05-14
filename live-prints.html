@@ -357,7 +357,16 @@ window.STREAM_CONFIG = {
 
   function buildFrame(source){
     const frame = document.createElement("iframe");
-    frame.src = source.url;
+    const frameUrl = new URL(source.url);
+    if(source.kind === "cloudflare"){
+      frameUrl.searchParams.set("autoplay", "true");
+      frameUrl.searchParams.set("muted", "true");
+      frameUrl.searchParams.set("controls", "false");
+      frameUrl.searchParams.set("letterboxColor", "transparent");
+      frameUrl.searchParams.set("preload", "auto");
+    }
+
+    frame.src = frameUrl.toString();
     frame.title = source.label;
     frame.loading = "lazy";
     frame.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
