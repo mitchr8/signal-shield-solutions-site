@@ -266,6 +266,7 @@ protocol_whitelist=file,udp,rtp</div>
   <div class="chat-note">This sends your request to <a href="mailto:contracts@signalshieldsolutions.com">contracts@signalshieldsolutions.com</a>.</div>
 </div>
 
+<script src="https://embed.cloudflarestream.com/embed/sdk.latest.js"></script>
 <script>
 window.CHAT_CONFIG = {
   subject: "Live prints chat inquiry",
@@ -304,6 +305,7 @@ window.STREAM_CONFIG = {
   const config = window.STREAM_CONFIG || {};
   let cloudflareLiveState = null;
   let cloudflarePlayerMounted = false;
+  let cloudflarePlayer = null;
 
   function setStatus(label, noteText, live){
     status.classList.toggle("live", Boolean(live));
@@ -347,6 +349,15 @@ window.STREAM_CONFIG = {
   }
 
   function teardownCloudflarePlayer(){
+    clearStreamAction();
+    if(cloudflarePlayer && typeof cloudflarePlayer.pause === "function"){
+      try{
+        cloudflarePlayer.pause();
+      }catch(error){
+        console.error("Cloudflare player pause failed", error);
+      }
+    }
+    cloudflarePlayer = null;
     cloudflarePlayerMounted = false;
     mount.innerHTML = "";
   }
@@ -361,7 +372,6 @@ window.STREAM_CONFIG = {
     if(source.kind === "cloudflare"){
       frameUrl.searchParams.set("autoplay", "true");
       frameUrl.searchParams.set("muted", "true");
-      frameUrl.searchParams.set("controls", "false");
       frameUrl.searchParams.set("letterboxColor", "transparent");
       frameUrl.searchParams.set("preload", "auto");
     }
@@ -374,6 +384,70 @@ window.STREAM_CONFIG = {
     return frame;
   }
 
+  function clearStreamAction(){
+    const existing = mount.querySelector(".stream-action");
+    if(existing){
+      existing.remove();
+    }
+  }
+
+  function showStreamAction(label, handler){
+    clearStreamAction();
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "stream-action";
+    button.textContent = label;
+    button.addEventListener("click", function(event){
+      event.preventDefault();
+      handler();
+    });
+    mount.appendChild(button);
+  }
+
+  async function requestCloudflarePlayback(player, source){
+    try{
+      await player.play();
+      clearStreamAction();
+    }catch(error){
+      try{
+        player.muted = true;
+        await player.play();
+        clearStreamAction();
+      }catch(finalError){
+        showStreamAction("Start stream", function(){
+          requestCloudflarePlayback(player, source);
+        });
+      }
+    }
+  }
+
+  function initCloudflarePlayer(frame, source){
+    if(source.kind !== "cloudflare" || typeof window.Stream !== "function"){
+      return;
+    }
+
+    try{
+      const player = window.Stream(frame);
+      cloudflarePlayer = player;
+      player.autoplay = true;
+      player.muted = true;
+      player.controls = false;
+      player.preload = true;
+      player.letterboxColor = "transparent";
+      player.addEventListener("play", clearStreamAction);
+      player.addEventListener("playing", clearStreamAction);
+      player.addEventListener("loadeddata", clearStreamAction);
+      player.addEventListener("error", function(){
+        showStreamAction("Open stream", function(){
+          window.open(source.url, "_blank", "noopener");
+        });
+      });
+      requestCloudflarePlayback(player, source);
+    }catch(error){
+      console.error("Cloudflare player init failed", error);
+    }
+  }
+
   function attachCloudflarePlayer(source){
     if(cloudflarePlayerMounted){
       return;
@@ -381,8 +455,10 @@ window.STREAM_CONFIG = {
 
     teardownCloudflarePlayer();
     mount.innerHTML = "";
-    mount.appendChild(buildFrame(source));
+    const frame = buildFrame(source);
+    mount.appendChild(frame);
     cloudflarePlayerMounted = true;
+    initCloudflarePlayer(frame, source);
   }
 
   function pickValue(paramName, configName){
