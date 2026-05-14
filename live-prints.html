@@ -39,40 +39,40 @@
     <div class="hero-inner">
       <div class="hero-copy">
         <h1 class="hero-title">Watch the printer live when a print run is active.</h1>
-        <p>Bambu Studio's Go Live feed can be relayed straight into Cloudflare Stream. This page is the public viewing page, so when the relay is publishing the print feed appears here automatically without asking visitors to install anything.</p>
+        <p>Drop in to check the current printer camera. If the camera is online between jobs, the next part may not have started moving yet, but the live view will appear here when it is available.</p>
         <div class="hero-actions">
           <a class="btn primary" href="#stream">Open the stream</a>
-          <a class="btn secondary" href="#workflow">See how it works</a>
+          <a class="btn secondary" href="#contact">Request a print</a>
         </div>
         <div class="hero-process" aria-label="How it works">
-          <span><strong>1</strong>Start Go Live in Bambu Studio</span>
-          <span><strong>2</strong>The local relay publishes to Cloudflare Stream</span>
-          <span><strong>3</strong>Visitors watch the public stream here</span>
+          <span><strong>1</strong>Check whether the camera is online</span>
+          <span><strong>2</strong>Watch the printer when a run is active</span>
+          <span><strong>3</strong>Ask about a custom part or quote</span>
         </div>
       </div>
 
       <div class="hero-visual">
         <div class="hero-art" data-tilt>
-          <span class="hero-ribbon">Bambu to Cloudflare live workflow</span>
+          <span class="hero-ribbon">Live print camera</span>
           <span class="hero-ring hero-ring-a"></span>
           <span class="hero-ring hero-ring-b"></span>
           <span class="hero-ring hero-ring-c"></span>
           <div class="brief-board">
             <div class="brief-row">
-              <span>Camera source</span>
-              <strong>Bambu Studio virtual camera</strong>
+              <span>What you will see</span>
+              <strong>A live camera view from the shop printer</strong>
             </div>
             <div class="brief-row">
-              <span>Broadcast relay</span>
-              <strong>A local watcher relays the feed into Cloudflare Stream</strong>
+              <span>Status meaning</span>
+              <strong>Green means the camera feed is online</strong>
             </div>
             <div class="brief-row">
-              <span>Website behavior</span>
-              <strong>This page follows the fixed Cloudflare live input when active</strong>
+              <span>Between jobs</span>
+              <strong>The camera can stay online even when a print is not moving yet</strong>
             </div>
             <div class="brief-row">
-              <span>Later expansion</span>
-              <strong>YouTube can be added later as a Cloudflare simulcast output</strong>
+              <span>Custom work</span>
+              <strong>Use the form below to ask about a part, quote, or next live run</strong>
             </div>
           </div>
         </div>
@@ -83,16 +83,16 @@
   <section class="wrap section-shell">
     <div class="signal-rail reveal">
       <div>
-        <span>Viewer experience</span>
-        <strong>Open the page and watch when live</strong>
+        <span>Live camera</span>
+        <strong>Check the current printer view here</strong>
       </div>
       <div>
-        <span>Source path</span>
-        <strong>Bambu Studio to local relay to Cloudflare to site</strong>
+        <span>Custom prints</span>
+        <strong>Ask about a part, prototype, or quote</strong>
       </div>
       <div>
-        <span>Current constraint</span>
-        <strong>One printer feed at a time</strong>
+        <span>Availability</span>
+        <strong>The camera may stay online between jobs</strong>
       </div>
     </div>
   </section>
@@ -101,15 +101,15 @@
     <div class="section-slab">
       <div class="section-head reveal">
         <div class="eyebrow">Live feed</div>
-        <h2>The stream panel stays simple: live when a public broadcast exists, clean placeholder when it does not.</h2>
-        <p>The raw Bambu virtual camera is local only. This page is set up around one Cloudflare live input so the site can switch to the live print automatically when the local relay sees Bambu Go Live.</p>
+        <h2>Check the current printer camera.</h2>
+        <p>When the camera feed is connected, the viewer appears here automatically. An online camera does not always mean a part is moving this exact second, but it does mean the shop view is available.</p>
       </div>
       <aside class="surface reveal stream-stack">
         <div id="streamStatus" class="stream-status" aria-live="polite">
           <span class="status-dot" aria-hidden="true"></span>
-          <span id="streamStatusLabel">Source not configured</span>
+          <span id="streamStatusLabel">Checking status</span>
         </div>
-        <p id="streamNote" class="stream-note">No Cloudflare live input is configured on this page yet. Once the site is linked to the fixed Cloudflare input, the player will appear here automatically whenever the Bambu relay is publishing.</p>
+        <p id="streamNote" class="stream-note">The page will show the current camera when it is available.</p>
       </aside>
     </div>
 
@@ -119,80 +119,75 @@
       </div>
       <div class="stream-frame" id="streamMount">
         <div class="stream-placeholder">
-          <strong id="streamOfflineTitle">Cloudflare live input needed.</strong>
-          <p id="streamOfflineText">The page is ready to show the live print, but it still needs the fixed Cloudflare Stream customer code and live input ID for the built-in player.</p>
+          <strong id="streamOfflineTitle">Camera offline right now.</strong>
+          <p id="streamOfflineText">Check back when the next live camera session starts.</p>
         </div>
       </div>
-      <p class="microcopy">This page is designed to use Cloudflare Stream as the primary public player. If you want YouTube later, the clean path is to add it as a Cloudflare simulcast output instead of changing the viewer page.</p>
+      <p class="microcopy">If the camera is online and the bed looks idle, the printer may be between jobs or waiting on the next run.</p>
     </div>
   </section>
 
   <section class="wrap section-shell section-anchor" id="workflow">
     <div class="section-head reveal" style="margin-bottom:24px">
-      <div class="eyebrow">Workflow</div>
-      <h2>The stream path is built around what Bambu Studio actually exposes.</h2>
+      <div class="eyebrow">What To Expect</div>
+      <h2>A quick guide for customers watching the live camera.</h2>
     </div>
     <div class="process-grid">
       <article class="surface reveal">
         <div class="process-step" data-step="1">
-          <strong>Start the printer feed</strong>
-          <p>From the Bambu Studio video panel, open Camera Setting and toggle Go Live for the selected printer.</p>
+          <strong>Camera online</strong>
+          <p>If the status is green, the shop camera feed is connected and available to view.</p>
         </div>
       </article>
       <article class="surface reveal">
         <div class="process-step" data-step="2">
-          <strong>The local relay detects the Bambu source</strong>
-          <p>Bambu's virtual camera tool exposes the feed locally through <code>ffmpeg.sdp</code>. A local relay watches for that feed and publishes it to the fixed Cloudflare live input.</p>
+          <strong>Print in progress</strong>
+          <p>When a run is active, you will see the current part building on the printer bed.</p>
         </div>
       </article>
       <article class="surface reveal">
         <div class="process-step" data-step="3">
-          <strong>The website shows the public output</strong>
-          <p>Cloudflare Stream handles playback on the site. If you want YouTube later, Cloudflare can simulcast the same live input there without changing the Bambu side.</p>
+          <strong>Want something made?</strong>
+          <p>Use the contact form below to ask about a custom part, quote, or next live run.</p>
         </div>
       </article>
     </div>
 
     <div class="spec-grid" style="margin-top:24px">
       <article class="surface reveal">
-        <span class="cluster-tag">Single camera limit</span>
-        <h3>Only one virtual camera stream at a time.</h3>
-        <p>If you switch printers and start another stream, the first Bambu virtual camera stream stops. The page is intentionally designed around that one-live-feed behavior.</p>
+        <span class="cluster-tag">Custom print requests</span>
+        <h3>Send the basics and we can price it faster.</h3>
+        <p>A photo, sketch, size, quantity, and deadline are enough to start a useful quote conversation.</p>
       </article>
       <article class="surface reveal">
-        <span class="cluster-tag">Background behavior</span>
-        <h3>The operator path stays separate from the viewer page.</h3>
-        <p>Closing Bambu Studio does not stop the virtual camera tool by itself, and the relay plus Cloudflare player are independent of the website layout. OBS is optional, not required, unless you want overlays or manual production control.</p>
+        <span class="cluster-tag">Live availability</span>
+        <h3>The camera can stay online between jobs.</h3>
+        <p>This page is useful for checking current activity, but the camera feed may stay connected before or after a print is actively moving.</p>
       </article>
     </div>
   </section>
 
   <section class="wrap section-shell">
     <div class="section-head reveal" style="margin-bottom:24px">
-      <div class="eyebrow">Operator notes</div>
-      <h2>The public page stays clean, but the setup details are here when you need them.</h2>
+      <div class="eyebrow">FAQ</div>
+      <h2>Quick answers about the live camera and custom prints.</h2>
     </div>
     <div class="faq-grid">
       <details class="reveal" open>
-        <summary>How do I start the Bambu Studio camera stream?</summary>
-        <p>Select the printer, open the Camera Setting icon in the video panel, and toggle <strong>Go Live</strong>. Bambu Studio only supports one virtual camera stream at a time. With the local relay watcher running, that is enough to publish the feed to the site.</p>
+        <summary>Why does the camera show online when nothing is moving?</summary>
+        <p>Online means the camera feed is connected. The printer may be between jobs, waiting on the next run, or not actively laying material at that exact moment.</p>
       </details>
       <details class="reveal">
-        <summary>Do I need OBS for the website stream?</summary>
-        <p>No. The default setup is Bambu Go Live into the local relay and then into Cloudflare Stream. Use OBS only if you want overlays, scene switching, or a manual production workflow.</p>
+        <summary>Can I ask about a custom print?</summary>
+        <p>Yes. Use the form below to send a part idea, reference image, sketch, dimensions, or quantity and we can follow up with pricing or next steps.</p>
       </details>
       <details class="reveal">
-        <summary>If I do want OBS later, how do I add the Bambu feed?</summary>
-        <p>Use a Media Source in OBS, uncheck <strong>Local File</strong>, and point the input to the Bambu Studio <code>ffmpeg.sdp</code> file URL. Then set the FFmpeg options exactly as shown below.</p>
-        <div class="code-block">Input:
-file:C:/Users/[username]/AppData/Roaming/BambuStudio/cameratools/ffmpeg.sdp
-
-FFmpeg options:
-protocol_whitelist=file,udp,rtp</div>
+        <summary>What helps with a quote?</summary>
+        <p>The most useful details are what the part is for, approximate size, quantity, material if you know it, and when you need it.</p>
       </details>
       <details class="reveal">
-        <summary>What is the cleanest way to make this page go live publicly?</summary>
-        <p>Use one fixed Cloudflare Stream live input for the site. That keeps the viewer page stable, lets the page detect whether the input is live, and makes YouTube later a Cloudflare-side simulcast instead of a separate local workflow.</p>
+        <summary>Can I ask when the next live run will be up?</summary>
+        <p>Yes. Use the contact form and say you want to know when the next print will be running live.</p>
       </details>
     </div>
   </section>
@@ -201,12 +196,12 @@ protocol_whitelist=file,udp,rtp</div>
     <div class="contact-panel reveal">
       <div class="contact-layout">
         <div>
-          <h2>Ask about a print, a live run, or a custom setup.</h2>
-          <p>Use this when you want to ask about a live print session, a print-related question, or the stream setup itself.</p>
+          <h2>Ask about a print, quote, or next live run.</h2>
+          <p>Use this form if you want pricing, want to know when the next run will be live, or have a custom part in mind.</p>
           <ul class="helper-list compact">
-            <li>What you want printed or shown live</li>
-            <li>Whether the question is about the print or the stream</li>
-            <li>Any timing details that matter</li>
+            <li>A photo, sketch, or short description of the part</li>
+            <li>Approximate size or quantity if you know it</li>
+            <li>Any deadline or timing that matters</li>
           </ul>
         </div>
 
@@ -228,17 +223,17 @@ protocol_whitelist=file,udp,rtp</div>
                 <option value="">Select...</option>
                 <option>Live print question</option>
                 <option>Print request</option>
-                <option>Stream setup question</option>
+                <option>Quote request</option>
                 <option>General</option>
               </select>
             </div>
             <div class="field">
               <label for="live-timing">Timing</label>
-              <input id="live-timing" name="timing" placeholder="Today, this week, or when the next run should happen" />
+              <input id="live-timing" name="timing" placeholder="Needed by a certain date, or ask when the next live run will be up" />
             </div>
             <div class="field full">
               <label for="live-message">Message</label>
-              <textarea id="live-message" name="message" required placeholder="Tell us what you want to watch, print, or ask about"></textarea>
+              <textarea id="live-message" name="message" required placeholder="Tell us what you need made or what you want to know"></textarea>
             </div>
           </div>
           <button class="btn primary" type="submit">Send inquiry</button>
@@ -272,10 +267,10 @@ window.CHAT_CONFIG = {
   subject: "Live prints chat inquiry",
   page: "Live Prints",
   welcome: "Welcome to live prints.",
-  prompt: "What do you want help with?",
-  choices: ["Live print question", "Print request", "Stream setup question", "General"],
-  detailsPrompt: "Share the print, stream, or timing details so the next reply can be specific.",
-  detailsPlaceholder: "Print, stream, or timing details"
+  prompt: "What do you need help with?",
+  choices: ["Watch current run", "Print request", "Quote request", "General question"],
+  detailsPrompt: "Share what you want made or what you want to know about the live camera.",
+  detailsPlaceholder: "Print or live camera details"
 };
 
 window.STREAM_CONFIG = {
@@ -541,22 +536,22 @@ window.STREAM_CONFIG = {
           attachCloudflarePlayer(source);
         }
         cloudflareLiveState = true;
-        setStatus("Live now", "Cloudflare input is receiving a live stream right now through the Cloudflare player.", true);
+        setStatus("Camera online", "The shop camera is connected. A print may be active now or the printer may be between jobs.", true);
       }else{
         if(cloudflareLiveState !== false){
           teardownCloudflarePlayer();
           renderPlaceholder(
-            "Stream has not started yet.",
-            "Cloudflare input linked. The page will switch to the live print automatically when the Bambu relay connects."
+            "Camera offline right now.",
+            "Check back when the next live camera session starts."
           );
         }
         cloudflareLiveState = false;
-        setStatus("Ready for stream", "Cloudflare input linked. The page will switch to live video automatically when the Bambu relay connects.", false);
+        setStatus("Offline", "The camera is offline right now. Check back during the next live print.", false);
       }
     }catch(error){
       teardownCloudflarePlayer();
       renderPlaceholder(defaultOfflineTitle.textContent, defaultOfflineText.textContent);
-      setStatus("Source linked", source.note, false);
+      setStatus("Checking status", "The camera status is updating. Reload the page if this does not clear in a moment.", false);
     }
   }
 
@@ -566,19 +561,19 @@ window.STREAM_CONFIG = {
   }
 
   renderPlaceholder(defaultOfflineTitle.textContent, defaultOfflineText.textContent);
-  setStatus("Source linked", source.note, false);
+  setStatus("Checking status", "Checking whether the camera is available right now.", false);
   if(source.kind === "cloudflare"){
-    setStatus("Checking stream", "Cloudflare input linked. Checking whether the live relay is active.", false);
+    setStatus("Checking status", "Checking whether the camera is available right now.", false);
     syncCloudflareLifecycle(source);
     window.setInterval(function(){
       syncCloudflareLifecycle(source);
     }, 15000);
   }else if(source.kind === "youtube-channel" || source.kind === "twitch"){
-    setStatus("Channel linked", source.note, false);
+    setStatus("Camera online", "The live viewer is connected.", true);
     mount.innerHTML = "";
     mount.appendChild(buildFrame(source));
   }else{
-    setStatus("Source linked", source.note, false);
+    setStatus("Camera online", "The live viewer is connected.", true);
     mount.innerHTML = "";
     mount.appendChild(buildFrame(source));
   }
