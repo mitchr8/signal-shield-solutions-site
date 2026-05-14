@@ -404,7 +404,7 @@ window.STREAM_CONFIG = {
     mount.appendChild(button);
   }
 
-  async function requestCloudflarePlayback(player, source){
+  async function requestCloudflarePlayback(player){
     try{
       await player.play();
       clearStreamAction();
@@ -415,7 +415,7 @@ window.STREAM_CONFIG = {
         clearStreamAction();
       }catch(finalError){
         showStreamAction("Start stream", function(){
-          requestCloudflarePlayback(player, source);
+          requestCloudflarePlayback(player);
         });
       }
     }
@@ -442,7 +442,10 @@ window.STREAM_CONFIG = {
           window.open(source.url, "_blank", "noopener");
         });
       });
-      requestCloudflarePlayback(player, source);
+      showStreamAction("Start stream", function(){
+        requestCloudflarePlayback(player);
+      });
+      requestCloudflarePlayback(player);
     }catch(error){
       console.error("Cloudflare player init failed", error);
     }
