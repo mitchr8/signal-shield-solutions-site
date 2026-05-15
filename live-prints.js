@@ -1,0 +1,609 @@
+(function(){
+  const streamStatus = document.getElementById("streamStatus");
+  const streamStatusLabel = document.getElementById("streamStatusLabel");
+  const streamNote = document.getElementById("streamNote");
+  const streamMount = document.getElementById("streamMount");
+  const fullscreenBtn = document.getElementById("streamFullscreen");
+  const streamCard = streamMount ? streamMount.closest(".stream-card") : null;
+  const defaultOfflineTitle = document.getElementById("streamOfflineTitle");
+  const defaultOfflineText = document.getElementById("streamOfflineText");
+
+  const currentPrintImage = document.getElementById("currentPrintImage");
+  const currentPrintPlaceholder = document.getElementById("currentPrintPlaceholder");
+  const currentPrintEyebrow = document.querySelector(".current-print-eyebrow");
+  const currentPrintTitle = document.getElementById("currentPrintTitle");
+  const currentPrintSummary = document.getElementById("currentPrintSummary");
+  const currentPrintState = document.getElementById("currentPrintState");
+  const currentPrintProgress = document.getElementById("currentPrintProgress");
+  const currentPrintObjectCount = document.getElementById("currentPrintObjectCount");
+  const currentPrintObjects = document.getElementById("currentPrintObjects");
+  const currentPrintInquiry = document.getElementById("currentPrintInquiry");
+
+  const productMarquee = document.getElementById("productMarquee");
+  const productTrack = document.getElementById("productTrack");
+  const productEmpty = document.getElementById("productEmpty");
+
+  const liveForm = document.getElementById("livePrintForm");
+  const liveType = document.getElementById("live-type");
+  const liveTiming = document.getElementById("live-timing");
+  const liveMessage = document.getElementById("live-message");
+  const contactSelection = document.getElementById("contactSelection");
+
+  if(
+    !streamStatus || !streamStatusLabel || !streamNote || !streamMount || !fullscreenBtn ||
+    !streamCard || !defaultOfflineTitle || !defaultOfflineText
+  ){
+    return;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const streamConfig = window.STREAM_CONFIG || {};
+  const pageConfig = window.LIVE_PRINTS_CONFIG || {};
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let cloudflareLiveState = null;
+  let cloudflarePlayerMounted = false;
+  let cloudflarePlayer = null;
+  let currentPrintData = null;
+  let productIndex = new Map();
+
+  if(currentPrintImage && currentPrintPlaceholder){
+    currentPrintImage.addEventListener("load", function(){
+      currentPrintImage.hidden = false;
+      currentPrintPlaceholder.hidden = true;
+    });
+
+    currentPrintImage.addEventListener("error", function(){
+      currentPrintImage.hidden = true;
+      currentPrintImage.removeAttribute("src");
+      currentPrintPlaceholder.hidden = false;
+    });
+  }
+
+  function escapeHtml(value){
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function setStatus(label, noteText, live){
+    streamStatus.classList.toggle("live", Boolean(live));
+    streamStatusLabel.textContent = label;
+    streamNote.textContent = noteText;
+  }
+
+  function getFullscreenElement(){
+    return document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement || null;
+  }
+
+  function syncFullscreenButton(){
+    const active = Boolean(getFullscreenElement());
+    fullscreenBtn.textContent = active ? "Exit full screen" : "Full screen";
+  }
+
+  async function toggleFullscreen(){
+    try{
+      if(getFullscreenElement()){
+        if(typeof document.exitFullscreen === "function"){
+          await document.exitFullscreen();
+        }else if(typeof document.webkitExitFullscreen === "function"){
+          document.webkitExitFullscreen();
+        }else if(typeof document.msExitFullscreen === "function"){
+          document.msExitFullscreen();
+        }
+      }else{
+        if(typeof streamCard.requestFullscreen === "function"){
+          await streamCard.requestFullscreen();
+        }else if(typeof streamCard.webkitRequestFullscreen === "function"){
+          streamCard.webkitRequestFullscreen();
+        }else if(typeof streamCard.msRequestFullscreen === "function"){
+          streamCard.msRequestFullscreen();
+        }
+      }
+    }catch(error){
+      console.error("Fullscreen toggle failed", error);
+    }
+  }
+
+  function clearStreamAction(){
+    const existing = streamMount.querySelector(".stream-action");
+    if(existing){
+      existing.remove();
+    }
+  }
+
+  function showStreamAction(label, handler){
+    clearStreamAction();
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "stream-action";
+    button.textContent = label;
+    button.addEventListener("click", function(event){
+      event.preventDefault();
+      handler();
+    });
+    streamMount.appendChild(button);
+  }
+
+  function renderPlaceholder(title, text){
+    cloudflarePlayerMounted = false;
+    streamMount.innerHTML = '<div class="stream-placeholder"><strong>' + escapeHtml(title) + '</strong><p>' + escapeHtml(text) + '</p></div>';
+  }
+
+  function teardownCloudflarePlayer(){
+    clearStreamAction();
+    if(cloudflarePlayer && typeof cloudflarePlayer.pause === "function"){
+      try{
+        cloudflarePlayer.pause();
+      }catch(error){
+        console.error("Cloudflare player pause failed", error);
+      }
+    }
+    cloudflarePlayer = null;
+    cloudflarePlayerMounted = false;
+    streamMount.innerHTML = "";
+  }
+
+  function buildFrame(source){
+    const frame = document.createElement("iframe");
+    const frameUrl = new URL(source.url);
+    if(source.kind === "cloudflare"){
+      frameUrl.searchParams.set("autoplay", "true");
+      frameUrl.searchParams.set("muted", "true");
+      frameUrl.searchParams.set("letterboxColor", "transparent");
+      frameUrl.searchParams.set("preload", "auto");
+    }
+
+    frame.src = frameUrl.toString();
+    frame.title = source.label;
+    frame.loading = "lazy";
+    frame.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
+    frame.allowFullscreen = true;
+    return frame;
+  }
+
+  async function requestCloudflarePlayback(player, source){
+    try{
+      await player.play();
+      clearStreamAction();
+    }catch(error){
+      try{
+        player.muted = true;
+        await player.play();
+        clearStreamAction();
+      }catch(finalError){
+        showStreamAction("Start stream", function(){
+          requestCloudflarePlayback(player, source);
+        });
+      }
+    }
+  }
+
+  function initCloudflarePlayer(frame, source){
+    if(source.kind !== "cloudflare" || typeof window.Stream !== "function"){
+      return;
+    }
+
+    try{
+      const player = window.Stream(frame);
+      cloudflarePlayer = player;
+      player.autoplay = true;
+      player.muted = true;
+      player.controls = false;
+      player.preload = true;
+      player.letterboxColor = "transparent";
+      player.addEventListener("play", clearStreamAction);
+      player.addEventListener("playing", clearStreamAction);
+      player.addEventListener("loadeddata", clearStreamAction);
+      player.addEventListener("error", function(){
+        showStreamAction("Open stream", function(){
+          window.open(source.url, "_blank", "noopener");
+        });
+      });
+      showStreamAction("Start stream", function(){
+        requestCloudflarePlayback(player, source);
+      });
+      requestCloudflarePlayback(player, source);
+    }catch(error){
+      console.error("Cloudflare player init failed", error);
+    }
+  }
+
+  function attachCloudflarePlayer(source){
+    if(cloudflarePlayerMounted){
+      return;
+    }
+
+    teardownCloudflarePlayer();
+    streamMount.innerHTML = "";
+    const frame = buildFrame(source);
+    streamMount.appendChild(frame);
+    cloudflarePlayerMounted = true;
+    initCloudflarePlayer(frame, source);
+  }
+
+  function pickValue(paramName, configName){
+    return (params.get(paramName) || streamConfig[configName] || "").trim();
+  }
+
+  function resolveSource(){
+    const cloudflareCustomerCode = pickValue("cloudflare_code", "cloudflareCustomerCode");
+    const cloudflareLiveInputId = pickValue("cloudflare_input", "cloudflareLiveInputId");
+    if(cloudflareCustomerCode && cloudflareLiveInputId){
+      return {
+        kind: "cloudflare",
+        code: cloudflareCustomerCode,
+        inputId: cloudflareLiveInputId,
+        url: "https://customer-" + encodeURIComponent(cloudflareCustomerCode) + ".cloudflarestream.com/" + encodeURIComponent(cloudflareLiveInputId) + "/iframe",
+        label: "Cloudflare Stream live input"
+      };
+    }
+
+    const iframeUrl = pickValue("iframe", "iframeUrl");
+    if(iframeUrl){
+      return {
+        kind: "iframe",
+        url: iframeUrl,
+        label: "Custom live source"
+      };
+    }
+
+    const youtubeVideoId = pickValue("youtube", "youtubeVideoId");
+    if(youtubeVideoId){
+      return {
+        kind: "youtube-video",
+        url: "https://www.youtube.com/embed/" + encodeURIComponent(youtubeVideoId) + "?autoplay=1&rel=0&modestbranding=1",
+        label: "YouTube live feed"
+      };
+    }
+
+    const youtubeChannelId = pickValue("youtube_channel", "youtubeChannelId");
+    if(youtubeChannelId){
+      return {
+        kind: "youtube-channel",
+        url: "https://www.youtube.com/embed/live_stream?channel=" + encodeURIComponent(youtubeChannelId) + "&autoplay=1",
+        label: "YouTube channel live feed"
+      };
+    }
+
+    const twitchChannel = pickValue("twitch", "twitchChannel");
+    if(twitchChannel){
+      const parent = window.location.hostname || "signalshieldsolutions.com";
+      return {
+        kind: "twitch",
+        url: "https://player.twitch.tv/?channel=" + encodeURIComponent(twitchChannel) + "&parent=" + encodeURIComponent(parent) + "&autoplay=true",
+        label: "Twitch live feed"
+      };
+    }
+
+    return null;
+  }
+
+  function buildCloudflareProxyUrl(source, suffix){
+    return "/live-stream/" + encodeURIComponent(source.inputId) + "/" + suffix;
+  }
+
+  async function syncCloudflareLifecycle(source){
+    const lifecycleUrl = buildCloudflareProxyUrl(source, "lifecycle");
+
+    try{
+      const response = await fetch(lifecycleUrl, { cache: "no-store" });
+      if(!response.ok){
+        throw new Error("Lifecycle request failed");
+      }
+
+      const data = await response.json();
+      if(data && data.live){
+        if(cloudflareLiveState !== true){
+          attachCloudflarePlayer(source);
+        }
+        cloudflareLiveState = true;
+        setStatus("Live now", "An active print is currently broadcasting from the shop printer.", true);
+      }else{
+        if(cloudflareLiveState !== false){
+          teardownCloudflarePlayer();
+          renderPlaceholder(
+            "No active print is broadcasting right now.",
+            "Check back when the next live print starts."
+          );
+        }
+        cloudflareLiveState = false;
+        setStatus("Offline", "The live camera is offline right now. Check back during the next active print.", false);
+      }
+    }catch(error){
+      teardownCloudflarePlayer();
+      renderPlaceholder(defaultOfflineTitle.textContent, defaultOfflineText.textContent);
+      setStatus("Checking status", "The camera status is updating. Reload the page if this does not clear in a moment.", false);
+    }
+  }
+
+  function cleanObjectName(value){
+    return String(value || "")
+      .replace(/\.[a-z0-9]+$/i, "")
+      .replace(/[_+]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function setCurrentPrintInquiry(payload){
+    if(!currentPrintInquiry){
+      return;
+    }
+
+    currentPrintInquiry.dataset.title = payload && payload.title ? payload.title : "";
+    currentPrintInquiry.dataset.price = payload && payload.priceLabel ? payload.priceLabel : "";
+    currentPrintInquiry.dataset.message = payload && payload.message ? payload.message : "";
+  }
+
+  function renderCurrentPrint(data){
+    currentPrintData = data || null;
+
+    if(!currentPrintTitle || !currentPrintSummary || !currentPrintState || !currentPrintProgress || !currentPrintObjectCount){
+      return;
+    }
+
+    if(!data || !data.title){
+      if(currentPrintEyebrow){
+        currentPrintEyebrow.textContent = "Bambu preview";
+      }
+      currentPrintTitle.textContent = "Current print preview";
+      currentPrintSummary.textContent = "The page will add the current print thumbnail and title here when local metadata is available.";
+      currentPrintState.textContent = "Waiting";
+      currentPrintProgress.textContent = "--";
+      currentPrintObjectCount.textContent = "--";
+      currentPrintObjects.hidden = true;
+      currentPrintObjects.innerHTML = "";
+      currentPrintImage.hidden = true;
+      currentPrintImage.removeAttribute("src");
+      currentPrintPlaceholder.hidden = false;
+      setCurrentPrintInquiry(null);
+      return;
+    }
+
+    if(currentPrintEyebrow){
+      currentPrintEyebrow.textContent = data.active ? "Active Bambu print" : "Latest Bambu load";
+    }
+    currentPrintTitle.textContent = data.title;
+    currentPrintSummary.textContent = data.note || "This preview comes from the latest Bambu Studio project metadata available on the shop machine.";
+    currentPrintState.textContent = data.gcodeState || (data.active ? "RUNNING" : "OFFLINE");
+    currentPrintProgress.textContent = typeof data.progress === "number" ? (data.progress + "%") : (data.active ? "Live" : "--");
+
+    const objectNames = Array.isArray(data.objects) ? data.objects.map(cleanObjectName).filter(Boolean) : [];
+    currentPrintObjectCount.textContent = data.objectCount || (objectNames.length ? String(objectNames.length) : "--");
+
+    if(objectNames.length){
+      currentPrintObjects.hidden = false;
+      currentPrintObjects.innerHTML = objectNames.slice(0, 6).map(function(name){
+        return '<span>' + escapeHtml(name) + '</span>';
+      }).join("");
+    }else{
+      currentPrintObjects.hidden = true;
+      currentPrintObjects.innerHTML = "";
+    }
+
+    if(data.image){
+      const version = data.imageVersion ? ("?v=" + encodeURIComponent(data.imageVersion)) : "";
+      currentPrintImage.src = data.image + version;
+      currentPrintImage.alt = data.title;
+      currentPrintImage.hidden = false;
+      currentPrintPlaceholder.hidden = true;
+    }else{
+      currentPrintImage.hidden = true;
+      currentPrintImage.removeAttribute("src");
+      currentPrintPlaceholder.hidden = false;
+    }
+
+    setCurrentPrintInquiry({
+      title: data.title,
+      message:
+        "I am interested in the current print: " + data.title + ". " +
+        (objectNames.length ? "Objects: " + objectNames.slice(0, 4).join(", ") + ". " : "") +
+        "Please tell me the price, available material options, and next steps."
+    });
+  }
+
+  async function loadCurrentPrint(){
+    if(!pageConfig.currentPrintUrl){
+      return;
+    }
+
+    try{
+      const response = await fetch(pageConfig.currentPrintUrl + "?ts=" + Date.now(), { cache: "no-store" });
+      if(!response.ok){
+        throw new Error("Current print request failed");
+      }
+      const data = await response.json();
+      renderCurrentPrint(data);
+    }catch(error){
+      renderCurrentPrint(null);
+    }
+  }
+
+  function buildProductCard(item, duplicate){
+    const article = document.createElement("article");
+    article.className = "product-card";
+    if(duplicate){
+      article.setAttribute("aria-hidden", "true");
+    }
+    article.innerHTML =
+      '<div class="product-card-media">' +
+        (item.image ? '<img src="' + escapeHtml(item.image) + '" alt="' + escapeHtml(item.title) + '" loading="lazy" />' : '<div class="product-card-fallback">No preview</div>') +
+      '</div>' +
+      '<div class="product-card-body">' +
+        '<strong>' + escapeHtml(item.title) + '</strong>' +
+        '<span class="product-card-price">' + escapeHtml(item.priceLabel || "Quote") + '</span>' +
+        '<p>' + escapeHtml(item.description || "Ask about materials, sizing, and timing.") + '</p>' +
+        '<button class="btn secondary product-inquire" type="button" data-product-id="' + escapeHtml(item.id) + '">Ask about this print</button>' +
+      '</div>';
+    return article;
+  }
+
+  function renderCatalog(items){
+    if(!productMarquee || !productTrack || !productEmpty){
+      return;
+    }
+
+    const normalized = Array.isArray(items) ? items.filter(function(item){
+      return item && item.id && item.title;
+    }) : [];
+
+    productIndex = new Map();
+    normalized.forEach(function(item){
+      productIndex.set(item.id, item);
+    });
+
+    if(!normalized.length){
+      productMarquee.hidden = true;
+      productEmpty.hidden = false;
+      productTrack.innerHTML = "";
+      return;
+    }
+
+    productTrack.innerHTML = "";
+    normalized.forEach(function(item){
+      productTrack.appendChild(buildProductCard(item, false));
+    });
+
+    if(normalized.length > 1){
+      normalized.forEach(function(item){
+        productTrack.appendChild(buildProductCard(item, true));
+      });
+    }
+
+    productMarquee.hidden = false;
+    productEmpty.hidden = true;
+
+    if(prefersReducedMotion){
+      productTrack.classList.add("no-motion");
+    }else{
+      productTrack.classList.remove("no-motion");
+    }
+  }
+
+  async function loadCatalog(){
+    if(!pageConfig.productCatalogUrl){
+      return;
+    }
+
+    try{
+      const response = await fetch(pageConfig.productCatalogUrl + "?ts=" + Date.now(), { cache: "no-store" });
+      if(!response.ok){
+        throw new Error("Catalog request failed");
+      }
+      const data = await response.json();
+      renderCatalog(data.items || []);
+    }catch(error){
+      renderCatalog([]);
+    }
+  }
+
+  function prefillInquiry(payload){
+    if(!liveForm || !liveMessage){
+      return;
+    }
+
+    if(liveType){
+      liveType.value = "Quote request";
+    }
+
+    if(liveTiming && !liveTiming.value.trim()){
+      liveTiming.value = "Please follow up with pricing and lead time.";
+    }
+
+    const nextMessage = payload.message || ("I am interested in " + payload.title + ".");
+    if(!liveMessage.value.trim() || liveMessage.dataset.autoFilled === "true"){
+      liveMessage.value = nextMessage;
+      liveMessage.dataset.autoFilled = "true";
+    }
+
+    if(contactSelection){
+      const fragments = [payload.title];
+      if(payload.priceLabel){
+        fragments.push(payload.priceLabel);
+      }
+      contactSelection.textContent = "Selected print: " + fragments.join(" - ");
+      contactSelection.hidden = false;
+    }
+
+    liveForm.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+    if(!document.getElementById("live-name").value.trim()){
+      document.getElementById("live-name").focus();
+    }else{
+      liveMessage.focus();
+    }
+  }
+
+  if(liveMessage){
+    liveMessage.addEventListener("input", function(){
+      if(liveMessage.dataset.autoFilled === "true" && liveMessage.value.trim() === ""){
+        liveMessage.dataset.autoFilled = "false";
+      }
+    });
+  }
+
+  if(currentPrintInquiry){
+    currentPrintInquiry.addEventListener("click", function(event){
+      const message = currentPrintInquiry.dataset.message;
+      const title = currentPrintInquiry.dataset.title;
+      if(!message || !title){
+        return;
+      }
+      event.preventDefault();
+      prefillInquiry({
+        title: title,
+        priceLabel: currentPrintInquiry.dataset.price || "",
+        message: message
+      });
+    });
+  }
+
+  if(productTrack){
+    productTrack.addEventListener("click", function(event){
+      const button = event.target.closest(".product-inquire");
+      if(!button){
+        return;
+      }
+
+      const item = productIndex.get(button.dataset.productId);
+      if(!item){
+        return;
+      }
+
+      prefillInquiry({
+        title: item.title,
+        priceLabel: item.priceLabel || "",
+        message:
+          item.inquiryMessage ||
+          ("I am interested in the " + item.title + (item.priceLabel ? " (" + item.priceLabel + ")" : "") + ". Please tell me the current price, material options, and lead time.")
+      });
+    });
+  }
+
+  fullscreenBtn.addEventListener("click", toggleFullscreen);
+  document.addEventListener("fullscreenchange", syncFullscreenButton);
+  document.addEventListener("webkitfullscreenchange", syncFullscreenButton);
+  document.addEventListener("msfullscreenchange", syncFullscreenButton);
+  syncFullscreenButton();
+
+  const source = resolveSource();
+  renderPlaceholder(defaultOfflineTitle.textContent, defaultOfflineText.textContent);
+  setStatus("Checking status", "Checking whether an active print is currently broadcasting.", false);
+  loadCurrentPrint();
+  loadCatalog();
+
+  if(source){
+    if(source.kind === "cloudflare"){
+      syncCloudflareLifecycle(source);
+      window.setInterval(function(){
+        syncCloudflareLifecycle(source);
+      }, 15000);
+    }else{
+      setStatus("Live now", "The live viewer is connected.", true);
+      streamMount.innerHTML = "";
+      streamMount.appendChild(buildFrame(source));
+    }
+  }
+})();

@@ -4,16 +4,16 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Live Prints | Signal &amp; Shield Solutions</title>
-<meta name="description" content="Watch live 3D print sessions from Signal &amp; Shield Solutions when a public broadcast is active." />
+<meta name="description" content="Watch live 3D print sessions from Signal &amp; Shield Solutions and browse example prints available for quote." />
 <link rel="canonical" href="https://signalshieldsolutions.com/live-prints.html" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Live Prints | Signal &amp; Shield Solutions" />
-<meta property="og:description" content="Watch live 3D print sessions from Signal &amp; Shield Solutions when a public broadcast is active." />
+<meta property="og:description" content="Watch live 3D print sessions from Signal &amp; Shield Solutions and browse example prints available for quote." />
 <meta property="og:url" content="https://signalshieldsolutions.com/live-prints.html" />
 <meta property="og:image" content="https://signalshieldsolutions.com/logo.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Live Prints | Signal &amp; Shield Solutions" />
-<meta name="twitter:description" content="Watch live 3D print sessions from Signal &amp; Shield Solutions when a public broadcast is active." />
+<meta name="twitter:description" content="Watch live 3D print sessions from Signal &amp; Shield Solutions and browse example prints available for quote." />
 <meta name="twitter:image" content="https://signalshieldsolutions.com/logo.png" />
 <link rel="stylesheet" href="styles.css" />
 </head>
@@ -38,16 +38,16 @@
   <section class="hero-band">
     <div class="hero-inner">
       <div class="hero-copy">
-        <h1 class="hero-title">Watch the printer live when a print run is active.</h1>
-        <p>Drop in to check the current printer camera. If the camera is online between jobs, the next part may not have started moving yet, but the live view will appear here when it is available.</p>
+        <h1 class="hero-title">Watch the printer live and see what is running.</h1>
+        <p>When an active print is streaming, the player appears here automatically. The preview card beside it shows the current Bambu plate thumbnail and the print details pulled from the machine.</p>
         <div class="hero-actions">
           <a class="btn primary" href="#stream">Open the stream</a>
-          <a class="btn secondary" href="#contact">Request a print</a>
+          <a class="btn secondary" href="#showcase">Browse previous prints</a>
         </div>
         <div class="hero-process" aria-label="How it works">
-          <span><strong>1</strong>Check whether the camera is online</span>
-          <span><strong>2</strong>Watch the printer when a run is active</span>
-          <span><strong>3</strong>Ask about a custom part or quote</span>
+          <span><strong>1</strong>Check whether a print is live</span>
+          <span><strong>2</strong>See the current print preview</span>
+          <span><strong>3</strong>Ask for a quote or custom order</span>
         </div>
       </div>
 
@@ -59,20 +59,20 @@
           <span class="hero-ring hero-ring-c"></span>
           <div class="brief-board">
             <div class="brief-row">
-              <span>What you will see</span>
-              <strong>A live camera view from the shop printer</strong>
+              <span>Live status</span>
+              <strong>Green means an active print is currently broadcasting.</strong>
             </div>
             <div class="brief-row">
-              <span>Status meaning</span>
-              <strong>Green means the camera feed is online</strong>
+              <span>Bambu preview</span>
+              <strong>The current print card uses the plate thumbnail from Bambu Studio.</strong>
             </div>
             <div class="brief-row">
-              <span>Between jobs</span>
-              <strong>The camera can stay online even when a print is not moving yet</strong>
+              <span>Previous prints</span>
+              <strong>The gallery below can showcase completed prints with quote-ready price tags.</strong>
             </div>
             <div class="brief-row">
-              <span>Custom work</span>
-              <strong>Use the form below to ask about a part, quote, or next live run</strong>
+              <span>Ordering</span>
+              <strong>Choose a print, prefill the inquiry, and send what you need.</strong>
             </div>
           </div>
         </div>
@@ -83,16 +83,16 @@
   <section class="wrap section-shell">
     <div class="signal-rail reveal">
       <div>
-        <span>Live camera</span>
-        <strong>Check the current printer view here</strong>
+        <span>Live feed</span>
+        <strong>Only active print runs show online</strong>
       </div>
       <div>
-        <span>Custom prints</span>
-        <strong>Ask about a part, prototype, or quote</strong>
+        <span>Current preview</span>
+        <strong>Bambu plate image and print details next to the stream</strong>
       </div>
       <div>
-        <span>Availability</span>
-        <strong>The camera may stay online between jobs</strong>
+        <span>Quote path</span>
+        <strong>Use a previous print or custom part to start the inquiry</strong>
       </div>
     </div>
   </section>
@@ -101,54 +101,99 @@
     <div class="section-slab">
       <div class="section-head reveal">
         <div class="eyebrow">Live feed</div>
-        <h2>Check the current printer camera.</h2>
-        <p>When the camera feed is connected, the viewer appears here automatically. An online camera does not always mean a part is moving this exact second, but it does mean the shop view is available.</p>
+        <h2>Watch the current run and see the matching print preview.</h2>
+        <p>The stream appears automatically when the printer is actively publishing. The card beside it shows the Bambu thumbnail, print name, and a faster starting point if you want the same item or something similar.</p>
       </div>
       <aside class="surface reveal stream-stack">
         <div id="streamStatus" class="stream-status" aria-live="polite">
           <span class="status-dot" aria-hidden="true"></span>
           <span id="streamStatusLabel">Checking status</span>
         </div>
-        <p id="streamNote" class="stream-note">The page will show the current camera when it is available.</p>
+        <p id="streamNote" class="stream-note">The page is checking whether an active print is currently broadcasting.</p>
       </aside>
     </div>
 
-    <div class="surface reveal stream-card">
-      <div class="stream-toolbar">
-        <button id="streamFullscreen" class="stream-fullscreen" type="button">Full screen</button>
-      </div>
-      <div class="stream-frame" id="streamMount">
-        <div class="stream-placeholder">
-          <strong id="streamOfflineTitle">Camera offline right now.</strong>
-          <p id="streamOfflineText">Check back when the next live camera session starts.</p>
+    <div class="stream-live-grid">
+      <div class="surface reveal stream-card">
+        <div class="stream-toolbar">
+          <button id="streamFullscreen" class="stream-fullscreen" type="button">Full screen</button>
         </div>
+        <div class="stream-frame" id="streamMount">
+          <div class="stream-placeholder">
+            <strong id="streamOfflineTitle">No active print is broadcasting right now.</strong>
+            <p id="streamOfflineText">Check back when the next live print starts.</p>
+          </div>
+        </div>
+        <p class="microcopy">If you are interested in the current part, use the matching preview card or the gallery below to prefill your inquiry.</p>
       </div>
-      <p class="microcopy">If the camera is online and the bed looks idle, the printer may be between jobs or waiting on the next run.</p>
+
+      <aside class="surface reveal current-print-card" id="currentPrintCard">
+        <div class="current-print-media">
+          <img id="currentPrintImage" alt="" hidden />
+          <div id="currentPrintPlaceholder" class="current-print-placeholder">
+            <strong>Current print details will appear here.</strong>
+            <p>When a print is loaded from Bambu Studio, this card shows the matching preview thumbnail and the print details.</p>
+          </div>
+        </div>
+        <div class="current-print-body">
+          <div class="eyebrow current-print-eyebrow">Bambu preview</div>
+          <h3 id="currentPrintTitle">Current print preview</h3>
+          <p id="currentPrintSummary">The page will add the current print thumbnail and title here when local metadata is available.</p>
+          <dl class="current-print-meta">
+            <div>
+              <dt>Status</dt>
+              <dd id="currentPrintState">Waiting</dd>
+            </div>
+            <div>
+              <dt>Progress</dt>
+              <dd id="currentPrintProgress">--</dd>
+            </div>
+            <div>
+              <dt>Objects</dt>
+              <dd id="currentPrintObjectCount">--</dd>
+            </div>
+          </dl>
+          <div id="currentPrintObjects" class="current-print-objects" hidden></div>
+          <a class="btn secondary current-print-inquire" href="#contact" id="currentPrintInquiry">Ask about this print</a>
+        </div>
+      </aside>
     </div>
+  </section>
+
+  <section class="wrap section-shell section-anchor" id="showcase">
+    <div class="section-head reveal" style="margin-bottom:24px">
+      <div class="eyebrow">Previous prints</div>
+      <h2>Showcase finished prints and let customers ask about them directly.</h2>
+      <p>The product rail below reads from a simple local catalog. You can add prints, swap images, and change prices from your own machine without exposing any public admin page.</p>
+    </div>
+    <div class="product-marquee reveal" id="productMarquee" hidden>
+      <div class="product-track" id="productTrack" aria-live="polite"></div>
+    </div>
+    <p id="productEmpty" class="microcopy reveal">Add product entries to the local print catalog to start showing finished prints here.</p>
   </section>
 
   <section class="wrap section-shell section-anchor" id="workflow">
     <div class="section-head reveal" style="margin-bottom:24px">
       <div class="eyebrow">What To Expect</div>
-      <h2>A quick guide for customers watching the live camera.</h2>
+      <h2>A clean path from live camera to order inquiry.</h2>
     </div>
     <div class="process-grid">
       <article class="surface reveal">
         <div class="process-step" data-step="1">
-          <strong>Camera online</strong>
-          <p>If the status is green, the shop camera feed is connected and available to view.</p>
+          <strong>Live run detected</strong>
+          <p>The stream only flips online when the printer is in an active print state and the live feed is publishing.</p>
         </div>
       </article>
       <article class="surface reveal">
         <div class="process-step" data-step="2">
-          <strong>Print in progress</strong>
-          <p>When a run is active, you will see the current part building on the printer bed.</p>
+          <strong>Preview matched</strong>
+          <p>The preview card can show the matching Bambu plate thumbnail so customers know what part is running.</p>
         </div>
       </article>
       <article class="surface reveal">
         <div class="process-step" data-step="3">
-          <strong>Want something made?</strong>
-          <p>Use the contact form below to ask about a custom part, quote, or next live run.</p>
+          <strong>Inquiry prefilled</strong>
+          <p>Choose the current print or a previous product and the contact form is prefilled with the right starting context.</p>
         </div>
       </article>
     </div>
@@ -156,13 +201,13 @@
     <div class="spec-grid" style="margin-top:24px">
       <article class="surface reveal">
         <span class="cluster-tag">Custom print requests</span>
-        <h3>Send the basics and we can price it faster.</h3>
-        <p>A photo, sketch, size, quantity, and deadline are enough to start a useful quote conversation.</p>
+        <h3>Send the basics and the quote gets tighter faster.</h3>
+        <p>A file, photo, dimensions, quantity, and deadline are enough to start a useful conversation.</p>
       </article>
       <article class="surface reveal">
-        <span class="cluster-tag">Live availability</span>
-        <h3>The camera can stay online between jobs.</h3>
-        <p>This page is useful for checking current activity, but the camera feed may stay connected before or after a print is actively moving.</p>
+        <span class="cluster-tag">Catalog updates</span>
+        <h3>Previous prints stay easy to manage locally.</h3>
+        <p>The gallery is backed by a local JSON catalog in your site repo, so you can add or change entries without exposing any public editing surface.</p>
       </article>
     </div>
   </section>
@@ -170,24 +215,24 @@
   <section class="wrap section-shell">
     <div class="section-head reveal" style="margin-bottom:24px">
       <div class="eyebrow">FAQ</div>
-      <h2>Quick answers about the live camera and custom prints.</h2>
+      <h2>Quick answers about the live stream and print inquiries.</h2>
     </div>
     <div class="faq-grid">
       <details class="reveal" open>
-        <summary>Why does the camera show online when nothing is moving?</summary>
-        <p>Online means the camera feed is connected. The printer may be between jobs, waiting on the next run, or not actively laying material at that exact moment.</p>
+        <summary>When does the stream show online?</summary>
+        <p>The live page only shows online when the printer is in an active print state and the relay is publishing the camera feed.</p>
       </details>
       <details class="reveal">
-        <summary>Can I ask about a custom print?</summary>
-        <p>Yes. Use the form below to send a part idea, reference image, sketch, dimensions, or quantity and we can follow up with pricing or next steps.</p>
+        <summary>Can I ask about the exact part on the screen?</summary>
+        <p>Yes. Use the current print card or a product card in the gallery and the inquiry form will be prefilled for you.</p>
       </details>
       <details class="reveal">
         <summary>What helps with a quote?</summary>
         <p>The most useful details are what the part is for, approximate size, quantity, material if you know it, and when you need it.</p>
       </details>
       <details class="reveal">
-        <summary>Can I ask when the next live run will be up?</summary>
-        <p>Yes. Use the contact form and say you want to know when the next print will be running live.</p>
+        <summary>Can I request a custom version of a previous print?</summary>
+        <p>Yes. The gallery is meant as a starting point. Use the part you like, then mention the size, quantity, or changes you want.</p>
       </details>
     </div>
   </section>
@@ -196,18 +241,19 @@
     <div class="contact-panel reveal">
       <div class="contact-layout">
         <div>
-          <h2>Ask about a print, quote, or next live run.</h2>
-          <p>Use this form if you want pricing, want to know when the next run will be live, or have a custom part in mind.</p>
+          <h2>Ask about a print, quote, or custom version.</h2>
+          <p>Pick the current print or a previous product card, then send the extra details that matter for pricing.</p>
           <ul class="helper-list compact">
-            <li>A photo, sketch, or short description of the part</li>
+            <li>A file, photo, sketch, or short description of the part</li>
             <li>Approximate size or quantity if you know it</li>
-            <li>Any deadline or timing that matters</li>
+            <li>Any deadline, finish, or material preference that matters</li>
           </ul>
+          <p class="microcopy contact-selection" id="contactSelection" hidden></p>
         </div>
 
-        <form class="form-shell" action="https://formsubmit.co/contracts@signalshieldsolutions.com" method="POST">
+        <form id="livePrintForm" class="form-shell" action="https://formsubmit.co/contracts@signalshieldsolutions.com" method="POST">
           <input type="hidden" name="_subject" value="Live print inquiry" />
-          <input type="hidden" name="_captcha" value="true" />
+          <input type="hidden" name="_captcha" value="false" />
           <div class="form-grid">
             <div class="field">
               <label for="live-name">Name</label>
@@ -221,7 +267,7 @@
               <label for="live-type">Inquiry type</label>
               <select id="live-type" name="inquiry_type">
                 <option value="">Select...</option>
-                <option>Live print question</option>
+                <option>Current print question</option>
                 <option>Print request</option>
                 <option>Quote request</option>
                 <option>General</option>
@@ -229,14 +275,15 @@
             </div>
             <div class="field">
               <label for="live-timing">Timing</label>
-              <input id="live-timing" name="timing" placeholder="Needed by a certain date, or ask when the next live run will be up" />
+              <input id="live-timing" name="timing" placeholder="Need-by date, quantity timing, or follow-up window" />
             </div>
             <div class="field full">
               <label for="live-message">Message</label>
-              <textarea id="live-message" name="message" required placeholder="Tell us what you need made or what you want to know"></textarea>
+              <textarea id="live-message" name="message" required placeholder="Tell us what you want made or which print you are asking about."></textarea>
             </div>
           </div>
           <button class="btn primary" type="submit">Send inquiry</button>
+          <div class="form-response" data-form-response aria-live="polite"></div>
         </form>
       </div>
     </div>
@@ -261,7 +308,6 @@
   <div class="chat-note">This sends your request to <a href="mailto:contracts@signalshieldsolutions.com">contracts@signalshieldsolutions.com</a>.</div>
 </div>
 
-<script src="https://embed.cloudflarestream.com/embed/sdk.latest.js"></script>
 <script>
 window.CHAT_CONFIG = {
   subject: "Live prints chat inquiry",
@@ -282,304 +328,13 @@ window.STREAM_CONFIG = {
   iframeUrl: ""
 };
 
-(function(){
-  const status = document.getElementById("streamStatus");
-  const statusLabel = document.getElementById("streamStatusLabel");
-  const note = document.getElementById("streamNote");
-  const mount = document.getElementById("streamMount");
-  const fullscreenBtn = document.getElementById("streamFullscreen");
-  const streamCard = mount ? mount.closest(".stream-card") : null;
-  const defaultOfflineTitle = document.getElementById("streamOfflineTitle");
-  const defaultOfflineText = document.getElementById("streamOfflineText");
-
-  if(!status || !statusLabel || !note || !mount || !fullscreenBtn || !streamCard || !defaultOfflineTitle || !defaultOfflineText){
-    return;
-  }
-
-  const params = new URLSearchParams(window.location.search);
-  const config = window.STREAM_CONFIG || {};
-  let cloudflareLiveState = null;
-  let cloudflarePlayerMounted = false;
-  let cloudflarePlayer = null;
-
-  function setStatus(label, noteText, live){
-    status.classList.toggle("live", Boolean(live));
-    statusLabel.textContent = label;
-    note.textContent = noteText;
-  }
-
-  function syncFullscreenButton(){
-    const active = Boolean(document.fullscreenElement);
-    fullscreenBtn.textContent = active ? "Exit full screen" : "Full screen";
-  }
-
-  async function toggleFullscreen(){
-    try{
-      if(document.fullscreenElement){
-        await document.exitFullscreen();
-      }else{
-        await streamCard.requestFullscreen();
-      }
-    }catch(error){
-      console.error("Fullscreen toggle failed", error);
-    }
-  }
-
-  fullscreenBtn.addEventListener("click", toggleFullscreen);
-  document.addEventListener("fullscreenchange", syncFullscreenButton);
-  syncFullscreenButton();
-
-  function escapeHtml(value){
-    return String(value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
-  }
-
-  function renderPlaceholder(title, text){
-    cloudflarePlayerMounted = false;
-    mount.innerHTML = '<div class="stream-placeholder"><strong>' + escapeHtml(title) + '</strong><p>' + escapeHtml(text) + '</p></div>';
-  }
-
-  function teardownCloudflarePlayer(){
-    clearStreamAction();
-    if(cloudflarePlayer && typeof cloudflarePlayer.pause === "function"){
-      try{
-        cloudflarePlayer.pause();
-      }catch(error){
-        console.error("Cloudflare player pause failed", error);
-      }
-    }
-    cloudflarePlayer = null;
-    cloudflarePlayerMounted = false;
-    mount.innerHTML = "";
-  }
-
-  function buildCloudflareProxyUrl(source, suffix){
-    return "/live-stream/" + encodeURIComponent(source.inputId) + "/" + suffix;
-  }
-
-  function buildFrame(source){
-    const frame = document.createElement("iframe");
-    const frameUrl = new URL(source.url);
-    if(source.kind === "cloudflare"){
-      frameUrl.searchParams.set("autoplay", "true");
-      frameUrl.searchParams.set("muted", "true");
-      frameUrl.searchParams.set("letterboxColor", "transparent");
-      frameUrl.searchParams.set("preload", "auto");
-    }
-
-    frame.src = frameUrl.toString();
-    frame.title = source.label;
-    frame.loading = "lazy";
-    frame.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
-    frame.allowFullscreen = true;
-    return frame;
-  }
-
-  function clearStreamAction(){
-    const existing = mount.querySelector(".stream-action");
-    if(existing){
-      existing.remove();
-    }
-  }
-
-  function showStreamAction(label, handler){
-    clearStreamAction();
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "stream-action";
-    button.textContent = label;
-    button.addEventListener("click", function(event){
-      event.preventDefault();
-      handler();
-    });
-    mount.appendChild(button);
-  }
-
-  async function requestCloudflarePlayback(player){
-    try{
-      await player.play();
-      clearStreamAction();
-    }catch(error){
-      try{
-        player.muted = true;
-        await player.play();
-        clearStreamAction();
-      }catch(finalError){
-        showStreamAction("Start stream", function(){
-          requestCloudflarePlayback(player);
-        });
-      }
-    }
-  }
-
-  function initCloudflarePlayer(frame, source){
-    if(source.kind !== "cloudflare" || typeof window.Stream !== "function"){
-      return;
-    }
-
-    try{
-      const player = window.Stream(frame);
-      cloudflarePlayer = player;
-      player.autoplay = true;
-      player.muted = true;
-      player.controls = false;
-      player.preload = true;
-      player.letterboxColor = "transparent";
-      player.addEventListener("play", clearStreamAction);
-      player.addEventListener("playing", clearStreamAction);
-      player.addEventListener("loadeddata", clearStreamAction);
-      player.addEventListener("error", function(){
-        showStreamAction("Open stream", function(){
-          window.open(source.url, "_blank", "noopener");
-        });
-      });
-      showStreamAction("Start stream", function(){
-        requestCloudflarePlayback(player);
-      });
-      requestCloudflarePlayback(player);
-    }catch(error){
-      console.error("Cloudflare player init failed", error);
-    }
-  }
-
-  function attachCloudflarePlayer(source){
-    if(cloudflarePlayerMounted){
-      return;
-    }
-
-    teardownCloudflarePlayer();
-    mount.innerHTML = "";
-    const frame = buildFrame(source);
-    mount.appendChild(frame);
-    cloudflarePlayerMounted = true;
-    initCloudflarePlayer(frame, source);
-  }
-
-  function pickValue(paramName, configName){
-    return (params.get(paramName) || config[configName] || "").trim();
-  }
-
-  function resolveSource(){
-    const cloudflareCustomerCode = pickValue("cloudflare_code", "cloudflareCustomerCode");
-    const cloudflareLiveInputId = pickValue("cloudflare_input", "cloudflareLiveInputId");
-    if(cloudflareCustomerCode && cloudflareLiveInputId){
-      return {
-        kind: "cloudflare",
-        code: cloudflareCustomerCode,
-        inputId: cloudflareLiveInputId,
-        url: "https://customer-" + encodeURIComponent(cloudflareCustomerCode) + ".cloudflarestream.com/" + encodeURIComponent(cloudflareLiveInputId) + "/iframe",
-        label: "Cloudflare Stream live input",
-        note: "Cloudflare live input linked. The player will show the stream when the Bambu relay is publishing."
-      };
-    }
-
-    const iframeUrl = pickValue("iframe", "iframeUrl");
-    if(iframeUrl){
-      return {
-        kind: "iframe",
-        url: iframeUrl,
-        label: "Custom live source",
-        note: "Custom public stream source linked."
-      };
-    }
-
-    const youtubeVideoId = pickValue("youtube", "youtubeVideoId");
-    if(youtubeVideoId){
-      return {
-        kind: "youtube-video",
-        url: "https://www.youtube.com/embed/" + encodeURIComponent(youtubeVideoId) + "?autoplay=1&rel=0&modestbranding=1",
-        label: "YouTube live feed",
-        note: "YouTube video source linked."
-      };
-    }
-
-    const youtubeChannelId = pickValue("youtube_channel", "youtubeChannelId");
-    if(youtubeChannelId){
-      return {
-        kind: "youtube-channel",
-        url: "https://www.youtube.com/embed/live_stream?channel=" + encodeURIComponent(youtubeChannelId) + "&autoplay=1",
-        label: "YouTube channel live feed",
-        note: "YouTube channel linked. The player follows the channel's current live broadcast when active."
-      };
-    }
-
-    const twitchChannel = pickValue("twitch", "twitchChannel");
-    if(twitchChannel){
-      const parent = window.location.hostname || "signalshieldsolutions.com";
-      return {
-        kind: "twitch",
-        url: "https://player.twitch.tv/?channel=" + encodeURIComponent(twitchChannel) + "&parent=" + encodeURIComponent(parent) + "&autoplay=true",
-        label: "Twitch live feed",
-        note: "Twitch channel linked. The player follows the channel's live broadcast when active."
-      };
-    }
-
-    return null;
-  }
-
-  async function syncCloudflareLifecycle(source, frame){
-    const lifecycleUrl = buildCloudflareProxyUrl(source, "lifecycle");
-
-    try{
-      const response = await fetch(lifecycleUrl, { cache: "no-store" });
-      if(!response.ok){
-        throw new Error("Lifecycle request failed");
-      }
-
-      const data = await response.json();
-      if(data && data.live){
-        if(cloudflareLiveState !== true){
-          attachCloudflarePlayer(source);
-        }
-        cloudflareLiveState = true;
-        setStatus("Camera online", "The shop camera is connected. A print may be active now or the printer may be between jobs.", true);
-      }else{
-        if(cloudflareLiveState !== false){
-          teardownCloudflarePlayer();
-          renderPlaceholder(
-            "Camera offline right now.",
-            "Check back when the next live camera session starts."
-          );
-        }
-        cloudflareLiveState = false;
-        setStatus("Offline", "The camera is offline right now. Check back during the next live print.", false);
-      }
-    }catch(error){
-      teardownCloudflarePlayer();
-      renderPlaceholder(defaultOfflineTitle.textContent, defaultOfflineText.textContent);
-      setStatus("Checking status", "The camera status is updating. Reload the page if this does not clear in a moment.", false);
-    }
-  }
-
-  const source = resolveSource();
-  if(!source){
-    return;
-  }
-
-  renderPlaceholder(defaultOfflineTitle.textContent, defaultOfflineText.textContent);
-  setStatus("Checking status", "Checking whether the camera is available right now.", false);
-  if(source.kind === "cloudflare"){
-    setStatus("Checking status", "Checking whether the camera is available right now.", false);
-    syncCloudflareLifecycle(source);
-    window.setInterval(function(){
-      syncCloudflareLifecycle(source);
-    }, 15000);
-  }else if(source.kind === "youtube-channel" || source.kind === "twitch"){
-    setStatus("Camera online", "The live viewer is connected.", true);
-    mount.innerHTML = "";
-    mount.appendChild(buildFrame(source));
-  }else{
-    setStatus("Camera online", "The live viewer is connected.", true);
-    mount.innerHTML = "";
-    mount.appendChild(buildFrame(source));
-  }
-  syncFullscreenButton();
-})();
+window.LIVE_PRINTS_CONFIG = {
+  currentPrintUrl: "data/current-print.json",
+  productCatalogUrl: "data/live-products.json"
+};
 </script>
+<script src="https://embed.cloudflarestream.com/embed/sdk.latest.js"></script>
+<script src="live-prints.js"></script>
 <script src="site.js"></script>
 </body>
 </html>

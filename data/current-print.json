@@ -1,0 +1,23 @@
+{
+  "updatedAt": "2026-05-15T00:28:20.8430126-07:00",
+  "active": true,
+  "cameraAvailable": false,
+  "gcodeState": "RUNNING",
+  "progress": 13,
+  "title": "BLV - AMS Riser V4.0 X2D new official upgrade version!",
+  "projectId": "950093119",
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "20260515002820",
+  "objectCount": 5,
+  "objects": [
+    "deckel(7).stl",
+    "Drybox-Roller-Arm-STRONG.stl",
+    "Drybox-Roller-role.stl",
+    "Drybox-Roller-Arm-STRONG.stl",
+    "Drybox-Roller-Base-Square.stl"
+  ],
+  "weightGrams": 96.14,
+  "estimatedSeconds": 11148,
+  "printerModelId": "N6",
+  "note": "The printer is active locally. The live stream will appear when Go Live is available."
+}

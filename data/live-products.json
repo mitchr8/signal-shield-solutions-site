@@ -1,0 +1,37 @@
+{
+  "updatedAt": "2026-05-14T13:30:00-07:00",
+  "items": [
+    {
+      "id": "infinity-cube",
+      "title": "Infinity Cube",
+      "priceLabel": "From $14",
+      "description": "Compact print-in-place fidget piece with smooth hinges and a desk-friendly footprint.",
+      "image": "/print-assets/products/infinity-cube.png",
+      "inquiryMessage": "I am interested in the Infinity Cube (from $14). Please tell me the current price, available colors, and lead time."
+    },
+    {
+      "id": "drybox-roller-set",
+      "title": "Drybox Roller Set",
+      "priceLabel": "From $24",
+      "description": "Utility print set for smoother spool movement inside a drybox or AMS-adjacent storage setup.",
+      "image": "/print-assets/products/drybox-roller-set.png",
+      "inquiryMessage": "I am interested in the Drybox Roller Set (from $24). Please tell me the current price, included pieces, and lead time."
+    },
+    {
+      "id": "monitor-riser-drawer",
+      "title": "Monitor Riser Drawer Bin",
+      "priceLabel": "From $18",
+      "description": "Small organizer drawer component from a modular monitor riser build for desk storage and cable cleanup.",
+      "image": "/print-assets/products/monitor-riser-drawer.png",
+      "inquiryMessage": "I am interested in the Monitor Riser Drawer Bin (from $18). Please tell me the current price, sizing options, and lead time."
+    },
+    {
+      "id": "ams-riser-parts-set",
+      "title": "AMS Riser Parts Set",
+      "priceLabel": "From $34",
+      "description": "Hardware-style print set for AMS or drybox accessory upgrades, shown here from the latest shop build plate.",
+      "image": "/print-assets/products/ams-riser-parts-set.png",
+      "inquiryMessage": "I am interested in the AMS Riser Parts Set (from $34). Please tell me the current price, material options, and lead time."
+    }
+  ]
+}
