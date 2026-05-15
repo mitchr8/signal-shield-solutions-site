@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-15T13:57:34.3164195-07:00",
+  "updatedAt": "2026-05-15T18:35:00-07:00",
   "items": [
     {
       "id": "infinity-cube",
@@ -22,46 +22,6 @@
       "inquiryMessage": "I am interested in the Spinner Desk Fidget (From $8). Please tell me the current price, material options, and lead time."
     },
     {
-      "id": "custom-desktop-name-plate",
-      "title": "Custom Desktop Name Plate",
-      "priceLabel": "From $18",
-      "description": "Personalized desk sign for offices, classrooms, workstations, and streaming setups. Best positioned as a giftable custom item with name, role, or brand text.",
-      "image": "/print-assets/products/custom-desktop-name-plate.png",
-      "imageVersion": "20260515135617",
-      "etsyUrl": "",
-      "inquiryMessage": "I am interested in the Custom Desktop Name Plate (From $18). Please tell me the current price, material options, and lead time."
-    },
-    {
-      "id": "drybox-roller-set",
-      "title": "Drybox Roller Set",
-      "priceLabel": "From $16",
-      "description": "Drybox roller hardware set for smoother spool movement and lower feed drag inside filament dryboxes and storage boxes.",
-      "image": "/print-assets/products/drybox-roller-set.png",
-      "imageVersion": "20260515135617",
-      "etsyUrl": "",
-      "inquiryMessage": "I am interested in the Drybox Roller Set (From $16). Please tell me the current price, material options, and lead time."
-    },
-    {
-      "id": "filament-clip-6-pack",
-      "title": "Filament Clip 6-Pack",
-      "priceLabel": "From $9",
-      "description": "Multi-pack of spool clips sized for common 1.75mm filament storage. Better value than single clips and easier to keep near multiple spools.",
-      "image": "/print-assets/products/filament-clip-6-pack.png",
-      "imageVersion": "20260515135617",
-      "etsyUrl": "",
-      "inquiryMessage": "I am interested in the Filament Clip 6-Pack (From $9). Please tell me the current price, material options, and lead time."
-    },
-    {
-      "id": "bambu-poop-chute-slide",
-      "title": "Bambu Poop Chute Slide",
-      "priceLabel": "From $16",
-      "description": "Printer waste slide accessory for cleaner purge handling and easier cleanup. Strong fit for printer owners searching by exact machine compatibility.",
-      "image": "/print-assets/products/bambu-poop-chute-slide.png",
-      "imageVersion": "20260515135617",
-      "etsyUrl": "",
-      "inquiryMessage": "I am interested in the Bambu Poop Chute Slide (From $16). Please tell me the current price, material options, and lead time."
-    },
-    {
       "id": "monitor-riser-drawer",
       "title": "Monitor Riser With Drawers",
       "priceLabel": "From $29",
@@ -70,26 +30,6 @@
       "imageVersion": "20260515135617",
       "etsyUrl": "",
       "inquiryMessage": "I am interested in the Monitor Riser With Drawers (From $29). Please tell me the current price, material options, and lead time."
-    },
-    {
-      "id": "ams-riser-parts-set",
-      "title": "AMS Riser Part Set",
-      "priceLabel": "From $24",
-      "description": "Part set for an AMS-style riser or clearance upgrade, positioned between simple printer add-ons and larger enclosure modifications.",
-      "image": "/print-assets/products/ams-riser-parts-set.png",
-      "imageVersion": "20260515135617",
-      "etsyUrl": "",
-      "inquiryMessage": "I am interested in the AMS Riser Part Set (From $24). Please tell me the current price, material options, and lead time."
-    },
-    {
-      "id": "pla-bed-scraper",
-      "title": "PLA Bed Scraper Tool",
-      "priceLabel": "From $8",
-      "description": "Compact print-removal tool for build plate cleanup, light scraping, and day-to-day printer maintenance. Best positioned as a practical accessory or add-on order.",
-      "image": "/print-assets/products/pla-bed-scraper.png",
-      "imageVersion": "20260515135734",
-      "etsyUrl": "",
-      "inquiryMessage": "I am interested in the PLA Bed Scraper Tool (From $8). Please tell me the current price, material options, and lead time."
     }
   ]
 }
