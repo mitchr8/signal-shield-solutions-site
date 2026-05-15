@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>3D Prints | Signal &amp; Shield Solutions</title>
+<meta name="description" content="Browse 3D prints from Signal &amp; Shield Solutions, view Etsy listings when available, and request custom versions or new parts." />
+<link rel="canonical" href="https://signalshieldsolutions.com/shop.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="3D Prints | Signal &amp; Shield Solutions" />
+<meta property="og:description" content="Browse 3D prints from Signal &amp; Shield Solutions, view Etsy listings when available, and request custom versions or new parts." />
+<meta property="og:url" content="https://signalshieldsolutions.com/shop.html" />
+<meta property="og:image" content="https://signalshieldsolutions.com/logo.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="3D Prints | Signal &amp; Shield Solutions" />
+<meta name="twitter:description" content="Browse 3D prints from Signal &amp; Shield Solutions, view Etsy listings when available, and request custom versions or new parts." />
+<meta name="twitter:image" content="https://signalshieldsolutions.com/logo.png" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page-live">
+<header class="top" id="topBar">
+  <div class="wrap bar">
+    <a href="index.html" class="brand" aria-label="Signal and Shield Solutions home">
+      <span class="logo-mark"><img src="logo.png" alt="Signal &amp; Shield Solutions logo" class="logo-img" /></span>
+      <span class="brand-text">Signal <span class="brand-amp">&amp;</span> Shield</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="govcon.html"><span class="hide-mobile">Government Contracting</span><span class="show-mobile">GovCon</span></a>
+      <a href="local-it.html">Local IT</a>
+      <a class="current" href="shop.html"><span class="hide-mobile">3D Prints</span><span class="show-mobile">Shop</span></a>
+      <a href="live-prints.html"><span class="hide-mobile">Live Prints</span><span class="show-mobile">Live</span></a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero-band">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="hero-kicker">3D print storefront</div>
+        <h1 class="hero-title">Browse finished prints and go straight to the right next step.</h1>
+        <p>Use this page to browse example prints, price ranges, and live shop links. If a listing is ready on Etsy, the card takes you there. If you need a change or a custom version, the same card can start the inquiry.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#catalog">Browse prints</a>
+          <a class="btn secondary" href="live-prints.html">Watch live prints</a>
+        </div>
+        <p class="shop-hero-note">Etsy links use Etsy checkout. Custom work and variations can still start here without leaving the site.</p>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-art" data-tilt>
+          <span class="hero-ribbon">Direct purchase or custom inquiry</span>
+          <span class="hero-ring hero-ring-a"></span>
+          <span class="hero-ring hero-ring-b"></span>
+          <span class="hero-ring hero-ring-c"></span>
+          <div class="brief-board">
+            <div class="brief-row">
+              <span>Ready to buy</span>
+              <strong>Published Etsy items can open directly from the card.</strong>
+            </div>
+            <div class="brief-row">
+              <span>Need a change</span>
+              <strong>Use the same item as the starting point for a custom request.</strong>
+            </div>
+            <div class="brief-row">
+              <span>Live shop</span>
+              <strong>Watch the current machine run on the live prints page.</strong>
+            </div>
+            <div class="brief-row">
+              <span>Catalog updates</span>
+              <strong>New prints and prices can appear here automatically after a publish.</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section-shell">
+    <div class="signal-rail reveal">
+      <div>
+        <span>Shop links</span>
+        <strong>Cards can open the matching Etsy listing</strong>
+      </div>
+      <div>
+        <span>Custom work</span>
+        <strong>Use any card as a starting point for modifications or new parts</strong>
+      </div>
+      <div>
+        <span>Auto updates</span>
+        <strong>The storefront updates from the same print catalog as the live page</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section-shell section-anchor" id="catalog">
+    <div class="section-slab">
+      <div class="section-head reveal">
+        <div class="eyebrow">Catalog</div>
+        <h2>Published prints, price ranges, and direct listing links.</h2>
+        <p>Use a card for the fastest route. If the Etsy listing exists, choose <strong>View on Etsy</strong>. If you want a different size, material, or a related part, choose <strong>Ask about this print</strong>.</p>
+      </div>
+      <aside class="surface reveal">
+        <div class="surface-row">
+          <span>Checkout path</span>
+          <strong>Etsy listings use Etsy checkout and payment handling.</strong>
+        </div>
+        <div class="surface-row">
+          <span>Custom requests</span>
+          <strong>Use the inquiry flow when the exact listing is not ready or you want changes.</strong>
+        </div>
+      </aside>
+    </div>
+
+    <div id="shopGrid" class="shop-grid reveal" aria-live="polite"></div>
+    <p id="shopEmpty" class="microcopy reveal" hidden>No shop items are published yet. Check back soon.</p>
+  </section>
+
+  <section class="wrap section-shell">
+    <div class="section-head reveal" style="margin-bottom:24px">
+      <div class="eyebrow">FAQ</div>
+      <h2>How the storefront works.</h2>
+    </div>
+    <div class="faq-grid">
+      <details class="reveal" open>
+        <summary>Do I have to leave the site to check out?</summary>
+        <p>If an Etsy listing exists, the purchase button opens that listing so checkout and payment stay inside Etsy’s flow.</p>
+      </details>
+      <details class="reveal">
+        <summary>What if I want a different size or color?</summary>
+        <p>Use <strong>Ask about this print</strong> and mention the changes you want. That keeps the item context attached to your inquiry.</p>
+      </details>
+      <details class="reveal">
+        <summary>Can I see the printer running?</summary>
+        <p>Yes. Use the live prints page to watch active runs and see the current print details beside the stream.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="wrap section-shell section-anchor" id="contact">
+    <div class="contact-panel reveal">
+      <div class="contact-layout">
+        <div>
+          <h2>Ask about a listing or request a custom version.</h2>
+          <p>Use this for size changes, quantity questions, material questions, or a similar part based on a print you saw in the catalog.</p>
+          <ul class="helper-list compact">
+            <li>Reference the item you want or let the card prefill it for you</li>
+            <li>Include size, quantity, material, or color details if they matter</li>
+            <li>Mention timing if you need the print by a specific date</li>
+          </ul>
+          <p class="microcopy contact-selection" id="contactSelection" hidden></p>
+        </div>
+
+        <form id="shopPrintForm" class="form-shell" action="https://formsubmit.co/contracts@signalshieldsolutions.com" method="POST">
+          <input type="hidden" name="_subject" value="3D print storefront inquiry" />
+          <input type="hidden" name="_captcha" value="false" />
+          <div class="form-grid">
+            <div class="field">
+              <label for="shop-name">Name</label>
+              <input id="shop-name" name="name" required />
+            </div>
+            <div class="field">
+              <label for="shop-email">Email</label>
+              <input id="shop-email" type="email" name="email" required />
+            </div>
+            <div class="field">
+              <label for="shop-type">Inquiry type</label>
+              <select id="shop-type" name="inquiry_type">
+                <option value="">Select...</option>
+                <option>Etsy listing question</option>
+                <option>Custom print request</option>
+                <option>Quote request</option>
+                <option>General</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="shop-timing">Timing</label>
+              <input id="shop-timing" name="timing" placeholder="Need-by date, batch timing, or follow-up window" />
+            </div>
+            <div class="field full">
+              <label for="shop-message">Message</label>
+              <textarea id="shop-message" name="message" required placeholder="Tell us which print you want or what custom version you need."></textarea>
+            </div>
+          </div>
+          <button class="btn primary" type="submit">Send inquiry</button>
+          <div class="form-response" data-form-response aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<button id="chatBtn" class="chat-btn" aria-expanded="false" aria-controls="chatPanel"><span class="hide-mobile">Message us</span><span class="show-mobile">Chat</span></button>
+<div id="chatPanel" class="chat-panel" aria-hidden="true">
+  <div class="chat-head">
+    <div>
+      <strong>Signal &amp; Shield Solutions</strong>
+      <p>Ask about a listing, a custom print, or the live printer.</p>
+    </div>
+    <button id="chatClose" class="chat-close" type="button" aria-label="Close chat">x</button>
+  </div>
+  <div id="chatMessages" class="chat-messages"></div>
+  <div id="chatChoices" class="chat-choices"></div>
+  <form id="chatForm" class="chat-compose">
+    <input id="chatInput" type="text" placeholder="Type your message..." autocomplete="off" />
+    <button class="chat-send" type="submit">Send</button>
+  </form>
+  <div class="chat-note">This sends your request to <a href="mailto:contracts@signalshieldsolutions.com">contracts@signalshieldsolutions.com</a>.</div>
+</div>
+
+<script>
+window.CHAT_CONFIG = {
+  subject: "3D print storefront chat inquiry",
+  page: "3D Prints",
+  welcome: "Welcome to the 3D prints page.",
+  prompt: "What do you need help with?",
+  choices: ["View a listing", "Custom print request", "Quote request", "Live print question"],
+  detailsPrompt: "Share the print, listing, or custom part details.",
+  detailsPlaceholder: "Print or listing details"
+};
+
+window.SHOP_CONFIG = {
+  productCatalogUrl: "data/live-products.json"
+};
+</script>
+<script src="shop.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

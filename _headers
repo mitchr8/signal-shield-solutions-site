@@ -10,10 +10,19 @@
 /live-prints.html
   Cache-Control: no-store
 
+/shop.html
+  Cache-Control: no-store
+
 /live-prints.js
   Cache-Control: no-store
 
+/shop.js
+  Cache-Control: no-store
+
 /data/current-print.json
+  Cache-Control: no-store
+
+/data/live-products.json
   Cache-Control: no-store
 
 /print-assets/current-print.png

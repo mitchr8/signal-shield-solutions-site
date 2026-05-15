@@ -18,6 +18,7 @@
   const currentPrintObjectCount = document.getElementById("currentPrintObjectCount");
   const currentPrintObjects = document.getElementById("currentPrintObjects");
   const currentPrintInquiry = document.getElementById("currentPrintInquiry");
+  const currentPrintShopLink = document.getElementById("currentPrintShopLink");
 
   const productMarquee = document.getElementById("productMarquee");
   const productTrack = document.getElementById("productTrack");
@@ -393,6 +394,21 @@
     currentPrintInquiry.dataset.message = payload && payload.message ? payload.message : "";
   }
 
+  function setCurrentPrintShop(payload){
+    if(!currentPrintShopLink){
+      return;
+    }
+
+    const etsyUrl = payload && payload.etsyUrl ? payload.etsyUrl : "";
+    if(etsyUrl){
+      currentPrintShopLink.href = etsyUrl;
+      currentPrintShopLink.hidden = false;
+    }else{
+      currentPrintShopLink.hidden = true;
+      currentPrintShopLink.removeAttribute("href");
+    }
+  }
+
   function renderCurrentPrint(data){
     currentPrintData = data || null;
 
@@ -415,6 +431,7 @@
       currentPrintImage.removeAttribute("src");
       currentPrintPlaceholder.hidden = false;
       setCurrentPrintInquiry(null);
+      setCurrentPrintShop(null);
       return;
     }
 
@@ -447,7 +464,8 @@
       currentPrintImage.hidden = false;
       currentPrintPlaceholder.hidden = true;
     }else if(matchedProduct && matchedProduct.image){
-      currentPrintImage.src = matchedProduct.image;
+      const version = matchedProduct.imageVersion ? ("?v=" + encodeURIComponent(matchedProduct.imageVersion)) : "";
+      currentPrintImage.src = matchedProduct.image + version;
       currentPrintImage.alt = matchedProduct.title || data.title;
       currentPrintImage.hidden = false;
       currentPrintPlaceholder.hidden = true;
@@ -465,6 +483,9 @@
         "I am interested in the current print: " + data.title + ". " +
         (objectNames.length ? "Objects: " + objectNames.slice(0, 4).join(", ") + ". " : "") +
         "Please tell me the price, available material options, and next steps."
+    });
+    setCurrentPrintShop({
+      etsyUrl: matchedProduct && matchedProduct.etsyUrl ? matchedProduct.etsyUrl : ""
     });
   }
 
@@ -491,15 +512,26 @@
     if(duplicate){
       article.setAttribute("aria-hidden", "true");
     }
+    const imageVersion = item.imageVersion ? ("?v=" + encodeURIComponent(item.imageVersion)) : "";
+    const mediaStart = item.etsyUrl
+      ? '<a class="product-card-media product-card-link" href="' + escapeHtml(item.etsyUrl) + '" target="_blank" rel="noopener">'
+      : '<div class="product-card-media">';
+    const mediaEnd = item.etsyUrl ? '</a>' : '</div>';
+    const etsyButton = item.etsyUrl
+      ? '<a class="btn primary mini-button product-etsy" href="' + escapeHtml(item.etsyUrl) + '" target="_blank" rel="noopener">View on Etsy</a>'
+      : "";
     article.innerHTML =
-      '<div class="product-card-media">' +
-        (item.image ? '<img src="' + escapeHtml(item.image) + '" alt="' + escapeHtml(item.title) + '" loading="lazy" />' : '<div class="product-card-fallback">No preview</div>') +
-      '</div>' +
+      mediaStart +
+        (item.image ? '<img src="' + escapeHtml(item.image + imageVersion) + '" alt="' + escapeHtml(item.title) + '" loading="lazy" />' : '<div class="product-card-fallback">No preview</div>') +
+      mediaEnd +
       '<div class="product-card-body">' +
         '<strong>' + escapeHtml(item.title) + '</strong>' +
         '<span class="product-card-price">' + escapeHtml(item.priceLabel || "Quote") + '</span>' +
         '<p>' + escapeHtml(item.description || "Ask about materials, sizing, and timing.") + '</p>' +
-        '<button class="btn secondary product-inquire" type="button" data-product-id="' + escapeHtml(item.id) + '">Ask about this print</button>' +
+        '<div class="product-card-actions">' +
+          etsyButton +
+          '<button class="btn secondary product-inquire" type="button" data-product-id="' + escapeHtml(item.id) + '">Ask about this print</button>' +
+        '</div>' +
       '</div>';
     return article;
   }

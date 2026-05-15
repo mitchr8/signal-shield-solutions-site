@@ -28,6 +28,7 @@
       <a href="index.html">Home</a>
       <a href="govcon.html"><span class="hide-mobile">Government Contracting</span><span class="show-mobile">GovCon</span></a>
       <a href="local-it.html">Local IT</a>
+      <a href="shop.html"><span class="hide-mobile">3D Prints</span><span class="show-mobile">Shop</span></a>
       <a class="current" href="live-prints.html"><span class="hide-mobile">Live Prints</span><span class="show-mobile">Live</span></a>
       <a href="#contact">Contact</a>
     </nav>
@@ -39,10 +40,10 @@
     <div class="hero-inner">
       <div class="hero-copy">
         <h1 class="hero-title">Watch the printer live and see what is running.</h1>
-        <p>When an active print is streaming, the player appears here automatically. The preview card beside it shows the current Bambu plate thumbnail and the print details pulled from the machine.</p>
+        <p>When an active print is streaming, the player appears here automatically. The preview card beside it shows the current part image and the print details pulled from the machine.</p>
         <div class="hero-actions">
           <a class="btn primary" href="#stream">Open the stream</a>
-          <a class="btn secondary" href="#showcase">Browse previous prints</a>
+          <a class="btn secondary" href="shop.html">Browse 3D prints</a>
         </div>
         <div class="hero-process" aria-label="How it works">
           <span><strong>1</strong>Check whether a print is live</span>
@@ -64,15 +65,15 @@
             </div>
             <div class="brief-row">
               <span>Bambu preview</span>
-              <strong>The current print card uses the plate thumbnail from Bambu Studio.</strong>
+              <strong>The current print card shows the active part image and the print details.</strong>
             </div>
             <div class="brief-row">
               <span>Previous prints</span>
-              <strong>The gallery below can showcase completed prints with quote-ready price tags.</strong>
+              <strong>Browse previous prints and jump straight to the matching shop listing when available.</strong>
             </div>
             <div class="brief-row">
               <span>Ordering</span>
-              <strong>Choose a print, prefill the inquiry, and send what you need.</strong>
+              <strong>Choose a print, then either go to Etsy or send a custom request.</strong>
             </div>
           </div>
         </div>
@@ -88,11 +89,11 @@
       </div>
       <div>
         <span>Current preview</span>
-        <strong>Bambu plate image and print details next to the stream</strong>
+        <strong>Current part image and print details next to the stream</strong>
       </div>
       <div>
         <span>Quote path</span>
-        <strong>Use a previous print or custom part to start the inquiry</strong>
+        <strong>Use a previous print or custom part to start the order conversation</strong>
       </div>
     </div>
   </section>
@@ -102,7 +103,7 @@
       <div class="section-head reveal">
         <div class="eyebrow">Live feed</div>
         <h2>Watch the current run and see the matching print preview.</h2>
-        <p>The stream appears automatically when the printer is actively publishing. The card beside it shows the Bambu thumbnail, print name, and a faster starting point if you want the same item or something similar.</p>
+        <p>The stream appears automatically when the printer is actively publishing. The card beside it shows the current part image, print name, and a faster starting point if you want the same item or something similar.</p>
       </div>
       <aside class="surface reveal stream-stack">
         <div id="streamStatus" class="stream-status" aria-live="polite">
@@ -132,7 +133,7 @@
           <img id="currentPrintImage" alt="" hidden />
           <div id="currentPrintPlaceholder" class="current-print-placeholder">
             <strong>Current print details will appear here.</strong>
-            <p>When a print is loaded from Bambu Studio, this card shows the matching preview thumbnail and the print details.</p>
+            <p>When a print is loaded, this card shows the matching image and the current print details.</p>
           </div>
         </div>
         <div class="current-print-body">
@@ -154,7 +155,10 @@
             </div>
           </dl>
           <div id="currentPrintObjects" class="current-print-objects" hidden></div>
-          <a class="btn secondary current-print-inquire" href="#contact" id="currentPrintInquiry">Ask about this print</a>
+          <div class="current-print-actions">
+            <a class="btn primary current-print-shop" href="#" id="currentPrintShopLink" hidden target="_blank" rel="noopener">View on Etsy</a>
+            <a class="btn secondary current-print-inquire" href="#contact" id="currentPrintInquiry">Ask about this print</a>
+          </div>
         </div>
       </aside>
     </div>
@@ -164,7 +168,7 @@
     <div class="section-head reveal" style="margin-bottom:24px">
       <div class="eyebrow">Previous prints</div>
       <h2>Showcase finished prints and let customers ask about them directly.</h2>
-      <p>The product rail below reads from a simple local catalog. You can add prints, swap images, and change prices from your own machine without exposing any public admin page.</p>
+      <p>The gallery below shows example prints, price ranges, and direct shop links when a matching Etsy listing is available.</p>
     </div>
     <div class="product-marquee reveal" id="productMarquee" hidden>
       <div class="product-track" id="productTrack" aria-live="polite"></div>
@@ -187,7 +191,7 @@
       <article class="surface reveal">
         <div class="process-step" data-step="2">
           <strong>Preview matched</strong>
-          <p>The preview card can show the matching Bambu plate thumbnail so customers know what part is running.</p>
+          <p>The preview card can show the matching current part image so customers know what part is running.</p>
         </div>
       </article>
       <article class="surface reveal">
@@ -206,8 +210,8 @@
       </article>
       <article class="surface reveal">
         <span class="cluster-tag">Catalog updates</span>
-        <h3>Previous prints stay easy to manage locally.</h3>
-        <p>The gallery is backed by a local JSON catalog in your site repo, so you can add or change entries without exposing any public editing surface.</p>
+        <h3>Previous prints stay easy to keep current.</h3>
+        <p>Completed prints can carry price ranges, custom-order language, and direct Etsy links without cluttering the live page.</p>
       </article>
     </div>
   </section>
