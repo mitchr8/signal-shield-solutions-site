@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-14T13:30:00-07:00",
+  "updatedAt": "2026-05-15T10:34:51.9622254-07:00",
   "items": [
     {
       "id": "infinity-cube",
       "title": "Infinity Cube",
-      "priceLabel": "From $14",
-      "description": "Compact print-in-place fidget piece with smooth hinges and a desk-friendly footprint.",
-      "image": "/print-assets/products/infinity-cube.png",
-      "inquiryMessage": "I am interested in the Infinity Cube (from $14). Please tell me the current price, available colors, and lead time."
+      "priceLabel": "From $6",
+      "description": "Compact fidget piece with smooth hinges and a desk-friendly footprint. Please contact us for bulk order pricing.",
+      "image": "/print-assets/products/infinity-cube.webp",
+      "inquiryMessage": "I am interested in the Infinity Cube (From $6). Please tell me the current price, material options, and lead time."
     },
     {
       "id": "drybox-roller-set",
