@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-15T13:43:55.4583503-07:00",
+  "updatedAt": "2026-05-15T13:44:01.5123577-07:00",
   "items": [
     {
       "id": "infinity-cube",
@@ -10,16 +10,6 @@
       "imageVersion": "20260515123000",
       "etsyUrl": "",
       "inquiryMessage": "I am interested in the Infinity Cube (From $6). Please tell me the current price, material options, and lead time."
-    },
-    {
-      "id": "ams-riser-parts-set",
-      "title": "AMS Riser Parts Set",
-      "priceLabel": "From $34",
-      "description": "Hardware-style print set for AMS or drybox accessory upgrades, shown here from the latest shop build plate.",
-      "image": "/print-assets/products/ams-riser-parts-set.png",
-      "imageVersion": "20260515123000",
-      "etsyUrl": "",
-      "inquiryMessage": "I am interested in the AMS Riser Parts Set (from $34). Please tell me the current price, material options, and lead time."
     }
   ]
 }
