@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-15T13:43:50.5603668-07:00",
+  "updatedAt": "2026-05-15T13:43:55.4583503-07:00",
   "items": [
     {
       "id": "infinity-cube",
@@ -10,16 +10,6 @@
       "imageVersion": "20260515123000",
       "etsyUrl": "",
       "inquiryMessage": "I am interested in the Infinity Cube (From $6). Please tell me the current price, material options, and lead time."
-    },
-    {
-      "id": "monitor-riser-drawer",
-      "title": "Monitor Riser Drawer Bin",
-      "priceLabel": "From $18",
-      "description": "Small organizer drawer component from a modular monitor riser build for desk storage and cable cleanup.",
-      "image": "/print-assets/products/monitor-riser-drawer.png",
-      "imageVersion": "20260515123000",
-      "etsyUrl": "",
-      "inquiryMessage": "I am interested in the Monitor Riser Drawer Bin (from $18). Please tell me the current price, sizing options, and lead time."
     },
     {
       "id": "ams-riser-parts-set",
