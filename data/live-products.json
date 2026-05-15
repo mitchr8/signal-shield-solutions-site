@@ -1,15 +1,95 @@
 {
-  "updatedAt": "2026-05-15T13:44:01.5123577-07:00",
+  "updatedAt": "2026-05-15T13:57:34.3164195-07:00",
   "items": [
     {
       "id": "infinity-cube",
-      "title": "Infinity Cube",
+      "title": "Infinity Cube Fidget",
       "priceLabel": "From $6",
-      "description": "Compact fidget piece with smooth hinges and a desk-friendly footprint. Please contact us for bulk order pricing.",
+      "description": "Pocket-size articulated desk fidget with smooth hinges, bright color options, and a low-friction fold that works well for gifts, desks, and impulse buys.",
       "image": "/print-assets/products/infinity-cube.webp",
       "imageVersion": "20260515123000",
       "etsyUrl": "",
-      "inquiryMessage": "I am interested in the Infinity Cube (From $6). Please tell me the current price, material options, and lead time."
+      "inquiryMessage": "I am interested in the Infinity Cube Fidget (From $6). Please tell me the current price, material options, and lead time."
+    },
+    {
+      "id": "spinner-desk-fidget",
+      "title": "Spinner Desk Fidget",
+      "priceLabel": "From $8",
+      "description": "Print-in-place spinner-style desk fidget built for satisfying motion, easy gifting, and everyday stress-relief use at a desk or workbench.",
+      "image": "/print-assets/products/spinner-desk-fidget.png",
+      "imageVersion": "20260515135617",
+      "etsyUrl": "",
+      "inquiryMessage": "I am interested in the Spinner Desk Fidget (From $8). Please tell me the current price, material options, and lead time."
+    },
+    {
+      "id": "custom-desktop-name-plate",
+      "title": "Custom Desktop Name Plate",
+      "priceLabel": "From $18",
+      "description": "Personalized desk sign for offices, classrooms, workstations, and streaming setups. Best positioned as a giftable custom item with name, role, or brand text.",
+      "image": "/print-assets/products/custom-desktop-name-plate.png",
+      "imageVersion": "20260515135617",
+      "etsyUrl": "",
+      "inquiryMessage": "I am interested in the Custom Desktop Name Plate (From $18). Please tell me the current price, material options, and lead time."
+    },
+    {
+      "id": "drybox-roller-set",
+      "title": "Drybox Roller Set",
+      "priceLabel": "From $16",
+      "description": "Drybox roller hardware set for smoother spool movement and lower feed drag inside filament dryboxes and storage boxes.",
+      "image": "/print-assets/products/drybox-roller-set.png",
+      "imageVersion": "20260515135617",
+      "etsyUrl": "",
+      "inquiryMessage": "I am interested in the Drybox Roller Set (From $16). Please tell me the current price, material options, and lead time."
+    },
+    {
+      "id": "filament-clip-6-pack",
+      "title": "Filament Clip 6-Pack",
+      "priceLabel": "From $9",
+      "description": "Multi-pack of spool clips sized for common 1.75mm filament storage. Better value than single clips and easier to keep near multiple spools.",
+      "image": "/print-assets/products/filament-clip-6-pack.png",
+      "imageVersion": "20260515135617",
+      "etsyUrl": "",
+      "inquiryMessage": "I am interested in the Filament Clip 6-Pack (From $9). Please tell me the current price, material options, and lead time."
+    },
+    {
+      "id": "bambu-poop-chute-slide",
+      "title": "Bambu Poop Chute Slide",
+      "priceLabel": "From $16",
+      "description": "Printer waste slide accessory for cleaner purge handling and easier cleanup. Strong fit for printer owners searching by exact machine compatibility.",
+      "image": "/print-assets/products/bambu-poop-chute-slide.png",
+      "imageVersion": "20260515135617",
+      "etsyUrl": "",
+      "inquiryMessage": "I am interested in the Bambu Poop Chute Slide (From $16). Please tell me the current price, material options, and lead time."
+    },
+    {
+      "id": "monitor-riser-drawer",
+      "title": "Monitor Riser With Drawers",
+      "priceLabel": "From $29",
+      "description": "Desk riser with built-in drawer storage for office tools, accessories, and small workbench items. Higher-utility product with stronger ticket value.",
+      "image": "/print-assets/products/monitor-riser-drawer.png",
+      "imageVersion": "20260515135617",
+      "etsyUrl": "",
+      "inquiryMessage": "I am interested in the Monitor Riser With Drawers (From $29). Please tell me the current price, material options, and lead time."
+    },
+    {
+      "id": "ams-riser-parts-set",
+      "title": "AMS Riser Part Set",
+      "priceLabel": "From $24",
+      "description": "Part set for an AMS-style riser or clearance upgrade, positioned between simple printer add-ons and larger enclosure modifications.",
+      "image": "/print-assets/products/ams-riser-parts-set.png",
+      "imageVersion": "20260515135617",
+      "etsyUrl": "",
+      "inquiryMessage": "I am interested in the AMS Riser Part Set (From $24). Please tell me the current price, material options, and lead time."
+    },
+    {
+      "id": "pla-bed-scraper",
+      "title": "PLA Bed Scraper Tool",
+      "priceLabel": "From $8",
+      "description": "Compact print-removal tool for build plate cleanup, light scraping, and day-to-day printer maintenance. Best positioned as a practical accessory or add-on order.",
+      "image": "/print-assets/products/pla-bed-scraper.png",
+      "imageVersion": "20260515135734",
+      "etsyUrl": "",
+      "inquiryMessage": "I am interested in the PLA Bed Scraper Tool (From $8). Please tell me the current price, material options, and lead time."
     }
   ]
 }
