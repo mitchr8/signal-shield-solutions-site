@@ -440,9 +440,20 @@
     }
     currentPrintTitle.textContent = data.title;
     const matchedProduct = !data.image ? findMatchingProductForCurrentPrint(data) : null;
+    const updatedAtMs = data.updatedAt ? Date.parse(data.updatedAt) : NaN;
+    const progressIsFresh = Number.isFinite(updatedAtMs) ? (Date.now() - updatedAtMs) < 45000 : false;
     currentPrintSummary.textContent = data.note || "This preview comes from the latest Bambu Studio project metadata available on the shop machine.";
     currentPrintState.textContent = data.gcodeState || (data.active ? "RUNNING" : "OFFLINE");
-    currentPrintProgress.textContent = typeof data.progress === "number" ? (data.progress + "%") : (data.active ? "Live" : "--");
+    if(typeof data.progress === "number" && (!data.active || progressIsFresh)){
+      currentPrintProgress.textContent = data.progress + "%";
+    }else if(data.active){
+      currentPrintProgress.textContent = "Updating";
+      if(!data.note){
+        currentPrintSummary.textContent = "The live stream is online. Progress is still updating from the printer.";
+      }
+    }else{
+      currentPrintProgress.textContent = "--";
+    }
 
     const objectNames = Array.isArray(data.objects) ? data.objects.map(cleanObjectName).filter(Boolean) : [];
     currentPrintObjectCount.textContent = data.objectCount || (objectNames.length ? String(objectNames.length) : "--");
