@@ -1,17 +1,20 @@
 {
-  "updatedAt": "2026-05-15T11:05:44.6586004-07:00",
-  "active": true,
+  "updatedAt": "2026-05-15T14:09:13.8054838-07:00",
+  "active": false,
   "cameraAvailable": true,
-  "gcodeState": "RUNNING",
-  "progress": 81,
-  "title": "BLV - AMS Riser V4.0 X2D new official upgrade version!",
-  "projectId": "950093119",
-  "image": "",
-  "imageVersion": "",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "Active Bambu print detected. Preview image is not available for this job yet."
+  "gcodeState": "",
+  "progress": null,
+  "title": "Filament Spool Meter",
+  "projectId": "",
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "20260515140913",
+  "objectCount": 2,
+  "objects": [
+    "Filament Spool Meter.stl",
+    "wipe_tower"
+  ],
+  "weightGrams": 13.63,
+  "estimatedSeconds": 2063,
+  "printerModelId": "N6",
+  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
 }
