@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-15T05:33:41.4205869-07:00",
-  "active": false,
+  "updatedAt": "2026-05-15T05:33:56.5248836-07:00",
+  "active": true,
   "cameraAvailable": false,
-  "gcodeState": "",
-  "progress": null,
-  "title": "deckel(7)",
-  "projectId": "",
+  "gcodeState": "RUNNING",
+  "progress": 45,
+  "title": "BLV - AMS Riser V4.0 X2D new official upgrade version!",
+  "projectId": "950093119",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260515053341",
+  "imageVersion": "20260515053356",
   "objectCount": 5,
   "objects": [
     "deckel(7).stl",
@@ -19,5 +19,5 @@
   "weightGrams": 96.14,
   "estimatedSeconds": 11148,
   "printerModelId": "N6",
-  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
+  "note": "The printer is active locally. The live stream will appear when Go Live is available."
 }
