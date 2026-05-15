@@ -1,23 +1,17 @@
 {
-  "updatedAt": "2026-05-15T05:33:56.5248836-07:00",
+  "updatedAt": "2026-05-15T07:30:32.3687055-07:00",
   "active": true,
-  "cameraAvailable": false,
+  "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 45,
+  "progress": 58,
   "title": "BLV - AMS Riser V4.0 X2D new official upgrade version!",
   "projectId": "950093119",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260515053356",
-  "objectCount": 5,
-  "objects": [
-    "deckel(7).stl",
-    "Drybox-Roller-Arm-STRONG.stl",
-    "Drybox-Roller-role.stl",
-    "Drybox-Roller-Arm-STRONG.stl",
-    "Drybox-Roller-Base-Square.stl"
-  ],
-  "weightGrams": 96.14,
-  "estimatedSeconds": 11148,
-  "printerModelId": "N6",
-  "note": "The printer is active locally. The live stream will appear when Go Live is available."
+  "imageVersion": "20260515073032",
+  "objectCount": 0,
+  "objects": [],
+  "weightGrams": null,
+  "estimatedSeconds": null,
+  "printerModelId": "",
+  "note": "Active Bambu print preview paired with the live stream."
 }
