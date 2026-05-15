@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-15T10:35:29.7600183-07:00",
+  "updatedAt": "2026-05-15T13:43:50.5603668-07:00",
   "items": [
     {
       "id": "infinity-cube",
@@ -10,16 +10,6 @@
       "imageVersion": "20260515123000",
       "etsyUrl": "",
       "inquiryMessage": "I am interested in the Infinity Cube (From $6). Please tell me the current price, material options, and lead time."
-    },
-    {
-      "id": "drybox-roller-set",
-      "title": "Drybox Roller Set",
-      "priceLabel": "From $24",
-      "description": "Utility print set for smoother spool movement inside a drybox or AMS-adjacent storage setup.",
-      "image": "/print-assets/products/drybox-roller-set.png",
-      "imageVersion": "20260515123000",
-      "etsyUrl": "",
-      "inquiryMessage": "I am interested in the Drybox Roller Set (from $24). Please tell me the current price, included pieces, and lead time."
     },
     {
       "id": "monitor-riser-drawer",
