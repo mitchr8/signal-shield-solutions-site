@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-15T07:37:11.6848870-07:00",
+  "updatedAt": "2026-05-15T07:43:49.1973099-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
@@ -7,7 +7,7 @@
   "title": "BLV - AMS Riser V4.0 X2D new official upgrade version!",
   "projectId": "950093119",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260515073711",
+  "imageVersion": "20260515074349",
   "objectCount": 0,
   "objects": [],
   "weightGrams": null,
