@@ -328,6 +328,61 @@
       .trim();
   }
 
+  function normalizeCompareText(value){
+    return String(value || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function getCompareTokens(value){
+    const stopWords = new Set(["the", "and", "for", "with", "new", "official", "version", "print", "parts", "set"]);
+    return normalizeCompareText(value)
+      .split(" ")
+      .filter(function(token){
+        return token && !stopWords.has(token);
+      });
+  }
+
+  function findMatchingProductForCurrentPrint(data){
+    if(!data || !data.title || !productIndex.size){
+      return null;
+    }
+
+    const currentText = normalizeCompareText(data.title);
+    const currentTokens = new Set(getCompareTokens(data.title));
+    let bestItem = null;
+    let bestScore = 0;
+
+    productIndex.forEach(function(item){
+      const itemText = normalizeCompareText(item.title);
+      const itemTokens = getCompareTokens(item.title);
+      let score = 0;
+
+      if(currentText === itemText){
+        score = 100;
+      }else{
+        if(currentText.includes(itemText) || itemText.includes(currentText)){
+          score += 50;
+        }
+
+        itemTokens.forEach(function(token){
+          if(currentTokens.has(token)){
+            score += 10;
+          }
+        });
+      }
+
+      if(score > bestScore && score >= 20){
+        bestScore = score;
+        bestItem = item;
+      }
+    });
+
+    return bestItem;
+  }
+
   function setCurrentPrintInquiry(payload){
     if(!currentPrintInquiry){
       return;
@@ -367,6 +422,7 @@
       currentPrintEyebrow.textContent = data.active ? "Active Bambu print" : "Latest Bambu load";
     }
     currentPrintTitle.textContent = data.title;
+    const matchedProduct = !data.image ? findMatchingProductForCurrentPrint(data) : null;
     currentPrintSummary.textContent = data.note || "This preview comes from the latest Bambu Studio project metadata available on the shop machine.";
     currentPrintState.textContent = data.gcodeState || (data.active ? "RUNNING" : "OFFLINE");
     currentPrintProgress.textContent = typeof data.progress === "number" ? (data.progress + "%") : (data.active ? "Live" : "--");
@@ -390,6 +446,12 @@
       currentPrintImage.alt = data.title;
       currentPrintImage.hidden = false;
       currentPrintPlaceholder.hidden = true;
+    }else if(matchedProduct && matchedProduct.image){
+      currentPrintImage.src = matchedProduct.image;
+      currentPrintImage.alt = matchedProduct.title || data.title;
+      currentPrintImage.hidden = false;
+      currentPrintPlaceholder.hidden = true;
+      currentPrintSummary.textContent = "Live plate thumbnail is not available for this job yet. Showing the closest matching catalog preview instead.";
     }else{
       currentPrintImage.hidden = true;
       currentPrintImage.removeAttribute("src");
@@ -398,6 +460,7 @@
 
     setCurrentPrintInquiry({
       title: data.title,
+      priceLabel: matchedProduct && matchedProduct.priceLabel ? matchedProduct.priceLabel : "",
       message:
         "I am interested in the current print: " + data.title + ". " +
         (objectNames.length ? "Objects: " + objectNames.slice(0, 4).join(", ") + ". " : "") +
@@ -480,6 +543,10 @@
       productTrack.classList.add("no-motion");
     }else{
       productTrack.classList.remove("no-motion");
+    }
+
+    if(currentPrintData){
+      renderCurrentPrint(currentPrintData);
     }
   }
 
