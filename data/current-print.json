@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-15T23:15:24.1986406-07:00",
+  "updatedAt": "2026-05-15T23:15:45.2712975-07:00",
   "active": false,
   "cameraAvailable": false,
   "gcodeState": "",
@@ -7,7 +7,7 @@
   "title": "Filament Spool Meter",
   "projectId": "",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260515231524",
+  "imageVersion": "20260515231545",
   "objectCount": 2,
   "objects": [
     "Filament Spool Meter.stl",
