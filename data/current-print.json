@@ -1,17 +1,20 @@
 {
-  "updatedAt": "2026-05-15T18:20:57.0690353-07:00",
-  "active": true,
+  "updatedAt": "2026-05-15T18:25:26.7840849-07:00",
+  "active": false,
   "cameraAvailable": false,
-  "gcodeState": "RUNNING",
-  "progress": 92,
-  "title": "Achsen Reinigungstool 0.2mm optimiert",
-  "projectId": "952097722",
-  "image": "",
-  "imageVersion": "",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "The printer is active locally. Preview image is not available for this job yet."
+  "gcodeState": "",
+  "progress": null,
+  "title": "Filament Spool Meter",
+  "projectId": "",
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "20260515182526",
+  "objectCount": 2,
+  "objects": [
+    "Filament Spool Meter.stl",
+    "wipe_tower"
+  ],
+  "weightGrams": 13.09,
+  "estimatedSeconds": 2342,
+  "printerModelId": "N6",
+  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
 }
