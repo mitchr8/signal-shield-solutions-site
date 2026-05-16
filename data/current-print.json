@@ -1,17 +1,20 @@
 {
-  "updatedAt": "2026-05-15T22:10:03.5608686-07:00",
+  "updatedAt": "2026-05-15T22:11:02.5362553-07:00",
   "active": false,
   "cameraAvailable": false,
   "gcodeState": "",
   "progress": null,
-  "title": "BLV - AMS / AMS 2 Riser P2S / X2D / X1C / P1S v4",
+  "title": "Filament Spool Meter",
   "projectId": "",
-  "image": "",
-  "imageVersion": "",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "20260515221102",
+  "objectCount": 2,
+  "objects": [
+    "Filament Spool Meter.stl",
+    "wipe_tower"
+  ],
+  "weightGrams": 13.09,
+  "estimatedSeconds": 2342,
+  "printerModelId": "N6",
+  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
 }
