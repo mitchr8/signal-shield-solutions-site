@@ -1,17 +1,20 @@
 {
-  "updatedAt": "2026-05-15T21:55:07.9425531-07:00",
-  "active": true,
+  "updatedAt": "2026-05-15T21:55:21.6220364-07:00",
+  "active": false,
   "cameraAvailable": false,
-  "gcodeState": "RUNNING",
-  "progress": 84,
-  "title": "Achsen Reinigungstool für X2D, P1S, P2S, H2 Serie",
-  "projectId": "0",
-  "image": "",
-  "imageVersion": "",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "The printer is active locally. Preview image is not available for this job yet."
+  "gcodeState": "",
+  "progress": null,
+  "title": "Filament Spool Meter",
+  "projectId": "",
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "20260515215521",
+  "objectCount": 2,
+  "objects": [
+    "Filament Spool Meter.stl",
+    "wipe_tower"
+  ],
+  "weightGrams": 13.09,
+  "estimatedSeconds": 2342,
+  "printerModelId": "N6",
+  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
 }
