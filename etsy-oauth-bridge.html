@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Etsy Authorization Bridge | Signal &amp; Shield Solutions</title>
+<meta name="robots" content="noindex,nofollow" />
+<style>
+  body{
+    margin:0;
+    min-height:100vh;
+    display:grid;
+    place-items:center;
+    font:16px/1.5 system-ui, sans-serif;
+    background:#0c1424;
+    color:#f4f7fb;
+  }
+  main{
+    width:min(640px, calc(100vw - 32px));
+    padding:32px;
+    border-radius:20px;
+    background:#111d33;
+    box-shadow:0 24px 60px rgba(0,0,0,.35);
+  }
+  h1{ margin:0 0 12px; font-size:28px; }
+  p{ margin:0 0 12px; color:#c6cfdd; }
+  a{
+    color:#f7c868;
+    word-break:break-all;
+  }
+  code{
+    background:rgba(255,255,255,.08);
+    padding:2px 6px;
+    border-radius:6px;
+  }
+</style>
+</head>
+<body>
+<main>
+  <h1>Completing Etsy authorization</h1>
+  <p>This page forwards the Etsy authorization response to the local Signal &amp; Shield catalog manager.</p>
+  <p id="status">Redirecting to the local helper now...</p>
+  <p>If nothing happens, copy this URL into your browser while the local helper is running:</p>
+  <p><a id="localLink" href="#">http://localhost:3003/oauth/redirect</a></p>
+</main>
+<script>
+(function () {
+  const query = window.location.search || "";
+  const hash = window.location.hash || "";
+  const localUrl = "http://localhost:3003/oauth/redirect" + query + hash;
+  const link = document.getElementById("localLink");
+  const status = document.getElementById("status");
+  link.href = localUrl;
+  link.textContent = localUrl;
+  try {
+    window.location.replace(localUrl);
+  } catch (error) {
+    status.textContent = "Automatic redirect did not start. Open the localhost link manually while the catalog manager authorization is waiting.";
+  }
+})();
+</script>
+</body>
+</html>
