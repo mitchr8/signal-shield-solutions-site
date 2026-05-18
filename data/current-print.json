@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-05-18T14:00:05.3047160-07:00",
+  "updatedAt": "2026-05-18T14:08:35.2704252-07:00",
   "active": true,
-  "cameraAvailable": true,
+  "cameraAvailable": false,
   "gcodeState": "RUNNING",
-  "progress": 39,
+  "progress": 40,
   "title": "Mesh1.0",
   "projectId": "958224402",
   "image": "",
@@ -13,5 +13,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Active Bambu print detected. Preview image is not available for this job yet."
+  "note": "The printer is active locally. Preview image is not available for this job yet."
 }
