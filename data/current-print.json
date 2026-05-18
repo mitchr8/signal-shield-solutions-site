@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-18T09:50:14.0650603-07:00",
-  "active": false,
+  "updatedAt": "2026-05-18T09:50:25.2640394-07:00",
+  "active": true,
   "cameraAvailable": false,
-  "gcodeState": "",
-  "progress": null,
-  "title": "Mesh1",
-  "projectId": "",
+  "gcodeState": "RUNNING",
+  "progress": 8,
+  "title": "Mesh1.0",
+  "projectId": "958224402",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260518095014",
+  "imageVersion": "20260518095025",
   "objectCount": 1,
   "objects": [
     "Mesh1.0"
@@ -15,5 +15,5 @@
   "weightGrams": 110.3,
   "estimatedSeconds": 47421,
   "printerModelId": "N6",
-  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
+  "note": "The printer is active locally. The live stream will appear when Go Live is available."
 }
