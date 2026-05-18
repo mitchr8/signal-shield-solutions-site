@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-17T20:21:42.3620615-07:00",
+  "updatedAt": "2026-05-17T20:25:37.2598943-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 49,
+  "progress": 50,
   "title": "Mesh1.0",
   "projectId": "956834834",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260517202142",
+  "imageVersion": "20260517202537",
   "objectCount": 1,
   "objects": [
     "Mesh1.0"
