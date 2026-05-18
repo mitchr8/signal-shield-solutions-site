@@ -45,6 +45,8 @@
   let cloudflareLiveState = null;
   let cloudflarePlayerMounted = false;
   let cloudflareWhepSession = null;
+  let lifecyclePollTimer = null;
+  let lifecyclePollInFlight = false;
   let currentPrintData = null;
   let productIndex = new Map();
 
@@ -363,7 +365,42 @@
     return "/live-stream/" + encodeURIComponent(source.inputId) + "/" + suffix;
   }
 
-  async function syncCloudflareLifecycle(source){
+  function clearLifecyclePollTimer(){
+    if(lifecyclePollTimer){
+      window.clearTimeout(lifecyclePollTimer);
+      lifecyclePollTimer = null;
+    }
+  }
+
+  function getLifecyclePollDelay(){
+    if(document.hidden){
+      return 180000;
+    }
+
+    if(cloudflareLiveState === true){
+      return 30000;
+    }
+
+    if(cloudflareLiveState === false){
+      return 60000;
+    }
+
+    return 45000;
+  }
+
+  function scheduleLifecyclePoll(source, delay){
+    clearLifecyclePollTimer();
+    lifecyclePollTimer = window.setTimeout(function(){
+      syncCloudflareLifecycle(source);
+    }, typeof delay === "number" ? delay : getLifecyclePollDelay());
+  }
+
+  async function syncCloudflareLifecycle(source, options){
+    if(lifecyclePollInFlight){
+      return;
+    }
+
+    lifecyclePollInFlight = true;
     const lifecycleUrl = buildCloudflareProxyUrl(source, "lifecycle");
 
     try{
@@ -398,10 +435,14 @@
         cloudflareLiveState = false;
         setStatus("Offline", "The live camera is offline right now. Check back during the next active print.", false);
       }
+      scheduleLifecyclePoll(source);
     }catch(error){
       teardownCloudflarePlayer();
       renderPlaceholder(defaultOfflineTitle.textContent, defaultOfflineText.textContent);
       setStatus("Checking status", "The camera status is updating. Reload the page if this does not clear in a moment.", false);
+      scheduleLifecyclePoll(source, document.hidden ? 180000 : 90000);
+    }finally{
+      lifecyclePollInFlight = false;
     }
   }
 
@@ -791,9 +832,17 @@
   if(source){
     if(source.kind === "cloudflare"){
       syncCloudflareLifecycle(source);
-      window.setInterval(function(){
+      document.addEventListener("visibilitychange", function(){
+        if(document.hidden){
+          scheduleLifecyclePoll(source);
+          return;
+        }
         syncCloudflareLifecycle(source);
-      }, 15000);
+      });
+      window.addEventListener("focus", function(){
+        syncCloudflareLifecycle(source);
+      });
+      window.addEventListener("beforeunload", clearLifecyclePollTimer);
     }else{
       setStatus("Live now", "The live viewer is connected.", true);
       streamMount.innerHTML = "";
