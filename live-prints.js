@@ -44,7 +44,7 @@
 
   let cloudflareLiveState = null;
   let cloudflarePlayerMounted = false;
-  let cloudflarePlayer = null;
+  let cloudflareScriptPromise = null;
   let currentPrintData = null;
   let productIndex = new Map();
 
@@ -136,14 +136,6 @@
 
   function teardownCloudflarePlayer(){
     clearStreamAction();
-    if(cloudflarePlayer && typeof cloudflarePlayer.pause === "function"){
-      try{
-        cloudflarePlayer.pause();
-      }catch(error){
-        console.error("Cloudflare player pause failed", error);
-      }
-    }
-    cloudflarePlayer = null;
     cloudflarePlayerMounted = false;
     streamMount.innerHTML = "";
   }
@@ -167,16 +159,74 @@
     return frame;
   }
 
+  function ensureCloudflareStreamScript(source){
+    if(cloudflareScriptPromise){
+      return cloudflareScriptPromise;
+    }
+
+    cloudflareScriptPromise = new Promise(function(resolve, reject){
+      const existing = document.getElementById("cloudflareStreamScript");
+      if(existing){
+        if(existing.dataset.loaded === "true"){
+          resolve();
+          return;
+        }
+
+        existing.addEventListener("load", function(){
+          existing.dataset.loaded = "true";
+          resolve();
+        }, { once: true });
+        existing.addEventListener("error", reject, { once: true });
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.id = "cloudflareStreamScript";
+      script.defer = true;
+      script.dataset.cfasync = "false";
+      script.src = "https://customer-" + encodeURIComponent(source.code) + ".cloudflarestream.com/embed/sdk-iframe-integration.fla9.latest.js?video=" + encodeURIComponent(source.inputId);
+      script.addEventListener("load", function(){
+        script.dataset.loaded = "true";
+        resolve();
+      }, { once: true });
+      script.addEventListener("error", reject, { once: true });
+      document.head.appendChild(script);
+    });
+
+    return cloudflareScriptPromise;
+  }
+
   function attachCloudflarePlayer(source){
     if(cloudflarePlayerMounted){
       return;
     }
 
     teardownCloudflarePlayer();
+    const streamEl = document.createElement("stream");
+    streamEl.setAttribute("src", source.inputId);
+    streamEl.setAttribute("controls", "");
+    streamEl.setAttribute("autoplay", "");
+    streamEl.setAttribute("muted", "");
+    streamEl.setAttribute("preload", "auto");
+    streamEl.setAttribute("cmcd", "");
+    streamEl.setAttribute("force-flavor", "whep");
+    streamEl.setAttribute("letterbox-color", "transparent");
+    streamEl.setAttribute("customer-domain-prefix", "customer-" + source.code);
+    streamEl.setAttribute("playsinline", "");
+    if(currentPrintData && currentPrintData.image){
+      const version = currentPrintData.imageVersion ? ("?v=" + encodeURIComponent(currentPrintData.imageVersion)) : "";
+      streamEl.setAttribute("poster", currentPrintData.image + version);
+    }
     streamMount.innerHTML = "";
-    const frame = buildFrame(source);
-    streamMount.appendChild(frame);
+    streamMount.appendChild(streamEl);
     cloudflarePlayerMounted = true;
+    ensureCloudflareStreamScript(source).catch(function(error){
+      console.error("Cloudflare stream script failed to load", error);
+      teardownCloudflarePlayer();
+      const fallbackFrame = buildFrame(source);
+      streamMount.appendChild(fallbackFrame);
+      cloudflarePlayerMounted = true;
+    });
   }
 
   function pickValue(paramName, configName){
