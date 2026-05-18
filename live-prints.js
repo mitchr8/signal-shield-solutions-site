@@ -154,6 +154,7 @@
     if(source.kind === "cloudflare"){
       frameUrl.searchParams.set("autoplay", "true");
       frameUrl.searchParams.set("muted", "true");
+      frameUrl.searchParams.set("controls", "true");
       frameUrl.searchParams.set("letterboxColor", "transparent");
       frameUrl.searchParams.set("preload", "auto");
     }
@@ -166,53 +167,6 @@
     return frame;
   }
 
-  async function requestCloudflarePlayback(player, source){
-    try{
-      await player.play();
-      clearStreamAction();
-    }catch(error){
-      try{
-        player.muted = true;
-        await player.play();
-        clearStreamAction();
-      }catch(finalError){
-        showStreamAction("Start stream", function(){
-          requestCloudflarePlayback(player, source);
-        });
-      }
-    }
-  }
-
-  function initCloudflarePlayer(frame, source){
-    if(source.kind !== "cloudflare" || typeof window.Stream !== "function"){
-      return;
-    }
-
-    try{
-      const player = window.Stream(frame);
-      cloudflarePlayer = player;
-      player.autoplay = true;
-      player.muted = true;
-      player.controls = false;
-      player.preload = true;
-      player.letterboxColor = "transparent";
-      player.addEventListener("play", clearStreamAction);
-      player.addEventListener("playing", clearStreamAction);
-      player.addEventListener("loadeddata", clearStreamAction);
-      player.addEventListener("error", function(){
-        showStreamAction("Open stream", function(){
-          window.open(source.url, "_blank", "noopener");
-        });
-      });
-      showStreamAction("Start stream", function(){
-        requestCloudflarePlayback(player, source);
-      });
-      requestCloudflarePlayback(player, source);
-    }catch(error){
-      console.error("Cloudflare player init failed", error);
-    }
-  }
-
   function attachCloudflarePlayer(source){
     if(cloudflarePlayerMounted){
       return;
@@ -223,7 +177,6 @@
     const frame = buildFrame(source);
     streamMount.appendChild(frame);
     cloudflarePlayerMounted = true;
-    initCloudflarePlayer(frame, source);
   }
 
   function pickValue(paramName, configName){
