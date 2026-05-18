@@ -44,7 +44,7 @@
 
   let cloudflareLiveState = null;
   let cloudflarePlayerMounted = false;
-  let cloudflareScriptPromise = null;
+  let cloudflareWhepSession = null;
   let currentPrintData = null;
   let productIndex = new Map();
 
@@ -136,6 +136,7 @@
 
   function teardownCloudflarePlayer(){
     clearStreamAction();
+    closeCloudflareWhepSession();
     cloudflarePlayerMounted = false;
     streamMount.innerHTML = "";
   }
@@ -143,14 +144,6 @@
   function buildFrame(source){
     const frame = document.createElement("iframe");
     const frameUrl = new URL(source.url);
-    if(source.kind === "cloudflare"){
-      frameUrl.searchParams.set("autoplay", "true");
-      frameUrl.searchParams.set("muted", "true");
-      frameUrl.searchParams.set("controls", "true");
-      frameUrl.searchParams.set("letterboxColor", "transparent");
-      frameUrl.searchParams.set("preload", "auto");
-    }
-
     frame.src = frameUrl.toString();
     frame.title = source.label;
     frame.loading = "lazy";
@@ -159,74 +152,154 @@
     return frame;
   }
 
-  function ensureCloudflareStreamScript(source){
-    if(cloudflareScriptPromise){
-      return cloudflareScriptPromise;
+  function parseIceServers(linkHeader){
+    if(!linkHeader){
+      return [];
     }
 
-    cloudflareScriptPromise = new Promise(function(resolve, reject){
-      const existing = document.getElementById("cloudflareStreamScript");
-      if(existing){
-        if(existing.dataset.loaded === "true"){
-          resolve();
-          return;
-        }
-
-        existing.addEventListener("load", function(){
-          existing.dataset.loaded = "true";
-          resolve();
-        }, { once: true });
-        existing.addEventListener("error", reject, { once: true });
-        return;
-      }
-
-      const script = document.createElement("script");
-      script.id = "cloudflareStreamScript";
-      script.defer = true;
-      script.dataset.cfasync = "false";
-      script.src = "https://customer-" + encodeURIComponent(source.code) + ".cloudflarestream.com/embed/sdk-iframe-integration.fla9.latest.js?video=" + encodeURIComponent(source.inputId);
-      script.addEventListener("load", function(){
-        script.dataset.loaded = "true";
-        resolve();
-      }, { once: true });
-      script.addEventListener("error", reject, { once: true });
-      document.head.appendChild(script);
-    });
-
-    return cloudflareScriptPromise;
+    return linkHeader
+      .split(",")
+      .map(function(part){
+        return part.trim();
+      })
+      .map(function(part){
+        const match = part.match(/<([^>]+)>;\s*rel="ice-server"/i);
+        return match ? match[1] : "";
+      })
+      .filter(Boolean)
+      .map(function(url){
+        return { urls: url };
+      });
   }
 
-  function attachCloudflarePlayer(source){
+  function waitForIceGatheringComplete(peerConnection){
+    if(peerConnection.iceGatheringState === "complete"){
+      return Promise.resolve();
+    }
+
+    return new Promise(function(resolve){
+      function handleChange(){
+        if(peerConnection.iceGatheringState === "complete"){
+          peerConnection.removeEventListener("icegatheringstatechange", handleChange);
+          resolve();
+        }
+      }
+
+      peerConnection.addEventListener("icegatheringstatechange", handleChange);
+    });
+  }
+
+  function closeCloudflareWhepSession(){
+    const session = cloudflareWhepSession;
+    cloudflareWhepSession = null;
+
+    if(!session){
+      return;
+    }
+
+    if(session.peerConnection){
+      try{
+        session.peerConnection.ontrack = null;
+        session.peerConnection.onconnectionstatechange = null;
+        session.peerConnection.oniceconnectionstatechange = null;
+        session.peerConnection.close();
+      }catch(error){
+        console.error("Cloudflare WHEP close failed", error);
+      }
+    }
+
+    if(session.resourceUrl){
+      fetch(session.resourceUrl, {
+        method: "DELETE",
+        mode: "cors",
+        credentials: "omit"
+      }).catch(function(){
+      });
+    }
+  }
+
+  async function attachCloudflarePlayer(source){
     if(cloudflarePlayerMounted){
       return;
     }
 
     teardownCloudflarePlayer();
-    const streamEl = document.createElement("stream");
-    streamEl.setAttribute("src", source.inputId);
-    streamEl.setAttribute("controls", "");
-    streamEl.setAttribute("autoplay", "");
-    streamEl.setAttribute("muted", "");
-    streamEl.setAttribute("preload", "auto");
-    streamEl.setAttribute("cmcd", "");
-    streamEl.setAttribute("force-flavor", "whep");
-    streamEl.setAttribute("letterbox-color", "transparent");
-    streamEl.setAttribute("customer-domain-prefix", "customer-" + source.code);
-    streamEl.setAttribute("playsinline", "");
+
+    const video = document.createElement("video");
+    video.autoplay = true;
+    video.controls = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.preload = "auto";
     if(currentPrintData && currentPrintData.image){
       const version = currentPrintData.imageVersion ? ("?v=" + encodeURIComponent(currentPrintData.imageVersion)) : "";
-      streamEl.setAttribute("poster", currentPrintData.image + version);
+      video.poster = currentPrintData.image + version;
     }
+
     streamMount.innerHTML = "";
-    streamMount.appendChild(streamEl);
-    cloudflarePlayerMounted = true;
-    ensureCloudflareStreamScript(source).catch(function(error){
-      console.error("Cloudflare stream script failed to load", error);
-      teardownCloudflarePlayer();
-      const fallbackFrame = buildFrame(source);
-      streamMount.appendChild(fallbackFrame);
-      cloudflarePlayerMounted = true;
+    streamMount.appendChild(video);
+
+    const optionsResponse = await fetch(source.playUrl, {
+      method: "OPTIONS",
+      mode: "cors",
+      credentials: "omit",
+      cache: "no-store"
     });
+
+    if(!optionsResponse.ok && optionsResponse.status !== 204){
+      throw new Error("Cloudflare WHEP OPTIONS failed with status " + optionsResponse.status);
+    }
+
+    const peerConnection = new RTCPeerConnection({
+      iceServers: parseIceServers(optionsResponse.headers.get("link"))
+    });
+    const remoteStream = new MediaStream();
+    video.srcObject = remoteStream;
+
+    peerConnection.addTransceiver("video", { direction: "recvonly" });
+    peerConnection.addTransceiver("audio", { direction: "recvonly" });
+
+    peerConnection.addEventListener("track", function(event){
+      remoteStream.addTrack(event.track);
+    });
+
+    peerConnection.addEventListener("connectionstatechange", function(){
+      if(peerConnection.connectionState === "failed" || peerConnection.connectionState === "disconnected" || peerConnection.connectionState === "closed"){
+        cloudflarePlayerMounted = false;
+      }
+    });
+
+    const offer = await peerConnection.createOffer();
+    await peerConnection.setLocalDescription(offer);
+    await waitForIceGatheringComplete(peerConnection);
+
+    const postResponse = await fetch(source.playUrl, {
+      method: "POST",
+      mode: "cors",
+      credentials: "omit",
+      cache: "no-store",
+      headers: {
+        "Content-Type": "application/sdp"
+      },
+      body: peerConnection.localDescription.sdp
+    });
+
+    if(!postResponse.ok){
+      throw new Error("Cloudflare WHEP POST failed with status " + postResponse.status);
+    }
+
+    const answerSdp = await postResponse.text();
+    await peerConnection.setRemoteDescription({
+      type: "answer",
+      sdp: answerSdp
+    });
+
+    const resourceLocation = postResponse.headers.get("location");
+    cloudflareWhepSession = {
+      peerConnection: peerConnection,
+      resourceUrl: resourceLocation ? new URL(resourceLocation, source.playUrl).toString() : ""
+    };
+    cloudflarePlayerMounted = true;
   }
 
   function pickValue(paramName, configName){
@@ -241,7 +314,7 @@
         kind: "cloudflare",
         code: cloudflareCustomerCode,
         inputId: cloudflareLiveInputId,
-        url: "https://customer-" + encodeURIComponent(cloudflareCustomerCode) + ".cloudflarestream.com/" + encodeURIComponent(cloudflareLiveInputId) + "/iframe",
+        playUrl: "https://customer-" + encodeURIComponent(cloudflareCustomerCode) + ".cloudflarestream.com/" + encodeURIComponent(cloudflareLiveInputId) + "/webRTC/play",
         label: "Cloudflare Stream live input"
       };
     }
@@ -301,8 +374,16 @@
 
       const data = await response.json();
       if(data && data.live){
-        if(cloudflareLiveState !== true){
-          attachCloudflarePlayer(source);
+        if(cloudflareLiveState !== true || !cloudflarePlayerMounted){
+          attachCloudflarePlayer(source).catch(function(error){
+            console.error("Cloudflare WHEP attach failed", error);
+            closeCloudflareWhepSession();
+            cloudflarePlayerMounted = false;
+            renderPlaceholder(
+              "Live print is starting.",
+              "The camera is online, but the browser is still establishing the stream. It should appear automatically."
+            );
+          });
         }
         cloudflareLiveState = true;
         setStatus("Live now", "An active print is currently broadcasting from the shop printer.", true);
