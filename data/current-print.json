@@ -1,17 +1,19 @@
 {
-  "updatedAt": "2026-05-18T20:40:38.6510503-07:00",
+  "updatedAt": "2026-05-18T21:19:00.8150741-07:00",
   "active": false,
   "cameraAvailable": false,
-  "gcodeState": "FAILED",
-  "progress": 0,
-  "title": "Mesh1.0",
-  "projectId": "958224402",
-  "image": "",
-  "imageVersion": "",
-  "objectCount": 0,
-  "objects": [],
+  "gcodeState": "",
+  "progress": null,
+  "title": "Mesh1",
+  "projectId": "",
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "20260518211900",
+  "objectCount": 1,
+  "objects": [
+    "Mesh1.0"
+  ],
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
 }
