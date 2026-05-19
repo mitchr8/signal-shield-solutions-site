@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-05-18T20:21:28.7018258-07:00",
+  "updatedAt": "2026-05-18T20:29:25.9848104-07:00",
   "active": true,
   "cameraAvailable": false,
   "gcodeState": "RUNNING",
-  "progress": 80,
+  "progress": 81,
   "title": "Mesh1.0",
   "projectId": "958224402",
   "image": "",
