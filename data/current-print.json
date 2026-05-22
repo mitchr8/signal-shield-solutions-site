@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-05-22T08:27:53.6261770-07:00",
+  "updatedAt": "2026-05-22T08:30:27.8544269-07:00",
   "active": true,
-  "cameraAvailable": true,
+  "cameraAvailable": false,
   "gcodeState": "RUNNING",
-  "progress": 9,
+  "progress": 10,
   "title": "Komplett-Set",
   "projectId": "967483094",
   "image": "",
@@ -13,5 +13,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Active Bambu print detected. Preview image is not available for this job yet."
+  "note": "The printer is active locally. Preview image is not available for this job yet."
 }
