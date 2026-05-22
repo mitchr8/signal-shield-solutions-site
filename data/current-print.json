@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-05-22T07:27:22.8799574-07:00",
+  "updatedAt": "2026-05-22T07:38:06.8878245-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 0,
+  "progress": 1,
   "title": "Komplett-Set",
   "projectId": "967483094",
   "image": "",
