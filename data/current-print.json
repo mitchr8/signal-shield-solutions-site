@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-22T10:53:36.6434172-07:00",
+  "updatedAt": "2026-05-22T10:58:42.2774919-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 36,
+  "progress": 37,
   "title": "Komplett-Set",
   "projectId": "967483094",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260522105336",
+  "imageVersion": "20260522105842",
   "objectCount": 12,
   "objects": [
     "Drybox-Roller-role.stl",
