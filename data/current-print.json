@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-05-22T07:27:10.2181699-07:00",
-  "active": false,
+  "updatedAt": "2026-05-22T07:27:22.8799574-07:00",
+  "active": true,
   "cameraAvailable": true,
-  "gcodeState": "",
-  "progress": null,
-  "title": "Current print",
-  "projectId": "",
+  "gcodeState": "RUNNING",
+  "progress": 0,
+  "title": "Komplett-Set",
+  "projectId": "967483094",
   "image": "",
   "imageVersion": "",
   "objectCount": 0,
@@ -13,5 +13,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "note": "Active Bambu print detected. Preview image is not available for this job yet."
 }
