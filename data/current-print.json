@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-22T15:53:25.9128517-07:00",
+  "updatedAt": "2026-05-22T15:53:31.0014350-07:00",
   "active": true,
-  "cameraAvailable": false,
+  "cameraAvailable": true,
   "gcodeState": "RUNNING",
   "progress": 91,
   "title": "Komplett-Set",
   "projectId": "967483094",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260522155325",
+  "imageVersion": "20260522155331",
   "objectCount": 12,
   "objects": [
     "Drybox-Roller-role.stl",
@@ -26,5 +26,5 @@
   "weightGrams": 336.23,
   "estimatedSeconds": 37025,
   "printerModelId": "N6",
-  "note": "The printer is active locally. The live stream will appear when Go Live is available."
+  "note": "Active Bambu print preview paired with the live stream."
 }
