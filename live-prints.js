@@ -52,6 +52,25 @@
   let currentPrintData = null;
   let productIndex = new Map();
 
+  function withCacheBust(url){
+    const nextUrl = new URL(url, window.location.href);
+    nextUrl.searchParams.set("ts", String(Date.now()));
+    return nextUrl.toString();
+  }
+
+  function resolveCurrentPrintImageUrl(imagePath, imageVersion){
+    if(!imagePath){
+      return "";
+    }
+
+    const baseUrl = pageConfig.currentPrintImageBaseUrl || window.location.origin;
+    const resolved = new URL(imagePath, baseUrl);
+    if(imageVersion){
+      resolved.searchParams.set("v", imageVersion);
+    }
+    return resolved.toString();
+  }
+
   if(currentPrintImage && currentPrintPlaceholder){
     currentPrintImage.addEventListener("load", function(){
       currentPrintImage.hidden = false;
@@ -287,8 +306,7 @@
         video.preload = "auto";
         video.setAttribute("muted", "");
         if(currentPrintData && currentPrintData.image){
-          const version = currentPrintData.imageVersion ? ("?v=" + encodeURIComponent(currentPrintData.imageVersion)) : "";
-          video.poster = currentPrintData.image + version;
+          video.poster = resolveCurrentPrintImageUrl(currentPrintData.image, currentPrintData.imageVersion);
         }
 
         streamMount.innerHTML = "";
@@ -686,8 +704,7 @@
     }
 
     if(data.image){
-      const version = data.imageVersion ? ("?v=" + encodeURIComponent(data.imageVersion)) : "";
-      currentPrintImage.src = data.image + version;
+      currentPrintImage.src = resolveCurrentPrintImageUrl(data.image, data.imageVersion);
       currentPrintImage.alt = data.title;
       currentPrintImage.hidden = false;
       currentPrintPlaceholder.hidden = true;
@@ -718,20 +735,25 @@
   }
 
   async function loadCurrentPrint(){
-    if(!pageConfig.currentPrintUrl){
+    const sources = [pageConfig.currentPrintUrl, pageConfig.currentPrintFallbackUrl].filter(Boolean);
+    if(!sources.length){
       return;
     }
 
-    try{
-      const response = await fetch(pageConfig.currentPrintUrl + "?ts=" + Date.now(), { cache: "no-store" });
-      if(!response.ok){
-        throw new Error("Current print request failed");
+    for(const sourceUrl of sources){
+      try{
+        const response = await fetch(withCacheBust(sourceUrl), { cache: "no-store" });
+        if(!response.ok){
+          throw new Error("Current print request failed");
+        }
+        const data = await response.json();
+        renderCurrentPrint(data);
+        return;
+      }catch(error){
       }
-      const data = await response.json();
-      renderCurrentPrint(data);
-    }catch(error){
-      renderCurrentPrint(null);
     }
+
+    renderCurrentPrint(null);
   }
 
   function buildProductCard(item, duplicate){
