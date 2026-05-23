@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-23T00:06:30.9238121-07:00",
+  "updatedAt": "2026-05-23T00:09:44.9788859-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 1,
+  "progress": 2,
   "title": "设计师版本，一键打印即可（已加固1.0）",
   "projectId": "969046496",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260523000630",
+  "imageVersion": "20260523000944",
   "objectCount": 2,
   "objects": [
     "超级edc 十合一33.stp",
