@@ -1,17 +1,22 @@
 {
-  "updatedAt": "2026-05-23T14:45:28.7138661-07:00",
+  "updatedAt": "2026-05-23T15:32:31.0234799-07:00",
   "active": false,
   "cameraAvailable": false,
-  "gcodeState": "FINISH",
-  "progress": 100,
-  "title": "设计师版本，一键打印即可（已加固1.0）",
-  "projectId": "969046496",
-  "image": "",
-  "imageVersion": "",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "gcodeState": "",
+  "progress": null,
+  "title": "Code Names Cards Holder",
+  "projectId": "",
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "20260523153231",
+  "objectCount": 4,
+  "objects": [
+    "Code Names Cards Holder",
+    "TTR Player station 20 deg FNL.step",
+    "TTR Player station 20 deg FNL.step",
+    "wipe_tower"
+  ],
+  "weightGrams": 438.44,
+  "estimatedSeconds": 52674,
+  "printerModelId": "N6",
+  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
 }
