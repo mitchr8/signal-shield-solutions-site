@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-05-23T12:37:25.0053838-07:00",
+  "updatedAt": "2026-05-23T12:37:59.6709446-07:00",
   "active": false,
-  "cameraAvailable": true,
+  "cameraAvailable": false,
   "gcodeState": "FINISH",
   "progress": 100,
   "title": "设计师版本，一键打印即可（已加固1.0）",
