@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-22T21:09:40.1456227-07:00",
+  "updatedAt": "2026-05-22T21:11:02.4789034-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 78,
+  "progress": 79,
   "title": "One Color [ 0.2mm layer, 2 walls, 15% infill ]",
   "projectId": "968744083",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260522210940",
+  "imageVersion": "20260522211102",
   "objectCount": 12,
   "objects": [
     "Drybox-Roller-role.stl",
