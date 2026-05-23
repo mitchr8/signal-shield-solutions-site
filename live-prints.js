@@ -99,6 +99,14 @@
     streamNote.textContent = noteText;
   }
 
+  function setConnectingStatus(noteText){
+    setStatus(
+      "Starting stream",
+      noteText || "The camera is online, and the browser is establishing the live stream now.",
+      false
+    );
+  }
+
   function getFullscreenElement(){
     return document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement || null;
   }
@@ -255,6 +263,7 @@
     clearPlaybackWatchdog();
     clearStreamAction();
     cloudflarePlayerMounted = true;
+    setStatus("Live now", "An active print is currently broadcasting from the shop printer.", true);
   }
 
   function requestVideoPlayback(video, showManualAction){
@@ -405,6 +414,7 @@
             "Live print is starting.",
             "The camera is online, but playback is still catching up. Retrying automatically."
           );
+          setConnectingStatus("The camera is online, but playback is still catching up. Retrying automatically.");
           scheduleLifecyclePoll(source, hasTracks ? 3000 : 5000);
         }, 12000);
       })();
@@ -522,6 +532,7 @@
       const data = await response.json();
       if(data && data.live){
         if(cloudflareLiveState !== true || !cloudflarePlayerMounted){
+          setConnectingStatus("The camera is online, and the browser is establishing the live stream now.");
           attachCloudflarePlayer(source).catch(function(error){
             console.error("Cloudflare WHEP attach failed", error);
             closeCloudflareWhepSession();
@@ -530,10 +541,13 @@
               "Live print is starting.",
               "The camera is online, but the browser is still establishing the stream. It should appear automatically."
             );
+            setConnectingStatus("The camera is online, but the browser is still establishing the stream. Retrying automatically.");
           });
         }
         cloudflareLiveState = true;
-        setStatus("Live now", "An active print is currently broadcasting from the shop printer.", true);
+        if(cloudflarePlayerMounted){
+          setStatus("Live now", "An active print is currently broadcasting from the shop printer.", true);
+        }
       }else{
         if(cloudflareLiveState !== false){
           teardownCloudflarePlayer();
