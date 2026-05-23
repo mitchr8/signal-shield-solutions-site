@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-23T00:30:07.3691751-07:00",
+  "updatedAt": "2026-05-23T00:30:19.2067208-07:00",
   "active": false,
-  "cameraAvailable": true,
+  "cameraAvailable": false,
   "gcodeState": "",
   "progress": null,
   "title": "超级edc 十合一33",
   "projectId": "",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260523003007",
+  "imageVersion": "20260523003019",
   "objectCount": 2,
   "objects": [
     "超级edc 十合一33.stp",
