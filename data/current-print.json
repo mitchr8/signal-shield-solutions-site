@@ -1,17 +1,20 @@
 {
-  "updatedAt": "2026-05-22T22:11:11.6047118-07:00",
-  "active": false,
+  "updatedAt": "2026-05-23T00:00:55.5371952-07:00",
+  "active": true,
   "cameraAvailable": false,
-  "gcodeState": "FINISH",
-  "progress": 100,
-  "title": "One Color [ 0.2mm layer, 2 walls, 15% infill ]",
-  "projectId": "968744083",
-  "image": "",
-  "imageVersion": "",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "gcodeState": "RUNNING",
+  "progress": 0,
+  "title": "设计师版本，一键打印即可（已加固1.0）",
+  "projectId": "969046496",
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "20260523000055",
+  "objectCount": 2,
+  "objects": [
+    "超级edc 十合一33.stp",
+    "Ladybug v2.stl"
+  ],
+  "weightGrams": 134.33,
+  "estimatedSeconds": 23183,
+  "printerModelId": "N6",
+  "note": "The printer is active locally. The live stream will appear when Go Live is available."
 }
