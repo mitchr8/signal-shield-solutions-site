@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-23T00:00:55.5371952-07:00",
+  "updatedAt": "2026-05-23T00:01:00.7037233-07:00",
   "active": true,
-  "cameraAvailable": false,
+  "cameraAvailable": true,
   "gcodeState": "RUNNING",
   "progress": 0,
   "title": "设计师版本，一键打印即可（已加固1.0）",
   "projectId": "969046496",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260523000055",
+  "imageVersion": "20260523000100",
   "objectCount": 2,
   "objects": [
     "超级edc 十合一33.stp",
@@ -16,5 +16,5 @@
   "weightGrams": 134.33,
   "estimatedSeconds": 23183,
   "printerModelId": "N6",
-  "note": "The printer is active locally. The live stream will appear when Go Live is available."
+  "note": "Active Bambu print preview paired with the live stream."
 }
