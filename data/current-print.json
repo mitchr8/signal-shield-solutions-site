@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-23T15:53:17.6773339-07:00",
+  "updatedAt": "2026-05-23T15:53:22.6441650-07:00",
   "active": true,
-  "cameraAvailable": false,
+  "cameraAvailable": true,
   "gcodeState": "RUNNING",
   "progress": 1,
   "title": "[PLA] 0.24mm layer height",
   "projectId": "970660459",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260523155317",
+  "imageVersion": "20260523155322",
   "objectCount": 4,
   "objects": [
     "Code Names Cards Holder",
@@ -18,5 +18,5 @@
   "weightGrams": 438.44,
   "estimatedSeconds": 52674,
   "printerModelId": "N6",
-  "note": "The printer is active locally. The live stream will appear when Go Live is available."
+  "note": "Active Bambu print preview paired with the live stream."
 }
