@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-23T00:30:19.2067208-07:00",
-  "active": false,
+  "updatedAt": "2026-05-23T00:31:12.9727722-07:00",
+  "active": true,
   "cameraAvailable": false,
-  "gcodeState": "",
-  "progress": null,
-  "title": "超级edc 十合一33",
-  "projectId": "",
+  "gcodeState": "RUNNING",
+  "progress": 7,
+  "title": "设计师版本，一键打印即可（已加固1.0）",
+  "projectId": "969046496",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260523003019",
+  "imageVersion": "20260523003112",
   "objectCount": 2,
   "objects": [
     "超级edc 十合一33.stp",
@@ -16,5 +16,5 @@
   "weightGrams": 134.33,
   "estimatedSeconds": 23183,
   "printerModelId": "N6",
-  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
+  "note": "The printer is active locally. The live stream will appear when Go Live is available."
 }
