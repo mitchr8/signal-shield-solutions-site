@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-05-23T08:31:16.3118633-07:00",
+  "updatedAt": "2026-05-23T08:35:14.1528145-07:00",
   "active": true,
-  "cameraAvailable": false,
+  "cameraAvailable": true,
   "gcodeState": "RUNNING",
   "progress": 40,
   "title": "设计师版本，一键打印即可（已加固1.0）",
@@ -13,5 +13,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "The printer is active locally. Preview image is not available for this job yet."
+  "note": "Active Bambu print detected. Preview image is not available for this job yet."
 }
