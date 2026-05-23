@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-05-23T01:21:46.2832976-07:00",
+  "updatedAt": "2026-05-23T01:25:28.9374385-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 21,
+  "progress": 22,
   "title": "设计师版本，一键打印即可（已加固1.0）",
   "projectId": "969046496",
   "image": "",
