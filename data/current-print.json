@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-22T20:47:03.1002396-07:00",
+  "updatedAt": "2026-05-22T20:47:08.8122926-07:00",
   "active": true,
-  "cameraAvailable": false,
+  "cameraAvailable": true,
   "gcodeState": "RUNNING",
   "progress": 60,
   "title": "One Color [ 0.2mm layer, 2 walls, 15% infill ]",
   "projectId": "968744083",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260522204703",
+  "imageVersion": "20260522204708",
   "objectCount": 12,
   "objects": [
     "Drybox-Roller-role.stl",
@@ -26,5 +26,5 @@
   "weightGrams": 336.23,
   "estimatedSeconds": 37025,
   "printerModelId": "N6",
-  "note": "The printer is active locally. The live stream will appear when Go Live is available."
+  "note": "Active Bambu print preview paired with the live stream."
 }
