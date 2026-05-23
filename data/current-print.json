@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-05-23T08:01:00.8812451-07:00",
-  "active": true,
+  "updatedAt": "2026-05-23T08:01:14.3981698-07:00",
+  "active": false,
   "cameraAvailable": false,
-  "gcodeState": "RUNNING",
+  "gcodeState": "PAUSE",
   "progress": 39,
   "title": "设计师版本，一键打印即可（已加固1.0）",
   "projectId": "969046496",
@@ -13,5 +13,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "The printer is active locally. Preview image is not available for this job yet."
+  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
 }
