@@ -66,7 +66,17 @@
     }
 
     const baseUrl = pageConfig.currentPrintImageBaseUrl || window.location.origin;
-    const resolved = new URL(imagePath, baseUrl);
+    let resolved;
+    if(/^https?:\/\//i.test(imagePath)){
+      resolved = new URL(imagePath);
+    }else{
+      const base = new URL(baseUrl, window.location.href);
+      const normalizedPath = (
+        base.origin !== window.location.origin &&
+        imagePath.startsWith("/")
+      ) ? imagePath.slice(1) : imagePath;
+      resolved = new URL(normalizedPath, base);
+    }
     if(imageVersion){
       resolved.searchParams.set("v", imageVersion);
     }
