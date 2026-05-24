@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-24T10:57:03.7225621-07:00",
+  "updatedAt": "2026-05-24T10:57:18.5554363-07:00",
   "active": false,
   "cameraAvailable": false,
   "gcodeState": "",
@@ -7,7 +7,7 @@
   "title": "Code Names Cards Holder",
   "projectId": "",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260524105703",
+  "imageVersion": "20260524105718",
   "objectCount": 4,
   "objects": [
     "Code Names Cards Holder",
