@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-23T18:50:36.9363590-07:00",
+  "updatedAt": "2026-05-23T18:59:04.5977836-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 21,
+  "progress": 22,
   "title": "[PLA] 0.24mm layer height",
   "projectId": "970660459",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260523185036",
+  "imageVersion": "20260523185904",
   "objectCount": 4,
   "objects": [
     "Code Names Cards Holder",
