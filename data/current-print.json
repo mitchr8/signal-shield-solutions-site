@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-05-24T06:34:22.9572512-07:00",
+  "updatedAt": "2026-05-24T06:36:38.0687638-07:00",
   "active": false,
-  "cameraAvailable": true,
+  "cameraAvailable": false,
   "gcodeState": "FINISH",
   "progress": 100,
   "title": "[PLA] 0.24mm layer height",
