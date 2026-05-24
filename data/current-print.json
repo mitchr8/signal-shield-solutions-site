@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-24T11:15:38.6526199-07:00",
-  "active": false,
+  "updatedAt": "2026-05-24T11:15:47.0932213-07:00",
+  "active": true,
   "cameraAvailable": false,
-  "gcodeState": "",
-  "progress": null,
-  "title": "TTR Player station 20 deg FNL",
-  "projectId": "",
+  "gcodeState": "RUNNING",
+  "progress": 1,
+  "title": "[PLA] 0.24mm layer height",
+  "projectId": "972446538",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260524111538",
+  "imageVersion": "20260524111547",
   "objectCount": 3,
   "objects": [
     "TTR Player station 20 deg FNL.step",
@@ -17,5 +17,5 @@
   "weightGrams": 419.93,
   "estimatedSeconds": 51785,
   "printerModelId": "N6",
-  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
+  "note": "The printer is active locally. The live stream will appear when Go Live is available."
 }
