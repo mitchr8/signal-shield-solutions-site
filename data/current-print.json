@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-25T15:10:37.4525044-07:00",
-  "active": false,
+  "updatedAt": "2026-05-25T15:10:49.3501544-07:00",
+  "active": true,
   "cameraAvailable": false,
-  "gcodeState": "",
-  "progress": null,
-  "title": "dog door magnet mount V5 wall trapped no lid",
-  "projectId": "",
+  "gcodeState": "RUNNING",
+  "progress": 0,
+  "title": "dog_door_magnet_mount_V5_wall_trapped_no_lid.stl",
+  "projectId": "975363874",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260525151037",
+  "imageVersion": "20260525151049",
   "objectCount": 1,
   "objects": [
     "dog_door_magnet_mount_V5_wall_trapped_no_lid.stl"
@@ -15,5 +15,5 @@
   "weightGrams": 14.5,
   "estimatedSeconds": 1741,
   "printerModelId": "N6",
-  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
+  "note": "The printer is active locally. The live stream will appear when Go Live is available."
 }
