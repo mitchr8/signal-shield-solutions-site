@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-25T15:10:55.7823074-07:00",
+  "updatedAt": "2026-05-25T15:16:47.1214531-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 0,
+  "progress": 1,
   "title": "dog_door_magnet_mount_V5_wall_trapped_no_lid.stl",
   "projectId": "975363874",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260525151055",
+  "imageVersion": "20260525151647",
   "objectCount": 1,
   "objects": [
     "dog_door_magnet_mount_V5_wall_trapped_no_lid.stl"
