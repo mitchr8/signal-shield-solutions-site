@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-25T11:28:07.9245687-07:00",
+  "updatedAt": "2026-05-25T11:28:20.5146114-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 93,
+  "progress": 94,
   "title": "makerlab slice",
   "projectId": "974756398",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260525112807",
+  "imageVersion": "20260525112820",
   "objectCount": 3,
   "objects": [
     "TTR Player station 20 deg FNL.step",
