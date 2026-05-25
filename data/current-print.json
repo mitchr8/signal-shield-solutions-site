@@ -1,17 +1,21 @@
 {
-  "updatedAt": "2026-05-25T11:15:31.1009000-07:00",
-  "active": false,
+  "updatedAt": "2026-05-25T11:15:51.8115397-07:00",
+  "active": true,
   "cameraAvailable": true,
-  "gcodeState": "PAUSE",
+  "gcodeState": "RUNNING",
   "progress": 0,
   "title": "makerlab slice",
   "projectId": "974756398",
-  "image": "",
-  "imageVersion": "",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "20260525111551",
+  "objectCount": 3,
+  "objects": [
+    "TTR Player station 20 deg FNL.step",
+    "TTR Player station 20 deg FNL.step",
+    "wipe_tower"
+  ],
+  "weightGrams": 419.93,
+  "estimatedSeconds": 51785,
+  "printerModelId": "N6",
+  "note": "Active Bambu print preview paired with the live stream."
 }
