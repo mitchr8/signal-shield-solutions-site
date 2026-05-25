@@ -1,19 +1,19 @@
 {
-  "updatedAt": "2026-05-25T13:03:54.6888288-07:00",
+  "updatedAt": "2026-05-25T15:10:37.4525044-07:00",
   "active": false,
   "cameraAvailable": false,
-  "gcodeState": "FINISH",
-  "progress": 100,
-  "title": "N52_50x25x10_bar_magnet_wall_mount_with_screw_holes.stl",
-  "projectId": "975041925",
+  "gcodeState": "",
+  "progress": null,
+  "title": "dog door magnet mount V5 wall trapped no lid",
+  "projectId": "",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260525130354",
+  "imageVersion": "20260525151037",
   "objectCount": 1,
   "objects": [
-    "N52_50x25x10_bar_magnet_wall_mount_with_screw_holes.stl"
+    "dog_door_magnet_mount_V5_wall_trapped_no_lid.stl"
   ],
-  "weightGrams": 16.73,
-  "estimatedSeconds": 1755,
+  "weightGrams": 14.5,
+  "estimatedSeconds": 1741,
   "printerModelId": "N6",
   "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
 }
