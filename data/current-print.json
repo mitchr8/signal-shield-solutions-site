@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-25T13:01:43.2876564-07:00",
+  "updatedAt": "2026-05-25T13:03:54.6888288-07:00",
   "active": false,
-  "cameraAvailable": true,
+  "cameraAvailable": false,
   "gcodeState": "FINISH",
   "progress": 100,
   "title": "N52_50x25x10_bar_magnet_wall_mount_with_screw_holes.stl",
   "projectId": "975041925",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260525130143",
+  "imageVersion": "20260525130354",
   "objectCount": 1,
   "objects": [
     "N52_50x25x10_bar_magnet_wall_mount_with_screw_holes.stl"
