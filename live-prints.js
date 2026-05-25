@@ -738,8 +738,113 @@
     return String(value || "")
       .replace(/\.[a-z0-9]+$/i, "")
       .replace(/[_+]/g, " ")
+      .replace(/[-]+/g, " ")
       .replace(/\s+/g, " ")
       .trim();
+  }
+
+  function titleCaseWord(word){
+    if(!word){
+      return "";
+    }
+
+    if(/^[a-z]+$/.test(word)){
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }
+
+    return word;
+  }
+
+  function formatPrintLabel(value){
+    const cleaned = cleanObjectName(value)
+      .replace(/\s+v(?=\d)/ig, " V")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    if(!cleaned){
+      return "";
+    }
+
+    return cleaned
+      .split(" ")
+      .map(titleCaseWord)
+      .join(" ");
+  }
+
+  function buildObjectEntries(objectNames){
+    const ignoredNames = new Set(["wipe tower", "prime tower"]);
+    const entries = [];
+    const seen = new Map();
+
+    objectNames.forEach(function(name){
+      const formatted = formatPrintLabel(name);
+      const normalized = normalizeCompareText(formatted);
+      if(!normalized || ignoredNames.has(normalized)){
+        return;
+      }
+
+      if(seen.has(normalized)){
+        seen.get(normalized).count += 1;
+        return;
+      }
+
+      const entry = {
+        label: formatted,
+        normalized: normalized,
+        count: 1
+      };
+      seen.set(normalized, entry);
+      entries.push(entry);
+    });
+
+    return entries;
+  }
+
+  function clampText(value, maxLength){
+    const text = String(value || "").trim();
+    if(text.length <= maxLength){
+      return text;
+    }
+
+    const cut = text.slice(0, maxLength - 1);
+    const boundary = cut.lastIndexOf(" ");
+    return (boundary > 18 ? cut.slice(0, boundary) : cut).trim() + "\u2026";
+  }
+
+  function deriveCurrentPrintHeadline(data, objectEntries){
+    if(objectEntries.length){
+      const first = objectEntries[0];
+      if(objectEntries.length === 1 && first.count > 1){
+        return clampText(first.label, 68);
+      }
+
+      if(objectEntries.length > 1){
+        return clampText(first.label + " and more", 68);
+      }
+
+      return clampText(first.label, 68);
+    }
+
+    return clampText(formatPrintLabel(data && data.title ? data.title : "Current print preview"), 68);
+  }
+
+  function buildCurrentPrintSummary(data, objectEntries){
+    const totalObjects = Number(data && data.objectCount) || objectEntries.reduce(function(sum, entry){
+      return sum + entry.count;
+    }, 0);
+
+    if(objectEntries.length === 1){
+      if(totalObjects > 1){
+        return totalObjects + " copies are on the build plate right now.";
+      }
+      return "This part is running on the printer right now.";
+    }
+
+    if(objectEntries.length > 1){
+      return totalObjects + " parts are on the build plate right now.";
+    }
+
+    return data && data.note ? data.note : "Current plate preview paired with the live stream.";
   }
 
   function normalizeCompareText(value){
@@ -812,9 +917,16 @@
       return;
     }
 
-    const etsyUrl = payload && payload.etsyUrl ? payload.etsyUrl : "";
+    const etsyUrl = payload && payload.etsyUrl
+      ? payload.etsyUrl
+      : ((pageConfig.etsyShopUrl || "").trim());
+    const etsyLabel = payload && payload.label
+      ? payload.label
+      : (pageConfig.etsyShopLabel || "Check out our Etsy");
+
     if(etsyUrl){
       currentPrintShopLink.href = etsyUrl;
+      currentPrintShopLink.textContent = etsyLabel;
       currentPrintShopLink.hidden = false;
     }else{
       currentPrintShopLink.hidden = true;
@@ -831,7 +943,7 @@
 
     if(!data || !data.title){
       if(currentPrintEyebrow){
-        currentPrintEyebrow.textContent = "Bambu preview";
+        currentPrintEyebrow.textContent = "Current plate";
       }
       currentPrintTitle.textContent = "Current print preview";
       currentPrintSummary.textContent = "The page will add the current print thumbnail and title here when local metadata is available.";
@@ -848,14 +960,17 @@
       return;
     }
 
+    const objectNames = Array.isArray(data.objects) ? data.objects.map(cleanObjectName).filter(Boolean) : [];
+    const objectEntries = buildObjectEntries(objectNames);
+
     if(currentPrintEyebrow){
-      currentPrintEyebrow.textContent = data.active ? "Active Bambu print" : "Latest Bambu load";
+      currentPrintEyebrow.textContent = data.active ? "Current plate" : "Recent plate";
     }
-    currentPrintTitle.textContent = data.title;
+    currentPrintTitle.textContent = deriveCurrentPrintHeadline(data, objectEntries);
     const matchedProduct = !data.image ? findMatchingProductForCurrentPrint(data) : null;
     const updatedAtMs = data.updatedAt ? Date.parse(data.updatedAt) : NaN;
     const progressIsFresh = Number.isFinite(updatedAtMs) ? (Date.now() - updatedAtMs) < 45000 : false;
-    currentPrintSummary.textContent = data.note || "This preview comes from the latest Bambu Studio project metadata available on the shop machine.";
+    currentPrintSummary.textContent = buildCurrentPrintSummary(data, objectEntries);
     currentPrintState.textContent = data.gcodeState || (data.active ? "RUNNING" : "OFFLINE");
     if(typeof data.progress === "number" && (!data.active || progressIsFresh)){
       currentPrintProgress.textContent = data.progress + "%";
@@ -868,13 +983,13 @@
       currentPrintProgress.textContent = "--";
     }
 
-    const objectNames = Array.isArray(data.objects) ? data.objects.map(cleanObjectName).filter(Boolean) : [];
     currentPrintObjectCount.textContent = data.objectCount || (objectNames.length ? String(objectNames.length) : "--");
 
-    if(objectNames.length){
+    if(objectEntries.length){
       currentPrintObjects.hidden = false;
-      currentPrintObjects.innerHTML = objectNames.slice(0, 6).map(function(name){
-        return '<span>' + escapeHtml(name) + '</span>';
+      currentPrintObjects.innerHTML = objectEntries.slice(0, 4).map(function(entry){
+        const suffix = entry.count > 1 ? ' <strong>x' + entry.count + '</strong>' : "";
+        return '<span title="' + escapeHtml(entry.label) + '">' + escapeHtml(clampText(entry.label, 34)) + suffix + '</span>';
       }).join("");
     }else{
       currentPrintObjects.hidden = true;
@@ -900,15 +1015,18 @@
     }
 
     setCurrentPrintInquiry({
-      title: data.title,
+      title: currentPrintTitle.textContent,
       priceLabel: matchedProduct && matchedProduct.priceLabel ? matchedProduct.priceLabel : "",
       message:
-        "I am interested in the current print: " + data.title + ". " +
-        (objectNames.length ? "Objects: " + objectNames.slice(0, 4).join(", ") + ". " : "") +
+        "I am interested in the current print: " + currentPrintTitle.textContent + ". " +
+        (objectEntries.length ? "Objects on the plate: " + objectEntries.slice(0, 4).map(function(entry){
+          return entry.label + (entry.count > 1 ? " x" + entry.count : "");
+        }).join(", ") + ". " : "") +
         "Please tell me the price, available material options, and next steps."
     });
     setCurrentPrintShop({
-      etsyUrl: matchedProduct && matchedProduct.etsyUrl ? matchedProduct.etsyUrl : ""
+      etsyUrl: pageConfig.etsyShopUrl || "",
+      label: pageConfig.etsyShopLabel || "Check out our Etsy"
     });
   }
 

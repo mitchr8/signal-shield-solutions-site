@@ -1204,20 +1204,25 @@ textarea:focus{
 }
 .current-print-body{
   display:grid;
-  gap:14px;
+  gap:16px;
 }
 .current-print-eyebrow{
   margin-bottom:0;
+  color:#eef4ff;
 }
 .current-print-eyebrow::before{
   width:34px;
 }
 .current-print-body h3{
   margin:0;
-  font-size:1.28rem;
+  font-size:clamp(1.42rem, 2vw, 1.82rem);
+  line-height:1.14;
+  letter-spacing:-.03em;
+  overflow-wrap:anywhere;
 }
 .current-print-body p{
   margin:0;
+  max-width:36ch;
 }
 .current-print-meta{
   display:grid;
@@ -1226,6 +1231,10 @@ textarea:focus{
   margin:0;
 }
 .current-print-meta div{
+  min-width:0;
+  display:grid;
+  align-content:start;
+  gap:6px;
   padding:12px 14px;
   border-radius:16px;
   border:1px solid rgba(181,199,229,0.14);
@@ -1240,27 +1249,39 @@ textarea:focus{
   text-transform:uppercase;
 }
 .current-print-meta dd{
-  margin:8px 0 0;
+  margin:0;
   font-family:var(--font-heading);
-  font-size:1rem;
+  font-size:1.06rem;
   line-height:1.35;
+  overflow-wrap:anywhere;
 }
 .current-print-objects{
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
+  gap:10px;
 }
 .current-print-objects span{
   display:inline-flex;
   align-items:center;
-  min-height:34px;
-  padding:0 12px;
+  gap:8px;
+  max-width:100%;
+  min-height:38px;
+  padding:0 14px;
   border-radius:999px;
   border:1px solid rgba(181,199,229,0.16);
-  background:rgba(255,255,255,0.04);
+  background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
   color:#e4ecfa;
   font-size:.84rem;
   line-height:1.4;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.current-print-objects span strong{
+  flex:0 0 auto;
+  color:#f4d689;
+  font-size:.78rem;
+  letter-spacing:.08em;
 }
 .current-print-inquire{
   width:100%;
@@ -1271,6 +1292,7 @@ textarea:focus{
 }
 .current-print-shop{
   width:100%;
+  justify-content:center;
 }
 .product-marquee{
   position:relative;
