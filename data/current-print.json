@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-05-25T11:30:44.4877133-07:00",
+  "updatedAt": "2026-05-25T11:32:57.2461435-07:00",
   "active": false,
-  "cameraAvailable": true,
+  "cameraAvailable": false,
   "gcodeState": "FINISH",
   "progress": 100,
   "title": "makerlab slice",
