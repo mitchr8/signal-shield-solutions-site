@@ -1,17 +1,21 @@
 {
-  "updatedAt": "2026-05-25T10:23:05.0042249-07:00",
-  "active": false,
+  "updatedAt": "2026-05-25T10:23:13.5623939-07:00",
+  "active": true,
   "cameraAvailable": false,
-  "gcodeState": "",
-  "progress": null,
-  "title": "Magnet Wall Mount Brackets Customizeable",
-  "projectId": "",
-  "image": "",
-  "imageVersion": "",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "gcodeState": "RUNNING",
+  "progress": 0,
+  "title": "makerlab slice",
+  "projectId": "974756398",
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "20260525102313",
+  "objectCount": 3,
+  "objects": [
+    "TTR Player station 20 deg FNL.step",
+    "TTR Player station 20 deg FNL.step",
+    "wipe_tower"
+  ],
+  "weightGrams": 419.93,
+  "estimatedSeconds": 51785,
+  "printerModelId": "N6",
+  "note": "The printer is active locally. The live stream will appear when Go Live is available."
 }
