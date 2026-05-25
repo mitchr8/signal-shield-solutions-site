@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-24T19:43:25.1406239-07:00",
+  "updatedAt": "2026-05-24T19:52:08.1050169-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 63,
+  "progress": 64,
   "title": "[PLA] 0.24mm layer height",
   "projectId": "972446538",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260524194325",
+  "imageVersion": "20260524195208",
   "objectCount": 3,
   "objects": [
     "TTR Player station 20 deg FNL.step",
