@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-25T16:01:06.7198391-07:00",
+  "updatedAt": "2026-05-25T16:01:12.0473317-07:00",
   "active": true,
-  "cameraAvailable": false,
+  "cameraAvailable": true,
   "gcodeState": "RUNNING",
   "progress": 0,
   "title": "dog_door_magnet_mount_V5_wall_trapped_no_lid.stl + dog_door_magnet_mount_V5_wall_trapped_no_lid.s...",
   "projectId": "975450242",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260525160106",
+  "imageVersion": "20260525160112",
   "objectCount": 4,
   "objects": [
     "dog_door_magnet_mount_V5_wall_trapped_no_lid.stl",
@@ -18,5 +18,5 @@
   "weightGrams": 70.75,
   "estimatedSeconds": 6338,
   "printerModelId": "N6",
-  "note": "The printer is active locally. The live stream will appear when Go Live is available."
+  "note": "Active Bambu print preview paired with the live stream."
 }
