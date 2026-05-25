@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-25T10:23:13.5623939-07:00",
+  "updatedAt": "2026-05-25T10:23:18.8409071-07:00",
   "active": true,
-  "cameraAvailable": false,
+  "cameraAvailable": true,
   "gcodeState": "RUNNING",
   "progress": 0,
   "title": "makerlab slice",
   "projectId": "974756398",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260525102313",
+  "imageVersion": "20260525102318",
   "objectCount": 3,
   "objects": [
     "TTR Player station 20 deg FNL.step",
@@ -17,5 +17,5 @@
   "weightGrams": 419.93,
   "estimatedSeconds": 51785,
   "printerModelId": "N6",
-  "note": "The printer is active locally. The live stream will appear when Go Live is available."
+  "note": "Active Bambu print preview paired with the live stream."
 }
