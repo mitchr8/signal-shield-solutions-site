@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-25T20:43:50.1057451-07:00",
+  "updatedAt": "2026-05-25T20:43:58.5766079-07:00",
   "active": true,
-  "cameraAvailable": false,
+  "cameraAvailable": true,
   "gcodeState": "RUNNING",
   "progress": 0,
   "title": "dog_door_thin_magnet_mount_V8_COMPACT_LEFT_FACE_single_test.stl",
   "projectId": "975877395",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260525204350",
+  "imageVersion": "20260525204358",
   "objectCount": 1,
   "objects": [
     "dog_door_thin_magnet_mount_V8_COMPACT_LEFT_FACE_single_test.stl"
@@ -15,5 +15,5 @@
   "weightGrams": 13.01,
   "estimatedSeconds": 1680,
   "printerModelId": "N6",
-  "note": "The printer is active locally. The live stream will appear when Go Live is available."
+  "note": "Active Bambu print preview paired with the live stream."
 }
