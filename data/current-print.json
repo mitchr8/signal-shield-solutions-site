@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-25T20:18:58.5524723-07:00",
+  "updatedAt": "2026-05-25T20:19:08.6053700-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 69,
+  "progress": 70,
   "title": "dog_door_thin_bar_magnet_mount_V6_single.stl",
   "projectId": "975829092",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260525201858",
+  "imageVersion": "20260525201908",
   "objectCount": 1,
   "objects": [
     "dog_door_thin_bar_magnet_mount_V6_single.stl"
