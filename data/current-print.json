@@ -1,20 +1,20 @@
 {
-  "updatedAt": "2026-05-26T13:04:08.3777859-07:00",
+  "updatedAt": "2026-05-26T13:56:52.9150422-07:00",
   "active": false,
-  "cameraAvailable": false,
+  "cameraAvailable": true,
   "gcodeState": "FINISH",
   "progress": 100,
   "title": "Single Drawer",
   "projectId": "976599149",
   "streamPlatform": "youtube",
   "streamPublic": false,
-  "youtubeVideoId": "h4tLt_vtsTk",
-  "image": "/print-assets/current-live-snapshot.jpg",
+  "youtubeVideoId": "MDcQiQfbsDk",
+  "image": "",
   "imageVersion": "",
   "objectCount": 0,
   "objects": [],
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Latest live camera snapshot from the current printer job."
+  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
 }
