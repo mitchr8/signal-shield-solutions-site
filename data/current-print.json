@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-05-26T02:51:44.4659369-07:00",
+  "updatedAt": "2026-05-26T02:55:46.8529517-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 76,
+  "progress": 77,
   "title": "Single Drawer",
   "projectId": "975925338",
   "image": "",
