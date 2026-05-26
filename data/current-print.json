@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-05-25T20:03:57.5723168-07:00",
-  "active": false,
+  "updatedAt": "2026-05-25T20:04:09.8389187-07:00",
+  "active": true,
   "cameraAvailable": false,
-  "gcodeState": "",
-  "progress": null,
-  "title": "dog door thin bar magnet mount V6 single",
-  "projectId": "",
+  "gcodeState": "RUNNING",
+  "progress": 0,
+  "title": "dog_door_thin_bar_magnet_mount_V6_single.stl",
+  "projectId": "975829092",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260525200357",
+  "imageVersion": "20260525200409",
   "objectCount": 1,
   "objects": [
     "dog_door_thin_bar_magnet_mount_V6_single.stl"
@@ -15,5 +15,5 @@
   "weightGrams": 7.39,
   "estimatedSeconds": 1111,
   "printerModelId": "N6",
-  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
+  "note": "The printer is active locally. The live stream will appear when Go Live is available."
 }
