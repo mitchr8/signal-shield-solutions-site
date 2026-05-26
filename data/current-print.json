@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-05-26T12:22:27.6547921-07:00",
+  "updatedAt": "2026-05-26T12:22:37.1728762-07:00",
   "active": true,
-  "cameraAvailable": false,
+  "cameraAvailable": true,
   "gcodeState": "RUNNING",
   "progress": 90,
   "title": "Single Drawer",
