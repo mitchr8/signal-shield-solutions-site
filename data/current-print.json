@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-05-25T21:27:34.9621079-07:00",
-  "active": false,
+  "updatedAt": "2026-05-25T21:27:47.8873768-07:00",
+  "active": true,
   "cameraAvailable": false,
-  "gcodeState": "",
-  "progress": null,
-  "title": "Modular Stackable Organizer -Makeup & Desk Storage",
-  "projectId": "",
+  "gcodeState": "RUNNING",
+  "progress": 0,
+  "title": "Single Drawer",
+  "projectId": "975925338",
   "image": "",
   "imageVersion": "",
   "objectCount": 0,
@@ -13,5 +13,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "note": "The printer is active locally. Preview image is not available for this job yet."
 }
