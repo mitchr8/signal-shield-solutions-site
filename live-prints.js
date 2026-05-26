@@ -1182,7 +1182,11 @@
         const data = await response.json();
         renderCurrentPrint(data);
         source = resolveSource(data && data.streamPlatform ? data.streamPlatform : "");
-        syncEmbeddedSource(source);
+        if(source && source.kind === "cloudflare"){
+          syncCloudflareLifecycle(source);
+        }else{
+          syncEmbeddedSource(source);
+        }
         currentPrintPollInFlight = false;
         return;
       }catch(error){
@@ -1190,7 +1194,14 @@
     }
 
     renderCurrentPrint(null);
-    syncEmbeddedSource(source);
+    if(!source){
+      source = resolveSource("");
+    }
+    if(source && source.kind === "cloudflare"){
+      syncCloudflareLifecycle(source);
+    }else{
+      syncEmbeddedSource(source);
+    }
     currentPrintPollInFlight = false;
   }
 
@@ -1390,29 +1401,41 @@
   document.addEventListener("msfullscreenchange", syncFullscreenButton);
   syncFullscreenButton();
 
-  source = resolveSource("");
+  source = null;
   renderPlaceholder(defaultOfflineTitle.textContent, defaultOfflineText.textContent);
   setStatus("Checking status", "Checking whether an active print is currently broadcasting.", false);
   loadCurrentPrint();
   scheduleCurrentPrintPoll();
   loadCatalog();
 
-  if(source){
+  document.addEventListener("visibilitychange", function(){
+    if(!source){
+      return;
+    }
+
+    if(source.kind === "cloudflare"){
+      if(document.hidden){
+        scheduleLifecyclePoll(source);
+        return;
+      }
+      syncCloudflareLifecycle(source);
+      return;
+    }
+
+    if(!document.hidden){
+      syncEmbeddedSource(source);
+    }
+  });
+  window.addEventListener("focus", function(){
+    if(!source){
+      return;
+    }
+
     if(source.kind === "cloudflare"){
       syncCloudflareLifecycle(source);
-      document.addEventListener("visibilitychange", function(){
-        if(document.hidden){
-          scheduleLifecyclePoll(source);
-          return;
-        }
-        syncCloudflareLifecycle(source);
-      });
-      window.addEventListener("focus", function(){
-        syncCloudflareLifecycle(source);
-      });
-      window.addEventListener("beforeunload", clearLifecyclePollTimer);
     }else{
       syncEmbeddedSource(source);
     }
-  }
+  });
+  window.addEventListener("beforeunload", clearLifecyclePollTimer);
 })();
