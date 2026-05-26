@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-05-26T10:32:44.0185529-07:00",
+  "updatedAt": "2026-05-26T10:32:53.3054647-07:00",
   "active": true,
-  "cameraAvailable": false,
+  "cameraAvailable": true,
   "gcodeState": "RUNNING",
   "progress": 62,
   "title": "Single Drawer",
@@ -14,5 +14,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "The printer is active locally. Preview image is not available for this job yet."
+  "note": "Active Bambu print detected. Preview image is not available for this job yet."
 }
