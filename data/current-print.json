@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-05-26T09:44:13.1701419-07:00",
+  "updatedAt": "2026-05-26T09:48:10.8874918-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 50,
+  "progress": 51,
   "title": "Single Drawer",
   "projectId": "976599149",
   "streamPlatform": "cloudflare",
