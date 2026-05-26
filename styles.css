@@ -1283,6 +1283,10 @@ textarea:focus{
   font-size:.78rem;
   letter-spacing:.08em;
 }
+.current-print-objects span.current-print-more{
+  color:#cad7eb;
+  justify-content:center;
+}
 .current-print-inquire{
   width:100%;
 }

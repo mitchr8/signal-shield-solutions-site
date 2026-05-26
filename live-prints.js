@@ -875,6 +875,10 @@
       return "";
     }
 
+    if(/^[A-Z0-9]{2,5}$/.test(word)){
+      return word;
+    }
+
     if(/^[a-z]+$/.test(word)){
       return word.charAt(0).toUpperCase() + word.slice(1);
     }
@@ -884,6 +888,10 @@
 
   function formatPrintLabel(value){
     const cleaned = cleanObjectName(value)
+      .replace(/\b(?:official|final|copy)\b/ig, " ")
+      .replace(/\bwall\s+trapped\b/ig, " ")
+      .replace(/\bno\s+lid\b/ig, " ")
+      .replace(/\btrapped\b/ig, " ")
       .replace(/\s+v(?=\d)/ig, " V")
       .replace(/\s+/g, " ")
       .trim();
@@ -896,6 +904,17 @@
       .split(" ")
       .map(titleCaseWord)
       .join(" ");
+  }
+
+  function buildEntriesFromTitle(value){
+    const parts = String(value || "")
+      .split(/\s*\+\s*/)
+      .map(function(part){
+        return part.trim();
+      })
+      .filter(Boolean);
+
+    return buildObjectEntries(parts);
   }
 
   function buildObjectEntries(objectNames){
@@ -992,38 +1011,55 @@
   }
 
   function findMatchingProductForCurrentPrint(data){
-    if(!data || !data.title || !productIndex.size){
+    if(!data || !productIndex.size){
       return null;
     }
 
-    const currentText = normalizeCompareText(data.title);
-    const currentTokens = new Set(getCompareTokens(data.title));
+    const candidates = [];
+    if(data.title){
+      candidates.push(data.title);
+    }
+    if(Array.isArray(data.labels)){
+      data.labels.forEach(function(label){
+        if(label){
+          candidates.push(label);
+        }
+      });
+    }
+    if(!candidates.length){
+      return null;
+    }
+
     let bestItem = null;
     let bestScore = 0;
 
     productIndex.forEach(function(item){
-      const itemText = normalizeCompareText(item.title);
-      const itemTokens = getCompareTokens(item.title);
-      let score = 0;
+      candidates.forEach(function(candidate){
+        const currentText = normalizeCompareText(candidate);
+        const currentTokens = new Set(getCompareTokens(candidate));
+        const itemText = normalizeCompareText(item.title);
+        const itemTokens = getCompareTokens(item.title);
+        let score = 0;
 
-      if(currentText === itemText){
-        score = 100;
-      }else{
-        if(currentText.includes(itemText) || itemText.includes(currentText)){
-          score += 50;
+        if(currentText === itemText){
+          score = 100;
+        }else{
+          if(currentText.includes(itemText) || itemText.includes(currentText)){
+            score += 50;
+          }
+
+          itemTokens.forEach(function(token){
+            if(currentTokens.has(token)){
+              score += 10;
+            }
+          });
         }
 
-        itemTokens.forEach(function(token){
-          if(currentTokens.has(token)){
-            score += 10;
-          }
-        });
-      }
-
-      if(score > bestScore && score >= 20){
-        bestScore = score;
-        bestItem = item;
-      }
+        if(score > bestScore && score >= 20){
+          bestScore = score;
+          bestItem = item;
+        }
+      });
     });
 
     return bestItem;
@@ -1090,15 +1126,22 @@
 
     const objectNames = Array.isArray(data.objects) ? data.objects.map(cleanObjectName).filter(Boolean) : [];
     const objectEntries = buildObjectEntries(objectNames);
+    const titleEntries = buildEntriesFromTitle(data.title);
+    const displayEntries = objectEntries.length ? objectEntries : titleEntries;
 
     if(currentPrintEyebrow){
-      currentPrintEyebrow.textContent = data.active ? "Current plate" : "Recent plate";
+      currentPrintEyebrow.textContent = data.active ? "Current shop print" : "Recent shop print";
     }
-    currentPrintTitle.textContent = deriveCurrentPrintHeadline(data, objectEntries);
-    const matchedProduct = !data.image ? findMatchingProductForCurrentPrint(data) : null;
+    currentPrintTitle.textContent = deriveCurrentPrintHeadline(data, displayEntries);
+    const matchedProduct = !data.image ? findMatchingProductForCurrentPrint({
+      title: currentPrintTitle.textContent,
+      labels: displayEntries.map(function(entry){
+        return entry.label;
+      })
+    }) || findMatchingProductForCurrentPrint(data) : null;
     const updatedAtMs = data.updatedAt ? Date.parse(data.updatedAt) : NaN;
     const progressIsFresh = Number.isFinite(updatedAtMs) ? (Date.now() - updatedAtMs) < 45000 : false;
-    currentPrintSummary.textContent = buildCurrentPrintSummary(data, objectEntries);
+    currentPrintSummary.textContent = buildCurrentPrintSummary(data, displayEntries);
     currentPrintState.textContent = data.gcodeState || (data.active ? "RUNNING" : "OFFLINE");
     if(typeof data.progress === "number" && (!data.active || progressIsFresh)){
       currentPrintProgress.textContent = data.progress + "%";
@@ -1111,14 +1154,21 @@
       currentPrintProgress.textContent = "--";
     }
 
-    currentPrintObjectCount.textContent = data.objectCount || (objectNames.length ? String(objectNames.length) : "--");
+    const totalObjectCount = Number(data.objectCount) || displayEntries.reduce(function(sum, entry){
+      return sum + entry.count;
+    }, 0);
+    currentPrintObjectCount.textContent = totalObjectCount > 0 ? String(totalObjectCount) : "--";
 
-    if(objectEntries.length){
+    if(displayEntries.length){
       currentPrintObjects.hidden = false;
-      currentPrintObjects.innerHTML = objectEntries.slice(0, 4).map(function(entry){
+      const visibleEntries = displayEntries.slice(0, 3).map(function(entry){
         const suffix = entry.count > 1 ? ' <strong>x' + entry.count + '</strong>' : "";
         return '<span title="' + escapeHtml(entry.label) + '">' + escapeHtml(clampText(entry.label, 34)) + suffix + '</span>';
-      }).join("");
+      });
+      if(displayEntries.length > 3){
+        visibleEntries.push('<span class="current-print-more">+' + (displayEntries.length - 3) + ' more</span>');
+      }
+      currentPrintObjects.innerHTML = visibleEntries.join("");
     }else{
       currentPrintObjects.hidden = true;
       currentPrintObjects.innerHTML = "";
@@ -1166,14 +1216,14 @@
       priceLabel: matchedProduct && matchedProduct.priceLabel ? matchedProduct.priceLabel : "",
       message:
         "I am interested in the current print: " + currentPrintTitle.textContent + ". " +
-        (objectEntries.length ? "Objects on the plate: " + objectEntries.slice(0, 4).map(function(entry){
+        (displayEntries.length ? "Objects on the plate: " + displayEntries.slice(0, 4).map(function(entry){
           return entry.label + (entry.count > 1 ? " x" + entry.count : "");
         }).join(", ") + ". " : "") +
         "Please tell me the price, available material options, and next steps."
     });
     setCurrentPrintShop({
       etsyUrl: pageConfig.etsyShopUrl || "",
-      label: pageConfig.etsyShopLabel || "Check out our Etsy"
+      label: pageConfig.etsyShopLabel || "Check out our Etsy shop"
     });
   }
 
@@ -1250,7 +1300,7 @@
       : '<div class="product-card-media">';
     const mediaEnd = item.etsyUrl ? '</a>' : '</div>';
     const etsyButton = item.etsyUrl
-      ? '<a class="btn primary mini-button product-etsy" href="' + escapeHtml(item.etsyUrl) + '" target="_blank" rel="noopener">View on Etsy</a>'
+      ? '<a class="btn primary mini-button product-etsy" href="' + escapeHtml(item.etsyUrl) + '" target="_blank" rel="noopener">See listing</a>'
       : "";
     article.innerHTML =
       mediaStart +
