@@ -1,19 +1,19 @@
 {
-  "updatedAt": "2026-05-25T20:28:18.2769230-07:00",
-  "active": false,
+  "updatedAt": "2026-05-25T20:43:50.1057451-07:00",
+  "active": true,
   "cameraAvailable": false,
-  "gcodeState": "FINISH",
-  "progress": 100,
-  "title": "dog_door_thin_bar_magnet_mount_V6_single.stl",
-  "projectId": "975829092",
+  "gcodeState": "RUNNING",
+  "progress": 0,
+  "title": "dog_door_thin_magnet_mount_V8_COMPACT_LEFT_FACE_single_test.stl",
+  "projectId": "975877395",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260525202818",
+  "imageVersion": "20260525204350",
   "objectCount": 1,
   "objects": [
-    "dog_door_thin_bar_magnet_mount_V6_single.stl"
+    "dog_door_thin_magnet_mount_V8_COMPACT_LEFT_FACE_single_test.stl"
   ],
-  "weightGrams": 7.39,
-  "estimatedSeconds": 1111,
+  "weightGrams": 13.01,
+  "estimatedSeconds": 1680,
   "printerModelId": "N6",
-  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
+  "note": "The printer is active locally. The live stream will appear when Go Live is available."
 }
