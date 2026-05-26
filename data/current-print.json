@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-26T10:58:30.5487800-07:00",
+  "updatedAt": "2026-05-26T11:01:06.0687427-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
@@ -7,6 +7,8 @@
   "title": "Single Drawer",
   "projectId": "976599149",
   "streamPlatform": "youtube",
+  "streamPublic": false,
+  "youtubeVideoId": "",
   "image": "/print-assets/current-live-snapshot.jpg",
   "imageVersion": "",
   "objectCount": 0,
@@ -14,5 +16,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Live camera snapshot paired with the current print details while the model preview is unavailable."
+  "note": "The printer is active and the YouTube broadcast is still starting."
 }
