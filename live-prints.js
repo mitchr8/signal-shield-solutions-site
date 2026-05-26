@@ -321,6 +321,21 @@
     }
 
     if(isCurrentPrintStreamActive()){
+      if(
+        currentPrintData &&
+        currentPrintData.streamPlatform === "youtube" &&
+        currentPrintData.streamPublic === false
+      ){
+        teardownCloudflarePlayer();
+        renderPlaceholder(
+          "Live print is starting.",
+          "The printer is active, and the public YouTube broadcast is still coming online."
+        );
+        embeddedSourceSignature = "";
+        setConnectingStatus("The printer is active, and the public YouTube broadcast is still coming online.");
+        return;
+      }
+
       if(embeddedSourceSignature !== sourceConfig.url){
         teardownCloudflarePlayer();
         streamMount.innerHTML = "";
@@ -1180,6 +1195,9 @@
           throw new Error("Current print request failed");
         }
         const data = await response.json();
+        if(data && data.youtubeVideoId){
+          streamConfig.youtubeVideoId = data.youtubeVideoId;
+        }
         renderCurrentPrint(data);
         source = resolveSource(data && data.streamPlatform ? data.streamPlatform : "");
         if(source && source.kind === "cloudflare"){
