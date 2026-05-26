@@ -1,20 +1,22 @@
 {
-  "updatedAt": "2026-05-26T14:10:12.5332210-07:00",
+  "updatedAt": "2026-05-26T14:14:28.8157356-07:00",
   "active": false,
   "cameraAvailable": true,
-  "gcodeState": "FINISH",
-  "progress": 100,
-  "title": "Single Drawer",
-  "projectId": "976599149",
+  "gcodeState": "",
+  "progress": null,
+  "title": "dog door thin magnet mount V8 COMPACT LEFT FACE single test",
+  "projectId": "",
   "streamPlatform": "youtube",
   "streamPublic": false,
   "youtubeVideoId": "MDcQiQfbsDk",
-  "image": "/print-assets/current-live-snapshot.jpg",
-  "imageVersion": "",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "Latest live camera snapshot from the most recent print job."
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "20260526141423",
+  "objectCount": 1,
+  "objects": [
+    "dog_door_thin_magnet_mount_V8_COMPACT_LEFT_FACE_single_test.stl"
+  ],
+  "weightGrams": 13.01,
+  "estimatedSeconds": 1680,
+  "printerModelId": "N6",
+  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
 }
