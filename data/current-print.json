@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-05-26T12:57:03.7222315-07:00",
-  "active": true,
+  "updatedAt": "2026-05-26T13:01:53.8215452-07:00",
+  "active": false,
   "cameraAvailable": true,
-  "gcodeState": "RUNNING",
-  "progress": 99,
+  "gcodeState": "FINISH",
+  "progress": 100,
   "title": "Single Drawer",
   "projectId": "976599149",
   "streamPlatform": "youtube",
@@ -16,5 +16,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "The printer is active and the YouTube broadcast is still starting."
+  "note": "Latest live camera snapshot from the current printer job."
 }
