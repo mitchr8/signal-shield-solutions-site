@@ -1798,6 +1798,50 @@ textarea:focus{
     width:calc(100vw - 24px);
     max-height:min(62svh, 430px);
   }
+  .page-live .current-print-card{
+    gap:14px;
+  }
+  .page-live .current-print-media{
+    aspect-ratio:5 / 4;
+  }
+  .page-live .current-print-body{
+    gap:14px;
+  }
+  .page-live .current-print-body h3{
+    font-size:1.34rem;
+    line-height:1.1;
+  }
+  .page-live .current-print-body p{
+    max-width:none;
+    font-size:.95rem;
+  }
+  .page-live .current-print-objects{
+    gap:8px;
+  }
+  .page-live .current-print-objects span{
+    min-height:auto;
+    padding:10px 12px;
+    white-space:normal;
+    line-height:1.35;
+  }
+  .page-live .current-print-actions{
+    padding-bottom:76px;
+  }
+  .page-live .chat-btn{
+    display:inline-flex;
+    align-items:center;
+    left:12px;
+    right:auto;
+    min-width:74px;
+    justify-content:center;
+  }
+  .page-live .chat-panel{
+    left:12px;
+    right:12px;
+    bottom:64px;
+    width:auto;
+    max-width:none;
+  }
 }
 @media (max-width:540px){
   .brand{
