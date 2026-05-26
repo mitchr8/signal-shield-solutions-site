@@ -50,9 +50,13 @@
   let lifecyclePollTimer = null;
   let lifecyclePollInFlight = false;
   let playbackWatchdogTimer = null;
+  let currentPrintPollTimer = null;
+  let currentPrintPollInFlight = false;
   let currentPrintData = null;
   let productIndex = new Map();
   let activeCloudflareVideo = null;
+  let source = null;
+  let embeddedSourceSignature = "";
 
   function withCacheBust(url){
     const nextUrl = new URL(url, window.location.href);
@@ -81,6 +85,61 @@
       resolved.searchParams.set("v", imageVersion);
     }
     return resolved.toString();
+  }
+
+  function clearGeneratedCurrentPrintImage(){
+    if(!currentPrintImage){
+      return;
+    }
+
+    delete currentPrintImage.dataset.generated;
+    delete currentPrintImage.dataset.snapshotKey;
+  }
+
+  function getCurrentPrintSnapshotKey(data){
+    if(!data){
+      return "";
+    }
+
+    return String(data.projectId || data.title || "").trim();
+  }
+
+  function applyCurrentVideoSnapshot(video){
+    if(
+      !video ||
+      !currentPrintImage ||
+      !currentPrintPlaceholder ||
+      !currentPrintData ||
+      currentPrintData.image
+    ){
+      return;
+    }
+
+    const snapshotKey = getCurrentPrintSnapshotKey(currentPrintData);
+    if(!snapshotKey || video.readyState < 2 || !video.videoWidth || !video.videoHeight){
+      return;
+    }
+
+    try{
+      const canvas = document.createElement("canvas");
+      const width = Math.min(video.videoWidth, 960);
+      const height = Math.max(1, Math.round(width * (video.videoHeight / video.videoWidth)));
+      canvas.width = width;
+      canvas.height = height;
+      const context = canvas.getContext("2d");
+      if(!context){
+        return;
+      }
+      context.drawImage(video, 0, 0, width, height);
+      currentPrintImage.src = canvas.toDataURL("image/jpeg", 0.86);
+      currentPrintImage.alt = currentPrintTitle ? currentPrintTitle.textContent : "Current print snapshot";
+      currentPrintImage.hidden = false;
+      currentPrintPlaceholder.hidden = true;
+      currentPrintImage.dataset.generated = "true";
+      currentPrintImage.dataset.snapshotKey = snapshotKey;
+    }catch(error){
+      console.error("Failed to capture current print snapshot", error);
+    }
   }
 
   if(currentPrintImage && currentPrintPlaceholder){
@@ -216,6 +275,7 @@
   function renderPlaceholder(title, text){
     cloudflarePlayerMounted = false;
     cloudflareAttachInFlight = false;
+    embeddedSourceSignature = "";
     streamMount.innerHTML = '<div class="stream-placeholder"><strong>' + escapeHtml(title) + '</strong><p>' + escapeHtml(text) + '</p></div>';
   }
 
@@ -244,6 +304,43 @@
     frame.allow = "autoplay; fullscreen; picture-in-picture; encrypted-media";
     frame.allowFullscreen = true;
     return frame;
+  }
+
+  function isCurrentPrintStreamActive(){
+    return Boolean(currentPrintData && currentPrintData.active && currentPrintData.cameraAvailable);
+  }
+
+  function syncEmbeddedSource(sourceConfig){
+    if(!sourceConfig || sourceConfig.kind === "cloudflare"){
+      return;
+    }
+
+    if(!currentPrintData){
+      setStatus("Checking status", "Checking whether an active print is currently broadcasting.", false);
+      return;
+    }
+
+    if(isCurrentPrintStreamActive()){
+      if(embeddedSourceSignature !== sourceConfig.url){
+        teardownCloudflarePlayer();
+        streamMount.innerHTML = "";
+        streamMount.appendChild(buildFrame(sourceConfig));
+        embeddedSourceSignature = sourceConfig.url;
+      }
+      setStatus("Live now", "An active print is currently broadcasting from the shop printer.", true);
+      return;
+    }
+
+    teardownCloudflarePlayer();
+    renderPlaceholder(
+      "No active print is broadcasting right now.",
+      "Check back when the next live print starts."
+    );
+    if(currentPrintData.active){
+      setConnectingStatus("The printer is active locally. The live stream will appear once the broadcast destination is publishing.");
+    }else{
+      setStatus("Offline", "The live camera is offline right now. Check back during the next active print.", false);
+    }
   }
 
   function parseIceServers(linkHeader){
@@ -360,6 +457,8 @@
     clearPlaybackWatchdog();
     clearStreamAction();
     cloudflarePlayerMounted = true;
+    embeddedSourceSignature = "cloudflare";
+    applyCurrentVideoSnapshot(activeCloudflareVideo);
     setStatus("Live now", "An active print is currently broadcasting from the shop printer.", true);
   }
 
@@ -592,57 +691,63 @@
     return (params.get(paramName) || streamConfig[configName] || "").trim();
   }
 
-  function resolveSource(){
+  function resolveSource(platformHint){
+    const normalizedPlatformHint = String(platformHint || "").trim().toLowerCase();
+    const preferredSource = (
+      normalizedPlatformHint === "youtube" ? "youtube" :
+      normalizedPlatformHint === "cloudflare" ? "cloudflare" :
+      normalizedPlatformHint === "iframe" ? "iframe" :
+      normalizedPlatformHint === "twitch" ? "twitch" :
+      (pickValue("stream_source", "preferredSource") || "auto")
+    ).toLowerCase();
+    const iframeUrl = pickValue("iframe", "iframeUrl");
+    const youtubeVideoId = pickValue("youtube", "youtubeVideoId");
+    const youtubeChannelId = pickValue("youtube_channel", "youtubeChannelId");
+    const twitchChannel = pickValue("twitch", "twitchChannel");
     const cloudflareCustomerCode = pickValue("cloudflare_code", "cloudflareCustomerCode");
     const cloudflareLiveInputId = pickValue("cloudflare_input", "cloudflareLiveInputId");
-    if(cloudflareCustomerCode && cloudflareLiveInputId){
-      return {
+    const parent = window.location.hostname || "signalshieldsolutions.com";
+    const candidates = {
+      cloudflare: (cloudflareCustomerCode && cloudflareLiveInputId) ? {
         kind: "cloudflare",
         code: cloudflareCustomerCode,
         inputId: cloudflareLiveInputId,
         playUrl: "https://customer-" + encodeURIComponent(cloudflareCustomerCode) + ".cloudflarestream.com/" + encodeURIComponent(cloudflareLiveInputId) + "/webRTC/play",
         label: "Cloudflare Stream live input"
-      };
-    }
-
-    const iframeUrl = pickValue("iframe", "iframeUrl");
-    if(iframeUrl){
-      return {
+      } : null,
+      iframe: iframeUrl ? {
         kind: "iframe",
         url: iframeUrl,
         label: "Custom live source"
-      };
-    }
-
-    const youtubeVideoId = pickValue("youtube", "youtubeVideoId");
-    if(youtubeVideoId){
-      return {
+      } : null,
+      youtubeVideo: youtubeVideoId ? {
         kind: "youtube-video",
-        url: "https://www.youtube.com/embed/" + encodeURIComponent(youtubeVideoId) + "?autoplay=1&rel=0&modestbranding=1",
+        url: "https://www.youtube.com/embed/" + encodeURIComponent(youtubeVideoId) + "?autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1&origin=" + encodeURIComponent(window.location.origin),
         label: "YouTube live feed"
-      };
-    }
-
-    const youtubeChannelId = pickValue("youtube_channel", "youtubeChannelId");
-    if(youtubeChannelId){
-      return {
+      } : null,
+      youtubeChannel: youtubeChannelId ? {
         kind: "youtube-channel",
-        url: "https://www.youtube.com/embed/live_stream?channel=" + encodeURIComponent(youtubeChannelId) + "&autoplay=1",
+        url: "https://www.youtube.com/embed/live_stream?channel=" + encodeURIComponent(youtubeChannelId) + "&autoplay=1&mute=1&playsinline=1&rel=0&modestbranding=1&enablejsapi=1&origin=" + encodeURIComponent(window.location.origin),
         label: "YouTube channel live feed"
-      };
-    }
-
-    const twitchChannel = pickValue("twitch", "twitchChannel");
-    if(twitchChannel){
-      const parent = window.location.hostname || "signalshieldsolutions.com";
-      return {
+      } : null,
+      twitch: twitchChannel ? {
         kind: "twitch",
         url: "https://player.twitch.tv/?channel=" + encodeURIComponent(twitchChannel) + "&parent=" + encodeURIComponent(parent) + "&autoplay=true",
         label: "Twitch live feed"
-      };
-    }
+      } : null
+    };
 
-    return null;
+    const preferredOrder = preferredSource === "youtube"
+      ? [candidates.youtubeVideo, candidates.youtubeChannel, candidates.cloudflare, candidates.iframe, candidates.twitch]
+      : preferredSource === "cloudflare"
+        ? [candidates.cloudflare, candidates.youtubeVideo, candidates.youtubeChannel, candidates.iframe, candidates.twitch]
+        : preferredSource === "iframe"
+          ? [candidates.iframe, candidates.youtubeVideo, candidates.youtubeChannel, candidates.cloudflare, candidates.twitch]
+          : preferredSource === "twitch"
+            ? [candidates.twitch, candidates.youtubeVideo, candidates.youtubeChannel, candidates.cloudflare, candidates.iframe]
+            : [candidates.cloudflare, candidates.youtubeVideo, candidates.youtubeChannel, candidates.iframe, candidates.twitch];
+
+    return preferredOrder.find(Boolean) || null;
   }
 
   function buildCloudflareProxyUrl(source, suffix){
@@ -673,6 +778,9 @@
   }
 
   function scheduleLifecyclePoll(source, delay){
+    if(!source || source.kind !== "cloudflare"){
+      return;
+    }
     clearLifecyclePollTimer();
     lifecyclePollTimer = window.setTimeout(function(){
       syncCloudflareLifecycle(source);
@@ -680,6 +788,10 @@
   }
 
   async function syncCloudflareLifecycle(source, options){
+    if(!source || source.kind !== "cloudflare"){
+      return;
+    }
+
     if(lifecyclePollInFlight){
       return;
     }
@@ -945,6 +1057,7 @@
       if(currentPrintEyebrow){
         currentPrintEyebrow.textContent = "Current plate";
       }
+      clearGeneratedCurrentPrintImage();
       currentPrintTitle.textContent = "Current print preview";
       currentPrintSummary.textContent = "The page will add the current print thumbnail and title here when local metadata is available.";
       currentPrintState.textContent = "Waiting";
@@ -997,11 +1110,13 @@
     }
 
     if(data.image){
+      clearGeneratedCurrentPrintImage();
       currentPrintImage.src = resolveCurrentPrintImageUrl(data.image, data.imageVersion);
       currentPrintImage.alt = data.title;
       currentPrintImage.hidden = false;
       currentPrintPlaceholder.hidden = true;
     }else if(matchedProduct && matchedProduct.image){
+      clearGeneratedCurrentPrintImage();
       const version = matchedProduct.imageVersion ? ("?v=" + encodeURIComponent(matchedProduct.imageVersion)) : "";
       currentPrintImage.src = matchedProduct.image + version;
       currentPrintImage.alt = matchedProduct.title || data.title;
@@ -1009,9 +1124,26 @@
       currentPrintPlaceholder.hidden = true;
       currentPrintSummary.textContent = "Live plate thumbnail is not available for this job yet. Showing the closest matching catalog preview instead.";
     }else{
-      currentPrintImage.hidden = true;
-      currentPrintImage.removeAttribute("src");
-      currentPrintPlaceholder.hidden = false;
+      const snapshotKey = getCurrentPrintSnapshotKey(data);
+      const canUseGeneratedImage = (
+        currentPrintImage.dataset.generated === "true" &&
+        currentPrintImage.dataset.snapshotKey === snapshotKey &&
+        !currentPrintImage.hidden &&
+        currentPrintImage.getAttribute("src")
+      );
+
+      if(canUseGeneratedImage){
+        currentPrintImage.hidden = false;
+        currentPrintPlaceholder.hidden = true;
+        if(data.active){
+          currentPrintSummary.textContent = "Live camera snapshot paired with the current print details while the model preview is unavailable.";
+        }
+      }else{
+        clearGeneratedCurrentPrintImage();
+        currentPrintImage.hidden = true;
+        currentPrintImage.removeAttribute("src");
+        currentPrintPlaceholder.hidden = false;
+      }
     }
 
     setCurrentPrintInquiry({
@@ -1031,11 +1163,16 @@
   }
 
   async function loadCurrentPrint(){
+    if(currentPrintPollInFlight){
+      return;
+    }
+
     const sources = [pageConfig.currentPrintUrl, pageConfig.currentPrintFallbackUrl].filter(Boolean);
     if(!sources.length){
       return;
     }
 
+    currentPrintPollInFlight = true;
     for(const sourceUrl of sources){
       try{
         const response = await fetch(withCacheBust(sourceUrl), { cache: "no-store" });
@@ -1044,12 +1181,32 @@
         }
         const data = await response.json();
         renderCurrentPrint(data);
+        source = resolveSource(data && data.streamPlatform ? data.streamPlatform : "");
+        syncEmbeddedSource(source);
+        currentPrintPollInFlight = false;
         return;
       }catch(error){
       }
     }
 
     renderCurrentPrint(null);
+    syncEmbeddedSource(source);
+    currentPrintPollInFlight = false;
+  }
+
+  function clearCurrentPrintPollTimer(){
+    if(currentPrintPollTimer){
+      window.clearTimeout(currentPrintPollTimer);
+      currentPrintPollTimer = null;
+    }
+  }
+
+  function scheduleCurrentPrintPoll(delay){
+    clearCurrentPrintPollTimer();
+    currentPrintPollTimer = window.setTimeout(function(){
+      loadCurrentPrint();
+      scheduleCurrentPrintPoll(document.hidden ? 90000 : 15000);
+    }, typeof delay === "number" ? delay : (document.hidden ? 90000 : 15000));
   }
 
   function buildProductCard(item, duplicate){
@@ -1233,10 +1390,11 @@
   document.addEventListener("msfullscreenchange", syncFullscreenButton);
   syncFullscreenButton();
 
-  const source = resolveSource();
+  source = resolveSource("");
   renderPlaceholder(defaultOfflineTitle.textContent, defaultOfflineText.textContent);
   setStatus("Checking status", "Checking whether an active print is currently broadcasting.", false);
   loadCurrentPrint();
+  scheduleCurrentPrintPoll();
   loadCatalog();
 
   if(source){
@@ -1254,9 +1412,7 @@
       });
       window.addEventListener("beforeunload", clearLifecyclePollTimer);
     }else{
-      setStatus("Live now", "The live viewer is connected.", true);
-      streamMount.innerHTML = "";
-      streamMount.appendChild(buildFrame(source));
+      syncEmbeddedSource(source);
     }
   }
 })();
