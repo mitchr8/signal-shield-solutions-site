@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-27T07:47:24.4038076-07:00",
+  "updatedAt": "2026-05-27T07:48:01.1370692-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "FINISH",
@@ -10,13 +10,13 @@
   "streamPublic": false,
   "youtubeVideoId": "pJCL_wjaUKc",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260527074722",
+  "imageVersion": "20260527074759",
   "objectCount": 1,
   "objects": [
     "organizer - Copy_8_A"
   ],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
+  "weightGrams": 46.78,
+  "estimatedSeconds": 10550,
+  "printerModelId": "N6",
   "note": "The printer is active and the YouTube broadcast is still starting."
 }
