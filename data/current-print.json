@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-05-27T09:14:50.5910827-07:00",
+  "updatedAt": "2026-05-27T09:17:20.1626691-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 32,
+  "progress": 33,
   "title": "Single Drawer",
   "projectId": "979102831",
   "streamPlatform": "youtube",
