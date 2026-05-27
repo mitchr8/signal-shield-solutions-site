@@ -307,7 +307,11 @@
   }
 
   function isCurrentPrintStreamActive(){
-    return Boolean(currentPrintData && currentPrintData.active && currentPrintData.cameraAvailable);
+    return Boolean(
+      currentPrintData &&
+      currentPrintData.cameraAvailable &&
+      (currentPrintData.active || currentPrintData.streamPublic)
+    );
   }
 
   function syncEmbeddedSource(sourceConfig){
