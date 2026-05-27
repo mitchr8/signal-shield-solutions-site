@@ -310,7 +310,8 @@
     return Boolean(
       currentPrintData &&
       currentPrintData.cameraAvailable &&
-      (currentPrintData.active || currentPrintData.streamPublic)
+      currentPrintData.active &&
+      currentPrintData.streamPublic !== false
     );
   }
 
