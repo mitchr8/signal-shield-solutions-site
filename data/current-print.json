@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-27T07:44:58.7142276-07:00",
+  "updatedAt": "2026-05-27T07:45:35.5470590-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "FINISH",
@@ -10,7 +10,7 @@
   "streamPublic": false,
   "youtubeVideoId": "pJCL_wjaUKc",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260527074457",
+  "imageVersion": "20260527074533",
   "objectCount": 1,
   "objects": [
     "organizer - Copy_8_A"
