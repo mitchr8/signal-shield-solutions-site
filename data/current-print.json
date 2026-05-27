@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-27T07:26:50.9574429-07:00",
+  "updatedAt": "2026-05-27T07:27:25.0702115-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "FINISH",
@@ -10,7 +10,7 @@
   "streamPublic": false,
   "youtubeVideoId": "MDcQiQfbsDk",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260527072649",
+  "imageVersion": "20260527072723",
   "objectCount": 6,
   "objects": [
     "dog_door_thin_magnet_mount_V11_NOT_ROTATED_smaller_single.stl",
