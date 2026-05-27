@@ -1241,6 +1241,7 @@
     }
 
     currentPrintPollInFlight = true;
+    const candidates = [];
     for(const sourceUrl of sources){
       try{
         const response = await fetch(withCacheBust(sourceUrl), { cache: "no-store" });
@@ -1248,20 +1249,33 @@
           throw new Error("Current print request failed");
         }
         const data = await response.json();
-        if(data && data.youtubeVideoId){
-          streamConfig.youtubeVideoId = data.youtubeVideoId;
+        if(data){
+          candidates.push(data);
         }
-        renderCurrentPrint(data);
-        source = resolveSource(data && data.streamPlatform ? data.streamPlatform : "");
-        if(source && source.kind === "cloudflare"){
-          syncCloudflareLifecycle(source);
-        }else{
-          syncEmbeddedSource(source);
-        }
-        currentPrintPollInFlight = false;
-        return;
       }catch(error){
       }
+    }
+
+    if(candidates.length){
+      candidates.sort(function(left, right){
+        const leftTime = Date.parse(left.updatedAt || "") || 0;
+        const rightTime = Date.parse(right.updatedAt || "") || 0;
+        return rightTime - leftTime;
+      });
+
+      const data = candidates[0];
+      if(data && data.youtubeVideoId){
+        streamConfig.youtubeVideoId = data.youtubeVideoId;
+      }
+      renderCurrentPrint(data);
+      source = resolveSource(data && data.streamPlatform ? data.streamPlatform : "");
+      if(source && source.kind === "cloudflare"){
+        syncCloudflareLifecycle(source);
+      }else{
+        syncEmbeddedSource(source);
+      }
+      currentPrintPollInFlight = false;
+      return;
     }
 
     renderCurrentPrint(null);
