@@ -1,22 +1,20 @@
 {
-  "updatedAt": "2026-05-27T12:59:33.2375642-07:00",
+  "updatedAt": "2026-05-27T13:02:17.7379406-07:00",
   "active": false,
   "cameraAvailable": true,
-  "gcodeState": "",
-  "progress": null,
-  "title": "Fan",
-  "projectId": "",
+  "gcodeState": "FINISH",
+  "progress": 100,
+  "title": "Single Drawer",
+  "projectId": "979102831",
   "streamPlatform": "youtube",
   "streamPublic": false,
   "youtubeVideoId": "j9FK9498iZ8",
-  "image": "/print-assets/current-print.png",
-  "imageVersion": "3275ee83ffd0",
-  "objectCount": 1,
-  "objects": [
-    "Fan.stl"
-  ],
-  "weightGrams": 54.17,
-  "estimatedSeconds": 13112,
-  "printerModelId": "N6",
-  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
+  "image": "/print-assets/current-live-snapshot.jpg",
+  "imageVersion": "7f1137bf53f9",
+  "objectCount": 0,
+  "objects": [],
+  "weightGrams": null,
+  "estimatedSeconds": null,
+  "printerModelId": "",
+  "note": "Latest live camera snapshot from the most recent print job."
 }
