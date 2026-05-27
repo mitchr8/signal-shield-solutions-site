@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-27T09:19:28.6835776-07:00",
+  "updatedAt": "2026-05-27T09:20:02.7500412-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
@@ -7,7 +7,7 @@
   "title": "Single Drawer",
   "projectId": "979102831",
   "streamPlatform": "youtube",
-  "streamPublic": true,
+  "streamPublic": false,
   "youtubeVideoId": "aELlrL03kRA",
   "image": "/print-assets/current-print.png",
   "imageVersion": "3275ee83ffd0",
@@ -18,5 +18,5 @@
   "weightGrams": 54.17,
   "estimatedSeconds": 13112,
   "printerModelId": "N6",
-  "note": "Active Bambu print preview paired with the live stream."
+  "note": "The printer is active and the YouTube broadcast is still starting."
 }
