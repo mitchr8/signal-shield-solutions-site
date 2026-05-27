@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-27T08:53:21.0035576-07:00",
+  "updatedAt": "2026-05-27T08:53:57.5011788-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
@@ -10,7 +10,7 @@
   "streamPublic": false,
   "youtubeVideoId": "pJCL_wjaUKc",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260527085319",
+  "imageVersion": "20260527085356",
   "objectCount": 1,
   "objects": [
     "Fan.stl"
