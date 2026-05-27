@@ -1,16 +1,16 @@
 {
-  "updatedAt": "2026-05-27T08:45:48.0845705-07:00",
+  "updatedAt": "2026-05-27T08:45:58.7733235-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 18,
+  "progress": 19,
   "title": "Single Drawer",
   "projectId": "979102831",
   "streamPlatform": "youtube",
   "streamPublic": false,
   "youtubeVideoId": "pJCL_wjaUKc",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "20260527084546",
+  "imageVersion": "20260527084557",
   "objectCount": 1,
   "objects": [
     "Fan.stl"
