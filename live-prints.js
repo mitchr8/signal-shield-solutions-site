@@ -1143,11 +1143,9 @@
         return entry.label;
       })
     }) || findMatchingProductForCurrentPrint(data) : null;
-    const updatedAtMs = data.updatedAt ? Date.parse(data.updatedAt) : NaN;
-    const progressIsFresh = Number.isFinite(updatedAtMs) ? (Date.now() - updatedAtMs) < 45000 : false;
     currentPrintSummary.textContent = buildCurrentPrintSummary(data, displayEntries);
     currentPrintState.textContent = data.gcodeState || (data.active ? "RUNNING" : "OFFLINE");
-    if(typeof data.progress === "number" && (!data.active || progressIsFresh)){
+    if(typeof data.progress === "number"){
       currentPrintProgress.textContent = data.progress + "%";
     }else if(data.active){
       currentPrintProgress.textContent = "Updating";
