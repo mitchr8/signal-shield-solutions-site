@@ -1,20 +1,22 @@
 {
-  "updatedAt": "2026-05-27T22:08:47.2982107-07:00",
-  "active": false,
+  "updatedAt": "2026-05-27T22:08:59.9114271-07:00",
+  "active": true,
   "cameraAvailable": false,
-  "gcodeState": "",
-  "progress": null,
-  "title": "Zyn Can Travel Tube",
-  "projectId": "",
+  "gcodeState": "RUNNING",
+  "progress": 0,
+  "title": "0.2mm layer, 2 walls, 10% infill",
+  "projectId": "980535381",
   "streamPlatform": "youtube",
-  "streamPublic": false,
+  "streamPublic": true,
   "youtubeVideoId": "MTaiPj2mBBI",
-  "image": "/print-assets/current-live-snapshot.jpg",
-  "imageVersion": "dc751687b67a",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "Latest live camera snapshot from the most recent print job."
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "3275ee83ffd0",
+  "objectCount": 1,
+  "objects": [
+    "Fan.stl"
+  ],
+  "weightGrams": 54.17,
+  "estimatedSeconds": 13112,
+  "printerModelId": "N6",
+  "note": "The printer is active locally. The live stream will appear when Go Live is available."
 }
