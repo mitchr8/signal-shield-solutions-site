@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-05-27T22:08:59.9114271-07:00",
+  "updatedAt": "2026-05-27T22:09:12.0958094-07:00",
   "active": true,
-  "cameraAvailable": false,
+  "cameraAvailable": true,
   "gcodeState": "RUNNING",
   "progress": 0,
   "title": "0.2mm layer, 2 walls, 10% infill",
@@ -18,5 +18,5 @@
   "weightGrams": 54.17,
   "estimatedSeconds": 13112,
   "printerModelId": "N6",
-  "note": "The printer is active locally. The live stream will appear when Go Live is available."
+  "note": "Active Bambu print preview paired with the live stream."
 }
