@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-28T10:21:15.1657069-07:00",
+  "updatedAt": "2026-05-28T10:25:43.8309787-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
@@ -10,13 +10,18 @@
   "streamPublic": false,
   "youtubeVideoId": "MTaiPj2mBBI",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "85fb01079f8e",
-  "objectCount": 1,
+  "imageVersion": "e9547e165a34",
+  "objectCount": 6,
   "objects": [
-    "can_dispenser_6-cans.stl"
+    "dog_door_thin_magnet_mount_V11_NOT_ROTATED_smaller_single.stl",
+    "dog_door_thin_magnet_mount_V11_NOT_ROTATED_smaller_single.stl",
+    "dog_door_thin_magnet_mount_V11_NOT_ROTATED_smaller_single.stl",
+    "dog_door_thin_magnet_mount_V11_NOT_ROTATED_smaller_single.stl",
+    "dog_door_thin_magnet_mount_V11_NOT_ROTATED_smaller_single.stl",
+    "dog_door_thin_magnet_mount_V11_NOT_ROTATED_smaller_single.stl"
   ],
-  "weightGrams": 249.59,
-  "estimatedSeconds": 23572,
+  "weightGrams": 58.59,
+  "estimatedSeconds": 6594,
   "printerModelId": "N6",
   "note": "The printer is active and the YouTube broadcast is still starting."
 }
