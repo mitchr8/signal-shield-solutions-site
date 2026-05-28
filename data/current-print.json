@@ -1,20 +1,22 @@
 {
-  "updatedAt": "2026-05-28T08:54:56.6478749-07:00",
-  "active": false,
+  "updatedAt": "2026-05-28T10:21:02.6584061-07:00",
+  "active": true,
   "cameraAvailable": false,
-  "gcodeState": "FINISH",
-  "progress": 100,
-  "title": "0.2mm layer, 2 walls, 10% infill",
-  "projectId": "980535381",
+  "gcodeState": "RUNNING",
+  "progress": 0,
+  "title": "0.2mm layer, 2 walls, 15% infill",
+  "projectId": "981677240",
   "streamPlatform": "youtube",
   "streamPublic": false,
   "youtubeVideoId": "MTaiPj2mBBI",
-  "image": "/print-assets/current-live-snapshot.jpg",
-  "imageVersion": "0dff3338dbde",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "Latest live camera snapshot from the most recent print job."
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "85fb01079f8e",
+  "objectCount": 1,
+  "objects": [
+    "can_dispenser_6-cans.stl"
+  ],
+  "weightGrams": 249.59,
+  "estimatedSeconds": 23572,
+  "printerModelId": "N6",
+  "note": "The printer is active and the YouTube broadcast is still starting."
 }
