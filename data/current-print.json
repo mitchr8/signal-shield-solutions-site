@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-05-28T10:21:02.6584061-07:00",
+  "updatedAt": "2026-05-28T10:21:15.1657069-07:00",
   "active": true,
-  "cameraAvailable": false,
+  "cameraAvailable": true,
   "gcodeState": "RUNNING",
   "progress": 0,
   "title": "0.2mm layer, 2 walls, 15% infill",
