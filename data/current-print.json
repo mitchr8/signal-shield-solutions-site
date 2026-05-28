@@ -1,22 +1,20 @@
 {
-  "updatedAt": "2026-05-28T08:54:44.6665941-07:00",
+  "updatedAt": "2026-05-28T08:54:56.6478749-07:00",
   "active": false,
   "cameraAvailable": false,
-  "gcodeState": "",
-  "progress": null,
-  "title": "Fan",
-  "projectId": "",
+  "gcodeState": "FINISH",
+  "progress": 100,
+  "title": "0.2mm layer, 2 walls, 10% infill",
+  "projectId": "980535381",
   "streamPlatform": "youtube",
   "streamPublic": false,
   "youtubeVideoId": "MTaiPj2mBBI",
-  "image": "/print-assets/current-print.png",
-  "imageVersion": "3275ee83ffd0",
-  "objectCount": 1,
-  "objects": [
-    "Fan.stl"
-  ],
-  "weightGrams": 54.17,
-  "estimatedSeconds": 13112,
-  "printerModelId": "N6",
-  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
+  "image": "/print-assets/current-live-snapshot.jpg",
+  "imageVersion": "0dff3338dbde",
+  "objectCount": 0,
+  "objects": [],
+  "weightGrams": null,
+  "estimatedSeconds": null,
+  "printerModelId": "",
+  "note": "Latest live camera snapshot from the most recent print job."
 }
