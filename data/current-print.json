@@ -1,22 +1,20 @@
 {
-  "updatedAt": "2026-05-27T21:25:01.9942651-07:00",
+  "updatedAt": "2026-05-27T21:25:13.5556330-07:00",
   "active": false,
   "cameraAvailable": false,
-  "gcodeState": "",
-  "progress": null,
-  "title": "Fan",
-  "projectId": "",
+  "gcodeState": "FINISH",
+  "progress": 100,
+  "title": "Modular Stackable Organizer -Makeup &amp; Desk Storage",
+  "projectId": "0",
   "streamPlatform": "youtube",
   "streamPublic": false,
   "youtubeVideoId": "MTaiPj2mBBI",
-  "image": "/print-assets/current-print.png",
-  "imageVersion": "3275ee83ffd0",
-  "objectCount": 1,
-  "objects": [
-    "Fan.stl"
-  ],
-  "weightGrams": 54.17,
-  "estimatedSeconds": 13112,
-  "printerModelId": "N6",
-  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
+  "image": "/print-assets/current-live-snapshot.jpg",
+  "imageVersion": "dc751687b67a",
+  "objectCount": 0,
+  "objects": [],
+  "weightGrams": null,
+  "estimatedSeconds": null,
+  "printerModelId": "",
+  "note": "Latest live camera snapshot from the most recent print job."
 }
