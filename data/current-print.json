@@ -1,20 +1,22 @@
 {
-  "updatedAt": "2026-05-27T16:29:47.1201418-07:00",
-  "active": false,
+  "updatedAt": "2026-05-27T17:12:53.6510873-07:00",
+  "active": true,
   "cameraAvailable": false,
-  "gcodeState": "FINISH",
-  "progress": 100,
-  "title": "Single Drawer",
-  "projectId": "979102831",
+  "gcodeState": "RUNNING",
+  "progress": 0,
+  "title": "Modular Stackable Organizer -Makeup &amp; Desk Storage",
+  "projectId": "0",
   "streamPlatform": "youtube",
-  "streamPublic": false,
+  "streamPublic": true,
   "youtubeVideoId": "j9FK9498iZ8",
-  "image": "/print-assets/current-live-snapshot.jpg",
-  "imageVersion": "7f1137bf53f9",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "Latest live camera snapshot from the most recent print job."
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "3275ee83ffd0",
+  "objectCount": 1,
+  "objects": [
+    "Fan.stl"
+  ],
+  "weightGrams": 54.17,
+  "estimatedSeconds": 13112,
+  "printerModelId": "N6",
+  "note": "The printer is active locally. The live stream will appear when Go Live is available."
 }
