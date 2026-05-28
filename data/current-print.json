@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-05-27T17:13:00.5726102-07:00",
+  "updatedAt": "2026-05-27T18:22:50.2546989-07:00",
   "active": true,
-  "cameraAvailable": true,
+  "cameraAvailable": false,
   "gcodeState": "RUNNING",
   "progress": 0,
   "title": "Modular Stackable Organizer -Makeup &amp; Desk Storage",
@@ -18,5 +18,5 @@
   "weightGrams": 54.17,
   "estimatedSeconds": 13112,
   "printerModelId": "N6",
-  "note": "Active Bambu print preview paired with the live stream."
+  "note": "The printer is active locally. The live stream will appear when Go Live is available."
 }
