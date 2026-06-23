@@ -758,14 +758,14 @@
     };
 
     const preferredOrder = preferredSource === "youtube"
-      ? [candidates.youtubeVideo, candidates.youtubeChannel, candidates.cloudflare, candidates.iframe, candidates.twitch]
+      ? [candidates.youtubeChannel, candidates.youtubeVideo, candidates.cloudflare, candidates.iframe, candidates.twitch]
       : preferredSource === "cloudflare"
-        ? [candidates.cloudflare, candidates.youtubeVideo, candidates.youtubeChannel, candidates.iframe, candidates.twitch]
+        ? [candidates.cloudflare, candidates.youtubeChannel, candidates.youtubeVideo, candidates.iframe, candidates.twitch]
         : preferredSource === "iframe"
-          ? [candidates.iframe, candidates.youtubeVideo, candidates.youtubeChannel, candidates.cloudflare, candidates.twitch]
+          ? [candidates.iframe, candidates.youtubeChannel, candidates.youtubeVideo, candidates.cloudflare, candidates.twitch]
           : preferredSource === "twitch"
-            ? [candidates.twitch, candidates.youtubeVideo, candidates.youtubeChannel, candidates.cloudflare, candidates.iframe]
-            : [candidates.cloudflare, candidates.youtubeVideo, candidates.youtubeChannel, candidates.iframe, candidates.twitch];
+            ? [candidates.twitch, candidates.youtubeChannel, candidates.youtubeVideo, candidates.cloudflare, candidates.iframe]
+            : [candidates.cloudflare, candidates.youtubeChannel, candidates.youtubeVideo, candidates.iframe, candidates.twitch];
 
     return preferredOrder.find(Boolean) || null;
   }
