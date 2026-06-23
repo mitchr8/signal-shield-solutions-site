@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-06-23T07:02:11.2032811-07:00",
+  "updatedAt": "2026-06-23T07:05:23.6099377-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 24,
+  "progress": 25,
   "title": "With supports and brim",
   "projectId": "1041738324",
   "streamPlatform": "youtube",
