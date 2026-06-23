@@ -1,20 +1,20 @@
 {
-  "updatedAt": "2026-06-23T10:32:23.3664627-07:00",
-  "active": true,
+  "updatedAt": "2026-06-23T10:32:37.3003736-07:00",
+  "active": false,
   "cameraAvailable": true,
   "gcodeState": "",
   "progress": null,
   "title": "Current print",
   "projectId": "",
   "streamPlatform": "youtube",
-  "streamPublic": true,
+  "streamPublic": false,
   "youtubeVideoId": "MTaiPj2mBBI",
   "image": "/print-assets/current-live-snapshot.jpg",
-  "imageVersion": "822f8c4b30ed",
+  "imageVersion": "ffc371bdde1f",
   "objectCount": 0,
   "objects": [],
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Live camera snapshot paired with the current print details while the model preview is unavailable."
+  "note": "Latest live camera snapshot from the most recent print job."
 }
