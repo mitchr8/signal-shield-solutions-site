@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-06-23T11:50:24.6940432-07:00",
-  "active": true,
+  "updatedAt": "2026-06-23T11:51:07.8885142-07:00",
+  "active": false,
   "cameraAvailable": true,
-  "gcodeState": "",
-  "progress": null,
-  "title": "Current print",
-  "projectId": "",
+  "gcodeState": "FINISH",
+  "progress": 100,
+  "title": "With supports and brim",
+  "projectId": "1041738324",
   "streamPlatform": "youtube",
-  "streamPublic": true,
+  "streamPublic": false,
   "youtubeVideoId": "MTaiPj2mBBI",
   "image": "",
   "imageVersion": "",
@@ -16,5 +16,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Active Bambu print detected. Preview image is not available for this job yet."
+  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
 }
