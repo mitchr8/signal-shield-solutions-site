@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-06-23T07:49:43.0347725-07:00",
+  "updatedAt": "2026-06-23T07:49:59.9343148-07:00",
   "active": false,
-  "cameraAvailable": true,
+  "cameraAvailable": false,
   "gcodeState": "",
   "progress": null,
   "title": "Current print",
@@ -10,7 +10,7 @@
   "streamPublic": false,
   "youtubeVideoId": "fxFz04RCtyg",
   "image": "/print-assets/current-live-snapshot.jpg",
-  "imageVersion": "99e59627523a",
+  "imageVersion": "763900f86d10",
   "objectCount": 0,
   "objects": [],
   "weightGrams": null,
