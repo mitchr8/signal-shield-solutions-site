@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-23T10:24:29.2095035-07:00",
+  "updatedAt": "2026-06-23T10:25:09.0578434-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "",
@@ -10,11 +10,11 @@
   "streamPublic": true,
   "youtubeVideoId": "MTaiPj2mBBI",
   "image": "/print-assets/current-live-snapshot.jpg",
-  "imageVersion": "ebb5d3d845a7",
+  "imageVersion": "e4539d14ea34",
   "objectCount": 0,
   "objects": [],
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Most recent live camera snapshot paired with the current print details while the model preview is unavailable."
+  "note": "Live camera snapshot paired with the current print details while the model preview is unavailable."
 }
