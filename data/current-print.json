@@ -1,20 +1,20 @@
 {
-  "updatedAt": "2026-06-23T07:45:04.2801712-07:00",
-  "active": true,
+  "updatedAt": "2026-06-23T07:49:43.0347725-07:00",
+  "active": false,
   "cameraAvailable": true,
-  "gcodeState": "RUNNING",
-  "progress": 37,
-  "title": "With supports and brim",
-  "projectId": "1041738324",
+  "gcodeState": "",
+  "progress": null,
+  "title": "Current print",
+  "projectId": "",
   "streamPlatform": "youtube",
   "streamPublic": false,
   "youtubeVideoId": "fxFz04RCtyg",
   "image": "/print-assets/current-live-snapshot.jpg",
-  "imageVersion": "978e9cf065b3",
+  "imageVersion": "99e59627523a",
   "objectCount": 0,
   "objects": [],
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "The printer is active and the YouTube broadcast is still starting."
+  "note": "Latest live camera snapshot from the most recent print job."
 }
