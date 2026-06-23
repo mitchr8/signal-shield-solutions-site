@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-06-23T07:49:59.9343148-07:00",
+  "updatedAt": "2026-06-23T08:09:23.0411468-07:00",
   "active": false,
-  "cameraAvailable": false,
+  "cameraAvailable": true,
   "gcodeState": "",
   "progress": null,
   "title": "Current print",
