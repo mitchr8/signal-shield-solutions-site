@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-06-23T08:30:08.0300596-07:00",
-  "active": false,
+  "updatedAt": "2026-06-23T08:30:37.6481540-07:00",
+  "active": true,
   "cameraAvailable": true,
   "gcodeState": "",
   "progress": null,
@@ -16,5 +16,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Latest live camera snapshot from the most recent print job."
+  "note": "The printer is active and the YouTube broadcast is still starting."
 }
