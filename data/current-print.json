@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-06-24T03:11:15.7713287-07:00",
-  "active": true,
+  "updatedAt": "2026-06-24T03:12:37.1751166-07:00",
+  "active": false,
   "cameraAvailable": true,
   "gcodeState": "",
   "progress": null,
@@ -16,5 +16,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "The printer is active and the YouTube broadcast is still starting."
+  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
 }
