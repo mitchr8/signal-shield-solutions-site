@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-06-24T13:37:27.1112738-07:00",
-  "active": false,
+  "updatedAt": "2026-06-24T13:37:54.1529243-07:00",
+  "active": true,
   "cameraAvailable": true,
   "gcodeState": "",
   "progress": null,
@@ -9,12 +9,12 @@
   "streamPlatform": "youtube",
   "streamPublic": false,
   "youtubeVideoId": "",
-  "image": "/print-assets/current-live-snapshot.jpg",
-  "imageVersion": "10e86d080eb5",
+  "image": "",
+  "imageVersion": "",
   "objectCount": 0,
   "objects": [],
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Latest live camera snapshot from the most recent print job."
+  "note": "The printer is active and the YouTube broadcast is still starting."
 }
