@@ -758,7 +758,7 @@
     };
 
     const preferredOrder = preferredSource === "youtube"
-      ? [candidates.youtubeChannel, candidates.youtubeVideo, candidates.cloudflare, candidates.iframe, candidates.twitch]
+      ? [candidates.youtubeVideo, candidates.youtubeChannel, candidates.cloudflare, candidates.iframe, candidates.twitch]
       : preferredSource === "cloudflare"
         ? [candidates.cloudflare, candidates.youtubeChannel, candidates.youtubeVideo, candidates.iframe, candidates.twitch]
         : preferredSource === "iframe"
