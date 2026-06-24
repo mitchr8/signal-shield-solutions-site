@@ -980,11 +980,15 @@
   }
 
   function buildCurrentPrintSummary(data, objectEntries){
+    const isActive = !!(data && data.active);
     const totalObjects = Number(data && data.objectCount) || objectEntries.reduce(function(sum, entry){
       return sum + entry.count;
     }, 0);
 
     if(objectEntries.length === 1){
+      if(!isActive){
+        return data && data.note ? data.note : "Most recent completed print from the shop printer.";
+      }
       if(totalObjects > 1){
         return totalObjects + " copies are on the build plate right now.";
       }
@@ -992,6 +996,9 @@
     }
 
     if(objectEntries.length > 1){
+      if(!isActive){
+        return data && data.note ? data.note : "Most recent completed plate from the shop printer.";
+      }
       return totalObjects + " parts are on the build plate right now.";
     }
 
