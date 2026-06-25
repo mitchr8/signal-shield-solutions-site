@@ -1,20 +1,20 @@
 {
-  "updatedAt": "2026-06-24T14:55:38.4501106-07:00",
+  "updatedAt": "2026-06-25T07:07:41.0653095-07:00",
   "active": false,
   "cameraAvailable": true,
-  "gcodeState": "",
-  "progress": null,
-  "title": "Current print",
-  "projectId": "",
+  "gcodeState": "FAILED",
+  "progress": 0,
+  "title": "0.16mm layer, 2 walls, 15% infill",
+  "projectId": "1046264367",
   "streamPlatform": "youtube",
   "streamPublic": false,
   "youtubeVideoId": "",
-  "image": "/print-assets/current-live-snapshot.jpg",
-  "imageVersion": "10e86d080eb5",
+  "image": "",
+  "imageVersion": "",
   "objectCount": 0,
   "objects": [],
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Latest live camera snapshot from the most recent print job."
+  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
 }
