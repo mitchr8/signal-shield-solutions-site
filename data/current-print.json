@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-06-26T06:54:55.3822366-07:00",
+  "updatedAt": "2026-06-26T07:01:16.6208898-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 78,
+  "progress": 79,
   "title": "0.16mm layer, 2 walls, 10% infill",
   "projectId": "1047741914",
   "streamPlatform": "youtube",
