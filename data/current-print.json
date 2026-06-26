@@ -1,20 +1,20 @@
 {
-  "updatedAt": "2026-06-26T10:22:03.2835127-07:00",
-  "active": true,
+  "updatedAt": "2026-06-26T10:22:28.6219132-07:00",
+  "active": false,
   "cameraAvailable": true,
-  "gcodeState": "RUNNING",
-  "progress": 99,
+  "gcodeState": "FINISH",
+  "progress": 100,
   "title": "0.16mm layer, 2 walls, 10% infill",
   "projectId": "1047741914",
   "streamPlatform": "youtube",
   "streamPublic": false,
   "youtubeVideoId": "",
   "image": "/print-assets/current-live-snapshot.jpg",
-  "imageVersion": "d9bdb465a0c1",
+  "imageVersion": "8d711c10d7f1",
   "objectCount": 0,
   "objects": [],
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "The printer is active and the YouTube broadcast is still starting."
+  "note": "Latest live camera snapshot from the most recent print job."
 }
