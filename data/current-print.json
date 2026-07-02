@@ -1,20 +1,20 @@
 {
-  "updatedAt": "2026-07-02T12:37:24.8265540-07:00",
+  "updatedAt": "2026-07-02T12:37:59.1312470-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 73,
+  "progress": 74,
   "title": "BLV - AMS Riser V4.0 X2D new official upgrade version!",
   "projectId": "1061204236",
   "streamPlatform": "youtube",
-  "streamPublic": false,
-  "youtubeVideoId": "",
+  "streamPublic": true,
+  "youtubeVideoId": "4scCFMDsu4E",
   "image": "/print-assets/current-live-snapshot.jpg",
-  "imageVersion": "17f930bf3178",
+  "imageVersion": "5e091afcc1f5",
   "objectCount": 0,
   "objects": [],
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "The printer is active and the YouTube broadcast is still starting."
+  "note": "Live camera snapshot paired with the current print details while the model preview is unavailable."
 }
