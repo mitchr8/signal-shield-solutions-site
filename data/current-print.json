@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-02T12:24:43.2849260-07:00",
+  "updatedAt": "2026-07-02T12:25:20.6064452-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
@@ -10,7 +10,7 @@
   "streamPublic": true,
   "youtubeVideoId": "OgyTR1buamM",
   "image": "/print-assets/current-live-snapshot.jpg",
-  "imageVersion": "e7dc899f0cc2",
+  "imageVersion": "9d580291de1b",
   "objectCount": 0,
   "objects": [],
   "weightGrams": null,
