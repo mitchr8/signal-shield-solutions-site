@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-07-07T15:50:01.8741878-07:00",
-  "active": false,
+  "updatedAt": "2026-07-07T15:51:21.4896263-07:00",
+  "active": true,
   "cameraAvailable": true,
-  "gcodeState": "",
-  "progress": null,
-  "title": "Current print",
-  "projectId": "",
+  "gcodeState": "RUNNING",
+  "progress": 92,
+  "title": "alvao • 100",
+  "projectId": "1074119334",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
@@ -16,5 +16,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "note": "The printer is active and the live video feed is still connecting."
 }
