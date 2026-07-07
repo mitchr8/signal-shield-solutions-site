@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-07T12:37:34.6127591-07:00",
+  "updatedAt": "2026-07-07T12:38:28.5546064-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
@@ -7,7 +7,7 @@
   "title": "alvao • 100",
   "projectId": "1074119334",
   "streamPlatform": "cloudflare",
-  "streamPublic": false,
+  "streamPublic": true,
   "youtubeVideoId": "",
   "image": "/print-assets/current-print.png",
   "imageVersion": "e3e4fac329ab",
@@ -19,5 +19,5 @@
   "weightGrams": 188.86,
   "estimatedSeconds": 26682,
   "printerModelId": "N6",
-  "note": "The printer is active and the live video feed is still connecting."
+  "note": "Active Bambu print preview paired with the live stream."
 }
