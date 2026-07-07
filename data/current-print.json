@@ -1,20 +1,23 @@
 {
-  "updatedAt": "2026-07-07T14:21:40.2960190-07:00",
-  "active": true,
+  "updatedAt": "2026-07-07T14:23:46.6423639-07:00",
+  "active": false,
   "cameraAvailable": true,
-  "gcodeState": "RUNNING",
-  "progress": 72,
-  "title": "alvao • 100",
-  "projectId": "1074119334",
+  "gcodeState": "",
+  "progress": null,
+  "title": "alvao planter",
+  "projectId": "",
   "streamPlatform": "cloudflare",
-  "streamPublic": true,
+  "streamPublic": false,
   "youtubeVideoId": "",
-  "image": "",
-  "imageVersion": "",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "Active Bambu print detected. Preview image is not available for this job yet."
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "e3e4fac329ab",
+  "objectCount": 2,
+  "objects": [
+    "alvao_planter.stl",
+    "alvao_plate.stl"
+  ],
+  "weightGrams": 188.86,
+  "estimatedSeconds": 26682,
+  "printerModelId": "N6",
+  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
 }
