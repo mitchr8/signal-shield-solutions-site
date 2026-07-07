@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-07-07T11:15:37.3811285-07:00",
-  "active": false,
+  "updatedAt": "2026-07-07T11:16:12.2993698-07:00",
+  "active": true,
   "cameraAvailable": true,
-  "gcodeState": "",
-  "progress": null,
-  "title": "alvao planter",
-  "projectId": "",
+  "gcodeState": "RUNNING",
+  "progress": 33,
+  "title": "alvao • 100",
+  "projectId": "1074119334",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
@@ -19,5 +19,5 @@
   "weightGrams": 188.86,
   "estimatedSeconds": 26682,
   "printerModelId": "N6",
-  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
+  "note": "The printer is active and the live video feed is still connecting."
 }
