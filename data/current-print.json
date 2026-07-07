@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-07-07T09:55:46.9707244-07:00",
+  "updatedAt": "2026-07-07T10:00:24.6179485-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 24,
+  "progress": 25,
   "title": "alvao • 100",
   "projectId": "1074119334",
   "streamPlatform": "cloudflare",
