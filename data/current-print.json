@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-07-06T21:06:26.6665805-07:00",
-  "active": true,
+  "updatedAt": "2026-07-06T21:08:39.0218834-07:00",
+  "active": false,
   "cameraAvailable": true,
-  "gcodeState": "RUNNING",
-  "progress": 98,
-  "title": "BLV - AMS Riser V4.0 X2D new official upgrade version!",
-  "projectId": "1072751796",
+  "gcodeState": "",
+  "progress": null,
+  "title": "Current print",
+  "projectId": "",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
@@ -16,5 +16,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "The printer is active and the live video feed is still connecting."
+  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
 }
