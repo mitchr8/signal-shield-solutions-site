@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-07-06T22:05:20.0798661-07:00",
-  "active": false,
+  "updatedAt": "2026-07-06T22:18:37.8462837-07:00",
+  "active": true,
   "cameraAvailable": true,
-  "gcodeState": "FAILED",
-  "progress": 100,
-  "title": "/data/Metadata/plate_15.gcode",
-  "projectId": "1072751796",
+  "gcodeState": "RUNNING",
+  "progress": 0,
+  "title": "60mm opening - 0.2mm layer, 2 walls, 15% infill",
+  "projectId": "1073253808",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
@@ -16,5 +16,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "note": "The printer is active and the live video feed is still connecting."
 }
