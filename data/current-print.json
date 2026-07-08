@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-07-08T00:24:05.2448685-07:00",
+  "updatedAt": "2026-07-08T00:25:27.7222435-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 52,
+  "progress": 53,
   "title": "PETG, 0.28mm layer, 2 walls, 100% infill",
   "projectId": "1075658013",
   "streamPlatform": "cloudflare",
