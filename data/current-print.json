@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-07-07T23:00:39.9768747-07:00",
-  "active": true,
+  "updatedAt": "2026-07-07T23:03:16.1278789-07:00",
+  "active": false,
   "cameraAvailable": true,
-  "gcodeState": "RUNNING",
+  "gcodeState": "PAUSE",
   "progress": 0,
   "title": "PETG, 0.28mm layer, 2 walls, 100% infill",
   "projectId": "1075658013",
   "streamPlatform": "cloudflare",
-  "streamPublic": true,
+  "streamPublic": false,
   "youtubeVideoId": "",
   "image": "",
   "imageVersion": "",
@@ -16,5 +16,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Active Bambu print detected. Preview image is not available for this job yet."
+  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
 }
