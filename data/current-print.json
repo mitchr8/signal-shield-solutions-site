@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-07-08T08:55:57.9027239-07:00",
+  "updatedAt": "2026-07-08T08:59:30.9138856-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 18,
+  "progress": 19,
   "title": "BLV - AMS Riser V4.0 X2D new official upgrade version!",
   "projectId": "1076450666",
   "streamPlatform": "cloudflare",
