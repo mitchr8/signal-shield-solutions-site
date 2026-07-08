@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-08T14:00:46.0107442-07:00",
+  "updatedAt": "2026-07-08T14:02:00.3922419-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
@@ -9,12 +9,12 @@
   "streamPlatform": "cloudflare",
   "streamPublic": true,
   "youtubeVideoId": "",
-  "image": "/print-assets/current-print.png",
-  "imageVersion": "e57be2b5ce0d",
+  "image": "",
+  "imageVersion": "",
   "objectCount": 0,
   "objects": [],
-  "weightGrams": 195.24,
-  "estimatedSeconds": 22335,
-  "printerModelId": "N6",
-  "note": "Active Bambu print preview paired with the live stream."
+  "weightGrams": null,
+  "estimatedSeconds": null,
+  "printerModelId": "",
+  "note": "Active Bambu print detected. Preview image is not available for this job yet."
 }
