@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-11T09:53:26.4333684-07:00",
+  "updatedAt": "2026-07-11T09:54:41.0481608-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
@@ -7,7 +7,7 @@
   "title": "0.2mm layer, 2 walls, 15% infill",
   "projectId": "1083796419",
   "streamPlatform": "cloudflare",
-  "streamPublic": false,
+  "streamPublic": true,
   "youtubeVideoId": "",
   "image": "",
   "imageVersion": "",
@@ -16,5 +16,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "The printer is active and the live video feed is still connecting."
+  "note": "Active Bambu print detected. Preview image is not available for this job yet."
 }
