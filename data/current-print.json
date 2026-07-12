@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-07-11T21:19:46.9703781-07:00",
-  "active": false,
+  "updatedAt": "2026-07-12T16:31:15.8764773-07:00",
+  "active": true,
   "cameraAvailable": true,
-  "gcodeState": "FINISH",
-  "progress": 100,
-  "title": "0.2mm layer, 2 walls, 15% infill",
-  "projectId": "1083796419",
+  "gcodeState": "RUNNING",
+  "progress": 0,
+  "title": "Light Switch Stop",
+  "projectId": "0",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
@@ -16,5 +16,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "note": "The printer is active and the live video feed is still connecting."
 }
