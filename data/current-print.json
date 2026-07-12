@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-07-12T16:42:12.9436082-07:00",
+  "updatedAt": "2026-07-12T16:42:25.5177894-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 88,
+  "progress": 91,
   "title": "Light Switch Stop",
   "projectId": "0",
   "streamPlatform": "cloudflare",
