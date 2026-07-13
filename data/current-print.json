@@ -1,20 +1,20 @@
 {
-  "updatedAt": "2026-07-13T09:27:47.6113131-07:00",
+  "updatedAt": "2026-07-13T09:28:49.8615619-07:00",
   "active": false,
   "cameraAvailable": true,
-  "gcodeState": "",
-  "progress": null,
-  "title": "ARM",
-  "projectId": "",
+  "gcodeState": "FINISH",
+  "progress": 100,
+  "title": "0.28mm layer, 6 walls, 25% infill",
+  "projectId": "1087267362",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
-  "image": "/print-assets/current-print.png",
-  "imageVersion": "b976e5abcb5b",
+  "image": "",
+  "imageVersion": "",
   "objectCount": 0,
   "objects": [],
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
+  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
 }
