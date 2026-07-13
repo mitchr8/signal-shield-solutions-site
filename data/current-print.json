@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-07-13T11:24:19.1909243-07:00",
-  "active": true,
+  "updatedAt": "2026-07-13T11:24:47.4819764-07:00",
+  "active": false,
   "cameraAvailable": true,
-  "gcodeState": "RUNNING",
-  "progress": 38,
-  "title": "0.28mm layer, 6 walls, 25% infill",
-  "projectId": "1088418242",
+  "gcodeState": "",
+  "progress": null,
+  "title": "CLEVIS",
+  "projectId": "",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
@@ -31,5 +31,5 @@
   "weightGrams": 113.7,
   "estimatedSeconds": 11422,
   "printerModelId": "N6",
-  "note": "The printer is active and the live video feed is still connecting."
+  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
 }
