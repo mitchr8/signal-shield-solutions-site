@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-13T20:45:18.6869524-07:00",
+  "updatedAt": "2026-07-13T20:46:28.1508893-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
@@ -7,7 +7,7 @@
   "title": "standing nozzle - X and P Series",
   "projectId": "1089558417",
   "streamPlatform": "cloudflare",
-  "streamPublic": true,
+  "streamPublic": false,
   "youtubeVideoId": "",
   "image": "",
   "imageVersion": "",
@@ -16,5 +16,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Active Bambu print detected. Preview image is not available for this job yet."
+  "note": "The printer is active and the live video feed is still connecting."
 }
