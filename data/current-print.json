@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-07-14T01:44:15.7319098-07:00",
+  "updatedAt": "2026-07-14T01:46:03.0782691-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 90,
+  "progress": 91,
   "title": "Gravity Hook, no hardware needed",
   "projectId": "0",
   "streamPlatform": "cloudflare",
