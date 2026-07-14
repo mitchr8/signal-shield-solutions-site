@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-07-13T19:55:06.5501558-07:00",
+  "updatedAt": "2026-07-13T19:55:54.3362991-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 17,
+  "progress": 18,
   "title": "standing nozzle - X and P Series",
   "projectId": "1089558417",
   "streamPlatform": "cloudflare",
