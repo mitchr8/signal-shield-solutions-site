@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-07-14T18:58:31.9680547-07:00",
-  "active": false,
+  "updatedAt": "2026-07-14T20:58:04.3775577-07:00",
+  "active": true,
   "cameraAvailable": true,
-  "gcodeState": "FINISH",
-  "progress": 100,
-  "title": "Grease Nozzle - 0.2mm layer, 3 walls, 100% infill",
-  "projectId": "1091700077",
+  "gcodeState": "RUNNING",
+  "progress": 0,
+  "title": "A1 and A2 Series",
+  "projectId": "1092041757",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
@@ -16,5 +16,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "note": "The printer is active and the live video feed is still connecting."
 }
