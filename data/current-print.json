@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-07-14T21:13:42.7474027-07:00",
+  "updatedAt": "2026-07-14T21:14:40.0236428-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 44,
+  "progress": 47,
   "title": "A1 and A2 Series",
   "projectId": "1092041757",
   "streamPlatform": "cloudflare",
