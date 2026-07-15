@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-07-14T17:22:23.7680888-07:00",
+  "updatedAt": "2026-07-14T17:22:38.0690768-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 72,
+  "progress": 73,
   "title": "Grease Nozzle - 0.2mm layer, 3 walls, 100% infill",
   "projectId": "1091700077",
   "streamPlatform": "cloudflare",
