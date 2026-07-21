@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-07-21T01:08:09.0211316-07:00",
+  "updatedAt": "2026-07-21T01:12:41.5980939-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 40,
+  "progress": 41,
   "title": "0.16mm layer, 2 walls, 15% infill",
   "projectId": "1106315099",
   "streamPlatform": "cloudflare",
