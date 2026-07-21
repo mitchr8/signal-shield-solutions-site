@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-07-20T21:36:41.0026718-07:00",
+  "updatedAt": "2026-07-20T21:36:52.3962545-07:00",
   "active": false,
   "cameraAvailable": true,
-  "gcodeState": "FINISH",
+  "gcodeState": "SLICING",
   "progress": 100,
-  "title": "Really cool must download!",
+  "title": "/data/Metadata/plate_1.gcode",
   "projectId": "1096339465",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
