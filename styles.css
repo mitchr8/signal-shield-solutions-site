@@ -262,7 +262,7 @@ main{position:relative;z-index:1}
   margin:0 auto;
   display:grid;
   gap:clamp(28px, 4vw, 54px);
-  align-items:end;
+  align-items:start;
   position:relative;
   z-index:1;
 }
