@@ -1,0 +1,3 @@
+# Temporarily hide government-contracting pages (reversible: delete these lines to restore)
+/govcon.html      /   302
+/contact-lite.html   /   302
