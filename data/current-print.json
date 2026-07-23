@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-22T19:06:48.3812002-07:00",
+  "updatedAt": "2026-07-22T19:08:11.5468236-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
@@ -7,7 +7,7 @@
   "title": "0.16mm layer, 4 walls, 25% infill",
   "projectId": "1111019474",
   "streamPlatform": "cloudflare",
-  "streamPublic": false,
+  "streamPublic": true,
   "youtubeVideoId": "",
   "image": "/print-assets/current-print.png",
   "imageVersion": "09808de2fe2f",
@@ -31,5 +31,5 @@
   "weightGrams": 113.7,
   "estimatedSeconds": 11422,
   "printerModelId": "N6",
-  "note": "The printer is active and the live video feed is still connecting."
+  "note": "Active Bambu print preview paired with the live stream."
 }
