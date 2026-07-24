@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /govcon.html
+Disallow: /contact-lite.html
+Disallow: /etsy-oauth-bridge.html
+
+Sitemap: https://signalshieldsolutions.com/sitemap.xml
