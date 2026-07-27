@@ -60,7 +60,7 @@
   }
 
   async function submitFormSubmit(payload){
-    const response = await fetch("https://formsubmit.co/ajax/contracts@signalshieldsolutions.com", {
+    const response = await fetch("https://formsubmit.co/ajax/support@signalshieldsolutions.com", {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -86,7 +86,7 @@
   }
 
   function buildMailtoHref(subject, body){
-    return "mailto:contracts@signalshieldsolutions.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    return "mailto:support@signalshieldsolutions.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
   }
 
   async function copyToClipboard(text){
