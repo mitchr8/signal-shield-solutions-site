@@ -455,3 +455,27 @@
     });
   }
 })();
+
+
+/* Mobile grouped-nav tap toggle */
+(function(){
+  var mq = window.matchMedia("(max-width:760px)");
+  document.addEventListener("click", function(e){
+    var trigger = e.target.closest(".nav .nav-trigger");
+    if(trigger){
+      if(mq.matches){
+        var group = trigger.closest(".has-menu");
+        var isOpen = group.classList.contains("open");
+        var opened = document.querySelectorAll(".nav .has-menu.open");
+        for(var i=0;i<opened.length;i++){ if(opened[i]!==group){ opened[i].classList.remove("open"); } }
+        group.classList.toggle("open", !isOpen);
+        e.preventDefault();
+      }
+      return;
+    }
+    if(!e.target.closest(".nav .has-menu")){
+      var g = document.querySelectorAll(".nav .has-menu.open");
+      for(var j=0;j<g.length;j++){ g[j].classList.remove("open"); }
+    }
+  });
+})();
