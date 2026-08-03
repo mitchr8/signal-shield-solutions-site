@@ -1552,10 +1552,7 @@ textarea:focus{
   white-space:nowrap;
 }
 .feature-list li[data-req]{display:block}
-.feature-list li.filter-hide{display:none}
-.service-cluster.filter-hide{display:none}
-.support-grid > .filter-hide{display:none}
-.cluster-divider.filter-hide{display:none}
+.filter-hide{display:none !important}
 @media (max-width:760px){
   .filter-grid{gap:8px}
   .filter-chip span{padding:8px 13px;font-size:.8rem}
