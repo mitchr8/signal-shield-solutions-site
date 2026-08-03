@@ -479,3 +479,106 @@
     }
   });
 })();
+
+
+/* Veteran resources: eligibility filter */
+(function(){
+  var grid = document.getElementById("filterGrid");
+  if(!grid){ return; }
+  var countEl = document.getElementById("filterCount");
+  var clearBtn = document.getElementById("filterClear");
+  var main = document.querySelector("main");
+  var allLis = document.querySelectorAll(".feature-list li");
+  var totalCount = allLis.length;
+
+  function getChecked(){
+    var boxes = grid.querySelectorAll("input:checked");
+    var values = [];
+    for(var i=0;i<boxes.length;i++){ values.push(boxes[i].value); }
+    return values;
+  }
+
+  function apply(){
+    var checked = getChecked();
+    var any = checked.length > 0;
+    if(clearBtn){ clearBtn.hidden = !any; }
+
+    var visibleCount = 0;
+    for(var i=0;i<allLis.length;i++){
+      var li = allLis[i];
+      var req = li.getAttribute("data-req");
+      var show = true;
+      if(any && req){
+        var tags = req.split(" ");
+        show = false;
+        for(var t=0;t<tags.length;t++){
+          if(checked.indexOf(tags[t]) !== -1){ show = true; break; }
+        }
+      }
+      li.classList.toggle("filter-hide", !show);
+      if(show){ visibleCount++; }
+    }
+
+    var articles = document.querySelectorAll(".service-cluster");
+    for(var a=0;a<articles.length;a++){
+      var article = articles[a];
+      var items = article.querySelectorAll(".feature-list li");
+      if(!items.length){ continue; }
+      var visible = false;
+      for(var k=0;k<items.length;k++){
+        if(!items[k].classList.contains("filter-hide")){ visible = true; break; }
+      }
+      article.classList.toggle("filter-hide", !visible);
+    }
+
+    var sections = document.querySelectorAll("section.section-anchor");
+    for(var s=0;s<sections.length;s++){
+      var section = sections[s];
+      var cards = section.querySelectorAll(".service-cluster");
+      if(!cards.length){ continue; }
+      var sectionVisible = false;
+      for(var c=0;c<cards.length;c++){
+        if(!cards[c].classList.contains("filter-hide")){ sectionVisible = true; break; }
+      }
+      section.classList.toggle("filter-hide", !sectionVisible);
+    }
+
+    if(main){
+      var children = main.children;
+      var currentDivider = null;
+      var groupHasVisible = false;
+      for(var n=0;n<children.length;n++){
+        var node = children[n];
+        if(node.classList && node.classList.contains("cluster-divider")){
+          if(currentDivider){ currentDivider.classList.toggle("filter-hide", !groupHasVisible); }
+          currentDivider = node;
+          groupHasVisible = false;
+        } else if(node.tagName === "SECTION" && node.classList.contains("section-anchor")){
+          if(node.querySelectorAll(".service-cluster").length && !node.classList.contains("filter-hide")){
+            groupHasVisible = true;
+          }
+        }
+      }
+      if(currentDivider){ currentDivider.classList.toggle("filter-hide", !groupHasVisible); }
+    }
+
+    if(countEl){
+      if(!any){
+        countEl.textContent = "Showing all " + totalCount + " benefits. Select what applies to you to narrow the list.";
+      } else {
+        countEl.textContent = "Showing " + visibleCount + " of " + totalCount + " benefits that match what you selected.";
+      }
+    }
+  }
+
+  grid.addEventListener("change", apply);
+  if(clearBtn){
+    clearBtn.addEventListener("click", function(){
+      var boxes = grid.querySelectorAll("input:checked");
+      for(var i=0;i<boxes.length;i++){ boxes[i].checked = false; }
+      apply();
+    });
+  }
+
+  apply();
+})();

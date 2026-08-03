@@ -1463,6 +1463,103 @@ textarea:focus{
   .topics-nav .has-menu{width:100%}
   .cluster-divider{padding-top:32px}
 }
+/* Veteran resources: eligibility filter + requirement badges */
+.topics-head p{
+  margin:10px 0 0;
+  max-width:56ch;
+  color:var(--muted);
+  line-height:1.65;
+  font-size:.92rem;
+}
+.filter-panel{padding:26px 28px 22px}
+.filter-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+.filter-chip{
+  position:relative;
+  display:inline-flex;
+  cursor:pointer;
+}
+.filter-chip input{
+  position:absolute;
+  opacity:0;
+  width:1px;
+  height:1px;
+  pointer-events:none;
+}
+.filter-chip span{
+  display:inline-flex;
+  align-items:center;
+  padding:9px 16px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,0.03);
+  color:#c9d7ee;
+  font-size:.84rem;
+  font-weight:700;
+  letter-spacing:.01em;
+  transition:background .18s ease, border-color .18s ease, color .18s ease;
+  user-select:none;
+}
+.filter-chip:hover span{border-color:rgba(217,178,76,0.4)}
+.filter-chip input:checked + span{
+  background:linear-gradient(135deg, var(--accent), #f0d589);
+  border-color:transparent;
+  color:#1b1404;
+}
+.filter-chip input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+.filter-status{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid rgba(181,199,229,0.12);
+}
+.filter-status .microcopy{margin:0;color:#a9b9d4}
+.filter-clear{
+  -webkit-appearance:none;
+  appearance:none;
+  background:none;
+  border:0;
+  padding:0;
+  font:inherit;
+  font-weight:700;
+  font-size:.86rem;
+  color:var(--accent);
+  cursor:pointer;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.filter-clear:hover{color:#f0d589}
+.req-tag{
+  display:inline-flex;
+  align-items:center;
+  margin:6px 6px 0 0;
+  padding:3px 10px;
+  border-radius:999px;
+  background:rgba(77,135,208,0.16);
+  border:1px solid rgba(77,135,208,0.32);
+  color:#bcd3f0;
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.02em;
+  white-space:nowrap;
+}
+.feature-list li[data-req]{display:block}
+.feature-list li.filter-hide{display:none}
+.service-cluster.filter-hide{display:none}
+.support-grid > .filter-hide{display:none}
+.cluster-divider.filter-hide{display:none}
+@media (max-width:760px){
+  .filter-grid{gap:8px}
+  .filter-chip span{padding:8px 13px;font-size:.8rem}
+}
 .reveal{
   opacity:0;
   transform:translateY(26px);
