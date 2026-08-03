@@ -1552,6 +1552,16 @@ textarea:focus{
   white-space:nowrap;
 }
 .feature-list li[data-req]{display:block}
+.req-connector{
+  display:inline-flex;
+  align-items:center;
+  margin:6px 4px 0 0;
+  color:#7891b3;
+  font-size:.66rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
 .filter-hide{display:none !important}
 @media (max-width:760px){
   .filter-grid{gap:8px}

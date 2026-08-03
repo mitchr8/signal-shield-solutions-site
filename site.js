@@ -498,6 +498,27 @@
     return values;
   }
 
+  // A data-req value is a space-separated list of clauses (OR'd together).
+  // Each clause is a "+"-joined list of tags that must ALL be checked (AND).
+  // Example: "disability-100+ca-resident survivor+ca-resident" means
+  // (disability-100 AND ca-resident) OR (survivor AND ca-resident).
+  // A plain single tag like "local" is just a one-tag, one-clause OR list.
+  function clauseMatches(clause, checked){
+    var tags = clause.split("+");
+    for(var i=0;i<tags.length;i++){
+      if(checked.indexOf(tags[i]) === -1){ return false; }
+    }
+    return true;
+  }
+
+  function reqMatches(req, checked){
+    var clauses = req.split(" ");
+    for(var c=0;c<clauses.length;c++){
+      if(clauseMatches(clauses[c], checked)){ return true; }
+    }
+    return false;
+  }
+
   function apply(){
     var checked = getChecked();
     var any = checked.length > 0;
@@ -509,11 +530,7 @@
       var req = li.getAttribute("data-req");
       var show = true;
       if(any && req){
-        var tags = req.split(" ");
-        show = false;
-        for(var t=0;t<tags.length;t++){
-          if(checked.indexOf(tags[t]) !== -1){ show = true; break; }
-        }
+        show = reqMatches(req, checked);
       }
       li.classList.toggle("filter-hide", !show);
       if(show){ visibleCount++; }
