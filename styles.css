@@ -1459,7 +1459,7 @@ textarea:focus{
   white-space:nowrap;
 }
 @media (max-width:760px){
-  .topics-nav{grid-template-columns:1fr}
+  nav.topics-nav{grid-template-columns:1fr}
   .topics-nav .has-menu{width:100%}
   .cluster-divider{padding-top:32px}
 }
