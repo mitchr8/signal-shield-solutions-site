@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-08-21T19:45:28.5578922-07:00",
+  "updatedAt": "2026-08-21T19:46:25.7470638-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 27,
+  "progress": 28,
   "title": "Darth Vader pawn | 0.08mm layer, 2 walls, 15% infill",
   "projectId": "1185811882",
   "streamPlatform": "cloudflare",
