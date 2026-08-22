@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-08-21T19:17:03.3467074-07:00",
+  "updatedAt": "2026-08-21T19:17:13.5793217-07:00",
   "active": false,
   "cameraAvailable": true,
-  "gcodeState": "FINISH",
+  "gcodeState": "SLICING",
   "progress": 100,
-  "title": "Star Wars pawns set for boardgames",
+  "title": "/data/Metadata/plate_1.gcode",
   "projectId": "1138004573",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
