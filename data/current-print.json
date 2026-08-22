@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-08-21T19:17:13.5793217-07:00",
-  "active": false,
+  "updatedAt": "2026-08-21T19:17:25.8072797-07:00",
+  "active": true,
   "cameraAvailable": true,
-  "gcodeState": "SLICING",
-  "progress": 100,
-  "title": "/data/Metadata/plate_1.gcode",
-  "projectId": "1138004573",
+  "gcodeState": "RUNNING",
+  "progress": 0,
+  "title": "Darth Vader pawn | 0.08mm layer, 2 walls, 15% infill",
+  "projectId": "1185811882",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
@@ -16,5 +16,5 @@
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "note": "The printer is active and the live video feed is still connecting."
 }
