@@ -1,20 +1,23 @@
 {
-  "updatedAt": "2026-09-04T07:35:36.7528925-07:00",
+  "updatedAt": "2026-09-18T18:44:36.0091806-07:00",
   "active": false,
   "cameraAvailable": true,
   "gcodeState": "",
   "progress": null,
-  "title": "Current print",
+  "title": "BASE",
   "projectId": "",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
-  "image": "",
-  "imageVersion": "",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "eda6a1eaf29a",
+  "objectCount": 2,
+  "objects": [
+    "BASE",
+    "LID"
+  ],
+  "weightGrams": 256.02,
+  "estimatedSeconds": 35399,
+  "printerModelId": "N6",
+  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
 }
