@@ -1,23 +1,23 @@
 {
-  "updatedAt": "2026-09-18T18:44:36.0091806-07:00",
+  "updatedAt": "2026-09-21T14:29:39.2856553-07:00",
   "active": false,
   "cameraAvailable": true,
   "gcodeState": "",
   "progress": null,
-  "title": "BASE",
+  "title": "Ball Adapter",
   "projectId": "",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "eda6a1eaf29a",
+  "imageVersion": "0025c1ade93f",
   "objectCount": 2,
   "objects": [
-    "BASE",
-    "LID"
+    "Ball Adapter",
+    "Ball Adapter"
   ],
-  "weightGrams": 256.02,
-  "estimatedSeconds": 35399,
+  "weightGrams": 21.91,
+  "estimatedSeconds": 7765,
   "printerModelId": "N6",
   "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
 }
