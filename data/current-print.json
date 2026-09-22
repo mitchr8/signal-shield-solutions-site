@@ -1,23 +1,23 @@
 {
-  "updatedAt": "2026-09-21T14:29:39.2856553-07:00",
+  "updatedAt": "2026-09-22T07:11:39.7318994-07:00",
   "active": false,
   "cameraAvailable": true,
   "gcodeState": "",
   "progress": null,
-  "title": "Ball Adapter",
+  "title": "20mm RAM Arm Sockets",
   "projectId": "",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "0025c1ade93f",
+  "imageVersion": "b08f50aca4aa",
   "objectCount": 2,
   "objects": [
-    "Ball Adapter",
-    "Ball Adapter"
+    "20mm_RAM_Arm_Sockets.stl",
+    "20mm_RAM_Arm_Sockets.stl"
   ],
-  "weightGrams": 21.91,
-  "estimatedSeconds": 7765,
+  "weightGrams": 10.12,
+  "estimatedSeconds": 4774,
   "printerModelId": "N6",
   "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
 }
