@@ -1,23 +1,20 @@
 {
-  "updatedAt": "2026-09-22T07:11:39.7318994-07:00",
+  "updatedAt": "2026-09-28T12:32:03.6857701-07:00",
   "active": false,
   "cameraAvailable": true,
-  "gcodeState": "",
-  "progress": null,
-  "title": "20mm RAM Arm Sockets",
-  "projectId": "",
+  "gcodeState": "FINISH",
+  "progress": 100,
+  "title": "20mm Ball Mount Versions",
+  "projectId": "1271800415",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
-  "image": "/print-assets/current-print.png",
-  "imageVersion": "b08f50aca4aa",
-  "objectCount": 2,
-  "objects": [
-    "20mm_RAM_Arm_Sockets.stl",
-    "20mm_RAM_Arm_Sockets.stl"
-  ],
-  "weightGrams": 10.12,
-  "estimatedSeconds": 4774,
-  "printerModelId": "N6",
-  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
+  "image": "",
+  "imageVersion": "",
+  "objectCount": 0,
+  "objects": [],
+  "weightGrams": null,
+  "estimatedSeconds": null,
+  "printerModelId": "",
+  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
 }
