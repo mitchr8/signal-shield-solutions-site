@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-09-28T13:15:19.6881885-07:00",
+  "updatedAt": "2026-09-28T13:16:39.8219479-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 39,
+  "progress": 40,
   "title": "20mm Ball Mount Versions",
   "projectId": "1291212409",
   "streamPlatform": "cloudflare",
