@@ -474,7 +474,6 @@
   }
 
   function markCloudflarePlaybackHealthy(){
-    clearPlaybackWatchdog();
     clearStreamAction();
     cloudflarePlayerMounted = true;
     embeddedSourceSignature = "cloudflare";
@@ -679,25 +678,32 @@
         cloudflareAttachInFlight = false;
         requestVideoPlayback(video, true);
         clearPlaybackWatchdog();
-        playbackWatchdogTimer = window.setTimeout(function(){
+        let lastPlaybackTime = video.currentTime;
+        let lastPlaybackProgressAt = Date.now();
+        function checkPlaybackProgress(){
           if(cloudflareAttachToken !== attachToken){
             return;
           }
-          const hasTracks = remoteStream.getTracks().length > 0;
-          const ready = video.readyState >= 2;
-          const playing = !video.paused;
-          if(ready || playing){
+          if(video.currentTime > lastPlaybackTime && video.readyState >= 2){
+            lastPlaybackTime = video.currentTime;
+            lastPlaybackProgressAt = Date.now();
             markCloudflarePlaybackHealthy();
+          }
+          // Respect a viewer pausing playable video; still detect stalled startup.
+          if(video.paused && video.readyState >= 2){
+            lastPlaybackProgressAt = Date.now();
+          }
+          if(Date.now() - lastPlaybackProgressAt >= 20000){
+            scheduleCloudflareReconnect(
+              source,
+              "The live picture stopped updating. Reconnecting automatically.",
+              2000
+            );
             return;
           }
-
-          console.error("Cloudflare WHEP playback stalled before media became playable.");
-          scheduleCloudflareReconnect(
-            source,
-            "The camera is online, but playback is still catching up. Retrying automatically.",
-            hasTracks ? 3000 : 5000
-          );
-        }, 12000);
+          playbackWatchdogTimer = window.setTimeout(checkPlaybackProgress, 5000);
+        }
+        playbackWatchdogTimer = window.setTimeout(checkPlaybackProgress, 5000);
       })();
     }catch(error){
       if(cloudflareAttachToken === attachToken){
@@ -820,7 +826,7 @@
     const lifecycleUrl = buildCloudflareProxyUrl(source, "lifecycle");
 
     try{
-      const response = await fetch(lifecycleUrl, { cache: "no-store" });
+      const response = await fetchWithTimeout(lifecycleUrl, { cache: "no-store" }, 10000);
       if(!response.ok){
         throw new Error("Lifecycle request failed");
       }
@@ -857,10 +863,11 @@
       }
       scheduleLifecyclePoll(source);
     }catch(error){
-      teardownCloudflarePlayer();
-      renderPlaceholder(defaultOfflineTitle.textContent, defaultOfflineText.textContent);
-      setStatus("Checking status", "The camera status is updating. Reload the page if this does not clear in a moment.", false);
-      scheduleLifecyclePoll(source, document.hidden ? 180000 : 90000);
+      // A status endpoint outage does not mean an established video session failed.
+      if(!cloudflarePlayerMounted){
+        setStatus("Checking status", "The camera status is updating. Retrying automatically.", false);
+      }
+      scheduleLifecyclePoll(source, document.hidden ? 30000 : 5000);
     }finally{
       lifecyclePollInFlight = false;
     }
