@@ -60,7 +60,7 @@
   }
 
   async function submitFormSubmit(payload){
-    const response = await fetch("https://formsubmit.co/ajax/contracts@signalshieldsolutions.com", {
+    const response = await fetch("https://formsubmit.co/ajax/support@signalshieldsolutions.com", {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -86,7 +86,7 @@
   }
 
   function buildMailtoHref(subject, body){
-    return "mailto:contracts@signalshieldsolutions.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    return "mailto:support@signalshieldsolutions.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
   }
 
   async function copyToClipboard(text){
@@ -454,4 +454,148 @@
       setOpen(false);
     });
   }
+})();
+
+
+/* Mobile grouped-nav tap toggle */
+(function(){
+  var mq = window.matchMedia("(max-width:760px)");
+  document.addEventListener("click", function(e){
+    var trigger = e.target.closest(".nav .nav-trigger");
+    if(trigger){
+      if(mq.matches){
+        var group = trigger.closest(".has-menu");
+        var isOpen = group.classList.contains("open");
+        var opened = document.querySelectorAll(".nav .has-menu.open");
+        for(var i=0;i<opened.length;i++){ if(opened[i]!==group){ opened[i].classList.remove("open"); } }
+        group.classList.toggle("open", !isOpen);
+        e.preventDefault();
+      }
+      return;
+    }
+    if(!e.target.closest(".nav .has-menu")){
+      var g = document.querySelectorAll(".nav .has-menu.open");
+      for(var j=0;j<g.length;j++){ g[j].classList.remove("open"); }
+    }
+  });
+})();
+
+
+/* Veteran resources: eligibility filter */
+(function(){
+  var grid = document.getElementById("filterGrid");
+  if(!grid){ return; }
+  var countEl = document.getElementById("filterCount");
+  var clearBtn = document.getElementById("filterClear");
+  var main = document.querySelector("main");
+  var allLis = document.querySelectorAll(".feature-list li");
+  var totalCount = allLis.length;
+
+  function getChecked(){
+    var boxes = grid.querySelectorAll("input:checked");
+    var values = [];
+    for(var i=0;i<boxes.length;i++){ values.push(boxes[i].value); }
+    return values;
+  }
+
+  // A data-req value is a space-separated list of clauses (OR'd together).
+  // Each clause is a "+"-joined list of tags that must ALL be checked (AND).
+  // Example: "disability-100+ca-resident survivor+ca-resident" means
+  // (disability-100 AND ca-resident) OR (survivor AND ca-resident).
+  // A plain single tag like "local" is just a one-tag, one-clause OR list.
+  function clauseMatches(clause, checked){
+    var tags = clause.split("+");
+    for(var i=0;i<tags.length;i++){
+      if(checked.indexOf(tags[i]) === -1){ return false; }
+    }
+    return true;
+  }
+
+  function reqMatches(req, checked){
+    var clauses = req.split(" ");
+    for(var c=0;c<clauses.length;c++){
+      if(clauseMatches(clauses[c], checked)){ return true; }
+    }
+    return false;
+  }
+
+  function apply(){
+    var checked = getChecked();
+    var any = checked.length > 0;
+    if(clearBtn){ clearBtn.hidden = !any; }
+
+    var visibleCount = 0;
+    for(var i=0;i<allLis.length;i++){
+      var li = allLis[i];
+      var req = li.getAttribute("data-req");
+      var show = true;
+      if(any && req){
+        show = reqMatches(req, checked);
+      }
+      li.classList.toggle("filter-hide", !show);
+      if(show){ visibleCount++; }
+    }
+
+    var articles = document.querySelectorAll(".service-cluster");
+    for(var a=0;a<articles.length;a++){
+      var article = articles[a];
+      var items = article.querySelectorAll(".feature-list li");
+      if(!items.length){ continue; }
+      var visible = false;
+      for(var k=0;k<items.length;k++){
+        if(!items[k].classList.contains("filter-hide")){ visible = true; break; }
+      }
+      article.classList.toggle("filter-hide", !visible);
+    }
+
+    var sections = document.querySelectorAll("section.section-anchor");
+    for(var s=0;s<sections.length;s++){
+      var section = sections[s];
+      var cards = section.querySelectorAll(".service-cluster");
+      if(!cards.length){ continue; }
+      var sectionVisible = false;
+      for(var c=0;c<cards.length;c++){
+        if(!cards[c].classList.contains("filter-hide")){ sectionVisible = true; break; }
+      }
+      section.classList.toggle("filter-hide", !sectionVisible);
+    }
+
+    if(main){
+      var children = main.children;
+      var currentDivider = null;
+      var groupHasVisible = false;
+      for(var n=0;n<children.length;n++){
+        var node = children[n];
+        if(node.classList && node.classList.contains("cluster-divider")){
+          if(currentDivider){ currentDivider.classList.toggle("filter-hide", !groupHasVisible); }
+          currentDivider = node;
+          groupHasVisible = false;
+        } else if(node.tagName === "SECTION" && node.classList.contains("section-anchor")){
+          if(node.querySelectorAll(".service-cluster").length && !node.classList.contains("filter-hide")){
+            groupHasVisible = true;
+          }
+        }
+      }
+      if(currentDivider){ currentDivider.classList.toggle("filter-hide", !groupHasVisible); }
+    }
+
+    if(countEl){
+      if(!any){
+        countEl.textContent = "Showing all " + totalCount + " benefits. Select what applies to you to narrow the list.";
+      } else {
+        countEl.textContent = "Showing " + visibleCount + " of " + totalCount + " benefits that match what you selected.";
+      }
+    }
+  }
+
+  grid.addEventListener("change", apply);
+  if(clearBtn){
+    clearBtn.addEventListener("click", function(){
+      var boxes = grid.querySelectorAll("input:checked");
+      for(var i=0;i<boxes.length;i++){ boxes[i].checked = false; }
+      apply();
+    });
+  }
+
+  apply();
 })();

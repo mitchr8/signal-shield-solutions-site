@@ -27,3 +27,9 @@
 
 /print-assets/current-print.png
   Cache-Control: no-store
+
+/styles.css
+  Cache-Control: no-cache
+
+/site.js
+  Cache-Control: no-cache
