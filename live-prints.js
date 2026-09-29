@@ -679,13 +679,21 @@
         requestVideoPlayback(video, true);
         clearPlaybackWatchdog();
         let lastPlaybackTime = video.currentTime;
+        let lastPlaybackFrames = typeof video.getVideoPlaybackQuality === "function"
+          ? video.getVideoPlaybackQuality().totalVideoFrames : null;
         let lastPlaybackProgressAt = Date.now();
         function checkPlaybackProgress(){
           if(cloudflareAttachToken !== attachToken){
             return;
           }
-          if(video.currentTime > lastPlaybackTime && video.readyState >= 2){
+          const playbackFrames = typeof video.getVideoPlaybackQuality === "function"
+            ? video.getVideoPlaybackQuality().totalVideoFrames : null;
+          // A WebRTC clock can advance while the last decoded frame is frozen.
+          const pictureAdvanced = playbackFrames !== null
+            ? playbackFrames > lastPlaybackFrames : video.currentTime > lastPlaybackTime;
+          if(pictureAdvanced && video.readyState >= 2){
             lastPlaybackTime = video.currentTime;
+            lastPlaybackFrames = playbackFrames;
             lastPlaybackProgressAt = Date.now();
             markCloudflarePlaybackHealthy();
           }
