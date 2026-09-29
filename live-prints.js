@@ -597,6 +597,13 @@
             return;
           }
           remoteStream.addTrack(event.track);
+          // Give late packets time to recover instead of freezing the picture.
+          try{
+            if(event.receiver && "jitterBufferTarget" in event.receiver){
+              event.receiver.jitterBufferTarget = 300;
+              video.dataset.bufferTargetMs = "300";
+            }
+          }catch(error){}
           requestVideoPlayback(video, true);
         });
 
