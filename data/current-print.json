@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-29T11:52:52.0695017-07:00",
+  "updatedAt": "2026-09-29T11:53:28.1261071-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
@@ -7,7 +7,7 @@
   "title": "Multicolor Print with Low Text Height",
   "projectId": "1293976027",
   "streamPlatform": "cloudflare",
-  "streamPublic": false,
+  "streamPublic": true,
   "youtubeVideoId": "",
   "image": "/print-assets/current-print.png",
   "imageVersion": "1ae18f94cd42",
@@ -20,5 +20,5 @@
   "weightGrams": 186.64,
   "estimatedSeconds": 31997,
   "printerModelId": "N6",
-  "note": "The printer is active and the live video feed is still connecting."
+  "note": "Active Bambu print preview paired with the live stream."
 }
