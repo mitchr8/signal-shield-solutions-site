@@ -686,6 +686,22 @@
           if(cloudflareAttachToken !== attachToken){
             return;
           }
+          // Keep receiver health available on the player for live troubleshooting.
+          if(typeof peerConnection.getStats === "function"){
+            peerConnection.getStats().then(function(stats){
+              stats.forEach(function(report){
+                if(report.type === "inbound-rtp" && (report.kind === "video" || report.mediaType === "video")){
+                  video.dataset.receiverHealth = JSON.stringify({
+                    at: Date.now(), frames: report.framesDecoded, received: report.framesReceived,
+                    dropped: report.framesDropped, freezes: report.freezeCount,
+                    freezeSeconds: report.totalFreezesDuration, packetsLost: report.packetsLost,
+                    jitter: report.jitter, bufferSeconds: report.jitterBufferDelay,
+                    bufferFrames: report.jitterBufferEmittedCount
+                  });
+                }
+              });
+            }).catch(function(){});
+          }
           const playbackFrames = typeof video.getVideoPlaybackQuality === "function"
             ? video.getVideoPlaybackQuality().totalVideoFrames : null;
           // A WebRTC clock can advance while the last decoded frame is frozen.
