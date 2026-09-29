@@ -1,20 +1,24 @@
 {
-  "updatedAt": "2026-09-29T11:51:21.0373730-07:00",
-  "active": false,
+  "updatedAt": "2026-09-29T11:52:52.0695017-07:00",
+  "active": true,
   "cameraAvailable": true,
-  "gcodeState": "PAUSE",
+  "gcodeState": "RUNNING",
   "progress": 2,
   "title": "Multicolor Print with Low Text Height",
   "projectId": "1293976027",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
-  "image": "",
-  "imageVersion": "",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "1ae18f94cd42",
+  "objectCount": 3,
+  "objects": [
+    "Tow_Hook_Cover.stl 1",
+    "Tow_Hook_Cover.stl 1",
+    "wipe_tower"
+  ],
+  "weightGrams": 186.64,
+  "estimatedSeconds": 31997,
+  "printerModelId": "N6",
+  "note": "The printer is active and the live video feed is still connecting."
 }
