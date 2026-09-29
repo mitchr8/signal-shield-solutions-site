@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-09-29T11:29:27.9744169-07:00",
+  "updatedAt": "2026-09-29T11:41:39.4460388-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 0,
+  "progress": 1,
   "title": "Multicolor Print with Low Text Height",
   "projectId": "1293976027",
   "streamPlatform": "cloudflare",
