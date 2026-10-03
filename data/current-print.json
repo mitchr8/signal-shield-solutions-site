@@ -1,20 +1,20 @@
 {
-  "updatedAt": "2026-10-02T19:23:55.3959871-07:00",
+  "updatedAt": "2026-10-03T10:46:40.3878217-07:00",
   "active": false,
   "cameraAvailable": true,
-  "gcodeState": "FINISH",
-  "progress": 100,
-  "title": "X2D and X1 version0.2mm layer, 4 walls, 20% infill",
-  "projectId": "1301186853",
+  "gcodeState": "",
+  "progress": null,
+  "title": "Nutcracker",
+  "projectId": "",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
-  "image": "",
-  "imageVersion": "",
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "7bae182fa74e",
   "objectCount": 0,
   "objects": [],
   "weightGrams": null,
   "estimatedSeconds": null,
   "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "note": "Latest loaded Bambu Studio project. The live stream will show online during the next active print run."
 }
