@@ -950,7 +950,7 @@ textarea:focus{
 .live-alert-fields input{flex:1 1 190px;min-width:0}
 .live-alert-fields .btn{flex:1 1 240px;white-space:normal}
 .live-alert-consent{display:flex;align-items:flex-start;gap:10px;font-weight:400!important}
-.live-alert-consent input{width:18px;min-height:18px;height:18px;flex:0 0 18px;margin-top:3px}
+.live-alert-consent input{width:18px;min-height:18px;height:18px;flex:0 0 18px;margin:3px 0 0;padding:0;accent-color:var(--accent)}
 .stream-card:fullscreen .live-alert-signup{display:none}
 .stream-toolbar{
   display:flex;
