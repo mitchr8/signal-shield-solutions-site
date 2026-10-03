@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-03T13:21:04.8053362-07:00",
+  "updatedAt": "2026-10-03T13:22:43.0285911-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
@@ -25,8 +25,8 @@
     "Mini ninja.stl_8",
     "Assemblaggio"
   ],
-  "weightGrams": 27.74,
-  "estimatedSeconds": 9474,
+  "weightGrams": 31.73,
+  "estimatedSeconds": 5890,
   "printerModelId": "N6",
   "note": "The printer is active and the live video feed is still connecting."
 }
