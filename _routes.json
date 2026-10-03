@@ -1,7 +1,8 @@
 {
   "version": 1,
   "include": [
-    "/live-stream/*"
+    "/live-stream/*",
+    "/print-alerts/*"
   ],
   "exclude": []
 }

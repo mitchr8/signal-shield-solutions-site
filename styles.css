@@ -938,6 +938,20 @@ textarea:focus{
   gap:18px;
   align-items:start;
 }
+.live-alert-signup{
+  border-top:1px solid rgba(140,160,185,.25);
+  padding-top:20px;
+  display:grid;
+  gap:10px;
+}
+.live-alert-signup h3,.live-alert-signup p{margin:0}
+.live-alert-signup label{font-size:.9rem;font-weight:700}
+.live-alert-fields{display:flex;flex-wrap:wrap;gap:10px}
+.live-alert-fields input{flex:1 1 190px;min-width:0}
+.live-alert-fields .btn{flex:1 1 240px;white-space:normal}
+.live-alert-consent{display:flex;align-items:flex-start;gap:10px;font-weight:400!important}
+.live-alert-consent input{width:18px;min-height:18px;height:18px;flex:0 0 18px;margin-top:3px}
+.stream-card:fullscreen .live-alert-signup{display:none}
 .stream-toolbar{
   display:flex;
   justify-content:flex-end;

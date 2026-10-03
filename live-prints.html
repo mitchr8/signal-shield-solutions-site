@@ -140,6 +140,20 @@
           </div>
         </div>
         <p class="microcopy">If you are interested in the current part, use the matching preview card or the gallery below to prefill your inquiry.</p>
+        <form class="live-alert-signup" id="liveAlertSignup" aria-labelledby="liveAlertTitle" method="post" action="/print-alerts/subscribe">
+          <h3 id="liveAlertTitle">Catch the next print.</h3>
+          <p>Get an email when a live print starts. Just print alerts, no extra promotions.</p>
+          <label for="live-alert-email">Email address</label>
+          <div class="live-alert-fields">
+            <input id="live-alert-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="254" required />
+            <button class="btn primary" type="submit">Email me when a live print starts</button>
+          </div>
+          <label class="live-alert-consent"><input type="checkbox" name="consent" required /> Email me live-print alerts from Signal &amp; Shield Solutions. Unsubscribe anytime.</label>
+          <div hidden aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off" /></label></div>
+          <p class="microcopy">We use Brevo to manage subscriptions and send alerts. Confirm your email to join.</p>
+          <p class="microcopy" role="status" aria-live="polite"></p>
+          <noscript>Please enable JavaScript to sign up for email alerts.</noscript>
+        </form>
       </div>
 
       <aside class="surface reveal current-print-card" id="currentPrintCard">
@@ -358,6 +372,7 @@ window.LIVE_PRINTS_CONFIG = {
 };
 </script>
 <script src="live-prints.js"></script>
+<script src="live-alert-signup.js"></script>
 <script src="site.js"></script>
 </body>
 </html>
