@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-04T08:22:05.7427604-07:00",
+  "updatedAt": "2026-10-04T08:22:39.0156612-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
@@ -7,7 +7,7 @@
   "title": "All Letters one Plate",
   "projectId": "1308346572",
   "streamPlatform": "cloudflare",
-  "streamPublic": false,
+  "streamPublic": true,
   "youtubeVideoId": "",
   "image": "/print-assets/current-print.png",
   "imageVersion": "432a8929bda0",
@@ -28,5 +28,5 @@
   "weightGrams": 28.53,
   "estimatedSeconds": 9635,
   "printerModelId": "N6",
-  "note": "The printer is active and the live video feed is still connecting."
+  "note": "Active Bambu print preview paired with the live stream."
 }
