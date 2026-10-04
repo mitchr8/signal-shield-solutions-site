@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-10-04T08:21:55.2769509-07:00",
+  "updatedAt": "2026-10-04T08:22:05.7427604-07:00",
   "active": true,
   "cameraAvailable": true,
-  "gcodeState": "PREPARE",
+  "gcodeState": "RUNNING",
   "progress": 0,
   "title": "All Letters one Plate",
   "projectId": "1308346572",
