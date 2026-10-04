@@ -15,7 +15,7 @@
 <meta name="twitter:title" content="Live Prints | Signal &amp; Shield Solutions" />
 <meta name="twitter:description" content="Watch live 3D print sessions from Signal &amp; Shield Solutions and browse example prints available for quote." />
 <meta name="twitter:image" content="https://signalshieldsolutions.com/logo.png" />
-<link rel="stylesheet" href="styles.css?v=20261002-alerts" />
+<link rel="stylesheet" href="styles.css?v=20261003-alerts" />
 </head>
 <body class="page-live">
 <header class="top" id="topBar">
@@ -151,7 +151,7 @@
           <label class="live-alert-consent"><input type="checkbox" name="consent" required /> Email me live-print alerts from Signal &amp; Shield Solutions. Unsubscribe anytime.</label>
           <div hidden aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off" /></label></div>
           <p class="microcopy">We use Brevo to manage subscriptions and send alerts. Confirm your email to join.</p>
-          <p class="microcopy" role="status" aria-live="polite"></p>
+          <p class="live-alert-message" role="status" aria-live="polite" tabindex="-1" hidden></p>
           <noscript>Please enable JavaScript to sign up for email alerts.</noscript>
         </form>
       </div>
@@ -372,7 +372,7 @@ window.LIVE_PRINTS_CONFIG = {
 };
 </script>
 <script src="live-prints.js"></script>
-<script src="live-alert-signup.js"></script>
+<script src="live-alert-signup.js?v=20261003"></script>
 <script src="site.js"></script>
 </body>
 </html>

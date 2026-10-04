@@ -945,6 +945,8 @@ textarea:focus{
   gap:10px;
 }
 .live-alert-signup h3,.live-alert-signup p{margin:0}
+.live-alert-message:not([hidden]){padding:16px;border:2px solid #81b9ff;border-radius:12px;background:#172f4e;color:#fff;font-size:1rem;font-weight:650;line-height:1.6}
+.live-alert-message[data-state="error"]{border-color:#ffb49a;background:#492e2a}
 .live-alert-signup label{font-size:.9rem;font-weight:700}
 .live-alert-fields{display:flex;flex-wrap:wrap;gap:10px}
 .live-alert-fields input{flex:1 1 190px;min-width:0}
