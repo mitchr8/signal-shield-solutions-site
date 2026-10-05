@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-10-04T19:46:02.6329808-07:00",
+  "updatedAt": "2026-10-04T19:46:14.5476848-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 38,
+  "progress": 40,
   "title": "All Letters one Plate",
   "projectId": "1310002583",
   "streamPlatform": "cloudflare",
