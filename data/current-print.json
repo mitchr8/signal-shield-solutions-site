@@ -1,20 +1,22 @@
 {
-  "updatedAt": "2026-10-05T16:01:59.8302683-07:00",
-  "active": false,
+  "updatedAt": "2026-10-05T17:09:59.5715021-07:00",
+  "active": true,
   "cameraAvailable": true,
-  "gcodeState": "FINISH",
-  "progress": 100,
+  "gcodeState": "RUNNING",
+  "progress": 0,
   "title": "4x4 - 0.2mm layer, 2 walls, 15% infill",
-  "projectId": "1312204126",
+  "projectId": "0",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
-  "image": "",
-  "imageVersion": "",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "c75ec7f6f412",
+  "objectCount": 1,
+  "objects": [
+    "gridfinity base 4x4.stl"
+  ],
+  "weightGrams": 75.36,
+  "estimatedSeconds": 8203,
+  "printerModelId": "N6",
+  "note": "The printer is active and the live video feed is still connecting."
 }
