@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-10-07T08:21:02.1673409-07:00",
+  "updatedAt": "2026-10-07T08:21:27.0243579-07:00",
   "active": true,
   "cameraAvailable": true,
-  "gcodeState": "PREPARE",
+  "gcodeState": "RUNNING",
   "progress": 0,
   "title": "4x4 - 0.2mm layer, 2 walls, 15% infill",
   "projectId": "1317387944",
