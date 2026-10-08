@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-10-07T19:35:57.6180195-07:00",
+  "updatedAt": "2026-10-07T19:37:38.6984356-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 83,
+  "progress": 84,
   "title": "Gridfinity Baseplate with Magnet &amp;amp; Screw Together",
   "projectId": "0",
   "streamPlatform": "cloudflare",
-  "streamPublic": false,
+  "streamPublic": true,
   "youtubeVideoId": "",
   "image": "/print-assets/current-print.png",
   "imageVersion": "c75ec7f6f412",
@@ -18,5 +18,5 @@
   "weightGrams": 75.36,
   "estimatedSeconds": 8203,
   "printerModelId": "N6",
-  "note": "The printer is active and the live video feed is still connecting."
+  "note": "Active Bambu print preview paired with the live stream."
 }
