@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-10-07T17:32:04.1492520-07:00",
+  "updatedAt": "2026-10-07T17:33:56.1720106-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 5,
+  "progress": 6,
   "title": "Gridfinity Baseplate with Magnet &amp;amp; Screw Together",
   "projectId": "0",
   "streamPlatform": "cloudflare",
