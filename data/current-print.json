@@ -1,20 +1,22 @@
 {
-  "updatedAt": "2026-10-07T20:04:21.2213116-07:00",
-  "active": false,
+  "updatedAt": "2026-10-07T22:39:08.3476269-07:00",
+  "active": true,
   "cameraAvailable": true,
-  "gcodeState": "FINISH",
-  "progress": 100,
-  "title": "Gridfinity Baseplate with Magnet &amp;amp; Screw Together",
-  "projectId": "0",
+  "gcodeState": "PREPARE",
+  "progress": 0,
+  "title": "4x4 - 0.2mm layer, 2 walls, 15% infill",
+  "projectId": "1319254627",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
-  "image": "",
-  "imageVersion": "",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "c75ec7f6f412",
+  "objectCount": 1,
+  "objects": [
+    "gridfinity base 4x4.stl"
+  ],
+  "weightGrams": 75.36,
+  "estimatedSeconds": 8203,
+  "printerModelId": "N6",
+  "note": "The printer is active and the live video feed is still connecting."
 }
