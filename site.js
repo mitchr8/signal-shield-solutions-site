@@ -495,6 +495,44 @@
   var panel = document.querySelector(".filter-panel");
   var main = document.querySelector("main");
 
+  // ---- Save to my list (stored only in this visitor's browser) -------------
+  var SAVE_KEY = "ssVetSavedV1";
+  var STAR = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.2l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17.2l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>';
+  function loadSaved(){
+    try { var v = JSON.parse(localStorage.getItem(SAVE_KEY) || "[]"); return Array.isArray(v) ? v : []; } catch(e){ return []; }
+  }
+  function storeSaved(list){
+    try { localStorage.setItem(SAVE_KEY, JSON.stringify(list)); } catch(e){}
+  }
+  var saved = loadSaved();
+  function liKey(li){
+    var a = li.querySelector("a[href]");
+    return a ? a.getAttribute("href").replace(/\/+$/, "").toLowerCase() : li.textContent.trim().toLowerCase();
+  }
+  function liName(li){
+    var a = li.querySelector("a[href]");
+    return (a ? a.textContent : li.textContent).trim();
+  }
+  function addSaveButton(li){
+    if(li.querySelector(".save-btn")){ return; }
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "save-btn";
+    btn.innerHTML = STAR;
+    li.appendChild(btn);
+  }
+  function syncSaveButton(li){
+    var btn = li.querySelector(".save-btn");
+    if(!btn){ return; }
+    var on = saved.indexOf(liKey(li)) !== -1;
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+    btn.setAttribute("aria-label", (on ? "Remove " : "Save ") + liName(li) + (on ? " from my list" : " to my list"));
+    btn.title = on ? "Saved to your list (tap to remove)" : "Save to my list";
+    li.classList.toggle("is-saved", on);
+  }
+  var allItemLis = document.querySelectorAll("main section.section-anchor .feature-list li");
+  for(var sb=0; sb<allItemLis.length; sb++){ addSaveButton(allItemLis[sb]); }
+
   // ---- Index every benefit on the page -------------------------------------
   var items = [];
   var sectionNodes = document.querySelectorAll("main section.section-anchor");
@@ -753,7 +791,7 @@
     var nodes = [];
     while(walker.nextNode()){
       var n = walker.currentNode;
-      if(n.parentNode && n.parentNode.closest && n.parentNode.closest(".req-tag, .req-connector, .for-you-badge")){ continue; }
+      if(n.parentNode && n.parentNode.closest && n.parentNode.closest(".req-tag, .req-connector, .for-you-badge, .save-btn")){ continue; }
       nodes.push(n);
     }
     for(var i=0;i<nodes.length;i++){
@@ -807,6 +845,7 @@
       if(li.getAttribute("data-finder-touched")){
         li.innerHTML = it.html;
         li.removeAttribute("data-finder-touched");
+        syncSaveButton(li);
       }
       li.classList.remove("for-you");
 
@@ -962,20 +1001,30 @@
   dock.hidden = true;
   dock.innerHTML = '<span class="finder-dock-count"></span>' +
     '<button type="button" class="finder-dock-edit">Edit search</button>' +
-    '<button type="button" class="finder-dock-clear">Clear</button>';
+    '<button type="button" class="finder-dock-clear">Clear</button>' +
+    '<button type="button" class="finder-dock-list"></button>';
   document.body.appendChild(dock);
   var dockCount = dock.querySelector(".finder-dock-count");
+  var dockList = dock.querySelector(".finder-dock-list");
   var panelOffscreen = false;
   var dockActive = false;
+  var savedCount = 0;
+  function refreshDock(){
+    dock.hidden = !((dockActive || savedCount > 0) && panelOffscreen);
+    dockCount.hidden = !dockActive;
+    dock.querySelector(".finder-dock-edit").hidden = !dockActive;
+    dock.querySelector(".finder-dock-clear").hidden = !dockActive;
+    dockList.hidden = savedCount === 0;
+  }
   function updateDock(active, visible){
     dockActive = active;
     if(dockCount){ dockCount.textContent = plural(visible, "result", "results"); }
-    dock.hidden = !(dockActive && panelOffscreen);
+    refreshDock();
   }
   if(panel && "IntersectionObserver" in window){
     new IntersectionObserver(function(entries){
       panelOffscreen = !entries[0].isIntersecting;
-      dock.hidden = !(dockActive && panelOffscreen);
+      refreshDock();
     }, { threshold: 0 }).observe(panel);
   }
   dock.querySelector(".finder-dock-edit").addEventListener("click", function(){
@@ -1068,4 +1117,144 @@
   readUrl();
   if(checkedValues(grid).length){ setElig(true); }
   apply(false);
+
+  // Save-to-list wiring (needs `items`, so it lives after the index is built).
+  for(var sv=0; sv<items.length; sv++){ syncSaveButton(items[sv].li); }
+  var myListBtn = document.createElement("button");
+  myListBtn.type = "button";
+  myListBtn.className = "filter-clear my-list-btn";
+  myListBtn.id = "myListBtn";
+  var actionsRow = panel ? panel.querySelector(".filter-actions") : null;
+  if(actionsRow){ actionsRow.insertBefore(myListBtn, actionsRow.firstChild); }
+
+  var dialog = document.createElement("dialog");
+  dialog.className = "my-list-dialog";
+  dialog.setAttribute("aria-labelledby", "myListTitle");
+  dialog.innerHTML =
+    '<div class="my-list-head"><h2 id="myListTitle">My saved benefits</h2>' +
+    '<button type="button" class="my-list-close" aria-label="Close">&times;</button></div>' +
+    '<p class="my-list-note">Saved only in this browser on this device. Print it, send it to yourself, or bring it to your County Veterans Service Officer.</p>' +
+    '<ol class="my-list-items"></ol>' +
+    '<p class="my-list-empty">Nothing saved yet. Tap the star next to any benefit to add it here.</p>' +
+    '<div class="my-list-actions">' +
+    '<button type="button" class="btn primary my-list-print">Print</button>' +
+    '<button type="button" class="btn secondary my-list-share">Share or copy</button>' +
+    '<button type="button" class="btn secondary my-list-email">Email to myself</button>' +
+    '<button type="button" class="filter-clear my-list-clear">Clear list</button>' +
+    '</div>';
+  document.body.appendChild(dialog);
+  var listEl = dialog.querySelector(".my-list-items");
+  var emptyNote = dialog.querySelector(".my-list-empty");
+
+  function savedEntries(){
+    var out = [], seenK = {};
+    for(var i=0;i<items.length;i++){
+      var k = items[i].key;
+      if(saved.indexOf(k) === -1 || seenK[k]){ continue; }
+      seenK[k] = true;
+      var tmp = document.createElement("div");
+      tmp.innerHTML = items[i].html;
+      var tags = tmp.querySelectorAll(".req-tag, .req-connector, .save-btn");
+      for(var t=0;t<tags.length;t++){ tags[t].parentNode.removeChild(tags[t]); }
+      var a = tmp.querySelector("a[href]");
+      var name = a ? a.textContent.trim() : "";
+      var desc = tmp.textContent.replace(/\s+/g, " ").trim();
+      if(name && desc.indexOf(name) === 0){ desc = desc.slice(name.length).replace(/^\s*[—-]\s*/, ""); }
+      out.push({ name: name || desc.slice(0, 60), url: a ? a.href : "", desc: desc });
+    }
+    return out;
+  }
+  function esc(str){ return String(str).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+  function renderList(){
+    var entries = savedEntries();
+    listEl.innerHTML = entries.map(function(e){
+      return '<li><a href="' + esc(e.url) + '" target="_blank" rel="noopener noreferrer">' + esc(e.name) + '</a><span>' + esc(e.desc) + '</span></li>';
+    }).join("");
+    emptyNote.hidden = entries.length > 0;
+    var acts = dialog.querySelector(".my-list-actions");
+    acts.hidden = entries.length === 0;
+    myListBtn.textContent = "My list (" + entries.length + ")";
+    myListBtn.hidden = entries.length === 0;
+    dockList.textContent = "My list (" + entries.length + ")";
+    savedCount = entries.length;
+    refreshDock();
+    return entries;
+  }
+  function listText(entries){
+    var lines = ["My veteran benefits list", "From https://signalshieldsolutions.com/veteran-resources", ""];
+    entries.forEach(function(e, i){ lines.push((i+1) + ". " + e.name + (e.url ? " - " + e.url : "")); });
+    lines.push("", "Veterans Crisis Line: call 988 and press 1, or text 838255.");
+    return lines.join("\n");
+  }
+  function openList(){
+    renderList();
+    if(typeof dialog.showModal === "function"){ dialog.showModal(); } else { dialog.setAttribute("open", ""); }
+  }
+  function closeList(){
+    if(typeof dialog.close === "function" && dialog.open){ dialog.close(); } else { dialog.removeAttribute("open"); }
+  }
+  myListBtn.addEventListener("click", openList);
+  dockList.addEventListener("click", openList);
+  dialog.querySelector(".my-list-close").addEventListener("click", closeList);
+  dialog.addEventListener("click", function(e){ if(e.target === dialog){ closeList(); } });
+  dialog.querySelector(".my-list-clear").addEventListener("click", function(){
+    saved = []; storeSaved(saved);
+    for(var i=0;i<items.length;i++){ syncSaveButton(items[i].li); }
+    renderList();
+  });
+  dialog.querySelector(".my-list-print").addEventListener("click", function(){
+    var entries = savedEntries();
+    var html = '<!doctype html><html><head><meta charset="utf-8"><title>My veteran benefits list</title>' +
+      '<style>body{font:15px/1.5 -apple-system,Segoe UI,Arial,sans-serif;color:#111;margin:32px;max-width:720px}h1{font-size:22px;margin:0 0 4px}' +
+      'p.src{color:#555;margin:0 0 20px}li{margin:0 0 14px}li b{display:block}li span{display:block;color:#333}li i{display:block;color:#555;font-style:normal;font-size:13px;word-break:break-all}' +
+      '.crisis{margin-top:24px;padding:10px 12px;border:1px solid #999;border-radius:8px}</style></head><body>' +
+      '<h1>My veteran benefits list</h1><p class="src">From signalshieldsolutions.com/veteran-resources &middot; printed ' + esc(new Date().toLocaleDateString()) + '</p><ol>' +
+      entries.map(function(e){ return '<li><b>' + esc(e.name) + '</b><span>' + esc(e.desc) + '</span><i>' + esc(e.url) + '</i></li>'; }).join("") +
+      '</ol><p class="crisis"><b>Veterans Crisis Line:</b> call 988 and press 1, or text 838255. Free and confidential, 24/7.</p>' +
+      '<p class="src">Free County Veterans Service Officer help (San Bernardino County): 760-995-8010 (Hesperia) or 866-472-8387.</p></body></html>';
+    var w = null;
+    try { w = window.open("", "_blank"); } catch(e){}
+    if(w){
+      w.document.open(); w.document.write(html); w.document.close();
+      w.focus();
+      setTimeout(function(){ try { w.print(); } catch(e){} }, 300);
+    } else {
+      window.print();
+    }
+  });
+  dialog.querySelector(".my-list-share").addEventListener("click", function(){
+    var btn = this;
+    var text = listText(savedEntries());
+    var done = function(){ var o = btn.textContent; btn.textContent = "Copied"; setTimeout(function(){ btn.textContent = o; }, 1800); };
+    if(navigator.share && /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)){
+      navigator.share({ title: "My veteran benefits list", text: text }).catch(function(){});
+    } else if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done, function(){ window.prompt("Copy your list:", text); });
+    } else {
+      window.prompt("Copy your list:", text);
+    }
+  });
+  dialog.querySelector(".my-list-email").addEventListener("click", function(){
+    location.href = "mailto:?subject=" + encodeURIComponent("My veteran benefits list") + "&body=" + encodeURIComponent(listText(savedEntries()));
+  });
+  document.addEventListener("click", function(e){
+    var btn = e.target.closest ? e.target.closest(".save-btn") : null;
+    if(!btn){ return; }
+    var li = btn.closest("li");
+    var k = liKey(li);
+    var idx = saved.indexOf(k);
+    if(idx === -1){ saved.push(k); } else { saved.splice(idx, 1); }
+    storeSaved(saved);
+    // Same benefit listed in two sections: keep both stars in sync.
+    for(var i=0;i<items.length;i++){ if(items[i].key === k){ syncSaveButton(items[i].li); } }
+    renderList();
+  });
+  // Another tab changed the list.
+  window.addEventListener("storage", function(e){
+    if(e.key !== SAVE_KEY){ return; }
+    saved = loadSaved();
+    for(var i=0;i<items.length;i++){ syncSaveButton(items[i].li); }
+    renderList();
+  });
+  renderList();
 })();
