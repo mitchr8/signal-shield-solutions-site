@@ -2221,3 +2221,61 @@ mark.finder-mark{
   .nav .nav-menu a{visibility:visible;opacity:1;padding:5px 0;border-radius:0;font-size:.74rem;font-weight:600;letter-spacing:.02em;text-transform:none;color:#c9d7ee;white-space:normal}
   .nav .nav-menu a:hover{background:none;color:#fff}
 }
+
+/* Veteran resources: crisis strip, last reviewed, merged browse nav, mobile eligibility toggle (Oct 2026) */
+.crisis-strip{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:6px 18px;
+  padding:10px 16px;
+  background:linear-gradient(90deg, rgba(217,178,76,0.16), rgba(217,178,76,0.08));
+  border-bottom:1px solid rgba(217,178,76,0.32);
+  color:#f4f7fb;
+  font-size:.9rem;
+  text-align:center;
+}
+.crisis-strip-label{font-weight:800;color:var(--accent)}
+.crisis-strip a{color:#f4f7fb;font-weight:700;text-underline-offset:3px}
+.crisis-strip a:hover{color:#f0d589}
+.last-reviewed{margin:16px 0 0;color:#8ea3c4;font-size:.84rem}
+.finder-browse{
+  margin-top:18px;
+  padding-top:14px;
+  border-top:1px solid rgba(181,199,229,0.12);
+}
+.finder-browse .topics-nav{margin-top:10px}
+.finder-suggest{margin:14px 0 0;color:#8ea3c4;font-size:.84rem}
+.finder-suggest a{color:var(--accent)}
+.elig-toggle{display:none}
+@media (max-width:760px){
+  .crisis-strip{font-size:.84rem;gap:4px 14px;padding:9px 12px}
+  .elig-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    margin-top:18px;
+    padding:12px 14px;
+    -webkit-appearance:none;
+    appearance:none;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,0.03);
+    color:#d7e2f5;
+    font:inherit;
+    font-weight:800;
+    font-size:.9rem;
+    cursor:pointer;
+  }
+  .elig-toggle span{font-weight:600;color:#8ea3c4;margin-left:6px;margin-right:auto}
+  .elig-toggle::after{content:"";width:9px;height:9px;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(45deg) translateY(-3px);transition:transform .18s ease}
+  .elig-toggle[aria-expanded="true"]::after{transform:rotate(-135deg) translateY(-1px)}
+  .elig-wrap{display:none}
+  .elig-wrap.open{display:block}
+  #needGrid .filter-chip span{padding:7px 12px}
+  .finder-browse{border-top:0;padding-top:0;margin-top:10px}
+  .browse-toggle{margin-top:0}
+  .browse-wrap .filter-label{display:none}
+}

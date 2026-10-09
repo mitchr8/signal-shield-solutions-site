@@ -15,7 +15,7 @@
 <meta name="twitter:title" content="Veteran Benefits &amp; Resources | Signal &amp; Shield Solutions" />
 <meta name="twitter:description" content="A deep, curated hub of veteran benefits, discounts, and organizations, including the ones most people miss. Veteran-owned." />
 <meta name="twitter:image" content="https://signalshieldsolutions.com/logo.png" />
-<link rel="stylesheet" href="styles.css?v=20261009a" />
+<link rel="stylesheet" href="styles.css?v=20261009b" />
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
@@ -62,6 +62,12 @@
 </header>
 
 <main>
+<div class="crisis-strip" role="region" aria-label="Veterans Crisis Line">
+<span class="crisis-strip-label">In crisis?</span>
+<a href="tel:988">Call 988, press 1</a>
+<a href="sms:838255">Text 838255</a>
+<a href="https://www.veteranscrisisline.net/get-help-now/chat/" target="_blank" rel="noopener noreferrer">Chat online</a>
+</div>
 <section class="hero-band">
 <div class="hero-inner">
 <div class="hero-copy">
@@ -69,7 +75,7 @@
 <h1 class="hero-title">Veteran benefits &amp; resources.</h1>
 <p>A deep, curated hub of federal, California, and High Desert benefits, discounts, and organizations, with a focus on the ones most veterans never hear about. We are veteran-owned, and we built this to help our community actually use what they earned.</p>
 <div class="hero-actions">
-<a class="btn primary" href="#discounts">Discounts &amp; travel</a>
+<a class="btn primary" href="#finder">Find benefits</a>
 <a class="btn secondary" href="#local">High Desert resources</a>
 </div>
 <div class="hero-process" aria-label="How to use this page">
@@ -77,15 +83,67 @@
 <span><strong>2</strong>Open the official link</span>
 <span><strong>3</strong>Confirm and apply</span>
 </div>
+<p class="last-reviewed" id="lastReviewed">Last reviewed <time datetime="2026-10">October 2026</time> &middot; links checked monthly</p>
 </div>
 </div>
 </section>
 <section class="wrap section-shell" style="padding-top:0">
-<div class="surface reveal topics-panel">
+<div class="surface reveal filter-panel" id="finder">
 <div class="topics-head">
-<span class="eyebrow">On this page</span>
-<h2>Jump straight to what you need.</h2>
+<span class="eyebrow">Find benefits</span>
+<h2>Search, or tell us what you need.</h2>
+<p>Type anything &mdash; &ldquo;PTSD,&rdquo; &ldquo;rent help,&rdquo; &ldquo;GI Bill,&rdquo; &ldquo;DD-214&rdquo; &mdash; or pick a topic and what applies to you, and the list below narrows automatically. This is a starting point, not a final answer &mdash; always confirm eligibility on the official link before you apply.</p>
 </div>
+<div class="finder-search">
+<label class="sr-only" for="benefitSearch">Search veteran benefits and resources</label>
+<svg class="finder-search-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+<input type="search" id="benefitSearch" placeholder="Search: PTSD, rent help, GI Bill, CalFresh, DD-214&hellip;" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" />
+<kbd class="finder-kbd" aria-hidden="true">/</kbd>
+</div>
+<p class="filter-label" id="needLabel">What do you need help with?</p>
+<div class="filter-grid" id="needGrid" role="group" aria-labelledby="needLabel">
+<label class="filter-chip"><input type="checkbox" value="urgent" data-sections="emergency mental" /><span>Urgent help</span></label>
+<label class="filter-chip"><input type="checkbox" value="start" data-sections="start" /><span>Getting started</span></label>
+<label class="filter-chip"><input type="checkbox" value="money" data-sections="emergency perks" /><span>Money &amp; VA pay</span></label>
+<label class="filter-chip"><input type="checkbox" value="health" data-sections="health mental" /><span>Health &amp; disability</span></label>
+<label class="filter-chip"><input type="checkbox" value="housing" data-sections="housing" /><span>Housing</span></label>
+<label class="filter-chip"><input type="checkbox" value="school" data-sections="education" /><span>School &amp; training</span></label>
+<label class="filter-chip"><input type="checkbox" value="work" data-sections="work" /><span>Jobs &amp; business</span></label>
+<label class="filter-chip"><input type="checkbox" value="discounts" data-sections="discounts" /><span>Discounts &amp; travel</span></label>
+<label class="filter-chip"><input type="checkbox" value="family" data-sections="family" /><span>Family &amp; survivors</span></label>
+<label class="filter-chip"><input type="checkbox" value="community" data-sections="orgs community" /><span>Community &amp; recreation</span></label>
+<label class="filter-chip"><input type="checkbox" value="ca-local" data-sections="california local" /><span>California &amp; local help</span></label>
+</div>
+<button type="button" class="elig-toggle" id="eligToggle" aria-expanded="false" aria-controls="eligWrap">Filter by your situation <span>(optional)</span></button>
+<div class="elig-wrap" id="eligWrap">
+<p class="filter-label" id="eligLabel">What applies to you?</p>
+<div class="filter-grid" id="filterGrid" role="group" aria-labelledby="eligLabel">
+<label class="filter-chip"><input type="checkbox" value="disability-any" /><span>Any % disability rating</span></label>
+<label class="filter-chip"><input type="checkbox" value="disability-100" /><span>100% / P&amp;T disability rating</span></label>
+<label class="filter-chip"><input type="checkbox" value="low-income" /><span>Low-income / hardship</span></label>
+<label class="filter-chip"><input type="checkbox" value="homeless" /><span>Homeless or at-risk</span></label>
+<label class="filter-chip"><input type="checkbox" value="survivor" /><span>Spouse, dependent &amp; survivors</span></label>
+<label class="filter-chip"><input type="checkbox" value="caregiver" /><span>Caregiver</span></label>
+<label class="filter-chip"><input type="checkbox" value="ca-resident" /><span>California resident</span></label>
+<label class="filter-chip"><input type="checkbox" value="local" /><span>High Desert / local</span></label>
+</div>
+</div>
+<div class="filter-status">
+<p class="microcopy" id="filterCount" role="status" aria-live="polite">Showing all 119 benefits. Search or pick what applies to you to narrow the list.</p>
+<div class="filter-actions">
+<button type="button" class="filter-clear filter-showall" id="filterShowAll" aria-pressed="false" hidden>Show benefits open to all veterans</button>
+<button type="button" class="filter-clear" id="filterShare" hidden>Copy link to these results</button>
+<button type="button" class="filter-clear" id="filterClear" hidden>Clear all</button>
+</div>
+</div>
+<div class="filter-empty" id="filterEmpty" hidden>
+<strong>No matches yet.</strong>
+<p>Try fewer or different words, or clear a filter. For one-on-one help finding what you qualify for, a free <a href="https://va.sbcounty.gov/" target="_blank" rel="noopener noreferrer">San Bernardino County Veterans Service Officer</a> (or <a href="https://www.calvet.ca.gov/VetServices/Pages/CVSO-Locations.aspx" target="_blank" rel="noopener noreferrer">your county&rsquo;s CVSO</a>) can walk you through it. In crisis? Dial <strong>988</strong> and press <strong>1</strong>.</p>
+</div>
+<div class="finder-browse">
+<button type="button" class="elig-toggle browse-toggle" id="browseToggle" aria-expanded="false" aria-controls="browseWrap">Browse by section</button>
+<div class="elig-wrap browse-wrap" id="browseWrap">
+<p class="filter-label">Or browse by section</p>
 <nav class="nav topics-nav" aria-label="Jump to a topic on this page">
 <a href="#crisis" class="topics-urgent">Crisis Line</a>
 <div class="has-menu">
@@ -129,58 +187,8 @@
 </div>
 </nav>
 </div>
-</section>
-
-<section class="wrap section-shell" style="padding-top:0">
-<div class="surface reveal filter-panel" id="finder">
-<div class="topics-head">
-<span class="eyebrow">Find benefits</span>
-<h2>Search, or tell us what you need.</h2>
-<p>Type anything &mdash; &ldquo;PTSD,&rdquo; &ldquo;rent help,&rdquo; &ldquo;GI Bill,&rdquo; &ldquo;DD-214&rdquo; &mdash; or pick a topic and what applies to you, and the list below narrows automatically. This is a starting point, not a final answer &mdash; always confirm eligibility on the official link before you apply.</p>
 </div>
-<div class="finder-search">
-<label class="sr-only" for="benefitSearch">Search veteran benefits and resources</label>
-<svg class="finder-search-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-<input type="search" id="benefitSearch" placeholder="Search: PTSD, rent help, GI Bill, CalFresh, DD-214&hellip;" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" />
-<kbd class="finder-kbd" aria-hidden="true">/</kbd>
-</div>
-<p class="filter-label" id="needLabel">What do you need help with?</p>
-<div class="filter-grid" id="needGrid" role="group" aria-labelledby="needLabel">
-<label class="filter-chip"><input type="checkbox" value="urgent" data-sections="emergency mental" /><span>Urgent help</span></label>
-<label class="filter-chip"><input type="checkbox" value="start" data-sections="start" /><span>Getting started</span></label>
-<label class="filter-chip"><input type="checkbox" value="money" data-sections="emergency perks" /><span>Money &amp; VA pay</span></label>
-<label class="filter-chip"><input type="checkbox" value="health" data-sections="health mental" /><span>Health &amp; disability</span></label>
-<label class="filter-chip"><input type="checkbox" value="housing" data-sections="housing" /><span>Housing</span></label>
-<label class="filter-chip"><input type="checkbox" value="school" data-sections="education" /><span>School &amp; training</span></label>
-<label class="filter-chip"><input type="checkbox" value="work" data-sections="work" /><span>Jobs &amp; business</span></label>
-<label class="filter-chip"><input type="checkbox" value="discounts" data-sections="discounts" /><span>Discounts &amp; travel</span></label>
-<label class="filter-chip"><input type="checkbox" value="family" data-sections="family" /><span>Family &amp; survivors</span></label>
-<label class="filter-chip"><input type="checkbox" value="community" data-sections="orgs community" /><span>Community &amp; recreation</span></label>
-<label class="filter-chip"><input type="checkbox" value="ca-local" data-sections="california local" /><span>California &amp; local help</span></label>
-</div>
-<p class="filter-label" id="eligLabel">What applies to you?</p>
-<div class="filter-grid" id="filterGrid" role="group" aria-labelledby="eligLabel">
-<label class="filter-chip"><input type="checkbox" value="disability-any" /><span>Any % disability rating</span></label>
-<label class="filter-chip"><input type="checkbox" value="disability-100" /><span>100% / P&amp;T disability rating</span></label>
-<label class="filter-chip"><input type="checkbox" value="low-income" /><span>Low-income / hardship</span></label>
-<label class="filter-chip"><input type="checkbox" value="homeless" /><span>Homeless or at-risk</span></label>
-<label class="filter-chip"><input type="checkbox" value="survivor" /><span>Spouse, dependent &amp; survivors</span></label>
-<label class="filter-chip"><input type="checkbox" value="caregiver" /><span>Caregiver</span></label>
-<label class="filter-chip"><input type="checkbox" value="ca-resident" /><span>California resident</span></label>
-<label class="filter-chip"><input type="checkbox" value="local" /><span>High Desert / local</span></label>
-</div>
-<div class="filter-status">
-<p class="microcopy" id="filterCount" role="status" aria-live="polite">Showing all 107 benefits. Search or pick what applies to you to narrow the list.</p>
-<div class="filter-actions">
-<button type="button" class="filter-clear filter-showall" id="filterShowAll" aria-pressed="false" hidden>Show benefits open to all veterans</button>
-<button type="button" class="filter-clear" id="filterShare" hidden>Copy link to these results</button>
-<button type="button" class="filter-clear" id="filterClear" hidden>Clear all</button>
-</div>
-</div>
-<div class="filter-empty" id="filterEmpty" hidden>
-<strong>No matches yet.</strong>
-<p>Try fewer or different words, or clear a filter. For one-on-one help finding what you qualify for, a free <a href="https://va.sbcounty.gov/" target="_blank" rel="noopener noreferrer">San Bernardino County Veterans Service Officer</a> (or <a href="https://www.calvet.ca.gov/VetServices/Pages/CVSO-Locations.aspx" target="_blank" rel="noopener noreferrer">your county&rsquo;s CVSO</a>) can walk you through it. In crisis? Dial <strong>988</strong> and press <strong>1</strong>.</p>
-</div>
+<p class="finder-suggest">Spot a broken link, or know a benefit we&rsquo;re missing? <a href="mailto:support@signalshieldsolutions.com?subject=Veteran%20resources%3A%20suggestion">Tell us</a> and we&rsquo;ll check it out.</p>
 </div>
 </section>
 
@@ -190,8 +198,8 @@
 <h2>In crisis or just need to talk? Reach the Veterans Crisis Line now.</h2>
 <p>Free, confidential support, 24/7, for veterans, service members, and their families. You do not have to be enrolled in VA care.</p>
 <ul class="helper-list compact">
-<li><strong>Call:</strong> dial <strong>988</strong>, then press <strong>1</strong></li>
-<li><strong>Text:</strong> <strong>838255</strong></li>
+<li><strong>Call:</strong> <a href="tel:988">dial <strong>988</strong></a>, then press <strong>1</strong></li>
+<li><strong>Text:</strong> <a href="sms:838255"><strong>838255</strong></a></li>
 <li><strong>Online chat:</strong> <a href="https://www.veteranscrisisline.net/" target="_blank" rel="noopener noreferrer">veteranscrisisline.net</a></li>
 </ul>
 </div>
@@ -293,6 +301,26 @@
 <ul class="feature-list">
 <li><a href="https://www.va.gov/disability/how-to-file-claim/" target="_blank" rel="noopener noreferrer">How to file a disability claim</a> &mdash; the official step-by-step.</li>
 <li>Use a free <a href="https://www.calvet.ca.gov/VetServices/Pages/CVSO-Locations.aspx" target="_blank" rel="noopener noreferrer">County Veterans Service Officer</a> or an accredited VSO like the DAV or VFW. Never pay for help filing a basic claim.</li>
+<li><a href="https://www.va.gov/get-help-from-accredited-representative/find-rep/" target="_blank" rel="noopener noreferrer">Find a VA-accredited representative</a> &mdash; check VA&rsquo;s official list before you let anyone help with a claim. Help from an accredited VSO representative is always free, and accredited attorneys and claims agents generally can&rsquo;t charge until VA has decided your initial claim and a signed fee agreement is on file. Steer clear of unaccredited &ldquo;claim consultants&rdquo; (claim sharks) who want a cut of your back pay.</li>
+<li><a href="https://www.va.gov/initiatives/protecting-veterans-from-fraud/" target="_blank" rel="noopener noreferrer">VA fraud protection &amp; VSAFE</a> &mdash; how to spot claim, job, and memorial scams aimed at veterans and families, and where to report them. VSAFE fraud hotline: <a href="tel:+18333887233">1-833-38V-SAFE (833-388-7233)</a>.</li>
+</ul>
+</article>
+<article class="surface service-cluster reveal">
+<span class="cluster-tag">Just got out</span>
+<h3>Your first-year deadlines.</h3>
+<ul class="feature-list">
+<li><a href="https://www.va.gov/disability/how-to-file-claim/when-to-file/pre-discharge-claim/" target="_blank" rel="noopener noreferrer">Pre-discharge claim (BDD)</a> &mdash; still on active duty with 180 to 90 days left? File your disability claim before you get out through Benefits Delivery at Discharge so your decision comes sooner.</li>
+<li><a href="https://www.va.gov/health-care/about-va-health-benefits/dental-care/" target="_blank" rel="noopener noreferrer">One-time VA dental care</a> &mdash; if you served at least 90 days on active duty in the Gulf War era (which still includes today) and didn&rsquo;t get a complete dental exam and treatment before discharge, you can get one-time dental care. You must apply within 180 days of discharge.</li>
+<li><a href="https://www.va.gov/life-insurance/options-eligibility/vgli/" target="_blank" rel="noopener noreferrer">Keep your life insurance (VGLI)</a> &mdash; convert your SGLI to VGLI within 1 year and 120 days of leaving the military. Apply within 240 days and you won&rsquo;t have to prove good health.</li>
+<li><a href="https://www.va.gov/disability/eligibility/illnesses-within-one-year-of-discharge/" target="_blank" rel="noopener noreferrer">Conditions that show up your first year out</a> &mdash; some illnesses that appear within a year of discharge can still be service-connected, so don&rsquo;t assume it&rsquo;s too late to claim them.</li>
+</ul>
+</article>
+<article class="surface service-cluster reveal">
+<span class="cluster-tag">Discharge status</span>
+<h3>Other-than-honorable discharge?</h3>
+<ul class="feature-list">
+<li><a href="https://www.va.gov/resources/what-benefits-can-i-get-if-i-have-an-other-than-honorable-discharge/" target="_blank" rel="noopener noreferrer">Benefits with an OTH (&ldquo;bad paper&rdquo;) discharge</a> &mdash; you may still get emergency mental health care, Vet Center counseling, care for military sexual trauma, and care for service-connected conditions. VA encourages you to apply anyway.</li>
+<li><a href="https://www.va.gov/discharge-upgrade-instructions/" target="_blank" rel="noopener noreferrer">Apply for a discharge upgrade</a> &mdash; VA&rsquo;s guided tool walks you through applying to the right military review board.</li>
 </ul>
 </article>
 </div>
@@ -414,7 +442,8 @@
 <h3>VA health care.</h3>
 <ul class="feature-list">
 <li><a href="https://www.va.gov/health-care/" target="_blank" rel="noopener noreferrer">Apply for VA health care</a> &mdash; more veterans qualify than assume they do, especially after recent expansions.</li>
-<li><a href="https://www.va.gov/health-care/about-va-health-benefits/dental-care/" target="_blank" rel="noopener noreferrer">VA dental (VADIP)</a> &mdash; dental coverage options many veterans overlook.</li>
+<li><a href="https://www.va.gov/health-care/about-va-health-benefits/dental-care/dental-insurance/" target="_blank" rel="noopener noreferrer">VA dental (VADIP)</a> &mdash; dental coverage options many veterans overlook.</li>
+<li data-req="disability-any low-income"><a href="https://www.va.gov/health-care/file-travel-pay-reimbursement/" target="_blank" rel="noopener noreferrer">VA travel pay (mileage reimbursement)</a> &mdash; get paid back for driving to VA or VA-approved appointments if you have a 30% or higher rating, are traveling for a service-connected condition, get VA pension, or have limited income. File within 30 days of each appointment &mdash; a big deal for High Desert vets making the drive to Loma Linda. <span class="req-tag" data-tag="disability-any">Any % disability rating</span><span class="req-connector">or</span><span class="req-tag" data-tag="low-income">Low-income / hardship</span></li>
 </ul>
 </article>
 <article class="surface service-cluster reveal">
@@ -431,6 +460,20 @@
 <ul class="feature-list">
 <li data-req="survivor"><a href="https://www.va.gov/family-and-caregiver-benefits/health-and-disability/champva/" target="_blank" rel="noopener noreferrer">CHAMPVA</a> &mdash; health coverage for spouses and children of permanently and totally disabled veterans. <span class="req-tag" data-tag="survivor">Spouse, dependent & survivors</span></li>
 <li data-req="caregiver"><a href="https://www.va.gov/family-and-caregiver-benefits/" target="_blank" rel="noopener noreferrer">Caregiver support</a> &mdash; stipends, training, and health coverage for those caring for a veteran. <span class="req-tag" data-tag="caregiver">Caregiver</span></li>
+</ul>
+</article>
+<article class="surface service-cluster reveal">
+<span class="cluster-tag">Women veterans</span>
+<h3>Care built for women vets.</h3>
+<ul class="feature-list">
+<li><a href="https://www.womenshealth.va.gov/" target="_blank" rel="noopener noreferrer">VA women veterans health care</a> &mdash; primary and women&rsquo;s health care, reproductive and menopause care, mental health, and MST-related care. The Women Veterans Call Center (call or text <a href="tel:+18558296636">855-829-6636</a>) helps with enrolling, appointments, and benefits questions.</li>
+</ul>
+</article>
+<article class="surface service-cluster reveal">
+<span class="cluster-tag">Aging &amp; long-term care</span>
+<h3>Help staying at home, or more.</h3>
+<ul class="feature-list">
+<li><a href="https://www.va.gov/health-care/about-va-health-benefits/long-term-care/" target="_blank" rel="noopener noreferrer">VA long-term care &amp; elder care</a> &mdash; in-home care, homemaker and home health aides, adult day health care, respite so a family caregiver can take a break, and nursing home care. You need to be enrolled in VA health care, and a VA social worker can help you get started.</li>
 </ul>
 </article>
 </div>
@@ -757,6 +800,7 @@
 <li><a href="https://www.va.gov/loma-linda-health-care/" target="_blank" rel="noopener noreferrer">VA Loma Linda Healthcare System</a> &mdash; the regional VA health system for our area.</li>
 <li><a href="https://www.va.gov/find-locations/" target="_blank" rel="noopener noreferrer">VA facility locator</a> &mdash; find the nearest clinic (including the Victorville area) or Vet Center by ZIP code.</li>
 <li><a href="https://www.va.gov/high-desert-vet-center/" target="_blank" rel="noopener noreferrer">High Desert Vet Center</a> &mdash; free, confidential readjustment counseling in Victorville for combat veterans, military sexual trauma survivors, and their families. You do not need a VA disability rating or to be enrolled in VA health care.</li>
+<li data-req="local"><a href="https://www.va.gov/loma-linda-health-care/dav-vans-transportation-for-veterans/" target="_blank" rel="noopener noreferrer">DAV vans to VA appointments</a> &mdash; free rides to scheduled VA medical appointments across San Bernardino and Riverside counties for veterans who don&rsquo;t have another way there and can board the van on their own. Call the DAV coordinator to schedule: <a href="tel:+19098947857">909-894-7857</a>. <span class="req-tag" data-tag="local">High Desert / local</span></li>
 </ul>
 </article>
 <article class="surface service-cluster reveal">
@@ -818,7 +862,7 @@
 </div>
 </div>
 </div>
-<p class="coverage-note" style="margin-top:16px">This page is a free community resource and is not affiliated with or endorsed by the VA, CalVet, or any organization listed. Links go to official and nonprofit sources; please verify current eligibility and details there.</p>
+<p class="coverage-note" style="margin-top:16px">This page is a free community resource and is not affiliated with or endorsed by the VA, CalVet, or any organization listed. Links go to official and nonprofit sources; please verify current eligibility and details there. Spot a broken link or a missing benefit? <a href="mailto:support@signalshieldsolutions.com?subject=Veteran%20resources%3A%20suggestion">Let us know</a>.</p>
 </section>
 </main>
 
@@ -851,6 +895,6 @@ detailsPrompt: "Tell us what you need and the best way to reach you.",
 detailsPlaceholder: "Your question and preferred contact"
 };
 </script>
-<script src="site.js?v=20261009a"></script>
+<script src="site.js?v=20261009b"></script>
 </body>
 </html>

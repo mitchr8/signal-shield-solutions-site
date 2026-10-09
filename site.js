@@ -608,12 +608,36 @@
     "free": ["free","no cost","discount"],
     "tickets": ["tickets","vet tix"],
     "caregiver": ["caregiver","aid and attendance"],
-    "elderly": ["aid and attendance","pension","veterans homes"],
-    "nursing": ["veterans homes","aid and attendance"],
+    "elderly": ["long term care","elder","aid and attendance","pension","veterans homes"],
+    "nursing": ["nursing home","veterans homes","aid and attendance","long term care"],
     "apple": ["high desert","apple valley"],
     "victorville": ["high desert","victor valley"],
     "hesperia": ["high desert"],
-    "barstow": ["high desert","barstow"]
+    "barstow": ["high desert","barstow"],
+    "mileage": ["travel pay","mileage","van"],
+    "ride": [" van","travel pay"," transit "],
+    "rides": [" van","travel pay"," transit "],
+    "transportation": [" van","travel pay"," transit ","fare"],
+    "gas": ["travel pay","mileage"],
+    "scam": ["fraud","scam","claim shark","accredited"],
+    "scams": ["fraud","scam","claim shark","accredited"],
+    "fraud": ["fraud","scam"],
+    "shark": ["claim shark","accredited","fraud"],
+    "oth": ["other than honorable","bad paper","discharge upgrade"],
+    "discharge": ["discharge","dd 214"],
+    "upgrade": ["discharge upgrade","upgrade"],
+    "women": ["women"],
+    "woman": ["women"],
+    "female": ["women"],
+    "mst": ["military sexual trauma","mst"],
+    "senior": ["long term care","elder","aid and attendance","pension","veterans homes"],
+    "seniors": ["long term care","elder","aid and attendance","pension","veterans homes"],
+    "aging": ["long term care","elder","aid and attendance"],
+    "respite": ["respite","caregiver"],
+    "life": ["life insurance","vgli","valife"],
+    "separating": ["pre discharge","first year","bdd","skillbridge"],
+    "separation": ["pre discharge","first year","bdd","skillbridge"],
+    "transition": ["pre discharge","first year","bdd","skillbridge","career"]
   };
 
   function stem(word){
@@ -639,6 +663,8 @@
       var st = stem(w);
       if(st !== w){ alts.push(st); }
       var syn = SYNONYMS[w] || SYNONYMS[st];
+      // Short abbreviations with a synonym entry ("oth", "mst") match only as whole words.
+      if(syn && w.length <= 3){ alts = [" " + w + " "]; }
       if(syn){ alts = alts.concat(syn); }
       if(w === "dd214"){ alts = ["dd 214","dd214","records"]; }
       groups.push({ word: w, alts: alts });
@@ -651,9 +677,10 @@
   }
 
   function hasAlt(hay, alt){
-    // Short terms (2-3 chars like "va", "gi", "tax") must match at a word start.
-    if(alt.length <= 3){ return hay.indexOf(" " + alt) !== -1; }
-    return hay.indexOf(alt) !== -1;
+    // Match at the start of a word, so "ride" doesn't hit "provide".
+    // Alternates wrapped in spaces (e.g. " oth ") must match a whole word.
+    if(alt.charAt(0) === " "){ return hay.indexOf(alt) !== -1; }
+    return hay.indexOf(" " + alt) !== -1;
   }
 
   // Search-match: every typed word (or one of its synonyms) must appear in
@@ -715,7 +742,7 @@
     var terms = [];
     for(var g=0;g<groups.length;g++){
       for(var a=0;a<groups[g].alts.length;a++){
-        var t = groups[g].alts[a];
+        var t = groups[g].alts[a].trim();
         if(t.length >= 2 && terms.indexOf(t) === -1){ terms.push(t); }
       }
     }
@@ -964,6 +991,8 @@
     if(searchEl){ searchEl.value = ""; }
     showOpenToAll = false;
     apply(true);
+    var et = document.getElementById("eligToggle");
+    if(et && et.getAttribute("aria-expanded") === "true"){ et.click(); }
   }
 
   grid.addEventListener("change", function(){ apply(true); });
@@ -1013,6 +1042,30 @@
     });
   }
 
+  var eligToggle = document.getElementById("eligToggle");
+  var eligWrap = document.getElementById("eligWrap");
+  function setElig(open){
+    if(!eligToggle || !eligWrap){ return; }
+    eligWrap.classList.toggle("open", open);
+    eligToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+  if(eligToggle){
+    eligToggle.addEventListener("click", function(){
+      setElig(eligToggle.getAttribute("aria-expanded") !== "true");
+    });
+  }
+
+  var browseToggle = document.getElementById("browseToggle");
+  var browseWrap = document.getElementById("browseWrap");
+  if(browseToggle && browseWrap){
+    browseToggle.addEventListener("click", function(){
+      var open = browseToggle.getAttribute("aria-expanded") !== "true";
+      browseWrap.classList.toggle("open", open);
+      browseToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+  }
+
   readUrl();
+  if(checkedValues(grid).length){ setElig(true); }
   apply(false);
 })();
