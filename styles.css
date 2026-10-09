@@ -2421,3 +2421,26 @@ mark.finder-mark{
   .hero-services-list strong{font-size:.86rem}
   .hs-icon{width:32px;height:32px}
 }
+/* Veteran resources: limited-time deals (Oct 2026) */
+.deal-card{display:flex;flex-direction:column}
+.deal-card.deal-expired{display:none !important}
+.deal-status{
+  align-self:flex-start;
+  display:inline-flex;
+  margin:8px 0 2px;
+  padding:3px 10px;
+  border-radius:999px;
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.03em;
+}
+.deal-now{background:linear-gradient(135deg, var(--accent), #f0d589);color:#1b1404}
+.deal-soon{background:rgba(77,135,208,0.18);border:1px solid rgba(77,135,208,0.36);color:#bcd3f0}
+.deal-when{margin:8px 0 0;color:#f0d589;font-weight:800;font-size:.9rem}
+.deal-desc{margin:8px 0 0;color:#d7e2f5;line-height:1.6;font-size:.94rem}
+.deal-meta{margin:auto 0 0;padding-top:14px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:.86rem}
+.deal-meta a{color:var(--accent);font-weight:800}
+.deal-meta span{color:#7f90ab;font-size:.78rem}
+.deals-empty{margin:18px 0 0;padding:14px 16px;border-radius:14px;border:1px dashed var(--line-strong);color:#c9d7ee}
+.deals-empty[hidden]{display:none}
+.deals-empty a{color:var(--accent)}

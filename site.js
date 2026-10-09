@@ -628,7 +628,14 @@
     "money": ["financial","grant","pension","compensation","emergency","cash"],
     "cash": ["financial","grant","emergency"],
     "bills": ["financial","emergency","grant","utilities"],
-    "food": ["food","calfresh","groceries"],
+    "food": ["food","calfresh","groceries","free meal"],
+    "meal": ["free meal","meal","food"],
+    "meals": ["free meal","meal","food"],
+    "restaurant": ["free meal","restaurant","dine"],
+    "restaurants": ["free meal","restaurant","dine"],
+    "dinner": ["free meal","meal"],
+    "lunch": ["free meal","meal"],
+    "veterans day": ["veterans day"],
     "groceries": ["food","calfresh","commissar"],
     "snap": ["calfresh","food"],
     "doctor": ["health care","medical","va health"],
@@ -665,8 +672,8 @@
     "hunting": ["hunting","fishing","license"],
     "fishing": ["fishing","hunting","fly fishing"],
     "discount": ["discount","save","savings","free"],
-    "deals": ["discount","savings"],
-    "free": ["free","no cost","discount"],
+    "deals": ["discount","savings","deal","free meal","free admission"],
+    "free": ["free","no cost","discount","complimentary"],
     "tickets": ["tickets","vet tix"],
     "caregiver": ["caregiver","aid and attendance"],
     "elderly": ["long term care","elder","aid and attendance","pension","veterans homes"],
@@ -917,7 +924,21 @@
     var articles = document.querySelectorAll("main .service-cluster");
     for(var a=0;a<articles.length;a++){
       var lisInCard = articles[a].querySelectorAll(".feature-list li");
-      if(!lisInCard.length){ articles[a].classList.toggle("filter-hide", active); continue; }
+      if(!lisInCard.length){
+        var hideCard = active;
+        // Limited-time deal cards: show them for the deals topic chip and for matching searches.
+        if(active && articles[a].classList.contains("deal-card") && !articles[a].classList.contains("deal-expired")){
+          var dsec = articles[a].closest("section");
+          var dItem = { text: norm(articles[a].textContent), ctx: norm(dsec ? (dsec.querySelector(".eyebrow") || {}).textContent : "") };
+          hideCard = anyElig || wantNew ||
+            (anyNeed && (!dsec || needs.indexOf(dsec.id) === -1)) ||
+            (anySearch && !searchMatches(dItem, groups));
+          if(!hideCard){ visibleCount++; }
+        }
+        articles[a].classList.toggle("filter-hide", hideCard);
+        if(!hideCard && active){ articles[a].classList.add("visible"); }
+        continue;
+      }
       var vis = false;
       for(var k=0;k<lisInCard.length;k++){ if(!lisInCard[k].classList.contains("filter-hide")){ vis = true; break; } }
       articles[a].classList.toggle("filter-hide", !vis);
@@ -1289,4 +1310,46 @@
     renderList();
   });
   renderList();
+})();
+
+/* Veteran resources: limited-time deals (auto-hide expired, label now / coming up) */
+(function(){
+  var cards = document.querySelectorAll(".deal-card[data-end]");
+  if(!cards.length){ return; }
+  var MONTHS = ["Jan.","Feb.","March","April","May","June","July","Aug.","Sept.","Oct.","Nov.","Dec."];
+  function parse(v){
+    var m = v && v.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+  }
+  function fmt(d){ return MONTHS[d.getMonth()] + " " + d.getDate(); }
+  var now = new Date();
+  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var shown = 0;
+  var live = [], upcoming = [];
+  for(var i=0;i<cards.length;i++){
+    var c = cards[i];
+    var end = parse(c.getAttribute("data-end"));
+    var start = parse(c.getAttribute("data-start")) || today;
+    if(!end || today > end){ c.classList.add("deal-expired"); continue; }
+    shown++;
+    var badge = document.createElement("span");
+    var days = Math.round((end - today) / 86400000);
+    if(today >= start){
+      badge.className = "deal-status deal-now";
+      badge.textContent = days === 0 ? "Today only" : (days <= 7 ? "Ends " + fmt(end) + " · " + days + (days === 1 ? " day left" : " days left") : "Happening now");
+      live.push(c);
+    } else {
+      badge.className = "deal-status deal-soon";
+      badge.textContent = "Coming up · " + fmt(start);
+      upcoming.push(c);
+    }
+    var tag = c.querySelector(".cluster-tag");
+    if(tag && tag.nextSibling){ c.insertBefore(badge, tag.nextSibling); } else { c.insertBefore(badge, c.firstChild); }
+  }
+  // Happening-now deals first, then upcoming (soonest first).
+  var grid = cards[0].parentNode;
+  upcoming.sort(function(a, b){ return parse(a.getAttribute("data-start")) - parse(b.getAttribute("data-start")); });
+  live.concat(upcoming).forEach(function(c){ grid.appendChild(c); });
+  var empty = document.getElementById("dealsEmpty");
+  if(empty){ empty.hidden = shown > 0; }
 })();
