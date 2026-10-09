@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-09T11:05:14.2875762-07:00",
+  "updatedAt": "2026-10-09T11:08:35.1585005-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
@@ -10,13 +10,14 @@
   "streamPublic": true,
   "youtubeVideoId": "",
   "image": "/print-assets/current-print.png",
-  "imageVersion": "c75ec7f6f412",
-  "objectCount": 1,
+  "imageVersion": "fdc4d19e05f9",
+  "objectCount": 2,
   "objects": [
-    "gridfinity base 4x4.stl"
+    "Dish+Rack+Base+V1.1.stl",
+    "Grid(2).step"
   ],
-  "weightGrams": 75.36,
-  "estimatedSeconds": 8203,
-  "printerModelId": "N6",
+  "weightGrams": null,
+  "estimatedSeconds": null,
+  "printerModelId": "",
   "note": "Active Bambu print preview paired with the live stream."
 }
