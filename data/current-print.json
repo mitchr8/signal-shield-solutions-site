@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-10-08T23:33:30.0919475-07:00",
+  "updatedAt": "2026-10-08T23:42:37.4874704-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
-  "progress": 0,
+  "progress": 1,
   "title": "All Parts PETG 0.16mm layer, 4 walls, 10% infill",
   "projectId": "1322370795",
   "streamPlatform": "cloudflare",
