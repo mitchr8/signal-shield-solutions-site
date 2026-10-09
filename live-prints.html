@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <title>Live Prints | Signal &amp; Shield Solutions</title>
 <meta name="description" content="Watch live 3D print sessions from Signal &amp; Shield Solutions and browse example prints available for quote." />
 <link rel="canonical" href="https://signalshieldsolutions.com/live-prints" />
@@ -15,35 +18,35 @@
 <meta name="twitter:title" content="Live Prints | Signal &amp; Shield Solutions" />
 <meta name="twitter:description" content="Watch live 3D print sessions from Signal &amp; Shield Solutions and browse example prints available for quote." />
 <meta name="twitter:image" content="https://signalshieldsolutions.com/logo.png" />
-<link rel="stylesheet" href="styles.css?v=20261003-alerts" />
+<link rel="stylesheet" href="styles.css?v=20261009g-alerts" />
 </head>
 <body class="page-live">
 <header class="top" id="topBar">
   <div class="wrap bar">
-    <a href="index.html" class="brand" aria-label="Signal and Shield Solutions home">
-      <span class="logo-mark"><img src="logo.png" alt="Signal &amp; Shield Solutions logo" class="logo-img" /></span>
+    <a href="/" class="brand" aria-label="Signal and Shield Solutions home">
+      <span class="logo-mark"><img src="/logo-header.png" alt="Signal &amp; Shield Solutions logo" class="logo-img" width="128" height="62" /></span>
       <span class="brand-text">Signal <span class="brand-amp">&amp;</span> Shield</span>
     </a>
     <nav class="nav" aria-label="Main">
-      <a href="index.html">Home</a>
+      <a href="/">Home</a>
       <div class="has-menu">
         <button type="button" class="nav-trigger" aria-haspopup="menu">Services</button>
         <div class="nav-menu">
-          <a href="local-it.html">IT Services</a>
-          <a href="remote-it-support.html">Remote IT Support</a>
-          <a href="security-cameras.html">Security Cameras</a>
-          <a href="web-design.html">Web Design</a>
+          <a href="/local-it">IT Services</a>
+          <a href="/remote-it-support">Remote IT Support</a>
+          <a href="/security-cameras">Security Cameras</a>
+          <a href="/web-design">Web Design</a>
         </div>
       </div>
-      <a href="pricing.html">Pricing</a>
+      <a href="/pricing">Pricing</a>
       <div class="has-menu">
         <button type="button" class="nav-trigger" aria-haspopup="menu">3D Prints</button>
         <div class="nav-menu">
-          <a href="shop.html">Shop</a>
-          <a href="live-prints.html">Live Prints</a>
+          <a href="/shop">Shop</a>
+          <a href="/live-prints">Live Prints</a>
         </div>
       </div>
-      <a href="veteran-resources.html"><span class="hide-mobile">Veteran Resources</span><span class="show-mobile">Vets</span></a>
+      <a href="/veteran-resources"><span class="hide-mobile">Veteran Resources</span><span class="show-mobile">Vets</span></a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -54,10 +57,10 @@
     <div class="hero-inner">
       <div class="hero-copy">
         <h1 class="hero-title">Watch the printer live and see what is running.</h1>
-        <p>When an active print is streaming, the player appears here automatically. The preview card beside it shows the current part image and the print details pulled from the machine.</p>
+        <p>When the printer is running, the live video shows up here, along with what it&rsquo;s making and how far along it is.</p>
         <div class="hero-actions">
           <a class="btn primary" href="#stream">Open the stream</a>
-          <a class="btn secondary" href="shop.html">Browse 3D prints</a>
+          <a class="btn secondary" href="/shop">Browse 3D prints</a>
         </div>
         <div class="hero-process" aria-label="How it works">
           <span><strong>1</strong>Check whether a print is live</span>
@@ -75,7 +78,7 @@
           <div class="brief-board">
             <div class="brief-row">
               <span>Live status</span>
-              <strong>Green means an active print is currently broadcasting.</strong>
+              <strong>Green means the printer is live right now.</strong>
             </div>
             <div class="brief-row">
               <span>Bambu preview</span>
@@ -99,15 +102,15 @@
     <div class="signal-rail reveal">
       <div>
         <span>Live feed</span>
-        <strong>Only active print runs show online</strong>
+        <strong>Live whenever the printer is running</strong>
       </div>
       <div>
         <span>Current preview</span>
-        <strong>Current part image and print details next to the stream</strong>
+        <strong>See what&rsquo;s being made and how far along it is</strong>
       </div>
       <div>
         <span>Quote path</span>
-        <strong>Use a previous print or custom part to start the order conversation</strong>
+        <strong>Like what you see? Ask for one, or something custom</strong>
       </div>
     </div>
   </section>
@@ -116,8 +119,8 @@
     <div class="section-slab">
       <div class="section-head reveal">
         <div class="eyebrow">Live feed</div>
-        <h2>Watch the current run and see the matching print preview.</h2>
-        <p>The stream appears automatically when the printer is actively publishing. The card beside it shows the current part image, print name, and a faster starting point if you want the same item or something similar.</p>
+        <h2>Watch the printer and see what it&rsquo;s making.</h2>
+        <p>The video appears when the printer is running. The card beside it shows what&rsquo;s printing, so you can ask for the same thing or something similar.</p>
       </div>
       <aside class="surface reveal stream-stack">
         <div id="streamStatus" class="stream-status" aria-live="polite">
@@ -167,7 +170,7 @@
         <div class="current-print-body">
           <div class="eyebrow current-print-eyebrow">Bambu preview</div>
           <h3 id="currentPrintTitle">Current print preview</h3>
-          <p id="currentPrintSummary">The page will add the current print thumbnail and title here when local metadata is available.</p>
+          <p id="currentPrintSummary">When a print is running, its picture and name show up here.</p>
           <dl class="current-print-meta">
             <div>
               <dt>Status</dt>
@@ -195,37 +198,37 @@
   <section class="wrap section-shell section-anchor" id="showcase">
     <div class="section-head reveal" style="margin-bottom:24px">
       <div class="eyebrow">Previous prints</div>
-      <h2>Showcase finished prints and let customers ask about them directly.</h2>
-      <p>The gallery below shows example prints, price ranges, and direct shop links when a matching Etsy listing is available.</p>
+      <h2>Prints we&rsquo;ve made.</h2>
+      <p>Example prints with price ranges. Buy on Etsy when a listing is up, or ask for your own version.</p>
     </div>
     <div class="product-marquee reveal" id="productMarquee" hidden>
       <div class="product-track" id="productTrack" aria-live="polite"></div>
     </div>
-    <p id="productEmpty" class="microcopy reveal">Add product entries to the local print catalog to start showing finished prints here.</p>
+    <p id="productEmpty" class="microcopy reveal">Finished prints will show up here soon.</p>
   </section>
 
   <section class="wrap section-shell section-anchor" id="workflow">
     <div class="section-head reveal" style="margin-bottom:24px">
       <div class="eyebrow">What To Expect</div>
-      <h2>A clean path from live camera to order inquiry.</h2>
+      <h2>How ordering works.</h2>
     </div>
     <div class="process-grid">
       <article class="surface reveal">
         <div class="process-step" data-step="1">
           <strong>Live run detected</strong>
-          <p>The stream only flips online when the printer is in an active print state and the live feed is publishing.</p>
+          <p>The video is live whenever the printer is running a job.</p>
         </div>
       </article>
       <article class="surface reveal">
         <div class="process-step" data-step="2">
           <strong>Preview matched</strong>
-          <p>The preview card can show the matching current part image so customers know what part is running.</p>
+          <p>The card next to the video shows exactly what&rsquo;s being printed.</p>
         </div>
       </article>
       <article class="surface reveal">
         <div class="process-step" data-step="3">
           <strong>Inquiry prefilled</strong>
-          <p>Choose the current print or a previous product and the contact form is prefilled with the right starting context.</p>
+          <p>Tap Ask about this print on any item and the form fills in the details for you.</p>
         </div>
       </article>
     </div>
@@ -233,13 +236,13 @@
     <div class="spec-grid" style="margin-top:24px">
       <article class="surface reveal">
         <span class="cluster-tag">Custom print requests</span>
-        <h3>Send the basics and the quote gets tighter faster.</h3>
+        <h3>The more you tell us, the faster we can quote.</h3>
         <p>A file, photo, dimensions, quantity, and deadline are enough to start a useful conversation.</p>
       </article>
       <article class="surface reveal">
         <span class="cluster-tag">Catalog updates</span>
-        <h3>Previous prints stay easy to keep current.</h3>
-        <p>Completed prints can carry price ranges, custom-order language, and direct Etsy links without cluttering the live page.</p>
+        <h3>Buy ready-made or get it customized.</h3>
+        <p>Finished prints show a price range and, when available, a direct Etsy link.</p>
       </article>
     </div>
   </section>
@@ -252,7 +255,7 @@
     <div class="faq-grid">
       <details class="reveal" open>
         <summary>When does the stream show online?</summary>
-        <p>The live page only shows online when the printer is in an active print state and the relay is publishing the camera feed.</p>
+        <p>Whenever the printer is running a job and the camera is on.</p>
       </details>
       <details class="reveal">
         <summary>Can I ask about the exact part on the screen?</summary>
@@ -322,6 +325,43 @@
     </div>
   </section>
 </main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <a href="/" class="footer-logo">Signal <span class="brand-amp">&amp;</span> Shield</a>
+      <p>Veteran-owned tech help for homes and small businesses in Apple Valley and the High Desert, with remote support anywhere.</p>
+      <p class="footer-badge">Military discount on every service</p>
+    </div>
+    <nav class="footer-col" aria-label="Services">
+      <h2>Services</h2>
+      <a href="/local-it">Home &amp; business IT</a>
+      <a href="/remote-it-support">Remote IT support</a>
+      <a href="/security-cameras">Security cameras</a>
+      <a href="/web-design">Website design</a>
+      <a href="/shop">3D printing</a>
+      <a href="/pricing">Pricing</a>
+    </nav>
+    <nav class="footer-col" aria-label="More">
+      <h2>More</h2>
+      <a href="/veteran-resources">Veteran resources</a>
+      <a href="/small-business-it-checklist">Small business IT checklist</a>
+      <a href="/live-prints">Live 3D prints</a>
+      <a href="/it-support-victorville">Victorville</a>
+      <a href="/it-support-hesperia">Hesperia</a>
+    </nav>
+    <div class="footer-col">
+      <h2>Contact</h2>
+      <a href="tel:+14423906785">Call or text (442) 390-6785</a>
+      <a href="mailto:support@signalshieldsolutions.com">support@signalshieldsolutions.com</a>
+      <a href="/#contact">Send a request</a>
+      <p>Apple Valley, Victorville, Hesperia, Oak Hills, Spring Valley Lake &amp; the High Desert</p>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>&copy; 2026 Signal &amp; Shield Solutions. Veteran-owned and operated.</span>
+  </div>
+</footer>
 
 <button id="chatBtn" class="chat-btn" aria-expanded="false" aria-controls="chatPanel"><span class="hide-mobile">Message us</span><span class="show-mobile">Chat</span></button>
 <div id="chatPanel" class="chat-panel" aria-hidden="true">

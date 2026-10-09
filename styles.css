@@ -2444,3 +2444,61 @@ mark.finder-mark{
 .deals-empty{margin:18px 0 0;padding:14px 16px;border-radius:14px;border:1px dashed var(--line-strong);color:#c9d7ee}
 .deals-empty[hidden]{display:none}
 .deals-empty a{color:var(--accent)}
+/* Site footer + home mobile hero (Oct 2026) */
+.site-footer{
+  margin-top:48px;
+  padding:44px 0 28px;
+  border-top:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(9,19,33,0.4), rgba(4,9,16,0.9));
+  color:var(--muted);
+  font-size:.9rem;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr 1.2fr;
+  gap:28px;
+}
+.footer-logo{
+  display:inline-block;
+  margin-bottom:10px;
+  color:var(--text);
+  font-family:var(--font-heading);
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  text-decoration:none;
+}
+.footer-brand p{margin:0 0 10px;line-height:1.6;max-width:32ch}
+.footer-badge{color:var(--accent);font-weight:700}
+.footer-col{display:flex;flex-direction:column;gap:8px}
+.footer-col h2{
+  margin:0 0 4px;
+  color:#8ea3c4;
+  font-family:var(--font-heading);
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.footer-col a{color:#d7e2f5;text-decoration:none}
+.footer-col a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.footer-col p{margin:4px 0 0;line-height:1.55;font-size:.84rem}
+.footer-bottom{
+  margin-top:28px;
+  padding-top:16px;
+  border-top:1px solid rgba(181,199,229,0.1);
+  font-size:.8rem;
+  color:#7f90ab;
+}
+.signal-rail strong a{color:inherit;text-decoration:underline;text-decoration-color:rgba(217,178,76,0.6);text-underline-offset:3px}
+@media (max-width:900px){
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-brand{grid-column:1 / -1}
+}
+@media (max-width:760px){
+  .page-home .hero-art{display:none}
+  .site-footer{padding-bottom:90px}
+}
+@media (max-width:520px){
+  .footer-grid{grid-template-columns:1fr}
+}

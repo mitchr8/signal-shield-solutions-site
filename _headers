@@ -33,3 +33,9 @@
 
 /site.js
   Cache-Control: no-cache
+
+/shop
+  Cache-Control: no-store
+
+/live-prints
+  Cache-Control: no-store
