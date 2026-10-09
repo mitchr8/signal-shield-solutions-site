@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-09T04:22:58.0618164-07:00",
+  "updatedAt": "2026-10-09T04:25:42.0626016-07:00",
   "active": true,
   "cameraAvailable": true,
   "gcodeState": "RUNNING",
@@ -7,7 +7,7 @@
   "title": "All Parts PETG 0.16mm layer, 4 walls, 10% infill",
   "projectId": "1322370795",
   "streamPlatform": "cloudflare",
-  "streamPublic": false,
+  "streamPublic": true,
   "youtubeVideoId": "",
   "image": "/print-assets/current-print.png",
   "imageVersion": "c75ec7f6f412",
@@ -18,5 +18,5 @@
   "weightGrams": 75.36,
   "estimatedSeconds": 8203,
   "printerModelId": "N6",
-  "note": "The printer is active and the live video feed is still connecting."
+  "note": "Active Bambu print preview paired with the live stream."
 }
