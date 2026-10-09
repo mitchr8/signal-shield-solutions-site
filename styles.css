@@ -2346,3 +2346,78 @@ mark.finder-mark{
   .my-list-actions .btn{flex:1 1 auto}
 }
 
+/* Veteran resources: plain-language services card, New badges, Spanish link (Oct 2026) */
+.page-resources .hero-inner{grid-template-columns:minmax(0, 1.12fr) minmax(300px, .88fr)}
+.hero-services{
+  align-self:center;
+  padding:22px 22px 18px;
+  border-radius:var(--radius-lg);
+  border:1px solid var(--line);
+  background:rgba(11,20,33,0.72);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+  box-shadow:0 24px 60px rgba(2,10,20,0.32);
+}
+.hero-services-kicker{margin:0;color:#8ea3c4;font-size:.7rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+.hero-services h2{margin:6px 0 6px;font-family:var(--font-heading);font-size:1.25rem;line-height:1.25;letter-spacing:-.01em}
+.hero-services-lead{margin:0 0 12px;color:var(--muted);font-size:.88rem;line-height:1.55}
+.hero-services-list{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.hero-services-list a{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding:9px 10px;
+  border-radius:14px;
+  color:var(--text);
+  text-decoration:none;
+  transition:background .15s ease;
+}
+.hero-services-list a:hover,.hero-services-list a:focus-visible{background:rgba(255,255,255,0.05)}
+.hero-services-list a:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.hs-icon{
+  flex:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:36px;
+  height:36px;
+  border-radius:11px;
+  background:rgba(77,135,208,0.16);
+  color:#9cc2f0;
+}
+.hs-icon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.hero-services-list strong{display:block;font-size:.94rem}
+.hero-services-list small{display:block;margin-top:2px;color:#a9b8cf;font-size:.8rem;line-height:1.45}
+.hero-services-foot{margin:12px 0 0;padding-top:12px;border-top:1px solid rgba(181,199,229,0.12);color:#c9d7ee;font-size:.84rem}
+.hero-services-foot strong{color:var(--accent)}
+.hero-services-foot a{color:#d7e2f5;font-weight:700}
+.new-badge{
+  display:inline-flex;
+  align-items:center;
+  margin:0 4px 0 6px;
+  padding:1px 8px;
+  border-radius:999px;
+  background:linear-gradient(135deg, var(--accent), #f0d589);
+  color:#1b1404;
+  font-size:.66rem;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  vertical-align:2px;
+}
+.filter-chip[hidden]{display:none !important}
+.chip-new span{border-color:rgba(217,178,76,0.45);color:#f0d589}
+@media (max-width:1024px){
+  .page-resources .hero-inner{grid-template-columns:1fr}
+  .hero-services{max-width:42rem}
+}
+@media (max-width:760px){
+  .hero-services{padding:16px 14px 14px}
+  .hero-services h2{font-size:1.1rem}
+  .hero-services-lead{display:none}
+  .hero-services-list{grid-template-columns:1fr 1fr;gap:6px}
+  .hero-services-list a{flex-direction:column;gap:6px;padding:10px;background:rgba(255,255,255,0.03);border:1px solid var(--line)}
+  .hero-services-list small{display:none}
+  .hero-services-list strong{font-size:.86rem}
+  .hs-icon{width:32px;height:32px}
+}

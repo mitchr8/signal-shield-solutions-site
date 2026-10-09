@@ -533,6 +533,29 @@
   var allItemLis = document.querySelectorAll("main section.section-anchor .feature-list li");
   for(var sb=0; sb<allItemLis.length; sb++){ addSaveButton(allItemLis[sb]); }
 
+  // ---- "New" badges: items stamped data-added="YYYY-MM" this month or last month ----
+  var nowD = new Date();
+  var nowIdx = nowD.getFullYear() * 12 + nowD.getMonth();
+  function isRecent(li){
+    var v = li.getAttribute("data-added");
+    var m = v && v.match(/^(\d{4})-(\d{2})$/);
+    if(!m){ return false; }
+    var diff = nowIdx - (parseInt(m[1], 10) * 12 + parseInt(m[2], 10) - 1);
+    return diff >= 0 && diff <= 1;
+  }
+  var recentCount = 0;
+  for(var nb=0; nb<allItemLis.length; nb++){
+    var nli = allItemLis[nb];
+    if(!isRecent(nli) || nli.querySelector(".new-badge")){ continue; }
+    var firstA = nli.querySelector("a[href]");
+    var badge = document.createElement("span");
+    badge.className = "new-badge";
+    badge.textContent = "New";
+    if(firstA && firstA.nextSibling){ nli.insertBefore(badge, firstA.nextSibling); } else { nli.insertBefore(badge, nli.firstChild); }
+    nli.setAttribute("data-recent", "1");
+    recentCount++;
+  }
+
   // ---- Index every benefit on the page -------------------------------------
   var items = [];
   var sectionNodes = document.querySelectorAll("main section.section-anchor");
@@ -768,7 +791,7 @@
   function needSections(){
     var out = [];
     if(!needGrid){ return out; }
-    var boxes = needGrid.querySelectorAll("input:checked");
+    var boxes = needGrid.querySelectorAll("input:checked:not([data-new])");
     for(var i=0;i<boxes.length;i++){
       out = out.concat((boxes[i].getAttribute("data-sections") || "").split(/\s+/));
     }
@@ -791,7 +814,7 @@
     var nodes = [];
     while(walker.nextNode()){
       var n = walker.currentNode;
-      if(n.parentNode && n.parentNode.closest && n.parentNode.closest(".req-tag, .req-connector, .for-you-badge, .save-btn")){ continue; }
+      if(n.parentNode && n.parentNode.closest && n.parentNode.closest(".req-tag, .req-connector, .for-you-badge, .save-btn, .new-badge")){ continue; }
       nodes.push(n);
     }
     for(var i=0;i<nodes.length;i++){
@@ -831,7 +854,9 @@
     var anyElig = eligibility.length > 0;
     var anyNeed = needs.length > 0;
     var anySearch = groups.length > 0;
-    var active = anyElig || anyNeed || anySearch;
+    var newBox = needGrid ? needGrid.querySelector("input[data-new]") : null;
+    var wantNew = !!(newBox && newBox.checked);
+    var active = anyElig || anyNeed || anySearch || wantNew;
 
     var seen = {};
     var forYouCount = 0;
@@ -852,6 +877,7 @@
       var show = true;
       var forYou = false;
       if(anyNeed && needs.indexOf(it.section) === -1){ show = false; }
+      if(show && wantNew && !li.getAttribute("data-recent")){ show = false; }
       if(show && anySearch && !searchMatches(it, groups)){ show = false; }
       if(show && anyElig){
         if(it.req){
@@ -1091,6 +1117,12 @@
     });
   }
 
+  var newChip = needGrid ? needGrid.querySelector(".chip-new") : null;
+  if(newChip && recentCount > 0){
+    newChip.hidden = false;
+    newChip.querySelector("span").textContent = "Recently added (" + recentCount + ")";
+  }
+
   var eligToggle = document.getElementById("eligToggle");
   var eligWrap = document.getElementById("eligWrap");
   function setElig(open){
@@ -1154,7 +1186,7 @@
       seenK[k] = true;
       var tmp = document.createElement("div");
       tmp.innerHTML = items[i].html;
-      var tags = tmp.querySelectorAll(".req-tag, .req-connector, .save-btn");
+      var tags = tmp.querySelectorAll(".req-tag, .req-connector, .save-btn, .new-badge");
       for(var t=0;t<tags.length;t++){ tags[t].parentNode.removeChild(tags[t]); }
       var a = tmp.querySelector("a[href]");
       var name = a ? a.textContent.trim() : "";
