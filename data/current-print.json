@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-10-08T23:31:16.1465532-07:00",
+  "updatedAt": "2026-10-08T23:32:19.3422270-07:00",
   "active": true,
   "cameraAvailable": true,
-  "gcodeState": "PREPARE",
+  "gcodeState": "RUNNING",
   "progress": 0,
   "title": "All Parts PETG 0.16mm layer, 4 walls, 10% infill",
   "projectId": "1322370795",
