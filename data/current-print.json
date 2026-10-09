@@ -1,20 +1,22 @@
 {
-  "updatedAt": "2026-10-08T08:54:23.3268267-07:00",
-  "active": false,
+  "updatedAt": "2026-10-08T23:31:16.1465532-07:00",
+  "active": true,
   "cameraAvailable": true,
-  "gcodeState": "FINISH",
-  "progress": 100,
-  "title": "4x4 - 0.2mm layer, 2 walls, 15% infill",
-  "projectId": "1319254627",
+  "gcodeState": "PREPARE",
+  "progress": 0,
+  "title": "All Parts PETG 0.16mm layer, 4 walls, 10% infill",
+  "projectId": "1322370795",
   "streamPlatform": "cloudflare",
   "streamPublic": false,
   "youtubeVideoId": "",
-  "image": "",
-  "imageVersion": "",
-  "objectCount": 0,
-  "objects": [],
-  "weightGrams": null,
-  "estimatedSeconds": null,
-  "printerModelId": "",
-  "note": "Latest Bambu Studio project detected. Preview image is not available for this job."
+  "image": "/print-assets/current-print.png",
+  "imageVersion": "c75ec7f6f412",
+  "objectCount": 1,
+  "objects": [
+    "gridfinity base 4x4.stl"
+  ],
+  "weightGrams": 75.36,
+  "estimatedSeconds": 8203,
+  "printerModelId": "N6",
+  "note": "The printer is active and the live video feed is still connecting."
 }
