@@ -481,85 +481,368 @@
 })();
 
 
-/* Veteran resources: eligibility filter */
+/* Veteran resources: benefit finder (search + need topics + eligibility filter) */
 (function(){
   var grid = document.getElementById("filterGrid");
   if(!grid){ return; }
+  var needGrid = document.getElementById("needGrid");
+  var searchEl = document.getElementById("benefitSearch");
   var countEl = document.getElementById("filterCount");
   var clearBtn = document.getElementById("filterClear");
+  var showAllBtn = document.getElementById("filterShowAll");
+  var shareBtn = document.getElementById("filterShare");
+  var emptyEl = document.getElementById("filterEmpty");
+  var panel = document.querySelector(".filter-panel");
   var main = document.querySelector("main");
-  var allLis = document.querySelectorAll(".feature-list li");
-  var totalCount = allLis.length;
 
-  function getChecked(){
-    var boxes = grid.querySelectorAll("input:checked");
-    var values = [];
-    for(var i=0;i<boxes.length;i++){ values.push(boxes[i].value); }
-    return values;
+  // ---- Index every benefit on the page -------------------------------------
+  var items = [];
+  var sectionNodes = document.querySelectorAll("main section.section-anchor");
+  for(var s=0;s<sectionNodes.length;s++){
+    var sec = sectionNodes[s];
+    var eyebrow = sec.querySelector(".section-head .eyebrow");
+    var secText = eyebrow ? eyebrow.textContent : "";
+    var lis = sec.querySelectorAll(".feature-list li");
+    for(var l=0;l<lis.length;l++){
+      var li = lis[l];
+      var card = li.closest(".service-cluster");
+      var ctx = secText;
+      if(card){
+        var tag = card.querySelector(".cluster-tag");
+        var h3 = card.querySelector("h3");
+        ctx += " " + (tag ? tag.textContent : "") + " " + (h3 ? h3.textContent : "");
+      }
+      var link = li.querySelector("a[href]");
+      items.push({
+        li: li,
+        section: sec.id,
+        req: li.getAttribute("data-req") || "",
+        key: link ? link.getAttribute("href").replace(/\/+$/, "").toLowerCase() : li.textContent.trim().toLowerCase(),
+        text: norm(li.textContent),
+        ctx: norm(ctx),
+        html: li.innerHTML
+      });
+    }
+  }
+  var uniqueKeys = {};
+  for(var u=0;u<items.length;u++){ uniqueKeys[items[u].key] = true; }
+  var totalCount = Object.keys(uniqueKeys).length;
+
+  // ---- Helpers ---------------------------------------------------------------
+  function norm(str){
+    return (" " + String(str || "") + " ")
+      .toLowerCase()
+      .replace(/[‘’']/g, "")
+      .replace(/&/g, " and ")
+      .replace(/[^a-z0-9%]+/g, " ");
+  }
+  function escRe(str){ return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+
+  // Everyday words people type -> words this page actually uses.
+  var SYNONYMS = {
+    "ptsd": ["mental health","counseling","peer support","vet center","trauma","crisis"],
+    "depression": ["mental health","counseling","peer support","crisis"],
+    "anxiety": ["mental health","counseling","peer support"],
+    "suicide": ["crisis","mental health"],
+    "therapy": ["counseling","mental health","therapist"],
+    "therapist": ["counseling","mental health"],
+    "counselor": ["counseling","mental health"],
+    "tbi": ["brain injury","disability","wounded"],
+    "school": ["education","gi bill","college","scholarship","tuition"],
+    "college": ["education","gi bill","school","scholarship","tuition","fee waiver"],
+    "tuition": ["education","gi bill","fee waiver","scholarship","yellow ribbon"],
+    "university": ["education","gi bill","college","scholarship"],
+    "scholarship": ["scholarship","education"],
+    "training": ["education","vocational","skillbridge","vet tec","career"],
+    "rent": ["rent","emergency","financial assistance","homeless","supportive services","utilities"],
+    "house": ["housing","home"],
+    "mortgage": ["home loan","housing"],
+    "homeless": ["homeless","housing","hud vash","supportive services"],
+    "shelter": ["homeless","housing","transitional"],
+    "job": ["employment","career","hiring","work"],
+    "jobs": ["employment","career","hiring","work"],
+    "career": ["employment","career","hiring"],
+    "resume": ["employment","career","hiring"],
+    "business": ["business","sdvosb","vosb","franchise","entrepreneur"],
+    "money": ["financial","grant","pension","compensation","emergency","cash"],
+    "cash": ["financial","grant","emergency"],
+    "bills": ["financial","emergency","grant","utilities"],
+    "food": ["food","calfresh","groceries"],
+    "groceries": ["food","calfresh","commissar"],
+    "snap": ["calfresh","food"],
+    "doctor": ["health care","medical","va health"],
+    "medical": ["health","medical"],
+    "healthcare": ["health care","medical"],
+    "insurance": ["insurance","valife","champva","health care"],
+    "teeth": ["dental"],
+    "dentist": ["dental"],
+    "glasses": ["vision","eye"],
+    "taxes": ["tax"],
+    "car": ["automobile","vehicle","dmv","transit"],
+    "vehicle": ["automobile","vehicle","dmv"],
+    "bus": ["transit","fare"],
+    "license": ["dmv","license"],
+    "dog": ["k9","service dog"],
+    "wife": ["spouse","survivor","family","dependent"],
+    "husband": ["spouse","survivor","family","dependent"],
+    "widow": ["survivor","spouse","dependency"],
+    "widower": ["survivor","spouse","dependency"],
+    "kids": ["children","dependent","family","scholarship"],
+    "children": ["children","dependent","family"],
+    "funeral": ["burial","memorial"],
+    "cemetery": ["burial","memorial"],
+    "lawyer": ["legal"],
+    "attorney": ["legal"],
+    "claim": ["claim","disability","service officer","cvso"],
+    "rating": ["disability","rating"],
+    "dd214": ["dd 214","records"],
+    "records": ["records","dd 214"],
+    "travel": ["travel","space available","pass","vacation"],
+    "vacation": ["vacation","travel","resort"],
+    "park": ["park","pass"],
+    "parks": ["park","pass"],
+    "hunting": ["hunting","fishing","license"],
+    "fishing": ["fishing","hunting","fly fishing"],
+    "discount": ["discount","save","savings","free"],
+    "deals": ["discount","savings"],
+    "free": ["free","no cost","discount"],
+    "tickets": ["tickets","vet tix"],
+    "caregiver": ["caregiver","aid and attendance"],
+    "elderly": ["aid and attendance","pension","veterans homes"],
+    "nursing": ["veterans homes","aid and attendance"],
+    "apple": ["high desert","apple valley"],
+    "victorville": ["high desert","victor valley"],
+    "hesperia": ["high desert"],
+    "barstow": ["high desert","barstow"]
+  };
+
+  function stem(word){
+    if(word.length > 4 && /ies$/.test(word)){ return word.slice(0,-3) + "y"; }
+    if(word.length > 3 && /s$/.test(word) && !/ss$/.test(word)){ return word.slice(0,-1); }
+    return word;
   }
 
-  // A data-req value is a space-separated list of clauses (OR'd together).
-  // Each clause is a "+"-joined list of tags that must ALL be checked (AND).
-  // Example: "disability-100+ca-resident survivor+ca-resident" means
-  // (disability-100 AND ca-resident) OR (survivor AND ca-resident).
-  // A plain single tag like "local" is just a one-tag, one-clause OR list.
-  function clauseMatches(clause, checked){
-    var tags = clause.split("+");
-    for(var i=0;i<tags.length;i++){
-      if(checked.indexOf(tags[i]) === -1){ return false; }
+  // Common filler words people type that shouldn't have to match anything.
+  var STOP = {"a":1,"an":1,"the":1,"for":1,"to":1,"of":1,"and":1,"or":1,"in":1,"on":1,"my":1,"me":1,"i":1,"im":1,"with":1,"help":1,"need":1,"get":1,"how":1,"do":1,"what":1,"is":1,"are":1,"veteran":1,"veterans":1};
+
+  function parseQuery(q){
+    var raw = norm(q).trim();
+    if(!raw){ return []; }
+    // Join "dd 214" style typing so it still hits.
+    raw = raw.replace(/\bdd 214\b/g, "dd214");
+    var words = raw.split(" ");
+    var groups = [];
+    for(var i=0;i<words.length;i++){
+      var w = words[i];
+      if(!w || STOP[w]){ continue; }
+      var alts = [w];
+      var st = stem(w);
+      if(st !== w){ alts.push(st); }
+      var syn = SYNONYMS[w] || SYNONYMS[st];
+      if(syn){ alts = alts.concat(syn); }
+      if(w === "dd214"){ alts = ["dd 214","dd214","records"]; }
+      groups.push({ word: w, alts: alts });
+    }
+    // If every word was filler ("help for veterans"), fall back to the raw words.
+    if(!groups.length){
+      for(var j=0;j<words.length;j++){ if(words[j]){ groups.push({ word: words[j], alts: [words[j]] }); } }
+    }
+    return groups;
+  }
+
+  function hasAlt(hay, alt){
+    // Short terms (2-3 chars like "va", "gi", "tax") must match at a word start.
+    if(alt.length <= 3){ return hay.indexOf(" " + alt) !== -1; }
+    return hay.indexOf(alt) !== -1;
+  }
+
+  // Search-match: every typed word (or one of its synonyms) must appear in
+  // the benefit's own text or in the card/section it sits in.
+  function searchMatches(item, groups){
+    var hay = item.text + item.ctx;
+    for(var g=0;g<groups.length;g++){
+      var ok = false;
+      for(var a=0;a<groups[g].alts.length;a++){
+        if(hasAlt(hay, groups[g].alts[a])){ ok = true; break; }
+      }
+      if(!ok){ return false; }
     }
     return true;
   }
 
-  function reqMatches(req, checked){
-    var clauses = req.split(" ");
+  // Eligibility. data-req = space-separated OR clauses, each a "+"-joined AND list.
+  // Implied tags: a 100% rating is also "any rating"; High Desert residents are California residents.
+  var IMPLIES = { "disability-100": ["disability-any"], "local": ["ca-resident"] };
+  function expand(checked){
+    var out = checked.slice();
+    for(var i=0;i<checked.length;i++){
+      var extra = IMPLIES[checked[i]] || [];
+      for(var j=0;j<extra.length;j++){ if(out.indexOf(extra[j]) === -1){ out.push(extra[j]); } }
+    }
+    return out;
+  }
+  function reqMatches(req, have){
+    var clauses = req.split(/\s+/);
     for(var c=0;c<clauses.length;c++){
-      if(clauseMatches(clauses[c], checked)){ return true; }
+      if(!clauses[c]){ continue; }
+      var tags = clauses[c].split("+");
+      var all = true;
+      for(var t=0;t<tags.length;t++){ if(have.indexOf(tags[t]) === -1){ all = false; break; } }
+      if(all){ return true; }
     }
     return false;
   }
 
-  function apply(){
-    var checked = getChecked();
-    var any = checked.length > 0;
-    if(clearBtn){ clearBtn.hidden = !any; }
+  function checkedValues(container){
+    var out = [];
+    if(!container){ return out; }
+    var boxes = container.querySelectorAll("input:checked");
+    for(var i=0;i<boxes.length;i++){ out.push(boxes[i].value); }
+    return out;
+  }
+  function needSections(){
+    var out = [];
+    if(!needGrid){ return out; }
+    var boxes = needGrid.querySelectorAll("input:checked");
+    for(var i=0;i<boxes.length;i++){
+      out = out.concat((boxes[i].getAttribute("data-sections") || "").split(/\s+/));
+    }
+    return out;
+  }
 
+  // Wrap matched words in <mark>, touching text nodes only so links stay intact.
+  function highlight(li, groups){
+    var terms = [];
+    for(var g=0;g<groups.length;g++){
+      for(var a=0;a<groups[g].alts.length;a++){
+        var t = groups[g].alts[a];
+        if(t.length >= 2 && terms.indexOf(t) === -1){ terms.push(t); }
+      }
+    }
+    if(!terms.length){ return; }
+    terms.sort(function(x,y){ return y.length - x.length; });
+    var re = new RegExp("\\b(" + terms.map(escRe).join("|") + ")", "gi");
+    var walker = document.createTreeWalker(li, NodeFilter.SHOW_TEXT, null, false);
+    var nodes = [];
+    while(walker.nextNode()){
+      var n = walker.currentNode;
+      if(n.parentNode && n.parentNode.closest && n.parentNode.closest(".req-tag, .req-connector, .for-you-badge")){ continue; }
+      nodes.push(n);
+    }
+    for(var i=0;i<nodes.length;i++){
+      var node = nodes[i];
+      var txt = node.nodeValue;
+      re.lastIndex = 0;
+      if(!re.test(txt)){ continue; }
+      re.lastIndex = 0;
+      var frag = document.createDocumentFragment();
+      var last = 0, m;
+      while((m = re.exec(txt))){
+        if(m.index > last){ frag.appendChild(document.createTextNode(txt.slice(last, m.index))); }
+        var mark = document.createElement("mark");
+        mark.className = "finder-mark";
+        mark.textContent = m[0];
+        frag.appendChild(mark);
+        last = m.index + m[0].length;
+        if(m[0].length === 0){ re.lastIndex++; }
+      }
+      if(last < txt.length){ frag.appendChild(document.createTextNode(txt.slice(last))); }
+      node.parentNode.replaceChild(frag, node);
+    }
+  }
+
+  // ---- State -----------------------------------------------------------------
+  var showOpenToAll = false;
+
+  function plural(n, one, many){ return n + " " + (n === 1 ? one : many); }
+
+  function apply(fromUser, autoOpen){
+    var openMode = showOpenToAll || !!autoOpen;
+    var eligibility = checkedValues(grid);
+    var have = expand(eligibility);
+    var needs = needSections();
+    var query = searchEl ? searchEl.value : "";
+    var groups = parseQuery(query);
+    var anyElig = eligibility.length > 0;
+    var anyNeed = needs.length > 0;
+    var anySearch = groups.length > 0;
+    var active = anyElig || anyNeed || anySearch;
+
+    var seen = {};
+    var forYouCount = 0;
+    var openCount = 0;
     var visibleCount = 0;
-    for(var i=0;i<allLis.length;i++){
-      var li = allLis[i];
-      var req = li.getAttribute("data-req");
+
+    for(var i=0;i<items.length;i++){
+      var it = items[i];
+      var li = it.li;
+      // Reset any earlier highlighting / badges.
+      if(li.getAttribute("data-finder-touched")){
+        li.innerHTML = it.html;
+        li.removeAttribute("data-finder-touched");
+      }
+      li.classList.remove("for-you");
+
       var show = true;
-      if(any && req){
-        show = reqMatches(req, checked);
+      var forYou = false;
+      if(anyNeed && needs.indexOf(it.section) === -1){ show = false; }
+      if(show && anySearch && !searchMatches(it, groups)){ show = false; }
+      if(show && anyElig){
+        if(it.req){
+          if(reqMatches(it.req, have)){ forYou = true; } else { show = false; }
+        } else if(!openMode){
+          // Open-to-all benefit: counted, but tucked away until asked for.
+          if(!seen[it.key]){ openCount++; }
+          seen[it.key] = seen[it.key] || "open";
+          show = false;
+        }
       }
+      // While searching/filtering, list each benefit once even if it's cross-listed.
+      if(show && active){
+        if(seen[it.key] === true){ show = false; }
+        else { seen[it.key] = true; }
+      }
+
       li.classList.toggle("filter-hide", !show);
-      if(show){ visibleCount++; }
-    }
-
-    var articles = document.querySelectorAll(".service-cluster");
-    for(var a=0;a<articles.length;a++){
-      var article = articles[a];
-      var items = article.querySelectorAll(".feature-list li");
-      if(!items.length){ continue; }
-      var visible = false;
-      for(var k=0;k<items.length;k++){
-        if(!items[k].classList.contains("filter-hide")){ visible = true; break; }
+      if(show){
+        visibleCount++;
+        if(forYou){ forYouCount++; }
+        if(anyElig && !it.req && openMode){ openCount++; }
+        if(forYou && anyElig){
+          li.classList.add("for-you");
+        }
+        if(anySearch){
+          highlight(li, groups);
+          li.setAttribute("data-finder-touched", "1");
+        }
       }
-      article.classList.toggle("filter-hide", !visible);
     }
 
-    var sections = document.querySelectorAll("section.section-anchor");
-    for(var s=0;s<sections.length;s++){
-      var section = sections[s];
+    // Nothing limited to their exact situation? Show the open-to-all matches instead of a dead end.
+    if(anyElig && !openMode && forYouCount === 0 && openCount > 0){ return apply(fromUser, true); }
+
+    // Hide empty cards, sections, and cluster dividers.
+    var articles = document.querySelectorAll("main .service-cluster");
+    for(var a=0;a<articles.length;a++){
+      var lisInCard = articles[a].querySelectorAll(".feature-list li");
+      if(!lisInCard.length){ articles[a].classList.toggle("filter-hide", active); continue; }
+      var vis = false;
+      for(var k=0;k<lisInCard.length;k++){ if(!lisInCard[k].classList.contains("filter-hide")){ vis = true; break; } }
+      articles[a].classList.toggle("filter-hide", !vis);
+      if(vis && active){ articles[a].classList.add("visible"); }
+    }
+    for(var s2=0;s2<sectionNodes.length;s2++){
+      var section = sectionNodes[s2];
       var cards = section.querySelectorAll(".service-cluster");
       if(!cards.length){ continue; }
-      var sectionVisible = false;
-      for(var c=0;c<cards.length;c++){
-        if(!cards[c].classList.contains("filter-hide")){ sectionVisible = true; break; }
+      var secVis = false;
+      for(var c=0;c<cards.length;c++){ if(!cards[c].classList.contains("filter-hide")){ secVis = true; break; } }
+      section.classList.toggle("filter-hide", !secVis);
+      if(secVis && active){
+        var heads = section.querySelectorAll(".reveal");
+        for(var h=0;h<heads.length;h++){ heads[h].classList.add("visible"); }
       }
-      section.classList.toggle("filter-hide", !sectionVisible);
     }
-
     if(main){
       var children = main.children;
       var currentDivider = null;
@@ -571,31 +854,165 @@
           currentDivider = node;
           groupHasVisible = false;
         } else if(node.tagName === "SECTION" && node.classList.contains("section-anchor")){
-          if(node.querySelectorAll(".service-cluster").length && !node.classList.contains("filter-hide")){
-            groupHasVisible = true;
-          }
+          if(node.querySelectorAll(".service-cluster").length && !node.classList.contains("filter-hide")){ groupHasVisible = true; }
         }
       }
       if(currentDivider){ currentDivider.classList.toggle("filter-hide", !groupHasVisible); }
     }
 
+    // Status line.
     if(countEl){
-      if(!any){
-        countEl.textContent = "Showing all " + totalCount + " benefits. Select what applies to you to narrow the list.";
+      var msg;
+      if(!active){
+        msg = "Showing all " + totalCount + " benefits. Search or pick what applies to you to narrow the list.";
+      } else if(anyElig && autoOpen && !showOpenToAll){
+        msg = "Nothing here is limited to your exact situation, so here " + (openCount === 1 ? "is 1 benefit" : "are " + openCount + " benefits") + " open to all veterans that match.";
+      } else if(anyElig){
+        msg = plural(forYouCount, "benefit is", "benefits are") + " specifically for your situation";
+        if(openMode){ msg += ", plus " + plural(openCount, "benefit", "benefits") + " open to all veterans."; }
+        else { msg += "."; }
       } else {
-        countEl.textContent = "Showing " + visibleCount + " of " + totalCount + " benefits that match what you selected.";
+        msg = "Showing " + plural(visibleCount, "benefit", "benefits") + " that match" + (visibleCount === 1 ? "es" : "") + ".";
+      }
+      countEl.textContent = msg;
+    }
+    if(showAllBtn){
+      var canShow = anyElig && !(autoOpen && !showOpenToAll) && (openCount > 0 || showOpenToAll);
+      showAllBtn.hidden = !canShow;
+      if(canShow){
+        showAllBtn.textContent = showOpenToAll
+          ? "Hide benefits open to all veterans"
+          : "+ Show " + plural(openCount, "more benefit", "more benefits") + " open to all veterans";
+        showAllBtn.setAttribute("aria-pressed", showOpenToAll ? "true" : "false");
       }
     }
+    if(clearBtn){ clearBtn.hidden = !active; }
+    if(shareBtn){ shareBtn.hidden = !active; }
+    if(emptyEl){ emptyEl.hidden = !(active && visibleCount === 0 && !(anyElig && openCount > 0)); }
+    if(panel){ panel.classList.toggle("is-active", active); }
+
+    syncUrl(query, eligibility, needGrid ? checkedValues(needGrid) : []);
+    updateDock(active, visibleCount);
   }
 
-  grid.addEventListener("change", apply);
-  if(clearBtn){
-    clearBtn.addEventListener("click", function(){
-      var boxes = grid.querySelectorAll("input:checked");
-      for(var i=0;i<boxes.length;i++){ boxes[i].checked = false; }
-      apply();
+  // ---- Shareable URL ---------------------------------------------------------
+  function syncUrl(query, eligibility, needs){
+    if(!window.history || !history.replaceState){ return; }
+    var params = [];
+    if(query.trim()){ params.push("q=" + encodeURIComponent(query.trim())); }
+    if(needs.length){ params.push("need=" + needs.join(",")); }
+    if(eligibility.length){ params.push("for=" + eligibility.join(",")); }
+    if(showOpenToAll && eligibility.length){ params.push("all=1"); }
+    var url = location.pathname + (params.length ? "?" + params.join("&") : "") + location.hash;
+    try { history.replaceState(null, "", url); } catch(e){}
+  }
+  function readUrl(){
+    var qs = location.search.replace(/^\?/, "");
+    if(!qs){ return; }
+    var parts = qs.split("&");
+    var map = {};
+    for(var i=0;i<parts.length;i++){
+      var kv = parts[i].split("=");
+      try { map[decodeURIComponent(kv[0])] = decodeURIComponent((kv[1] || "").replace(/\+/g, " ")); } catch(e){}
+    }
+    if(map.q && searchEl){ searchEl.value = map.q; }
+    function tick(container, list){
+      if(!container || !list){ return; }
+      var vals = list.split(",");
+      var boxes = container.querySelectorAll("input[type=checkbox]");
+      for(var b=0;b<boxes.length;b++){ if(vals.indexOf(boxes[b].value) !== -1){ boxes[b].checked = true; } }
+    }
+    tick(grid, map["for"]);
+    tick(needGrid, map.need);
+    if(map.all === "1"){ showOpenToAll = true; }
+  }
+
+  // ---- Sticky results dock (appears once the finder scrolls off-screen) -------
+  var dock = document.createElement("div");
+  dock.className = "finder-dock";
+  dock.setAttribute("role", "region");
+  dock.setAttribute("aria-label", "Search and filter results");
+  dock.hidden = true;
+  dock.innerHTML = '<span class="finder-dock-count"></span>' +
+    '<button type="button" class="finder-dock-edit">Edit search</button>' +
+    '<button type="button" class="finder-dock-clear">Clear</button>';
+  document.body.appendChild(dock);
+  var dockCount = dock.querySelector(".finder-dock-count");
+  var panelOffscreen = false;
+  var dockActive = false;
+  function updateDock(active, visible){
+    dockActive = active;
+    if(dockCount){ dockCount.textContent = plural(visible, "result", "results"); }
+    dock.hidden = !(dockActive && panelOffscreen);
+  }
+  if(panel && "IntersectionObserver" in window){
+    new IntersectionObserver(function(entries){
+      panelOffscreen = !entries[0].isIntersecting;
+      dock.hidden = !(dockActive && panelOffscreen);
+    }, { threshold: 0 }).observe(panel);
+  }
+  dock.querySelector(".finder-dock-edit").addEventListener("click", function(){
+    if(panel){ panel.scrollIntoView({ behavior: "smooth", block: "start" }); }
+    if(searchEl){ setTimeout(function(){ searchEl.focus({ preventScroll: true }); }, 350); }
+  });
+  dock.querySelector(".finder-dock-clear").addEventListener("click", function(){ clearAll(); });
+
+  // ---- Wiring ----------------------------------------------------------------
+  function clearAll(){
+    var boxes = document.querySelectorAll("#filterGrid input:checked, #needGrid input:checked");
+    for(var i=0;i<boxes.length;i++){ boxes[i].checked = false; }
+    if(searchEl){ searchEl.value = ""; }
+    showOpenToAll = false;
+    apply(true);
+  }
+
+  grid.addEventListener("change", function(){ apply(true); });
+  if(needGrid){ needGrid.addEventListener("change", function(){ apply(true); }); }
+  if(clearBtn){ clearBtn.addEventListener("click", clearAll); }
+  if(showAllBtn){
+    showAllBtn.addEventListener("click", function(){ showOpenToAll = !showOpenToAll; apply(true); });
+  }
+  if(shareBtn){
+    shareBtn.addEventListener("click", function(){
+      var url = location.href;
+      var done = function(){
+        var old = shareBtn.textContent;
+        shareBtn.textContent = "Link copied";
+        setTimeout(function(){ shareBtn.textContent = old; }, 1800);
+      };
+      if(navigator.share && /Mobi|Android|iPhone/i.test(navigator.userAgent)){
+        navigator.share({ title: document.title, url: url }).catch(function(){});
+      } else if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(url).then(done, function(){ window.prompt("Copy this link:", url); });
+      } else {
+        window.prompt("Copy this link:", url);
+      }
+    });
+  }
+  if(searchEl){
+    var timer = null;
+    searchEl.addEventListener("input", function(){
+      clearTimeout(timer);
+      timer = setTimeout(function(){ apply(true); }, 140);
+    });
+    searchEl.addEventListener("keydown", function(e){
+      if(e.key === "Escape"){ searchEl.value = ""; apply(true); }
+      if(e.key === "Enter"){
+        e.preventDefault();
+        var first = document.querySelector("main .feature-list li:not(.filter-hide)");
+        if(first){ first.scrollIntoView({ behavior: "smooth", block: "center" }); }
+      }
+    });
+    // "/" jumps to search from anywhere on the page.
+    document.addEventListener("keydown", function(e){
+      if(e.key !== "/" || e.ctrlKey || e.metaKey || e.altKey){ return; }
+      var t = e.target;
+      if(t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)){ return; }
+      e.preventDefault();
+      searchEl.focus();
     });
   }
 
-  apply();
+  readUrl();
+  apply(false);
 })();

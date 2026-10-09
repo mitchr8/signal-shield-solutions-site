@@ -15,7 +15,7 @@
 <meta name="twitter:title" content="Veteran Benefits &amp; Resources | Signal &amp; Shield Solutions" />
 <meta name="twitter:description" content="A deep, curated hub of veteran benefits, discounts, and organizations, including the ones most people miss. Veteran-owned." />
 <meta name="twitter:image" content="https://signalshieldsolutions.com/logo.png" />
-<link rel="stylesheet" href="styles.css?v=20260728b" />
+<link rel="stylesheet" href="styles.css?v=20261009a" />
 <script type="application/ld+json">
 {
 "@context": "https://schema.org",
@@ -132,13 +132,34 @@
 </section>
 
 <section class="wrap section-shell" style="padding-top:0">
-<div class="surface reveal filter-panel">
+<div class="surface reveal filter-panel" id="finder">
 <div class="topics-head">
-<span class="eyebrow">Quick filter</span>
-<h2>Show me what I qualify for.</h2>
-<p>Check anything that applies to you and the list below narrows automatically. This is a starting point, not a final answer &mdash; always confirm eligibility on the official link before you apply.</p>
+<span class="eyebrow">Find benefits</span>
+<h2>Search, or tell us what you need.</h2>
+<p>Type anything &mdash; &ldquo;PTSD,&rdquo; &ldquo;rent help,&rdquo; &ldquo;GI Bill,&rdquo; &ldquo;DD-214&rdquo; &mdash; or pick a topic and what applies to you, and the list below narrows automatically. This is a starting point, not a final answer &mdash; always confirm eligibility on the official link before you apply.</p>
 </div>
-<div class="filter-grid" id="filterGrid">
+<div class="finder-search">
+<label class="sr-only" for="benefitSearch">Search veteran benefits and resources</label>
+<svg class="finder-search-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+<input type="search" id="benefitSearch" placeholder="Search: PTSD, rent help, GI Bill, CalFresh, DD-214&hellip;" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" />
+<kbd class="finder-kbd" aria-hidden="true">/</kbd>
+</div>
+<p class="filter-label" id="needLabel">What do you need help with?</p>
+<div class="filter-grid" id="needGrid" role="group" aria-labelledby="needLabel">
+<label class="filter-chip"><input type="checkbox" value="urgent" data-sections="emergency mental" /><span>Urgent help</span></label>
+<label class="filter-chip"><input type="checkbox" value="start" data-sections="start" /><span>Getting started</span></label>
+<label class="filter-chip"><input type="checkbox" value="money" data-sections="emergency perks" /><span>Money &amp; VA pay</span></label>
+<label class="filter-chip"><input type="checkbox" value="health" data-sections="health mental" /><span>Health &amp; disability</span></label>
+<label class="filter-chip"><input type="checkbox" value="housing" data-sections="housing" /><span>Housing</span></label>
+<label class="filter-chip"><input type="checkbox" value="school" data-sections="education" /><span>School &amp; training</span></label>
+<label class="filter-chip"><input type="checkbox" value="work" data-sections="work" /><span>Jobs &amp; business</span></label>
+<label class="filter-chip"><input type="checkbox" value="discounts" data-sections="discounts" /><span>Discounts &amp; travel</span></label>
+<label class="filter-chip"><input type="checkbox" value="family" data-sections="family" /><span>Family &amp; survivors</span></label>
+<label class="filter-chip"><input type="checkbox" value="community" data-sections="orgs community" /><span>Community &amp; recreation</span></label>
+<label class="filter-chip"><input type="checkbox" value="ca-local" data-sections="california local" /><span>California &amp; local help</span></label>
+</div>
+<p class="filter-label" id="eligLabel">What applies to you?</p>
+<div class="filter-grid" id="filterGrid" role="group" aria-labelledby="eligLabel">
 <label class="filter-chip"><input type="checkbox" value="disability-any" /><span>Any % disability rating</span></label>
 <label class="filter-chip"><input type="checkbox" value="disability-100" /><span>100% / P&amp;T disability rating</span></label>
 <label class="filter-chip"><input type="checkbox" value="low-income" /><span>Low-income / hardship</span></label>
@@ -149,8 +170,16 @@
 <label class="filter-chip"><input type="checkbox" value="local" /><span>High Desert / local</span></label>
 </div>
 <div class="filter-status">
-<p class="microcopy" id="filterCount">Showing all 112 benefits. Select what applies to you to narrow the list.</p>
-<button type="button" class="filter-clear" id="filterClear" hidden>Clear filters</button>
+<p class="microcopy" id="filterCount" role="status" aria-live="polite">Showing all 107 benefits. Search or pick what applies to you to narrow the list.</p>
+<div class="filter-actions">
+<button type="button" class="filter-clear filter-showall" id="filterShowAll" aria-pressed="false" hidden>Show benefits open to all veterans</button>
+<button type="button" class="filter-clear" id="filterShare" hidden>Copy link to these results</button>
+<button type="button" class="filter-clear" id="filterClear" hidden>Clear all</button>
+</div>
+</div>
+<div class="filter-empty" id="filterEmpty" hidden>
+<strong>No matches yet.</strong>
+<p>Try fewer or different words, or clear a filter. For one-on-one help finding what you qualify for, a free <a href="https://va.sbcounty.gov/" target="_blank" rel="noopener noreferrer">San Bernardino County Veterans Service Officer</a> (or <a href="https://www.calvet.ca.gov/VetServices/Pages/CVSO-Locations.aspx" target="_blank" rel="noopener noreferrer">your county&rsquo;s CVSO</a>) can walk you through it. In crisis? Dial <strong>988</strong> and press <strong>1</strong>.</p>
 </div>
 </div>
 </section>
@@ -822,6 +851,6 @@ detailsPrompt: "Tell us what you need and the best way to reach you.",
 detailsPlaceholder: "Your question and preferred contact"
 };
 </script>
-<script src="site.js"></script>
+<script src="site.js?v=20261009a"></script>
 </body>
 </html>
